@@ -1,14 +1,17 @@
 # NotiPet Mobile App
 
+
+
+## Solution Structure
+
+#### General Projects
+
 **[Domain-Driven Design (DDD)](https://en.m.wikipedia.org/wiki/Domain-driven_design)** is an approach to software development for complex needs by connecting the implementation to an evolving model.  The premise of Domain-Driven Design is the following:
 
 - Placing the project's primary focus on the core domain and domain logic.
 - Basing complex designs on a model of the domain.
 - Initiating a creative collaboration between technical and domain experts to iteratively refine a conceptual model that addresses particular domain pr.
 
-## Solution Structure
-
-#### General Projects
 
 | Projects                     | Description       | 
 | ---------------------------  |-------------| 
