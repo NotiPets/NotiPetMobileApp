@@ -23,6 +23,5 @@
       <Folder Include="Properties" />
       <Folder Include="Services" />
       <Folder Include="Styles" />
-      <Folder Include="ViewModels" />
     </ItemGroup>
 </Project>
