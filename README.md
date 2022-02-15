@@ -1,41 +1,42 @@
 # NotiPet Mobile App
 
+## Sobre el Proyecto 🐾
 
+NotiPet es un proyecto cuyo propósito es el de conectar a los dueños de mascotas con las veterinarias con los cuales contratan servicios para sus mascotas permitiéndoles a estos estar al tanto de los servicios que le están siendo realizados a sus mascotas para de esta forma estar al tanto de éstos en todo momento.
 
-## Solution Structure
+## Estructura de la solución
 
-#### General Projects
+#### Proyecto en general
 
-**[Domain-Driven Design (DDD)](https://en.m.wikipedia.org/wiki/Domain-driven_design)** is an approach to software development for complex needs by connecting the implementation to an evolving model.  The premise of Domain-Driven Design is the following:
+**[Domain-Driven Design (DDD)](https://en.m.wikipedia.org/wiki/Domain-driven_design)** es un enfoque de desarrollo de software para necesidades complejas que conecta la implementación con un modelo en evolución.  La premisa del diseño orientado al dominio es la siguiente:
 
-- Placing the project's primary focus on the core domain and domain logic.
-- Basing complex designs on a model of the domain.
-- Initiating a creative collaboration between technical and domain experts to iteratively refine a conceptual model that addresses particular domain pr.
+- Situar el foco principal del proyecto en el dominio central y la lógica del dominio.
+- Basar los diseños complejos en un modelo del dominio.
+- Iniciar una colaboración creativa entre los expertos técnicos y los del dominio para perfeccionar de forma iterativa un modelo conceptual que aborde un dominio concreto.
 
-
-| Projects                     | Description       | 
+| Proyecto                     | Descripción | 
 | ---------------------------  |-------------| 
-| NotiPet.Domain               | Business models & interfaces | 
-| NotiPet.Data                 | Rest APIs, DataSources and Repositories implementations & DTOs Mapping | 
-| NotiPet                      | Mobile application | 
-| NotiPet.iOS                  | iOS Platform  | 
-| NotiPet.Droid                | Android Platform | 
-| NotiPet.Tests                | Unit tests |
+| NotiPet.Domain               | Modelos de negocio e interfaces                                         | 
+| NotiPet.Data                 | Implementación de APIs Rest, DataSources y Repositorios y mapeo de DTOs | 
+| NotiPet                      | Aplicación móvil                                                        | 
+| NotiPet.iOS                  | Plataforma iOS                                                          | 
+| NotiPet.Droid                | Plataforma Android                                                      | 
+| NotiPet.Tests                | Pruebas unitarias                                                       |
 
 #### UI 
 
-| Namespace | Description |
+| Namespace | Descripción |
 |--------------|--------------|
-| NotiPet.Behaviors | Extended behaviors for the Xamarin.Forms components |
-| XNotiPet.Converters | XAML converters, used to converted your data binding data into something your XAML understands |
-| NotiPet.Effects | Effects to apply light-weight renderer changes to the Xamarin.Forms renderers |
-| NotiPet.Extensions | XAML Markup Extensions to make your XAML even more functional |
-| NotiPet.Model | Things that have to do with your models and objects. Probably handy for your MVVM needs |
-| NotiPet.Views | Controls such as reusable ui elements |
+| NotiPet.Behaviors | Comportamientos ampliados para los componentes de Xamarin.Forms |
+| XNotiPet.Converters | Convertidores XAML, utilizados para convertir los datos de enlace de datos en algo que el XAML entienda |
+| NotiPet.Effects | Efectos para aplicar cambios ligeros en los renderizadores de Xamarin.Forms |
+| NotiPet.Extensions | Extensiones de marcado XAML para que XAML sea aún más funcional |
+| NotiPet.Model | Cosas que tienen que ver con modelos y objetos, útil para tus necesidades de MVVM |
+| NotiPet.Views | Controles como elementos ui reutilizables |
 
-## Branching Stratergy
+## Estrategia de Branching
 
-1) Create a feature branch from the customer branch you will be working on. Using the following naming convention:
+1) Cree una rama de características a partir de la rama de clientes en la que va a trabajar. Utilizando la siguiente convención de nomenclatura:
 
       Name: **feature/{my initials}-{azure-dev-ops-task-id}-{feature name}**
 
@@ -49,11 +50,11 @@
 
       New Branch: feature/rf-1234-appoiments-module
       
-      **Please include the Azure Dev Ops Task ID in each commit as well**
+       **Por favor, incluya también el ID de la tarea de Azure Dev Ops en cada confirmación**.
 
-2) Once feature is complete pull from the customer branch
+2) Una vez que la función se ha completado, se retira el branch.
 
-3) Submit a PR to the customer branch **(NEVER TO master BRANCH)**
+3) Envíe un PR al branch main **(NUNCA A LA RAMA PRINCIPAL)**
       
       Naming Convention: **[customer-name][azure-dev-ops-task-id] - Feature Name**
       
@@ -65,5 +66,5 @@
       
       PR target branch: develop
 
-3) Can be merged to customer branch once PR is approved
+3) Se puede fusionar con la rama del main una vez que se apruebe el PR
 
