@@ -14,9 +14,9 @@
         <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-        <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
         <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
         <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+        <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugSymbols>true</DebugSymbols>
@@ -85,7 +85,7 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\NotiPetApp\NotiPetApp.csproj">
-            <Project>{E0ABCD18-71A1-4BFD-B58E-7872FB597261}</Project>
+            <Project>{F10D8C09-1B97-4B7B-9367-2748A3A72EC1}</Project>
             <Name>NotiPetApp</Name>
         </ProjectReference>
     </ItemGroup>

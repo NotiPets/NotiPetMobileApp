@@ -11,6 +11,7 @@
     <Color x:Key="PrimaryDark">#00999b</Color>
     <Color x:Key="PrimaryLetterColor">Black</Color>
     <Color x:Key="PrimaryLetterLightColor">Gray</Color>
+    <Color x:Key="SecondaryLetterLight">White</Color>
     <Color x:Key="SecondaryColor">#006064</Color>
     <Color x:Key="SecondaryLight">#428E92</Color>
     <Color x:Key="SecondaryDark">#00363A</Color>

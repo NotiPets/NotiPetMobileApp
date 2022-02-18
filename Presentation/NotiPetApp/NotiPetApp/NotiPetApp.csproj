@@ -24,6 +24,7 @@
         <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
         <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+        <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     </ItemGroup>
 
     <ItemGroup>
@@ -36,5 +37,19 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\NotiPet.Data\NotiPet.Data.csproj" />
+      <ProjectReference Include="..\..\..\NotiPet.Mocks\NotiPet.Mocks.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Styles\Fonts\Raleway-Bold.ttf" />
+      <None Remove="Styles\Fonts\MaterialIconsOutlined-Regular.otf" />
+      <None Remove="Styles\Fonts\Raleway-Regular.ttf" />
+      <None Remove="Styles\Fonts\Raleway-SemiBold.ttf" />
+      <None Remove="Xamarin.FFImageLoading.Transformations" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Styles\Fonts\Raleway-Bold.ttf" />
+      <EmbeddedResource Include="Styles\Fonts\MaterialIconsOutlined-Regular.otf" />
+      <EmbeddedResource Include="Styles\Fonts\Raleway-Regular.ttf" />
+      <EmbeddedResource Include="Styles\Fonts\Raleway-SemiBold.ttf" />
     </ItemGroup>
 </Project>

@@ -9,11 +9,12 @@
           xmlns:models="clr-namespace:NotiPetApp.Models;assembly=NotiPetApp"
           xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
           x:TypeArguments="viewModels:HomeViewModel"
+            
           x:Class="NotiPetApp.Views.MenuPages.HomePage">
     <ContentPage.Resources>
         <Style TargetType="pancakeView:PancakeView">
             <Setter Property="BackgroundColor" Value="{DynamicResource SecondBackgroundColor}"/>
-            <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup Offset='10,10',Color={StaticResource SecondBackgroundColor},BlurRadius=3}"/>
+            <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"/>
             <Setter Property="Margin" Value="15,25"/>
             <Setter Property="Padding" Value="10,10"/>
             <Setter Property="CornerRadius" Value="30"/>

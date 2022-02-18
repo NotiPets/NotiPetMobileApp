@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace NotiPetApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OptionsParametersPage : ContentPage
+    public partial class OptionsParametersPage 
     {
         public OptionsParametersPage()
         {

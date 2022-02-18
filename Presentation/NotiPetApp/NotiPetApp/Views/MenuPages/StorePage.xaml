@@ -7,7 +7,6 @@
                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-                xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                 xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 x:Class="NotiPetApp.Views.MenuPages.StorePage"
@@ -18,8 +17,8 @@
              
               RowSpacing="20">
             <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
-                                     Padding="0,10,0,0"
-                                     Shadow="{pancakeView:ShadowMarkup Offset='2,2',Color={StaticResource SecondBackgroundColor},BlurRadius=6}"
+                                     Padding="0,5,0,0"
+                                     Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
                                      CornerRadius="0,0,30,30">
                 <Grid RowDefinitions="Auto,Auto"
                       Padding="10,20"
@@ -107,10 +106,9 @@
                         ColumnDefinitions="110,Auto,*"
                         
                         Padding="10">
-                      <Frame    Grid.RowSpan="4"
+                      <pancakeView:PancakeView    Grid.RowSpan="4"
                                 Grid.Column="0"
                                 Padding="0"
-                                HasShadow="False"
                                 CornerRadius="20"
                                 Margin="5,10,10,0">
                       <forms:CachedImage   Source="{Binding Image}"
@@ -121,7 +119,7 @@
                                         
                                            Aspect="AspectFill"
                                            WidthRequest="50"/>
-                      </Frame>
+                      </pancakeView:PancakeView>
                       <Label Text="{Binding Name}"
                              Grid.Row="1"
                              Style="{StaticResource LabelTitleBold}"
@@ -136,6 +134,7 @@
                                  Grid.ColumnSpan="2"/>
                       <xForms:SfRating Precision="Half"
                                        ItemCount="5"
+                                       IsEnabled="False"
                                        Margin="0,0,10,0"
                                        ItemSize="15"
                                        Value="4"

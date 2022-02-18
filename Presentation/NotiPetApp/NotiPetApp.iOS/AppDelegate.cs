@@ -25,6 +25,7 @@ namespace NotiPetApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Syncfusion.SfRating.XForms.iOS.SfRatingRenderer.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             LoadApplication(new App(new IosInitializer()));
 
             return base.FinishedLaunching(app, options);

@@ -7,6 +7,8 @@ using NotiPetApp.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace NotiPetApp.Views
 {
@@ -15,6 +17,7 @@ namespace NotiPetApp.Views
     {
         public BasePage()
         {
+            On<iOS>().SetUseSafeArea(true);
             this.WhenActivated((disposable) => ManageDisposables(disposable));
         }
 
