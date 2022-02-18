@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace NotiPetApp.Views.MenuPages
+namespace NotiPetApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProductsPage : BasePage
+    public partial class OptionsParametersPage : ContentPage
     {
-        public ProductsPage()
+        public OptionsParametersPage()
         {
             InitializeComponent();
         }

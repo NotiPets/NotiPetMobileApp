@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<pancakeView:PancakeView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="NotiPetApp.Controls.SearchBarControl"
+>
+    <pancakeView:PancakeView.ControlTemplate>
+        <ControlTemplate   >
+        <Grid ColumnDefinitions="Auto,*,Auto"
+             
+              BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+              Margin="{OnPlatform Android='10,0' ,iOS='10,10'}"
+              RowDefinitions="Auto"
+              
+             >
+        <Image Grid.Column="0" HorizontalOptions="StartAndExpand"
+               VerticalOptions="CenterAndExpand"
+               Source="{Binding SearchImageSource}"/>
+        <Entry Text="{Binding Text}"
+               Grid.Column="1"
+               Placeholder="{Binding PlaceHolder}"
+               FontFamily="{Binding FontFamily}"
+               FontSize="{Binding FontSize}"
+               ReturnCommand="{Binding ReturnCommand}"
+               ReturnCommandParameter="{Binding Source={RelativeSource Self},Path=Text}"
+               TextColor="{Binding TextColor}"
+        />
+        <Image Grid.Column="2" HorizontalOptions="StartAndExpand"
+               x:Name="ImageClean"
+               IsVisible="{Binding HideCleanButton}"
+               Source="{Binding CleanImageSourceProperty}"
+               VerticalOptions="CenterAndExpand"/>
+        </Grid>
+      </ControlTemplate>
+</pancakeView:PancakeView.ControlTemplate>
+</pancakeView:PancakeView>

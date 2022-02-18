@@ -4,22 +4,93 @@
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
           xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
           xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+          xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+          xmlns:styles="clr-namespace:NotiPetApp.Styles;assembly=NotiPetApp"
+          xmlns:models="clr-namespace:NotiPetApp.Models;assembly=NotiPetApp"
+          xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+          x:TypeArguments="viewModels:HomeViewModel"
           x:Class="NotiPetApp.Views.MenuPages.HomePage">
+    <ContentPage.Resources>
+        <Style TargetType="pancakeView:PancakeView">
+            <Setter Property="BackgroundColor" Value="{DynamicResource SecondBackgroundColor}"/>
+            <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup Offset='10,10',Color={StaticResource SecondBackgroundColor},BlurRadius=3}"/>
+            <Setter Property="Margin" Value="15,25"/>
+            <Setter Property="Padding" Value="10,10"/>
+            <Setter Property="CornerRadius" Value="30"/>
+        </Style>
+     
+
+                <ControlTemplate  x:Key="ImageViewControl">
+                    <Grid RowDefinitions="Auto,Auto">
+                        <Image  Source="{TemplateBinding ImageSource}"
+                                HeightRequest="46"
+                                Margin="5,0"
+                                Aspect="AspectFit"/>
+                        <Label Text="{TemplateBinding Text}"
+                               HorizontalTextAlignment="Center"
+                               Style="{StaticResource LabelSubtitleBold}"
+                               Grid.Row="1"/>
+                    </Grid>
+                </ControlTemplate>
+        <styles:MenuItemTemplateSelector x:Key="MenuItemTemplateSelector">
+            <styles:MenuItemTemplateSelector.SmallItemDataTemplate>
+                <DataTemplate x:DataType="models:AppMenuItem">
+                    <pancakeView:PancakeView   StyleClass="photo"
+                                               >
+                        <controls:ImageViewControl ControlTemplate="{StaticResource ImageViewControl}"
+                                                   ImageSource="{Binding Image}"
+                                                   Text="{Binding Name}"/> 
+                    </pancakeView:PancakeView>
+                </DataTemplate>
+            </styles:MenuItemTemplateSelector.SmallItemDataTemplate>
+            <styles:MenuItemTemplateSelector.MediumItemDataTemplate>
+                <DataTemplate x:DataType="models:AppMenuItem">
+                    <pancakeView:PancakeView   
+                                               StyleClass="medium">
+                        <controls:ImageViewControl ControlTemplate="{StaticResource ImageViewControl}"
+                                                   ImageSource="{Binding Image}"
+                                                   Text="{Binding Name}"/> 
+                    </pancakeView:PancakeView>
+                </DataTemplate>
+            </styles:MenuItemTemplateSelector.MediumItemDataTemplate>
+            <styles:MenuItemTemplateSelector.LargeItemDataTemplate>
+                <DataTemplate x:DataType="models:AppMenuItem">
+                    <pancakeView:PancakeView   StyleClass="large"
+                                               >
+                        <controls:ImageViewControl ControlTemplate="{StaticResource ImageViewControl}"
+                                                   ImageSource="{Binding Image}"
+                                                   Text="{Binding Name}"/> 
+                    </pancakeView:PancakeView>
+
+                </DataTemplate>
+            </styles:MenuItemTemplateSelector.LargeItemDataTemplate>
+        </styles:MenuItemTemplateSelector>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto,Auto,*">
-            <Label Grid.Row="0"/>
-            <StackLayout Grid.Row="2">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <pancakeView:PancakeView >
-                          <Grid RowDefinitions="*,Auto">
-                              <Image />
-                              <Label Grid.Row="1"/>
-                          </Grid>
-                        </pancakeView:PancakeView>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              HorizontalOptions="CenterAndExpand"
+              >
+            <Image Grid.Row="0"
+                   
+                   Source="DogIndividual.png"
+                   HeightRequest="150"
+                   TranslationX="90"
+                   TranslationY="20"
+            />
+            <Label Grid.Row="1"
+                   Style="{StaticResource LabelHeader}"
+                   Padding="30,0"
+                   Margin="0,0,0,20">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span   Text="How can help you,"/>
+                        <Span   Text=" Maria?" TextColor="{DynamicResource PrimaryDark}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <controls:FlexListView Grid.Row="2" x:Name="MenuLayout"
+                          BindableLayout.ItemTemplateSelector="{StaticResource MenuItemTemplateSelector}"
+                          Style="{StaticResource GalleryStyle}" />
         </Grid>
     </ContentPage.Content>
 </views:BasePage>
