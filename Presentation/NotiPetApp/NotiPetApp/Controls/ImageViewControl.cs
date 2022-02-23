@@ -1,8 +1,9 @@
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 
 namespace NotiPetApp.Controls
 {
-    public class ImageViewControl:ContentView
+    public class ImageViewControl:PancakeView
     {
         public static readonly BindableProperty ImageSourceProperty =
             BindableProperty.Create(nameof(ImageSource), typeof(ImageSource), typeof(ImageViewControl));

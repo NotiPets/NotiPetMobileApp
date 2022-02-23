@@ -17,7 +17,7 @@
              >
         <Image Grid.Column="0" HorizontalOptions="StartAndExpand"
                VerticalOptions="CenterAndExpand"
-               Source="{Binding SearchImageSource}"/>
+               Source="{Binding SearchPictureUrlSource}"/>
         <Entry Text="{Binding Text}"
                Grid.Column="1"
                Placeholder="{Binding PlaceHolder}"
@@ -28,9 +28,9 @@
                TextColor="{Binding TextColor}"
         />
         <Image Grid.Column="2" HorizontalOptions="StartAndExpand"
-               x:Name="ImageClean"
+               x:Name="PictureUrlClean"
                IsVisible="{Binding HideCleanButton}"
-               Source="{Binding CleanImageSourceProperty}"
+               Source="{Binding CleanPictureUrlSourceProperty}"
                VerticalOptions="CenterAndExpand"/>
         </Grid>
       </ControlTemplate>

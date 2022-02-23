@@ -5,7 +5,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.Reactive" Version="5.0.0" />
+        <PackageReference Include="AutoMapper" Version="11.0.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+        <PackageReference Include="System.Reactive" Version="5.0.0" />
+        <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Presentation\NotiPetApp\NotiPetApp\NotiPetApp.csproj" />
     </ItemGroup>
 
 </Project>

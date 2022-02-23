@@ -6,9 +6,9 @@
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
-                xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                 xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                 x:Class="NotiPetApp.Views.MenuPages.StorePage"
                 x:TypeArguments="viewModels:StoreViewModel"
                 x:DataType="viewModels:StoreViewModel">
@@ -18,7 +18,7 @@
               RowSpacing="20">
             <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
                                      Padding="0,5,0,0"
-                                     Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
+                                     Shadow="{StaticResource ShadowMarkupStyle}"
                                      CornerRadius="0,0,30,30">
                 <Grid RowDefinitions="Auto,Auto"
                       Padding="10,20"
@@ -31,17 +31,16 @@
                                                CornerRadius="10"
                                                Margin="0,0,30,0"
                                                Text="{Binding SearchText}">
-                        <controls:SearchBarControl.SearchImageSource>
+                        <controls:SearchBarControl.SearchPictureUrlSource>
                             <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Search}"
                                              Color="{StaticResource PrimaryLetterColor}"
                                              FontFamily="{StaticResource FontSolid}"/>
-                        </controls:SearchBarControl.SearchImageSource>
+                        </controls:SearchBarControl.SearchPictureUrlSource>
                     </controls:SearchBarControl>
                     <ScrollView Grid.Row="1"
                                HorizontalScrollBarVisibility="Never"
                                 Orientation="Horizontal"   >
                     <controls:StackLayoutListView   Orientation="Horizontal"
-                                                   
                                                     x:Name="Parameters">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate x:DataType="models:ParameterOption">
@@ -77,12 +76,16 @@
                                              CornerRadius="5"
          
                                              Grid.Column="1">
+                        <pancakeView:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToFilterCommand}"
+                                                  />
+                        </pancakeView:PancakeView.GestureRecognizers>
                         <Label
                                Style="{StaticResource  LabelSubtitleBold}"
                                HorizontalTextAlignment="Center">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="{x:Static fontIcon:FontIcon.Like}"
+                                    <Span Text="{x:Static fontIcon:FontIcon.FilterSettings}"
                                           TextColor="{DynamicResource SecondaryDark}"
                                           FontFamily="{StaticResource FontSolid}"
                                          />
@@ -111,14 +114,14 @@
                                 Padding="0"
                                 CornerRadius="20"
                                 Margin="5,10,10,0">
-                      <forms:CachedImage   Source="{Binding Image}"
+                      <forms:CachedImage  Source="{Binding PictureUrl}"
                                         
                                           
                                           
-                                           CacheType="Memory"
+                                          CacheType="Memory"
                                         
-                                           Aspect="AspectFill"
-                                           WidthRequest="50"/>
+                                          Aspect="AspectFill"
+                                          WidthRequest="50"/>
                       </pancakeView:PancakeView>
                       <Label Text="{Binding Name}"
                              Grid.Row="1"

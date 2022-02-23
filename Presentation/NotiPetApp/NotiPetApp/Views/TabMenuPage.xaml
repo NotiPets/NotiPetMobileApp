@@ -7,6 +7,8 @@
           xmlns:menuPages="clr-namespace:NotiPetApp.Views.MenuPages;assembly=NotiPetApp"
           xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
           androidSpecific:TabbedPage.ToolbarPlacement="Bottom"
+          SelectedTabColor="{DynamicResource PrimaryDark}"
+          UnselectedTabColor="{DynamicResource PrimaryBackgroundDark}"
           x:Class="NotiPetApp.Views.TabMenuPage">
 
     <menuPages:HomePage Title="Home">

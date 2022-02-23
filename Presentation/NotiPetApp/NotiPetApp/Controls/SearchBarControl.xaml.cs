@@ -31,23 +31,23 @@ namespace NotiPetApp.Controls
         public static readonly BindableProperty CleanCommandProperty 
             = BindableProperty.Create(nameof(CleanCommand), typeof(ICommand), typeof(SearchBarControl),defaultBindingMode:BindingMode.OneTime);
 
-        public static readonly BindableProperty CleanImageSourceProperty 
-            = BindableProperty.Create(nameof(CleanImageSource), typeof(ImageSource), typeof(SearchBarControl),defaultBindingMode:BindingMode.OneTime);
+        public static readonly BindableProperty CleanPictureUrlSourceProperty 
+            = BindableProperty.Create(nameof(CleanPictureUrlSource), typeof(ImageSource), typeof(SearchBarControl),defaultBindingMode:BindingMode.OneTime);
         
 
-        public ImageSource CleanImageSource
+        public ImageSource CleanPictureUrlSource
         {
-            get => (ImageSource)GetValue(CleanImageSourceProperty);
-            set => SetValue(CleanImageSourceProperty, value);
+            get => (ImageSource)GetValue(CleanPictureUrlSourceProperty);
+            set => SetValue(CleanPictureUrlSourceProperty, value);
         }
-        public static readonly BindableProperty SearchImageSourceProperty 
-            = BindableProperty.Create(nameof(SearchImageSource), typeof(ImageSource), typeof(SearchBarControl),defaultBindingMode:BindingMode.OneTime);
+        public static readonly BindableProperty SearchPictureUrlSourceProperty 
+            = BindableProperty.Create(nameof(SearchPictureUrlSource), typeof(ImageSource), typeof(SearchBarControl),defaultBindingMode:BindingMode.OneTime);
         
 
-        public ImageSource SearchImageSource
+        public ImageSource SearchPictureUrlSource
         {
-            get => (ImageSource)GetValue(SearchImageSourceProperty);
-            set => SetValue(SearchImageSourceProperty, value);
+            get => (ImageSource)GetValue(SearchPictureUrlSourceProperty);
+            set => SetValue(SearchPictureUrlSourceProperty, value);
         }
 
 

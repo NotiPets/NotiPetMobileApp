@@ -7,45 +7,96 @@
                 xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:helpers="clr-namespace:NotiPetApp.Helpers;assembly=NotiPetApp"
+                xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
+                BackgroundColor="Transparent"
+
                 x:Class="NotiPetApp.Views.OptionsParametersPage">
+    <views:BasePage.Resources>
+        <converters:BoolToObjectConverter x:Key="BoolToColorConverter"
+                                          TrueObject="{StaticResource PrimaryDark}"
+                                          FalseObject="{StaticResource BackgroundColor}"/> 
+        <converters:BoolToObjectConverter x:Key="BoolToLetterColorConverter"
+                                          TrueObject="{StaticResource SecondaryLetterLight }"
+                                          FalseObject="{StaticResource PrimaryLetterColor}"/> 
+    </views:BasePage.Resources>
     <ContentPage.Content>
-        <Grid>
+        <Grid RowDefinitions="*,3*"
+             >
             <BoxView BackgroundColor="Black"
+                     Grid.RowSpan="2"
                      Opacity="0.6"/>
-            <CollectionView>
-                <CollectionView.GroupHeaderTemplate>
+    
+                
+                <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                         CornerRadius="10,10,0,0"
+                                    
+                                         Grid.Row="1">
+                    <Grid RowDefinitions="Auto,*" >
+                    <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                             Padding="10"
+                                             Shadow="{StaticResource ShadowMarkupStyle}"
+                                            >
+                        <pancakeView:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CloseCommand}"/>
+                        </pancakeView:PancakeView.GestureRecognizers>
+                        <Label Text="Close"
+                               HorizontalTextAlignment="End"
+                               Style="{StaticResource LabelSubtitleBold}"/>
+                    </pancakeView:PancakeView>
+                <CollectionView  x:Name="Parameters"
+                                 Grid.Row="1"
+                                 Margin="10,5"
+                >
+
+                    <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Label Text="{Binding Key}"
-                               Style="{StaticResource LabelTitleBold}"/>
-                    </DataTemplate>
-                </CollectionView.GroupHeaderTemplate>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:ParameterOption">
-                        <pancakeView:PancakeView 
-                            BackgroundColor="{DynamicResource PrimaryDark}"
-                            Padding="15,5"
-                            CornerRadius="5"
-                            Margin="5,0"
-                        >
-                            <Label
-                                Style="{StaticResource  LabelSubtitleBold}"
-                                HorizontalTextAlignment="Center">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{x:Static fontIcon:FontIcon.Filter}"
-                                              TextColor="{DynamicResource SecondaryLetterLight}"
-                                              FontFamily="{StaticResource FontSolid}"
-                                        />
-                                        <Span Text=" " CharacterSpacing="10"/>
-                                        <Span Text="{Binding Title}"
-                                              TextColor="{DynamicResource SecondaryLetterLight}"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </pancakeView:PancakeView>
+                        <Grid RowDefinitions="Auto,Auto">
+                            <Label Text="{Binding Key}"
+                                   Style="{StaticResource LabelSubtitleBold}"
+                                  />
+                            <StackLayout BindableLayout.ItemsSource="{Binding .}" 
+                                         Orientation="Horizontal"
+                                         Margin="0,15"
+                                         Grid.Row="1">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="models:ParameterOption">
+                                    <pancakeView:PancakeView 
+                                        BackgroundColor="{Binding IsActive,Converter={StaticResource BoolToColorConverter}}"
+                                        Padding="15,5"
+                                        CornerRadius="5"
+                                        Margin="5,0"
+                                    >
+                                        <pancakeView:PancakeView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:OptionsParametersViewModel}},Path=ActiveFilterCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </pancakeView:PancakeView.GestureRecognizers>
+                                        <Label
+                                            Style="{StaticResource  LabelSubtitleBold}"
+                                            HorizontalTextAlignment="Center"
+                                            TextColor="{Binding IsActive,Converter={StaticResource BoolToLetterColorConverter}}"   >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static fontIcon:FontIcon.Filter}"
+                                                          FontFamily="{StaticResource FontSolid}"
+                                                    />
+                                                    <Span Text=" " CharacterSpacing="10"/>
+                                                    <Span Text="{Binding Title}"
+                                                         />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </pancakeView:PancakeView>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+                    </Grid>
+            </pancakeView:PancakeView>
         </Grid>
+  
     </ContentPage.Content>
 </views:BasePage>

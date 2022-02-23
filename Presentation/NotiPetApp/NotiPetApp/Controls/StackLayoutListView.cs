@@ -17,5 +17,17 @@ namespace NotiPetApp.Controls
             get => (IEnumerable) GetValue(ItemSourceProperty) ; 
             set=>SetValue(ItemSourceProperty,value); 
         }
+        public static readonly BindableProperty ItemTemplateProperty =
+            BindableProperty.Create(nameof(ItemTemplate), typeof(DataTemplate), typeof(StackLayoutListView),propertyChanged:
+                (bindable, value, newValue) =>
+                {
+                    BindableLayout.SetItemTemplate(bindable,newValue as DataTemplate); ;  
+                });
+
+        public DataTemplate ItemTemplate
+        {
+            get => (DataTemplate) GetValue(ItemTemplateProperty) ; 
+            set=>SetValue(ItemTemplateProperty,value); 
+        }
     }
 }

@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace NotiPetApp.Views.MenuPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AppointmentPage : ContentPage
+    public partial class AppointmentPage 
     {
         public AppointmentPage()
         {

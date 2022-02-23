@@ -1,4 +1,5 @@
 using System;
+using NotiPet.Domain.Models;
 
 namespace NotiPet.Data.Dtos
 {
@@ -7,11 +8,16 @@ namespace NotiPet.Data.Dtos
         public int Id { get; set; }
         public string  Name { get; set; }
         public string Description { get; set; }
-        public string Image { get; set; }
-        public decimal Price { get; set; }
+        public decimal Price { get; set; }            
+        public string PictureUrl { get; set; }
         public int Quantity { get; set; }
-        public bool Active { get; set; }
+        public bool Active { get;  set;}
+        
         public DateTime? Created { get; set; }
         public DateTime? Updated { get; set; }
+        public int VendedorId { get;set; }
+        public int AssetServiceTypeId { get; set; }
+        public AssetServiceTypeDto AssetServiceType { get; set; }
+        public int BusinessId { get; set; }
     }
 }

@@ -1,14 +1,70 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using DynamicData.Binding;
 
 namespace NotiPet.Domain.Models
 {
-    public class ParameterOption
+    public class ParameterOption : INotifyPropertyChanged
     {
-        public string Title { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsSort { get; set; }
+        public string Title { get; }
+        public bool IsActive { get; private set; }
+        public bool IsSort { get; }
+        public string Id { get; }
+        public string Key { get; }
+        
+        public ParameterOption(string title, bool isActive, bool isSort, string id, string key)
+        {
+            Title = title;
+            IsActive = isActive;
+            IsSort = isSort;
+            Id = id;
+            Key = key;
+
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void SetActive(bool active)
+        {
+            IsActive = active;
+            OnPropertyChanged(nameof(IsActive));
+        }
+
+        public ParameterOption SetFilterExpression<T>(Func<T, bool> func)
+        {
+            FilterExpressions =  func;
+       
+            return this;
+        }
+ 
+        private object FilterExpressions { get; set; }
+        private object SortExpressions { get; set; }
+
+        public ParameterOption SetSortExpression<T>(SortExpressionComparer<T>  func)
+        {
+           SortExpressions =  func;
+            return this;
+        }
+        public T GetFilterExpression<T>() 
+
+        {
+            return (T)FilterExpressions ;
+        }
+
+        public T GetSortExpressions<T>()
+        {
+            return (T)SortExpressions ;
+        }
+
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
 }

@@ -15,12 +15,23 @@ namespace NotiPetApp.Views
     public class BasePage<TViewModel>: ReactiveContentPage<TViewModel>,IDisposable
     where TViewModel:BaseViewModel
     {
+        private readonly AsyncSubject<Unit> _appearing = new AsyncSubject<Unit>();
+
+        /// <summary>
+        /// Gets an observable sequence indicating when a page is appearing.
+        /// </summary>
+        protected IObservable<Unit> WhenAppearing => _appearing.AsObservable();
         public BasePage()
         {
             On<iOS>().SetUseSafeArea(true);
             this.WhenActivated((disposable) => ManageDisposables(disposable));
         }
-
+        
+        protected override void OnAppearing()
+        {
+            _appearing.OnNext(Unit.Default);
+            _appearing.OnCompleted();
+        }
         protected virtual CompositeDisposable ManageDisposables(CompositeDisposable disposables)
         {
             return disposables;
@@ -40,6 +51,7 @@ namespace NotiPetApp.Views
         {
             if (disposing)
             {
+                _appearing.Dispose();
                 PageDisposables.Dispose();
             }
         }

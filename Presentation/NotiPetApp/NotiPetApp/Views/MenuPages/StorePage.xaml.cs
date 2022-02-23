@@ -26,5 +26,16 @@ namespace NotiPetApp.Views.MenuPages
             disposables.Add(this.OneWayBind(ViewModel,vm=>vm.ParameterOptions,vw=>vw.Parameters.ItemSource));
              return base.ManageDisposables(disposables);
         }
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            if (ViewModel != null)
+            {
+                WhenAppearing
+                    .InvokeCommand(ViewModel?.InitializeDataCommand);
+            }
+        }
+
     }
 }

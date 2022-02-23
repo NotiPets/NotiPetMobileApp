@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:LoginViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                x:Class="NotiPetApp.Views.Authentication.LogInPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowDefinitions="Auto,Auto,Auto">
+                <Label 
+                    Style="{StaticResource LabelHeader}"
+                    Text="SignUp "
+                    Grid.Row="0"
+                />
+                <pancakeView:PancakeView Grid.Row="1" >
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                          ColumnDefinitions="*,Auto">
+                        <BoxView Grid.Row="0"
+                                 Grid.ColumnSpan="2"/>
+                        <BoxView Grid.Row="1"
+                                 Grid.ColumnSpan="2"/>
+                        <BoxView Grid.Row="2"
+                                 Grid.ColumnSpan="2"/>
+                        <CheckBox Grid.Row="3"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="I agree to Notiped  terms and conditions"/>
+                        <CheckBox Grid.Row="4"/>
+                        <Label Grid.Row="4" Grid.Column="1" Text="Please email me information and updates about Notiped"/>
+                    </Grid>
+                </pancakeView:PancakeView>
+                <Label Grid.Row="2">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Already have a NotiPed account?"/>
+                            <Span Text=" " CharacterSpacing="10"/>
+                            <Span Text="Sign In"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+        </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</views:BasePage>

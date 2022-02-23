@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using AutoMapper;
 using DynamicData;
 using NotiPet.Domain.Models;
 using DynamicData;
+using DynamicData.Binding;
 using ImTools;
 using NotiPet.Data.Dtos;
+using NotiPet.Domain.Service;
 
 namespace NotiPet.Data.Services
 {
@@ -19,6 +22,11 @@ namespace NotiPet.Data.Services
         private readonly SourceCache<AssetServiceModel, Guid> _assetSourceCache =
             new SourceCache<AssetServiceModel, Guid>(e => e.Guid);
 
+        private readonly SourceCache<ParameterOption, string> _parametersOptions =
+            new SourceCache<ParameterOption, string>(x=>x.Id);
+
+
+
         public StoreService(IAssetServiceApi assetServiceApi,IMapper mapper)
         {
             _assetServiceApi = assetServiceApi;
@@ -26,6 +34,8 @@ namespace NotiPet.Data.Services
         }
 
         public SourceCache<AssetServiceModel, Guid> AssetsServices => _assetSourceCache;
+        public SourceCache<ParameterOption, string> ParametersOptions => _parametersOptions;
+
 
         public IObservable<IEnumerable<AssetServiceModel>> GetAllProducts()
 
@@ -35,45 +45,25 @@ namespace NotiPet.Data.Services
                 .Do(_assetSourceCache.AddOrUpdate);
         }
 
-        public List<ParameterOption> ParameterOptions()
+        public IObservable<IEnumerable<ParameterOption>> ParameterOptions()
         {
-          return new List<ParameterOption>()
+            var parameters = new List<ParameterOption>()
             {
-                new ParameterOption()
-                {
-                    Title = "Casas",
-                    IsActive = true
-
-                },
-                new ParameterOption()
-                {
-                    Title = "Juguetes",
-                },
-                new ParameterOption()
-                {
-                    Title = "Precio",
-                    IsSort = true
-                },
-                new ParameterOption()
-                {
-                    Title = "Recientes",
-                    IsSort = true,
-                    IsActive = true
-                },
-               
+                new ParameterOption("Bed",false,false,Guid.NewGuid().ToString(),"Filter")
+                    .SetFilterExpression<AssetServiceModel>(e => e.AssetServiceType.Description == "Toys"),
+                
+                new ParameterOption("Toys",false,false,Guid.NewGuid().ToString(),"Filter")
+                    .SetFilterExpression<AssetServiceModel>(e => e.AssetServiceType.Description  == "Bed"),
+                
+                new ParameterOption("Price",false,true,Guid.NewGuid().ToString(),"Sort")
+                    .SetSortExpression<AssetServiceModel>(SortExpressionComparer<AssetServiceModel>.Ascending(e=>e.Price)),
+                
+                new ParameterOption("Added Recently",false,true,Guid.NewGuid().ToString(),"Sort")
+                    .SetSortExpression<AssetServiceModel>(SortExpressionComparer<AssetServiceModel>.Ascending(e=>e.Created)),
             };
+            return Observable.Return(parameters).Do(_parametersOptions.AddOrUpdate);
         }
-
-
-        //
-        // public IObservable<AssetServiceDto> GetProduct(string productName)
-        //     => _assetServiceApi.GetProduct(productName)
-        //         .Do(_assetSourceCache.AddOrUpdate);
-        //
-        // public IObservable<IEnumerable<AssetServiceDto>> GetProductByProductName(string productName)
-        //     => _assetServiceApi.GetProductByProductName(productName)
-        //         .Do(_assetSourceCache.AddOrUpdate);
-
+        
         public void Dispose()
         {
             Dispose(true);

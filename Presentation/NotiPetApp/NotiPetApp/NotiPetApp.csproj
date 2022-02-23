@@ -21,14 +21,16 @@
         <PackageReference Include="Syncfusion.Licensing" Version="19.4.0.52" />
         <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.4.0.52" />
         <PackageReference Include="System.Reactive" Version="5.0.0" />
+        <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
         <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+        <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
         <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
-        <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Helpers" />
       <Folder Include="Models" />
       <Folder Include="Properties" />
       <Folder Include="Services" />
@@ -44,7 +46,6 @@
       <None Remove="Styles\Fonts\MaterialIconsOutlined-Regular.otf" />
       <None Remove="Styles\Fonts\Raleway-Regular.ttf" />
       <None Remove="Styles\Fonts\Raleway-SemiBold.ttf" />
-      <None Remove="Xamarin.FFImageLoading.Transformations" />
     </ItemGroup>
     <ItemGroup>
       <EmbeddedResource Include="Styles\Fonts\Raleway-Bold.ttf" />
@@ -52,4 +53,5 @@
       <EmbeddedResource Include="Styles\Fonts\Raleway-Regular.ttf" />
       <EmbeddedResource Include="Styles\Fonts\Raleway-SemiBold.ttf" />
     </ItemGroup>
+
 </Project>

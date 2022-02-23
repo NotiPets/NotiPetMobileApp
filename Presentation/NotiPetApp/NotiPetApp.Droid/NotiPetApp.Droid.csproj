@@ -56,6 +56,7 @@
         <PackageReference Include="Syncfusion.Licensing" Version="19.4.0.52" />
         <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.4.0.52" />
         <PackageReference Include="System.Reactive" Version="5.0.0" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
         <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
@@ -73,6 +74,7 @@
         <None Include="Properties\AndroidManifest.xml" />
     </ItemGroup>
     <ItemGroup>
+        <AndroidResource Include="Resources\drawable\Artboard.png" />
         <AndroidResource Include="Resources\drawable\DogIndividual.png" />
         <AndroidResource Include="Resources\drawable\Emergency.png" />
         <AndroidResource Include="Resources\drawable\Shop.png" />

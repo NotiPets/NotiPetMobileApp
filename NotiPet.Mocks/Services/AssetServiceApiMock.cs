@@ -9,21 +9,21 @@ namespace NotiPet.Mocks.Services
 {
     public class AssetServiceApiMock:IAssetServiceApi
     {
-        public List<AssetServiceDto> AssetsServices  { get; set; }
+        private readonly List<AssetServiceDto> _assetsServices;
         public AssetServiceApiMock()
         {
-            //AssetsServices = new AssetServiceDtoGenerator().AssetServices.ToList();
+            _assetsServices = new AssetServiceDtoGenerator().AssetServices.ToList();
         }
 
         public IObservable<IEnumerable<AssetServiceDto>> GetAllProducts()
-            => Observable.Return(new AssetServiceDtoGenerator().AssetServices.ToList()).Delay(TimeSpan.FromSeconds(1));
+            => Observable.Return(_assetsServices).Delay(TimeSpan.FromSeconds(1));
 
         public IObservable<AssetServiceDto> GetProduct(string productName)
-            => Observable.Return(AssetsServices.FirstOrDefault(e=>e.Name == productName))
+            => Observable.Return(_assetsServices.FirstOrDefault(e=>e.Name == productName))
                 .Delay(TimeSpan.FromSeconds(5));
 
         public IObservable<IEnumerable<AssetServiceDto>> GetProductByProductName(string productName)       
-            => Observable.Return(AssetsServices.Where(e=>e.Name.Contains(productName) ))
+            => Observable.Return(_assetsServices.Where(e=>e.Name.Contains(productName) ))
                 .Delay(TimeSpan.FromSeconds(2));
     }
 }

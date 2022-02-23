@@ -5,11 +5,106 @@
           xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
           xmlns:renderers="clr-namespace:AiForms.Renderers;assembly=SettingsView"
           xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+          xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+          xmlns:system="system"
+          xmlns:system1="clr-namespace:System;assembly=netstandard"
+          xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+          xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+
           x:TypeArguments="viewModels:ProfileViewModel"
           x:Class="NotiPetApp.Views.MenuPages.ProfilePage">
     <ContentPage.Content>
-        <renderers:SettingsView>
-            
-        </renderers:SettingsView>
+        <Grid RowDefinitions="*,1.3*">
+
+            <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                     Padding="5"
+                                     Grid.Row="0"
+                                     Shadow="{StaticResource ShadowMarkupStyle}"
+                                     CornerRadius="0,0,30,30">
+                <Grid RowDefinitions="Auto,Auto,Auto"
+                      ColumnDefinitions="*,Auto,*">
+                    <Label Text="Profile"  Grid.Column="1"
+                           Style="{StaticResource LabelLarge}"/>
+                    <Image BackgroundColor="Transparent"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    Margin="10,0"
+                                                    Grid.Column="2">
+                        <Image.Source>
+                            <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.EditIcon}"
+                                             Color="{StaticResource PrimaryDark}"
+                                             FontFamily="{StaticResource FontSolid}"/>
+                        </Image.Source>
+                    </Image>
+                    <forms:CachedImage   Source="DogIndividual"
+                                         Grid.Row="1"
+                                         CacheType="Memory"
+                                         Grid.ColumnSpan="3"
+                                         HorizontalOptions="CenterAndExpand"
+                                       
+                                         Aspect="AspectFill"
+                                         WidthRequest="150"
+                                         HeightRequest="150">
+                        <forms:CachedImage.Transformations>
+                            <transformations:CircleTransformation />
+                        </forms:CachedImage.Transformations>
+                    </forms:CachedImage>
+                  <Label Grid.Row="2"
+                         Style="{StaticResource LabelLarge}"
+                         HorizontalTextAlignment="Center"
+                         Grid.ColumnSpan="3">
+                      <Label.FormattedText>
+                          <FormattedString>
+                              <Span Text="Maria Lopez" />
+                              <Span Text="{x:Static system1:Environment.NewLine}"></Span>
+                              <Span Text="Santo Domingo " Style="{StaticResource LabelSubtitle}"
+                                    TextColor="{DynamicResource PrimaryLetterLightColor}"/>
+                          </FormattedString>
+                      </Label.FormattedText>
+                  </Label>
+                    
+                </Grid>
+            </pancakeView:PancakeView>
+            <renderers:SettingsView   Grid.Row="1"
+                                      BackgroundColor="{DynamicResource BackgroundColor}">
+              <renderers:Section>
+                  <renderers:CommandCell Title="My pets"
+                                         IconSize="30"
+                                         
+                                         >
+                      <renderers:CommandCell.IconSource>
+                          <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Pet}"
+                                           Color="{StaticResource PrimaryDark}"
+                                           FontFamily="{StaticResource FontSolid}"/>
+                      </renderers:CommandCell.IconSource>
+                  </renderers:CommandCell>
+                  <renderers:CommandCell Title="Settings"
+                                         IconSize="25">
+                      <renderers:CommandCell.IconSource>
+                          <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Settings}"
+                                           Color="{StaticResource PrimaryDark}"
+                                           FontFamily="{StaticResource FontSolid}"/>
+                      </renderers:CommandCell.IconSource>
+                  </renderers:CommandCell>
+                  <renderers:CommandCell Title="About"
+                                         IconSize="25">
+                      <renderers:CommandCell.IconSource>
+                          <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Info}"
+                                           Color="{StaticResource PrimaryDark}"
+                                           FontFamily="{StaticResource FontSolid}"/>
+                      </renderers:CommandCell.IconSource>
+                  </renderers:CommandCell>
+                  <renderers:CommandCell Title="Log Out"
+                                         x:Name="CellLogout"
+                                         IconSize="25">
+                      <renderers:CommandCell.IconSource>
+                          <FontImageSource Glyph="{x:Static fontIcon:FontIcon.LogOut}"
+                                           Color="{StaticResource PrimaryDark}"
+                                           FontFamily="{StaticResource FontSolid}"/>
+                      </renderers:CommandCell.IconSource>
+                  </renderers:CommandCell>
+              </renderers:Section>
+            </renderers:SettingsView>
+        </Grid>
     </ContentPage.Content>
 </views:BasePage>

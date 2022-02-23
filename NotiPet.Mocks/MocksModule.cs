@@ -10,6 +10,7 @@ namespace NotiPet.Mocks
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IAssetServiceApi, AssetServiceApiMock>();
+            containerRegistry.RegisterSingleton<IUserServiceApi,UserServiceApiMock>();
         }
 
         public void OnInitialized(IContainerProvider containerProvider)
