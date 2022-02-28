@@ -7,7 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FakeItEasy" Version="7.3.0" />
+        <PackageReference Include="FluentAssertions" Version="6.5.1" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+        <PackageReference Include="Microsoft.Reactive.Testing" Version="5.0.0" />
+        <PackageReference Include="ReactiveUI.Testing" Version="17.1.50" />
         <PackageReference Include="xunit" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,11 +24,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Services" />
+      <ProjectReference Include="..\Presentation\NotiPetApp\NotiPetApp\NotiPetApp.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Presentation\NotiPetApp\NotiPetApp\NotiPetApp.csproj" />
+      <Reference Include="JetBrains.ReSharper.TestRunner.Adapters.XUnit, Version=2.6.2.29, Culture=neutral, PublicKeyToken=5c492ec4f3eccde3">
+        <HintPath>..\..\..\..\..\Program Files\JetBrains\JetBrains Rider 2021.3.2\lib\ReSharperHost\TestRunner\Adapters\XUnit\netstandard2.0\JetBrains.ReSharper.TestRunner.Adapters.XUnit.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

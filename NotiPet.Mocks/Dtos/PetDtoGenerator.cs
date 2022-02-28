@@ -39,7 +39,7 @@ namespace NotiPet.Mocks.Services
                 .RuleFor(e => e.PictureUrl, x => x.Image.LoremFlickrUrl(keywords: "dog"))
                 .RuleFor(e => e.Description, x => x.Commerce.ProductDescription())
                 .RuleFor(e => e.BirthDate, x => x.Date.Past())
-                .RuleFor(e => e.Name, x => x.Person.Avatar)
+                .RuleFor(e => e.Name, x => x.Person.FirstName)
                 .RuleFor(e => e.PetTypeId, x => petType[x.Random.Int(0,3)].Id)
                 .RuleFor(e => e.PetType, x => petType[x.Random.Int(0,3)])
                 .RuleFor(e => e.Create, x => x.Date.Past());

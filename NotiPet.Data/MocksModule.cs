@@ -14,7 +14,7 @@ namespace NotiPet.Data
 
             containerRegistry.RegisterSingleton<IStoreService, StoreService>();
             containerRegistry.RegisterSingleton<IAuthenticationService, AuthenticationService>();
-           // containerRegistry.RegisterSingleton<IUserService, UserService>();
+           containerRegistry.RegisterSingleton<IPetsService, PetsService>();
             containerRegistry.RegisterSingleton<IMapper>(x=> new Mapper(AutoMapperConfig.GetConfig()));
         }
 

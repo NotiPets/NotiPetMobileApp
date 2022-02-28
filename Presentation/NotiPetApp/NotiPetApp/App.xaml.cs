@@ -7,14 +7,17 @@ using NotiPet.Domain.Service;
 using NotiPet.Mocks;
 using NotiPet.Mocks.Services;
 using NotiPetApp.Helpers;
+using NotiPetApp.Services;
 using NotiPetApp.ViewModels;
 using NotiPetApp.Views;
 using NotiPetApp.Views.Authentication;
 using NotiPetApp.Views.MenuPages;
+using NotiPetApp.Views.Vets;
 using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
+using ReactiveUI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -33,14 +36,7 @@ namespace NotiPetApp
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTg0NDIxQDMxMzkyZTM0MmUzMFNLQ3ZJWkRQZkwyc2pYTXkzZCtyTStaOG5DeHpBaWg5djNaQ0RmK2R1QzQ9");
             InitializeComponent();
-            if (string.IsNullOrEmpty(Settings.Password)&&string.IsNullOrEmpty(Settings.Username))
-            {
-                NavigationService.NavigateAsync("SocialNetworkAuthenticationPage");
-            }
-            else
-            {
-                NavigationService.NavigateAsync(ConstantUri.TabMenu);
-            }
+            NavigationService.NavigateAsync("StartPage");
            
         }
 
@@ -53,7 +49,7 @@ namespace NotiPetApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-  
+            containerRegistry.RegisterSingleton<ISchedulerProvider>(() => new SchedulerProvider(RxApp.MainThreadScheduler,RxApp.TaskpoolScheduler));
             containerRegistry.RegisterForNavigation<TabMenuPage>();
             containerRegistry.RegisterForNavigation<HomePage,HomeViewModel>();
             containerRegistry.RegisterForNavigation<AppointmentPage>();
@@ -62,7 +58,12 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<CreatePetPage,CreatePetViewModel>();
             containerRegistry.RegisterForNavigation<SocialNetworkAuthenticationPage,SocialNetworkAuthenticationViewModel>();
             containerRegistry.RegisterForNavigation<LogInPage,LoginViewModel>();
+            containerRegistry.RegisterForNavigation<StartPage,StartViewModel>();
+            containerRegistry.RegisterForNavigation<PetsPage,PetsViewModel>();
             containerRegistry.RegisterForNavigation<OptionsParametersPage,OptionsParametersViewModel>(ConstantUri.OptionParameters);
+            containerRegistry.Register<VeterinaryViewModel>();
+            containerRegistry.Register<VeterinaryView>();
+            
         }
 
     }   

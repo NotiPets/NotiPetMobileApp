@@ -17,8 +17,9 @@
              
               RowSpacing="20">
             <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
-                                     Padding="0,5,0,0"
                                      Shadow="{StaticResource ShadowMarkupStyle}"
+                                     Padding="0,5,0,0"
+                                 
                                      CornerRadius="0,0,30,30">
                 <Grid RowDefinitions="Auto,Auto"
                       Padding="10,20"

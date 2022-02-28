@@ -16,7 +16,11 @@ namespace NotiPet.Data.Mappers
                 cfg.CreateMap<AssetServiceDto, AssetServiceModel>()
                     .ForMember(e => e.Guid, x => x.Ignore());
                 cfg.CreateMap<UserRoleDto, UserRole>().ReverseMap();
-   
+                cfg.CreateMap<PetTypeDto, PetType>().ReverseMap();
+                cfg.CreateMap<PetDto, Pet>()
+                    .ForMember(e=>e.Guid,x=>x.Ignore()) 
+                    .ReverseMap();
+                cfg.CreateMap<BusinessDto, Veterinary>();
                 cfg.ShouldUseConstructor = x =>! x.IsPrivate;
             });
             automapper.AssertConfigurationIsValid();

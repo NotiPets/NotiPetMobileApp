@@ -5,40 +5,133 @@
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.Authentication.LogInPage">
+    
+    
+    <views:BasePage.Resources>
+        <converters:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueObject="Sign in" FalseObject="Sign Up" />
+        <converters:BoolToObjectConverter x:Key="IsRegisterToObjectConverter" TrueObject="Sign Up" FalseObject="Sign in" />
+        <converters:BoolToObjectConverter x:Key="IsRegisterToStringConverter" TrueObject="Already have a NotiPed account?" FalseObject="Don’t have a Notipet account yet?" />
+        <converters:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+        <Style TargetType="controls:EntryCustom"
+        >
+            <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}"/>
+            <Setter  Property="ActiveLineColor" Value="{DynamicResource PrimaryDark}"/>
+            <Setter  Property="LineColor" Value="{DynamicResource PrimaryBackgroundDark}"/>
+            <Setter  Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+            <Setter Property="PlaceHolderSize" Value="16"/>
+            <Setter Property="FontSize"  Value="16"/>
+
+        </Style>
+    </views:BasePage.Resources>
     <ContentPage.Content>
         <ScrollView>
-            <Grid RowDefinitions="Auto,Auto,Auto">
-                <Label 
-                    Style="{StaticResource LabelHeader}"
-                    Text="SignUp "
-                    Grid.Row="0"
+            <Grid RowDefinitions="*,1*">
+                <BoxView Grid.Row="0"
+                         Margin="0,0,0,50"
+                         >
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0"
+                                             EndPoint="1,1">
+                            <GradientStop Color="#4596EA "
+                                          Offset="0.1" />
+
+                            <GradientStop Color="#00CBCC"
+                                          Offset="0.3" />
+
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+           
+            <Grid RowDefinitions="Auto,Auto,Auto"
+                  Grid.RowSpan="2">
+
+                <Label HorizontalTextAlignment="Start"
+                       Margin="15"
+                       Padding="10"
+                       Style="{StaticResource LabelHeader}"
+                       Text="SignUp "
+                       TextColor="{DynamicResource SecondaryLetterLight}"
+                       Grid.Row="0"
                 />
-                <pancakeView:PancakeView Grid.Row="1" >
-                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                          ColumnDefinitions="*,Auto">
-                        <BoxView Grid.Row="0"
-                                 Grid.ColumnSpan="2"/>
-                        <BoxView Grid.Row="1"
-                                 Grid.ColumnSpan="2"/>
-                        <BoxView Grid.Row="2"
-                                 Grid.ColumnSpan="2"/>
-                        <CheckBox Grid.Row="3"/>
-                        <Label Grid.Row="3" Grid.Column="1" Text="I agree to Notiped  terms and conditions"/>
-                        <CheckBox Grid.Row="4"/>
-                        <Label Grid.Row="4" Grid.Column="1" Text="Please email me information and updates about Notiped"/>
+                <pancakeView:PancakeView Grid.Row="1" 
+                                         CornerRadius="10"
+                                         Padding="10"
+                                         Margin="15"
+                                        VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                         Shadow="{StaticResource ShadowMarkupStyle}"
+                                        >
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                          ColumnDefinitions="Auto,*">
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="0"
+                                              IsVisible="{Binding IsRegister}"
+                                              PlaceHolder="Username"
+                                     
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="1"
+                                              
+                                              PlaceHolder="Email"
+                                     
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="2"
+                                              PlaceHolder="Password"
+                                     
+                        /> 
+
+                        <CheckBox Grid.Row="3"
+                                  IsVisible="{Binding IsRegister}"
+                                  Margin="0,10"
+                                  />
+                        <Label Grid.Row="3" Grid.Column="1" Text="I agree to Notiped  terms and conditions"
+                               IsVisible="{Binding IsRegister}"
+                               VerticalTextAlignment="Center"/>
+                        <Label Grid.Row="4" 
+                               Grid.Column="1"
+                               Text="Forgot password?"
+                               IsVisible="{Binding IsRegister,Converter={StaticResource InvertedBoolConverter}}"
+                               Margin="5,1,5,20" 
+                               HorizontalTextAlignment="End"/>
+                            
+                        <pancakeView:PancakeView Grid.Row="5"
+                                                 BackgroundColor="{DynamicResource PrimaryDark }"
+                                                 Grid.ColumnSpan="2"
+                                                 CornerRadius="25"
+                                                 Padding="14">
+                            <pancakeView:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AuthenticationCommand}"/>
+                            </pancakeView:PancakeView.GestureRecognizers>
+                            <Label  Text="{Binding IsRegister,Converter={StaticResource IsRegisterToObjectConverter}}"
+                                    Style="{StaticResource LabelTitleBold}"
+                                    HorizontalTextAlignment="Center"
+                                    TextColor="{DynamicResource SecondaryLetterLight}"/>
+                        </pancakeView:PancakeView>
                     </Grid>
                 </pancakeView:PancakeView>
-                <Label Grid.Row="2">
+
+                <Label Grid.Row="2"
+                       HorizontalTextAlignment="Center"
+  
+                       Style="{StaticResource LabelTitle}">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Already have a NotiPed account?"/>
+                            <Span Text="{Binding IsRegister,Converter={StaticResource IsRegisterToStringConverter}}"/>
                             <Span Text=" " CharacterSpacing="10"/>
-                            <Span Text="Sign In"/>
+                            <Span Text="{Binding IsRegister,Converter={StaticResource BoolToObjectConverter}}"  TextColor="{DynamicResource PrimaryDark}">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChangeAuthenticationCommand}"/>
+                                </Span.GestureRecognizers>
+                            </Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
         </Grid>
+            </Grid>
         </ScrollView>
     </ContentPage.Content>
 </views:BasePage>

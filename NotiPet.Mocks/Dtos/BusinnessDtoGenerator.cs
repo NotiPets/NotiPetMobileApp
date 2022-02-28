@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Bogus;
 using NotiPet.Data.Dtos;
@@ -7,6 +8,23 @@ namespace NotiPet.Mocks.Dtos
     public class BusinnessDtoGenerator
     {
         public IEnumerable<BusinessDto> BusinessDtos { get; set; }
+
+        private string[] companies = new string[10]
+        {
+            "Neurocardiove",
+            "PET GOLD VETERINARIA",
+            "ASM - Veterinaria",
+            "Pili's Vet | Clínica Médica de Mascotas",
+            "Veterinaria Pet Care",
+            "Centro Veterinario Agrodiza Pet Shop",
+            "Animed Hotel y Clínica Veterinaria",
+            "Clínica Veterinaria UNPHU",
+            "Clínica Veterinaria Dr. Cerda",
+            "Malala's Veterinaria",
+
+
+
+        };
         public BusinnessDtoGenerator()
         {
             var business = new Faker<BusinessDto>()

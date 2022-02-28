@@ -23,12 +23,12 @@
                              FontFamily="{StaticResource FontSolid}"/>
         </menuPages:AppointmentPage.IconImageSource>
     </menuPages:AppointmentPage>
-    <menuPages:StorePage Title="Store">
-        <menuPages:StorePage.IconImageSource>
+    <views:PetsPage Title="Pets">
+        <views:PetsPage.IconImageSource>
             <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Store}"
                              FontFamily="{StaticResource FontSolid}"/>
-        </menuPages:StorePage.IconImageSource>
-    </menuPages:StorePage>
+        </views:PetsPage.IconImageSource>
+    </views:PetsPage>
     <menuPages:ProfilePage Title="Profile">
         <menuPages:ProfilePage.IconImageSource>
             <FontImageSource Glyph="{x:Static fontIcon:FontIcon.UserIcon}"

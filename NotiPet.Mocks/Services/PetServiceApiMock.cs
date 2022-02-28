@@ -10,15 +10,15 @@ namespace NotiPet.Mocks.Services
 {
     public class PetServiceApiMock:IPetServiceApi
     {
-        private readonly IEnumerable<PetDto> _userRoleDtos;
+        private readonly IEnumerable<PetDto> petDtos;
         public PetServiceApiMock()
         {
-            _userRoleDtos = new PetDtoGenerator().Veterinaries;
+            petDtos = new PetDtoGenerator().Veterinaries;
         }
 
         public IObservable<IEnumerable<PetDto>> GetPets()
         {
-           return Observable.Return(_userRoleDtos);
+           return Observable.Return(petDtos);
         }
     }
 }

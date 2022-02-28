@@ -12,8 +12,8 @@ namespace NotiPet.Data.Dtos
         public string City { get; set; }
         public string Province { get; set; }
         public string PictureUrl { get; set; }
-        public long Latitude { get; set; }
-        public long Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         
     }
 }

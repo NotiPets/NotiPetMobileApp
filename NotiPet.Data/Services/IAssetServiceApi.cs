@@ -9,5 +9,6 @@ namespace NotiPet.Data.Services
         public IObservable<IEnumerable<AssetServiceDto>>  GetAllProducts();
         public IObservable<AssetServiceDto> GetProduct(string productName);
         public IObservable<IEnumerable<AssetServiceDto>> GetProductByProductName(string productName);
+        public IObservable<IEnumerable<AssetServiceTypeDto>> GetAssetsTypes();
     }
 }

@@ -6,6 +6,7 @@ namespace NotiPet.Domain.Models
     {
         public Pet(DateTime create, DateTime update, bool active, string name, string pictureUrl, DateTime birthDate, string description, int userId, int petTypeId, PetType petType)
         {
+            Guid = Guid.NewGuid();
             Create = create;
             Update = update;
             Active = active;
@@ -17,6 +18,8 @@ namespace NotiPet.Domain.Models
             PetTypeId = petTypeId;
             PetType = petType;
         }
+
+        public Guid Guid { get; set; }
 
         public DateTime Create { get;  }
         public DateTime Update { get; }

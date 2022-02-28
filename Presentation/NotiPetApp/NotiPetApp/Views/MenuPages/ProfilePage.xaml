@@ -68,16 +68,7 @@
             <renderers:SettingsView   Grid.Row="1"
                                       BackgroundColor="{DynamicResource BackgroundColor}">
               <renderers:Section>
-                  <renderers:CommandCell Title="My pets"
-                                         IconSize="30"
-                                         
-                                         >
-                      <renderers:CommandCell.IconSource>
-                          <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Pet}"
-                                           Color="{StaticResource PrimaryDark}"
-                                           FontFamily="{StaticResource FontSolid}"/>
-                      </renderers:CommandCell.IconSource>
-                  </renderers:CommandCell>
+
                   <renderers:CommandCell Title="Settings"
                                          IconSize="25">
                       <renderers:CommandCell.IconSource>

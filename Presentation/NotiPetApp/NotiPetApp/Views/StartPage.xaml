@@ -4,12 +4,16 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+
                 x:Class="NotiPetApp.Views.StartPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Hello, world!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <forms:AnimationView
+        x:Name="LottieView" 
+        Animation="StartAppAnimations.json" 
+        AutoPlay="True"
+        Speed="4"
+        IsAnimating="True"
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand" />
+
 </views:BasePage>
