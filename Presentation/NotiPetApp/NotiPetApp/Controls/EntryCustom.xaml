@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<pancakeView:PancakeView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+             x:Class="NotiPetApp.Controls.EntryCustom"
+             Margin="5"
+             Padding="12,8"
+             x:Name="CustomsEntry"
+           
+             CornerRadius="15">
+    <Grid RowDefinitions="Auto,Auto,1"
+          BindingContext="{x:Reference CustomsEntry}"
+          RowSpacing="-6"
+          x:DataType="controls:EntryCustom">
+        <Label Text="{Binding PlaceHolder}"
+               VerticalTextAlignment="End"
+               FontAttributes="Bold"
+               x:Name="PlaceHolderLb"
+               HorizontalTextAlignment="{Binding PlaceHolderAlignment}"
+               FontSize="{Binding PlaceHolderSize}"
+         
+        />
+        <Entry Text="{Binding Text}"
+               HorizontalTextAlignment="{Binding TextAlignment}"
+               FontSize="{Binding FontSize}"
+               x:Name="EntryText"
+               TextColor="{Binding TextColor}"
+               Grid.Row="1"/>
+        <Line Grid.Row="2"
+              x:Name="Line"      
+
+              Margin="4,0"
+              HeightRequest ="1"/>
+    </Grid>
+</pancakeView:PancakeView>
