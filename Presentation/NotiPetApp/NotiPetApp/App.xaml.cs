@@ -36,7 +36,7 @@ namespace NotiPetApp
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTg0NDIxQDMxMzkyZTM0MmUzMFNLQ3ZJWkRQZkwyc2pYTXkzZCtyTStaOG5DeHpBaWg5djNaQ0RmK2R1QzQ9");
             InitializeComponent();
-            NavigationService.NavigateAsync("StartPage");
+            NavigationService.NavigateAsync("StorePage");
            
         }
 

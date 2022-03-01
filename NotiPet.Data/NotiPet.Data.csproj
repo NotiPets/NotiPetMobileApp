@@ -12,8 +12,13 @@
     <ItemGroup>
       <PackageReference Include="DynamicData" Version="7.5.4" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      <PackageReference Include="Polly" Version="7.2.3" />
       <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+      <PackageReference Include="Refit" Version="6.3.2" />
       <PackageReference Include="System.Reactive" Version="5.0.0" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Repositories" />
     </ItemGroup>
 
 </Project>
