@@ -1,3 +1,6 @@
+using System;
+using System.Reactive.Linq;
+using Bogus.DataSets;
 using Xamarin.Essentials;
 
 namespace NotiPetApp.Helpers
@@ -14,6 +17,12 @@ namespace NotiPetApp.Helpers
         {
             get;
             set;
+        }
+
+        public static IObservable<string> Token        
+        {
+            get=> Observable.FromAsync(token => SecureStorage.GetAsync(nameof(Token))) ; 
+            set=>value.Select(e=>SecureStorage.SetAsync(nameof(Username),e));
         }
     }
 }

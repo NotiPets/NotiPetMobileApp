@@ -3,6 +3,7 @@ using System.Reactive.Disposables;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace NotiPetApp.ViewModels
 {
@@ -11,6 +12,9 @@ namespace NotiPetApp.ViewModels
         protected CompositeDisposable Subscriptions { get; } = new CompositeDisposable();
         protected INavigationService NavigationService { get; }
         protected IPageDialogService DialogPage { get; }
+        public bool IsBusy => _isBusy.Value;
+        protected ObservableAsPropertyHelper<bool> _isBusy;
+        
 
         public BaseViewModel(INavigationService navigationService, IPageDialogService dialogPage)
         {

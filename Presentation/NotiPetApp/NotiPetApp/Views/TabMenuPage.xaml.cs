@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace NotiPetApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TabMenuPage : TabbedPage
+    public partial class TabMenuPage 
     {
         public TabMenuPage()
         {

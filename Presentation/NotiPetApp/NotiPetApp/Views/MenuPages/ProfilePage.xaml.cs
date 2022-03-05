@@ -20,7 +20,7 @@ namespace NotiPetApp.Views.MenuPages
 
         protected override CompositeDisposable ManageDisposables(CompositeDisposable disposables)
         {
-            disposables.Add(this.OneWayBind(ViewModel,x=>x.LogOutCommand,vw=>vw.CellLogout.Command  ));
+            //disposables.Add(this.OneWayBind(ViewModel,x=>x.LogOutCommand,vw=>vw.CellLogout.Command  ));
             return base.ManageDisposables(disposables);
         }
     }

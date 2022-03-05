@@ -7,7 +7,10 @@
                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
-                x:Class="NotiPetApp.Views.Authentication.LogInPage">
+                xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                x:Class="NotiPetApp.Views.Authentication.LogInPage"
+                x:DataType="viewModels:LoginViewModel">
     
     
     <views:BasePage.Resources>
@@ -15,6 +18,7 @@
         <converters:BoolToObjectConverter x:Key="IsRegisterToObjectConverter" TrueObject="Sign Up" FalseObject="Sign in" />
         <converters:BoolToObjectConverter x:Key="IsRegisterToStringConverter" TrueObject="Already have a NotiPed account?" FalseObject="Don’t have a Notipet account yet?" />
         <converters:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+
         <Style TargetType="controls:EntryCustom"
         >
             <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}"/>
@@ -25,9 +29,18 @@
             <Setter Property="FontSize"  Value="16"/>
 
         </Style>
+        <Style TargetType="Button"
+        >
+            <Setter Property="BackgroundColor" Value="White"/>
+
+            <Setter  Property="TextColor" Value="White"/>
+
+            <Setter Property="FontSize"  Value="16"/>
+
+        </Style>
     </views:BasePage.Resources>
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView x:Name="MainLayout" > 
             <Grid RowDefinitions="*,1*">
                 <BoxView Grid.Row="0"
                          Margin="0,0,0,50"
@@ -45,19 +58,33 @@
                     </BoxView.Background>
                 </BoxView>
            
-            <Grid RowDefinitions="Auto,Auto,Auto"
-                  Grid.RowSpan="2">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                  Grid.RowSpan="2"
+                  >
+                
+                <ImageButton BackgroundColor="Transparent"
+                             Command="{Binding NavigateGoBackCommand}"
+                             Grid.Column="0"
+                             HorizontalOptions="StartAndExpand"
+                             Margin="20"
+                             Grid.Row="0">
+                    <ImageButton.Source>
 
+                            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                             Color="{DynamicResource SecondaryLetterLight}"
+                                             FontFamily="{StaticResource FontSolid}"/>
+                    </ImageButton.Source>
+                </ImageButton>
                 <Label HorizontalTextAlignment="Start"
                        Margin="15"
                        Padding="10"
                        Style="{StaticResource LabelHeader}"
                        Text="SignUp "
                        TextColor="{DynamicResource SecondaryLetterLight}"
-                       Grid.Row="0"
+                       Grid.Row="1"
                 />
-                <pancakeView:PancakeView Grid.Row="1" 
-                                         CornerRadius="10"
+                <pancakeView:PancakeView Grid.Row="2" 
+                                         CornerRadius="14"
                                          Padding="10"
                                          Margin="15"
                                         VerticalOptions="CenterAndExpand"
@@ -68,18 +95,26 @@
                           ColumnDefinitions="Auto,*">
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="0"
-                                              IsVisible="{Binding IsRegister}"
                                               PlaceHolder="Username"
+                                              x:Name="UserEntry"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding  Username}"
                                      
                         /> 
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="1"
-                                              
+                                              x:Name="EmailEntry"
+                                              Text="{Binding Email}"
+                                              IsVisible="{Binding IsRegister}"
                                               PlaceHolder="Email"
+                                              ValidationColor="{DynamicResource ErrorColor}"
                                      
                         /> 
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="2"
+                                              x:Name="PasswordEntry"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding Password}"
                                               PlaceHolder="Password"
                                      
                         /> 
@@ -94,27 +129,33 @@
                         <Label Grid.Row="4" 
                                Grid.Column="1"
                                Text="Forgot password?"
+                               Style="{StaticResource LabelSubtitleBold}"
                                IsVisible="{Binding IsRegister,Converter={StaticResource InvertedBoolConverter}}"
                                Margin="5,1,5,20" 
                                HorizontalTextAlignment="End"/>
-                            
-                        <pancakeView:PancakeView Grid.Row="5"
-                                                 BackgroundColor="{DynamicResource PrimaryDark }"
-                                                 Grid.ColumnSpan="2"
-                                                 CornerRadius="25"
-                                                 Padding="14">
-                            <pancakeView:PancakeView.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AuthenticationCommand}"/>
-                            </pancakeView:PancakeView.GestureRecognizers>
-                            <Label  Text="{Binding IsRegister,Converter={StaticResource IsRegisterToObjectConverter}}"
-                                    Style="{StaticResource LabelTitleBold}"
-                                    HorizontalTextAlignment="Center"
-                                    TextColor="{DynamicResource SecondaryLetterLight}"/>
-                        </pancakeView:PancakeView>
+                        <Label Grid.Row="5" 
+                               Grid.ColumnSpan="2"
+                               x:Name="AuthenticationErrorMessageLabel"
+                               Style="{StaticResource LabelSubtitleBold}"
+                               TextColor="{DynamicResource ErrorColor}"
+                               Text="{Binding ErrorMessage}"
+                               Margin="5,1,5,20" 
+                               HorizontalTextAlignment="Start">
+                        </Label>
+                        
+                        <controls:TouchViewControl       Grid.ColumnSpan="2"
+                                                Command="{Binding AuthenticationCommand}"
+                                                CornerRadius="25"
+                                                Margin="10"
+                                                Padding="14"
+                                                IsEnabled ="{Binding  IsBusy,Converter={StaticResource InvertedBoolConverter}}"
+                                                CommandText="{Binding IsRegister,Converter={StaticResource IsRegisterToObjectConverter}}"
+                                                Grid.Row="6"
+                                                BackgroundColor="{DynamicResource PrimaryDark }"/> 
                     </Grid>
                 </pancakeView:PancakeView>
 
-                <Label Grid.Row="2"
+                <Label Grid.Row="3"
                        HorizontalTextAlignment="Center"
   
                        Style="{StaticResource LabelTitle}">

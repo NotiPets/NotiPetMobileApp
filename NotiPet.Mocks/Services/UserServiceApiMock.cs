@@ -17,8 +17,9 @@ namespace NotiPet.Mocks.Services
 
         }
 
-        public IObservable<UserRoleDto> LogIn(string username, string password)
-              => Observable.Return(generator.UserRoleDto);
+        public IObservable<AuthenticationDto> LogIn(RequestAuthenticationDto requestAuthenticationDto)
+              => Observable.Return(generator.AuthenticationDto.Email.Equals(requestAuthenticationDto.Username)&&generator.AuthenticationDto.Password.Equals(requestAuthenticationDto.Password)?
+                  generator.AuthenticationDto:null);
 
         public IObservable<UserRoleDto> SingUp(UserRoleDto userRole)
                => Observable.Return(generator.UserRoleDto);

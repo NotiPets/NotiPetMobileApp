@@ -29,8 +29,12 @@ namespace NotiPetApp.Views
         
         protected override void OnAppearing()
         {
-            _appearing.OnNext(Unit.Default);
-            _appearing.OnCompleted();
+            if (!_appearing.IsDisposed)
+            {
+                _appearing?.OnNext(Unit.Default);
+                _appearing?.OnCompleted();
+            }
+
         }
         protected virtual CompositeDisposable ManageDisposables(CompositeDisposable disposables)
         {
@@ -41,7 +45,7 @@ namespace NotiPetApp.Views
         /// <inheritdoc/>
         public void Dispose()
         {
-            Dispose(true);
+            Dispose(!_appearing.IsDisposed);
             GC.SuppressFinalize(this);
         }
 

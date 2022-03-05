@@ -13,7 +13,7 @@ using Xamarin.Forms.Xaml;
 namespace NotiPetApp.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EntryCustom : PancakeView,IDisposable
+    public partial class EntryCustom : IDisposable
     {
         private CompositeDisposable compositeDisposable = new CompositeDisposable();
         #region PLACEHOLDER
@@ -65,12 +65,27 @@ namespace NotiPetApp.Controls
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
+        public static readonly BindableProperty ValidationMessageProperty 
+            = BindableProperty.Create(nameof(ValidationMessage), typeof(string), typeof(EntryCustom), defaultBindingMode: BindingMode.TwoWay);
+
+        public string ValidationMessage
+        {
+            get =>  (string)GetValue(ValidationMessageProperty); 
+            set => SetValue(ValidationMessageProperty, value);
+        }
         public static readonly BindableProperty TextColorProperty 
             = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(EntryCustom),defaultValue:Color.Gray);
         public Color TextColor
         {
             get { return (Color)GetValue(TextColorProperty); }
             set { SetValue(TextColorProperty, value); }
+        }
+        public static readonly BindableProperty ValidationColorProperty 
+            = BindableProperty.Create(nameof(ValidationColor), typeof(Color), typeof(EntryCustom),defaultValue:Color.Gray);
+        public Color ValidationColor
+        {
+            get { return (Color)GetValue(ValidationColorProperty); }
+            set { SetValue(ValidationColorProperty, value); }
         }
         public static readonly BindableProperty FontSizeProperty 
             = BindableProperty.Create(nameof(FontSize), typeof(double), typeof(EntryCustom),defaultValue:12d);
@@ -107,6 +122,15 @@ namespace NotiPetApp.Controls
             get { return (Color)GetValue(ActiveLineColorProperty); }
             set { SetValue(LineColorProperty, value); }
         }
+        public static readonly BindableProperty ImageProperty 
+            = BindableProperty.Create(nameof(Image), typeof(ImageSource), typeof(EntryCustom), defaultBindingMode: BindingMode.TwoWay);
+
+        public ImageSource Image
+        {
+            get { return (ImageSource)GetValue(ImageProperty); }
+            set { SetValue(ImageProperty, value); }
+        }
+
 
         public EntryCustom()
         {

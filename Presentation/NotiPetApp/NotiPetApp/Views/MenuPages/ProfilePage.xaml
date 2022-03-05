@@ -87,6 +87,7 @@
                   </renderers:CommandCell>
                   <renderers:CommandCell Title="Log Out"
                                          x:Name="CellLogout"
+                                         Command="{Binding LogOutCommand}"
                                          IconSize="25">
                       <renderers:CommandCell.IconSource>
                           <FontImageSource Glyph="{x:Static fontIcon:FontIcon.LogOut}"

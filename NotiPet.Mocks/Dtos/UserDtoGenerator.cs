@@ -7,8 +7,9 @@ namespace NotiPet.Mocks.Services
 {
     public class UserDtoGenerator
     {
-        public IEnumerable<UserRoleDto> Veterinaries { get; set; }
-        public UserRoleDto UserRoleDto { get; set; }
+        public IEnumerable<UserRoleDto> Veterinaries { get;  }
+        public UserRoleDto UserRoleDto { get; }
+        public AuthenticationDto AuthenticationDto { get;  }
 
         public UserDtoGenerator()
         {
@@ -28,6 +29,13 @@ namespace NotiPet.Mocks.Services
 
             UserRoleDto = userRole.Generate();
             Veterinaries = userRole.Generate(100);
+            AuthenticationDto = new AuthenticationDto()
+            {
+                Email = "fiji1984@eiibps.com",
+                Password = "12345",
+                Token ="424e953b-3fa2-4ecb-a9ac-e1076b5c920c",
+                IsRegister = true
+            };
 
 
 

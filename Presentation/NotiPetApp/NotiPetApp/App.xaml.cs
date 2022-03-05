@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using NotiPet.Data;
 using NotiPet.Data.Mappers;
 using NotiPet.Data.Services;
@@ -34,9 +33,10 @@ namespace NotiPetApp
 
         protected override void OnInitialized()
         {
+            RxApp.DefaultExceptionHandler = new RxExceptionHandler();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTg0NDIxQDMxMzkyZTM0MmUzMFNLQ3ZJWkRQZkwyc2pYTXkzZCtyTStaOG5DeHpBaWg5djNaQ0RmK2R1QzQ9");
             InitializeComponent();
-            NavigationService.NavigateAsync("StorePage");
+            NavigationService.NavigateAsync(ConstantUri.Start);
            
         }
 
@@ -50,7 +50,7 @@ namespace NotiPetApp
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<ISchedulerProvider>(() => new SchedulerProvider(RxApp.MainThreadScheduler,RxApp.TaskpoolScheduler));
-            containerRegistry.RegisterForNavigation<TabMenuPage>();
+            containerRegistry.RegisterForNavigation<TabMenuPage,TabMenuViewModel>();
             containerRegistry.RegisterForNavigation<HomePage,HomeViewModel>();
             containerRegistry.RegisterForNavigation<AppointmentPage>();
             containerRegistry.RegisterForNavigation<StorePage,StoreViewModel>();
@@ -60,11 +60,13 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<LogInPage,LoginViewModel>();
             containerRegistry.RegisterForNavigation<StartPage,StartViewModel>();
             containerRegistry.RegisterForNavigation<PetsPage,PetsViewModel>();
+            containerRegistry.RegisterForNavigation<ProfilePage,ProfileViewModel>();
+            
             containerRegistry.RegisterForNavigation<OptionsParametersPage,OptionsParametersViewModel>(ConstantUri.OptionParameters);
             containerRegistry.Register<VeterinaryViewModel>();
             containerRegistry.Register<VeterinaryView>();
             
         }
 
-    }   
+    }
 }

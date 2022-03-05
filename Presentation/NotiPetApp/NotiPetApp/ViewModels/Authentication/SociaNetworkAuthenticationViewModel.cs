@@ -21,7 +21,7 @@ namespace NotiPetApp.ViewModels
         private ReadOnlyObservableCollection<SocialNetwork> _socialNetworks;
         public ReadOnlyObservableCollection<SocialNetwork> SocialNetworks => _socialNetworks;
         public ReactiveCommand<Unit,Unit> InitializeCommand { get; set; }
-        public ReactiveCommand<Unit,Unit> LogInCommand { get; set; }
+        public ReactiveCommand<string,INavigationResult> LogInCommand { get; set; }
 
         public SocialNetworkAuthenticationViewModel(INavigationService navigationService, IPageDialogService dialogPage,IAuthenticationService authenticationService) : base(navigationService, dialogPage)
         {
@@ -32,13 +32,21 @@ namespace NotiPetApp.ViewModels
                 .Subscribe()
                 .DisposeWith(Subscriptions);
             InitializeCommand = ReactiveCommand.CreateFromObservable(InitializeData);
-            LogInCommand = ReactiveCommand.CreateFromTask(Authentication);
+            LogInCommand = ReactiveCommand.CreateFromObservable<string,INavigationResult>(Authentication);
         }
 
-        Task Authentication()
+        IObservable<INavigationResult> Authentication(string code) => Observable.FromAsync(() =>
         {
-          return  NavigationService.NavigateAsync(ConstantUri.TabMenu);
-        }
+           return code switch
+            {
+                "FB" => NavigationService.NavigateAsync(ConstantUri.TabMenu),
+                "GB" => NavigationService.NavigateAsync(ConstantUri.TabMenu),
+                "Skip" => NavigationService.NavigateAsync(ConstantUri.TabMenu),
+                _ => NavigationService.NavigateAsync(ConstantUri.Login)
+            };
+        });
+          
+
         private IObservable<Unit> InitializeData()
         
         =>    Observable.Create<Unit>((value) =>

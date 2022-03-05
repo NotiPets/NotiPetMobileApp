@@ -9,9 +9,9 @@ namespace NotiPet.Data.Services
         Func<T> createClient;
         Lazy<T> lazyClient;
 
-        public ApiClient(string apiBaseAddress)
+        public ApiClient(IApiProvider apiProvider)
         {
-            ChangeBaseAddress(apiBaseAddress);
+            ChangeBaseAddress(apiProvider.ApiUrl);
         }
 
 

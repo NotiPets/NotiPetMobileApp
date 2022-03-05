@@ -21,8 +21,11 @@ namespace NotiPet.Data.Mappers
                     .ForMember(e=>e.Guid,x=>x.Ignore()) 
                     .ReverseMap();
                 cfg.CreateMap<BusinessDto, Veterinary>();
+                cfg.CreateMap<AuthenticationDto,Authentication>(); 
+                cfg.CreateMap<IAuthenticationRequestViewModel,RequestAuthenticationDto>(); 
+ 
                 cfg.ShouldUseConstructor = x =>! x.IsPrivate;
-            });
+            }); 
             automapper.AssertConfigurationIsValid();
             return automapper;
         }

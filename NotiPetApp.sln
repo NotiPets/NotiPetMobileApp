@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotiPet.UnitTest", "NotiPet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotiPet.UITest", "NotiPet.UITest\NotiPet.UITest.csproj", "{8B6484D3-64FF-46B3-9E6C-B723D2207EA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|iPhone = Ad-Hoc|iPhone
@@ -165,6 +167,22 @@ Global
 		{8B6484D3-64FF-46B3-9E6C-B723D2207EA9}.Release|iPhone.Build.0 = Release|Any CPU
 		{8B6484D3-64FF-46B3-9E6C-B723D2207EA9}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{8B6484D3-64FF-46B3-9E6C-B723D2207EA9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Release|iPhone.Build.0 = Release|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{3B5EA5A7-68DC-46CC-A253-8FF4D607B484}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F10D8C09-1B97-4B7B-9367-2748A3A72EC1} = {38C60FDF-7946-4C96-848C-1B4474FFF717}
