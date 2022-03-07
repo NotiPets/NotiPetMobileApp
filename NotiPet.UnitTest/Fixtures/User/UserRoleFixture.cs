@@ -20,7 +20,7 @@ namespace NotiPet.UnitTest.Fixtures.User
         
         public UserRoleFixture WithEmail(string email) => this.With(ref _email, email);
         public UserRoleFixture WithUserId(int userId) => this.With(ref _userId, userId);
-        public UserRoleFixture WithBusinessId(int businessId) => this.With(ref _businessId, businessId);
+        public UserRoleFixture WithBusinessId(string businessId) => this.With(ref _businessId, businessId);
         public UserRoleFixture WithRoleId(int roleId) => this.With(ref _roleId, roleId);
         public UserRoleFixture WithRatingId(int ratingId) => this.With(ref _ratingId, ratingId);
         public UserRoleFixture WithUser(Domain.Models.User user) => this.With(ref _user, user);
@@ -31,7 +31,7 @@ namespace NotiPet.UnitTest.Fixtures.User
         private string  _password;
         private string _email ;
         private int  _userId ;
-        private int _businessId ;
+        private string _businessId ;
         private int _roleId ;
         private int _ratingId ;
         private Domain.Models.User _user ;

@@ -4,7 +4,7 @@ namespace NotiPet.Domain.Models
 {
     public class UserRole
     {
-        public UserRole(DateTime create, DateTime update, bool active, string username, string password, string email, int userId, int businessId, int roleId, int ratingId,User user)
+        public UserRole(DateTime create, DateTime update, bool active, string username, string password, string email, int userId, string businessId, int roleId, int ratingId,User user)
         {
             Create = create;
             Update = update;
@@ -27,7 +27,7 @@ namespace NotiPet.Domain.Models
         public string  Password { get; }
         public string Email { get;  }
         public int  UserId { get;  }
-        public int BusinessId { get; }
+        public string BusinessId { get; }
         public int RoleId { get;  }
         public int RatingId { get;  }
         public User User { get; }

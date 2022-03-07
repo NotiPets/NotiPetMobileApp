@@ -11,8 +11,8 @@ namespace NotiPet.Domain.Service
 
         public IObservable<IEnumerable<SocialNetwork>> GetSocialNetworks();
 
-        public IObservable<Authentication> Authentication(IAuthenticationRequestViewModel viewModel);
-        public IObservable<UserRole> SignUp(IRegisterRequestViewModel viewModel);
+        public IObservable<string> Authentication(IAuthenticationRequestViewModel viewModel);
+        public IObservable<string> SignUp(IRegisterRequestViewModel viewModel);
 
     }
 }

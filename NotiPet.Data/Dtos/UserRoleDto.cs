@@ -11,7 +11,7 @@ namespace NotiPet.Data.Dtos
         public string  Password { get; set; }
         public string Email { get; set; }
         public int  UserId { get; set; }
-        public int BusinessId { get; set; }
+        public string BusinessId { get; set; }
         public int RoleId { get; set; }
         public int RatingId { get; set; }
         public UserDto User { get; set; }

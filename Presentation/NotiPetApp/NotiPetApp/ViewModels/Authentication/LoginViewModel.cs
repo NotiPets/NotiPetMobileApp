@@ -28,6 +28,7 @@ namespace NotiPetApp.ViewModels
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly AuthenticationValidator _validator;
+        private readonly RegisterValidator _registerValidator;
         private readonly ISchedulerProvider _schedulerProvider;
         [Reactive]  public string Email { get; set; }
         
@@ -42,22 +43,24 @@ namespace NotiPetApp.ViewModels
        [Reactive]   public string City { get; set; }
        [Reactive]   public string Province { get; set; }
        [Reactive]  public PersonalDocument PersonalDocument { get; set; }
+       [Reactive] public string BusinessId { get; set; }
        public bool IsRegister { get; set; }
         public ReactiveCommand<Unit,Unit> ChangeAuthenticationCommand { get; set; }
         public ReactiveCommand<Unit,Unit> ForgotPasswordCommand { get; set; }
-        public ReactiveCommand<Unit,bool> AuthenticationCommand { get; set; }
-        public ReactiveCommand<bool,Unit> NavigateToMenuPageCommand { get; set; }
+        public ReactiveCommand<Unit,string> AuthenticationCommand { get; set; }
+        public ReactiveCommand<string,Unit> NavigateToMenuPageCommand { get; set; }
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
         protected ObservableAsPropertyHelper<string> _errorMessage;
        public string ErrorMessage => _errorMessage.Value;
         public LoginViewModel(INavigationService navigationService, IPageDialogService dialogPage,
-            IAuthenticationService authenticationService, AuthenticationValidator validator,
+            IAuthenticationService authenticationService, AuthenticationValidator validator, RegisterValidator registerValidator,
             ISchedulerProvider schedulerProvider) : base(navigationService, dialogPage)
         {
             
             ValidationContext = new ValidationContext();
             _authenticationService = authenticationService;
             _validator = validator;
+            _registerValidator = registerValidator;
             _schedulerProvider = schedulerProvider;
             this.WhenAnyValue(e => e.Email)
                 .StartWith(string.Empty)
@@ -72,12 +75,17 @@ namespace NotiPetApp.ViewModels
                 //TODO Navigate to Fotgot password;
                 return  Task.CompletedTask;
             });
-            NavigateToMenuPageCommand = ReactiveCommand.CreateFromTask<bool>(((b, token) =>
-                NavigationService.NavigateAsync(ConstantUri.TabMenu)));
+            NavigateToMenuPageCommand = ReactiveCommand.CreateFromTask<string>(((b, token) =>
+            {
+                if (string.IsNullOrEmpty(b)) 
+                    return Task.CompletedTask;
+                Settings.Token = Observable.Return(b);
+                return NavigationService.NavigateAsync(ConstantUri.TabMenu);
+            }));
+               
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
             AuthenticationCommand = ReactiveCommand.CreateFromObservable(Authentication,ValidationContext.Valid);
             AuthenticationCommand
-                .Where(e=>e)
                 .InvokeCommand(NavigateToMenuPageCommand);
             ActiveValidation();
             ActiveMethod();
@@ -92,7 +100,7 @@ namespace NotiPetApp.ViewModels
             }
             _errorMessage = AuthenticationCommand
                 .Skip(1)
-                .Select(e=>e?string.Empty:"some of your info isn't correct, try again")
+                .Select(e=>!string.IsNullOrEmpty(e)?string.Empty:"some of your info isn't correct, try again")
                 .ToProperty(this,x=>x.ErrorMessage,scheduler:_schedulerProvider.CurrentThread);
             _isBusy = AuthenticationCommand
                 .IsExecuting.ToProperty(this,x=>x.IsBusy,scheduler:_schedulerProvider.CurrentThread);
@@ -102,8 +110,24 @@ namespace NotiPetApp.ViewModels
         {
             IObservable<IValidationState> emailValidation = this.WhenAnyValue(e => e.Email)
                 .Select(_ => this)
-                .Select(_validator.Validate)
+                .Select(_registerValidator.Validate)
                 .Select(e=> IsRegister&&!e.IsValid&&e.Errors.HasMessageForProperty(nameof(Email))?  new ValidationState(false,e.Errors.GetMessageForProperty(nameof(Email))):ValidationState.Valid);
+
+            IObservable<IValidationState>  nameValidation = this.WhenAnyValue(e => e.Name)
+                .Select(_ => this)
+                .Select(_registerValidator.Validate)
+                .Select(e=> IsRegister&&!e.IsValid&&e.Errors.HasMessageForProperty(nameof(Name))?  new ValidationState(false,e.Errors.GetMessageForProperty(nameof(Name))):ValidationState.Valid);
+
+            IObservable<IValidationState>  lastNameValidation = this.WhenAnyValue(e => e.LastName)
+                .Select(_ => this)
+                .Select(_registerValidator.Validate)
+                .Select(e=> IsRegister&&!e.IsValid&&e.Errors.HasMessageForProperty(nameof(LastName))?
+                    new ValidationState(false,e.Errors.GetMessageForProperty(nameof(LastName))):ValidationState.Valid);
+            IObservable<IValidationState>  personalDocument = this.WhenAnyValue(e => e.PersonalDocument)
+                .Select(_ => this)
+                .Select(_registerValidator.Validate)
+                .Select(e=> IsRegister&&!e.IsValid&&e.Errors.HasMessageForProperty(nameof(PersonalDocument))?
+                    new ValidationState(false,e.Errors.GetMessageForProperty(nameof(PersonalDocument))):ValidationState.Valid);
             
             IObservable<IValidationState> passwordValidation = this.WhenAnyValue(e => e.Password)
                 .StartWith()
@@ -119,17 +143,18 @@ namespace NotiPetApp.ViewModels
                 .Select(e=> !e.IsValid&&e.Errors.HasMessageForProperty(nameof(Username))? new ValidationState(false,e.Errors.GetMessageForProperty(nameof(Username))):ValidationState.Valid);
 
             this.ValidationRule(e => e.Username, userNameValidation);
+            this.ValidationRule(e => e.Name, nameValidation);
+            this.ValidationRule(e => e.LastName, lastNameValidation);
             this.ValidationRule(e => e.Email, emailValidation);
             this.ValidationRule(e => e.Password, passwordValidation);
             
         }
 
-        IObservable<bool> Authentication()
+        IObservable<string> Authentication()
         {
             var observable = IsRegister
-                ? _authenticationService.SignUp(this).Select(e => e != null)
-                : _authenticationService.Authentication(this)
-                    .Select(e => e != null);
+                ? _authenticationService.SignUp(this)
+                : _authenticationService.Authentication(this);
             return observable;
 
         }

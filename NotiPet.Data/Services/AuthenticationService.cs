@@ -53,23 +53,24 @@ namespace NotiPet.Data.Services
                 }
             }).Do(_sourceList.AddRange);
         }
-        public IObservable<Authentication> Authentication(IAuthenticationRequestViewModel viewModel)
+        public IObservable<string> Authentication(IAuthenticationRequestViewModel viewModel)
         {
             return _userServiceApi.LogIn(_mapper.Map<RequestAuthenticationDto>(viewModel))
-                .Select(_mapper.Map<Authentication>);
+                .Select(e=>e.Token);
 
         }
 
-        public IObservable<UserRole> SignUp(IRegisterRequestViewModel register)
+        public IObservable<string> SignUp(IRegisterRequestViewModel register)
         {
             var user = new User(0,register.PersonalDocument.DocumentId,register.Name,DateTime.Now, 
                 register.LastName,DateTime.Today, register.Phone,register.Address1,register.Address2,
                 register.City,register.Province,register.PersonalDocument.DocumentType);
             
             var userRole = new UserRole(DateTime.Now, DateTime.Now, true, register.Username, register.Password,
-                register.Email, 0, 0, 1, 0, user);
-            return _userServiceApi.SingUp(_mapper.Map<UserRoleDto>(userRole))
-                .Select(_mapper.Map<UserRole>);
+                register.Email, 0, register.BusinessId, 1, 0, user);
+
+             return  _userServiceApi.SingUp(_mapper.Map<UserRoleDto>(userRole))
+                 .Select(x=>x.Jwt);
         }
 
         public void Dispose()

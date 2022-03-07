@@ -1,9 +1,11 @@
 using AutoMapper;
 using NotiPet.Data.Mappers;
+using NotiPet.Data.Repositories;
 using NotiPet.Data.Services;
 using NotiPet.Domain.Service;
 using Prism.Ioc;
 using Prism.Modularity;
+using Realms;
 
 namespace NotiPet.Data
 {
@@ -18,6 +20,8 @@ namespace NotiPet.Data
             containerRegistry.RegisterSingleton<IPetsService, PetsService>();
             containerRegistry.RegisterSingleton<IMapper>(x=> new Mapper(AutoMapperConfig.GetConfig()));
             containerRegistry.RegisterSingleton<IUserServiceApi, UserServiceApi>();
+            containerRegistry.RegisterSingleton<IDataBaseProvider<Realm>, RealmDatabaseProvider>();
+            containerRegistry.RegisterSingleton(typeof(IDataSource<>), typeof(Repository<>));
         }
 
         public void OnInitialized(IContainerProvider containerProvider)
