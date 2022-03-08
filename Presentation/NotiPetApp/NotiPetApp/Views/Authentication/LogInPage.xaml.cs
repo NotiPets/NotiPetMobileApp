@@ -26,6 +26,7 @@ namespace NotiPetApp.Views.Authentication
             disposables.Add(this.BindValidation(ViewModel,wm=>wm.Username,vw=>vw.UserEntry.ValidationMessage));
             disposables.Add(this.BindValidation(ViewModel,wm=>wm.Email,vw=>vw.EmailEntry.ValidationMessage));
             disposables.Add(this.WhenAnyValue(x=>x.ViewModel.ErrorMessage)
+                              .StartWith(string.Empty)
                             .Select(e=> !string.IsNullOrEmpty(e))
                             .BindTo(this, x=> x.AuthenticationErrorMessageLabel.IsVisible));
             disposables.Add(this.BindValidation(ViewModel,wm=>wm.Password,vw=>vw.PasswordEntry.ValidationMessage));

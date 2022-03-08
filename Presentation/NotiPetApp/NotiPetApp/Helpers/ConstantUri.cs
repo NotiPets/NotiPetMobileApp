@@ -12,6 +12,7 @@ namespace NotiPetApp.Helpers
         public const string TabMenu = "/TabMenuPage";
         public const string SocialNetworkAuthentication = "/SocialNetworkAuthenticationPage";
         public const string Start = "/StartPage";
+        public const string Store = "StorePage";
     }
     public static class ParameterConstant
     {

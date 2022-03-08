@@ -16,11 +16,10 @@ namespace NotiPetApp.ViewModels
         {
             AppMenuItems = new ObservableCollection<AppMenuItem>()
             {
-                new AppMenuItem(ConstantDictionary.Veterinary,"Veterinary",1,ReactiveCommand.CreateFromTask(NavigateToLastVisitVeterinary),SizeItem.Small),
-                new AppMenuItem(ConstantDictionary.Bathe,"Shower",2,ReactiveCommand.CreateFromTask(NavigateToActivity),SizeItem.Small),
-                new AppMenuItem(ConstantDictionary.Store,"Shop",3,ReactiveCommand.CreateFromTask(ShowNavigateToStory),SizeItem.Small),
-                new AppMenuItem(ConstantDictionary.Emergency,"Emergency",4,ReactiveCommand.CreateFromTask(ShowNavigateToStory),SizeItem.Large),
-                
+                new(ConstantDictionary.Veterinary,"Veterinary",1,ReactiveCommand.CreateFromTask(NavigateToLastVisitVeterinary),SizeItem.Small),
+                new(ConstantDictionary.Bathe,"Shower",2,ReactiveCommand.CreateFromTask(NavigateToActivity),SizeItem.Small),
+                new(ConstantDictionary.Store,"Shop",3,ReactiveCommand.CreateFromTask(ShowNavigateToStory),SizeItem.Small),
+                new(ConstantDictionary.Emergency,"Emergency",4,ReactiveCommand.CreateFromTask(CallEmergency),SizeItem.Large),
             };
         }
 
@@ -34,7 +33,11 @@ namespace NotiPetApp.ViewModels
         }
         async Task ShowNavigateToStory()
         {
-            await  NavigationService.NavigateAsync(ConstantUri.Home);
+            await  NavigationService.NavigateAsync(ConstantUri.Store);
+        }
+        async Task CallEmergency()
+        {
+           //TODO Call Emergency
         }
     }
 }
