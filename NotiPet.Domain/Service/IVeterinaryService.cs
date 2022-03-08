@@ -7,7 +7,7 @@ namespace NotiPet.Domain.Service
 {
     public interface IVeterinaryService
     {
-        public SourceCache<Veterinary, int> Veterinaries { get; }
+        public SourceCache<Veterinary, string> Veterinaries { get; }
         Func<Veterinary, bool> SearchPredicate(string text);
         IObservable<IEnumerable<Veterinary>> GetVeterinary();
     }

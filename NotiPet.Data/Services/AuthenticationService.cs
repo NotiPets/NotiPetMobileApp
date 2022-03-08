@@ -56,7 +56,7 @@ namespace NotiPet.Data.Services
         public IObservable<string> Authentication(IAuthenticationRequestViewModel viewModel)
         {
             return _userServiceApi.LogIn(_mapper.Map<RequestAuthenticationDto>(viewModel))
-                .Select(e=>e.Token);
+                .Select(e=>e?.Token);
 
         }
 

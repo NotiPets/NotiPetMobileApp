@@ -28,6 +28,7 @@ namespace NotiPet.Mocks.Dtos
         public BusinnessDtoGenerator()
         {
             var business = new Faker<BusinessDto>()
+                .RuleFor(e=>e.Id,x=>Guid.NewGuid().ToString())
                 .RuleFor(e => e.Name, x => x.Company.CompanyName())
                 .RuleFor(e => e.City, x => x.Company.Locale)
                 .RuleFor(e => e.Email, x => x.Person.Email)

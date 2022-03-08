@@ -12,7 +12,7 @@ namespace NotiPet.Data.Services
     public class VeterinaryService:IVeterinaryService
 
     {
-    private SourceCache<Veterinary, int> _sourceCache = new SourceCache<Veterinary, int>(e => e.Id);
+    private SourceCache<Veterinary, string> _sourceCache = new SourceCache<Veterinary, string>(e => e.Id);
     private readonly IBusinessServiceApi _businessService;
     private readonly IMapper _mapper;
 
@@ -22,7 +22,7 @@ namespace NotiPet.Data.Services
         _mapper = mapper;
     }
 
-    public SourceCache<Veterinary, int> Veterinaries => _sourceCache;
+    public SourceCache<Veterinary, string> Veterinaries => _sourceCache;
     public Func<Veterinary, bool> SearchPredicate(string text) => vet => string.IsNullOrEmpty(text)||vet.Name.ToLower().Contains(text.ToLower());
 
     public IObservable<IEnumerable<Veterinary>> GetVeterinary()

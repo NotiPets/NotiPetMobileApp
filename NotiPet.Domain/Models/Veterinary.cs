@@ -2,7 +2,7 @@ namespace NotiPet.Domain.Models
 {
     public class Veterinary
     {
-        public Veterinary(int id, string name,string rnc, string phone, string email, string address1, string address2, string city, string province, double latitude, double longitude)
+        public Veterinary(string id, string name,string rnc, string phone, string email, string address1, string address2, string city, string province, double latitude, double longitude)
         {
             Name = name;
             Id = id;
@@ -18,7 +18,7 @@ namespace NotiPet.Domain.Models
         }
 
         public string Name { get; set; }
-        public int Id { get;  }
+        public string Id { get;  }
         public string Rnc { get;  }
         public string Phone { get; }
         public string Email { get;  }
