@@ -13,6 +13,7 @@ namespace NotiPetApp.Helpers
         public const string SocialNetworkAuthentication = "/SocialNetworkAuthenticationPage";
         public const string Start = "/StartPage";
         public const string Store = "StorePage";
+        public const string OnBoarding = "/OnBoardingPage";
     }
     public static class ParameterConstant
     {

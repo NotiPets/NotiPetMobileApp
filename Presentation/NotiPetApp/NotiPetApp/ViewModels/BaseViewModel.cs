@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Reactive.Disposables;
 using Prism.Navigation;
 using Prism.Services;
@@ -9,6 +10,7 @@ namespace NotiPetApp.ViewModels
 {
     public abstract class BaseViewModel:ReactiveObject,IDestructible,IDisposable
     {
+
         protected CompositeDisposable Subscriptions { get; } = new CompositeDisposable();
         protected INavigationService NavigationService { get; }
         protected IPageDialogService DialogPage { get; }
@@ -29,6 +31,8 @@ namespace NotiPetApp.ViewModels
                 Subscriptions.Dispose();
             }
         }
+        
+
 
         public void Dispose()
         {

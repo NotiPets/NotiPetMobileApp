@@ -38,7 +38,7 @@ namespace NotiPetApp.ViewModels
          Task Initialize(string token)
          {
              return string.IsNullOrEmpty(token)
-                 ? NavigationService.NavigateAsync(ConstantUri.SocialNetworkAuthentication)
+                 ? NavigationService.NavigateAsync(ConstantUri.OnBoarding)
                  : NavigationService.NavigateAsync(ConstantUri.TabMenu);
 
          }
