@@ -50,6 +50,7 @@
                                        FontAttributes="Bold"
                                        FontSize="Title" />
                                 <Label Text="{Binding Content}"
+                                       Margin="10,0"
                                        TextColor="{StaticResource PrimaryLetterColor}"
                                        FontSize="Body"/>
   

@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using FluentAssertions;
-using JetBrains.ReSharper.TestRunner.Adapters.XUnit.Extensions;
 using Microsoft.Reactive.Testing;
 using NotiPet.Data.Services;
 using NotiPet.Domain.Models;
@@ -22,8 +21,8 @@ namespace NotiPet.UnitTest.ViewModelTest
         [Fact]
         public void PetsListNotBeEmptyWhenExecutingInitializing()
         {
-              FluentExtensions.With(new TestScheduler(), scheduler =>
-            {
+            var scheduler = new TestScheduler();
+
                 
                 var petServiceApi = new PetServiceApiMock();
                 IPetsService petsService = new PetsService(petServiceApi,Mapper);
@@ -39,14 +38,13 @@ namespace NotiPet.UnitTest.ViewModelTest
                 scheduler.AdvanceByMs(100);
                 //Asset
                 viewModel.Pets.Should().NotBeEmpty(); 
-            });
           
         }
         [Fact]
         public void SearchingPetShouldBeReturnResultBySearching()
         {
-            FluentExtensions.With(new TestScheduler(), scheduler =>
-            {
+            var scheduler = new TestScheduler();
+
                 var petServiceApi = new PetServiceApiMock();
                 IPetsService petsService = new PetsService(petServiceApi, Mapper);
                 var viewModelFixture = new PetsViewModelFixture()
@@ -63,7 +61,6 @@ namespace NotiPet.UnitTest.ViewModelTest
                 scheduler.AdvanceByMs(100);
                 //Arrange
                 viewModel.Pets.Should().OnlyContain(expression);
-            });
         }
     }
 }
