@@ -19,6 +19,7 @@ using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Xamarin.Forms.Internals;
 
 namespace NotiPetApp.ViewModels
 {
@@ -47,24 +48,28 @@ namespace NotiPetApp.ViewModels
             var notificationParameters = _storeService.ParametersOptions
                 .Connect()
                 .RefCount();
-          
 
-            
           var sortPredicate =  notificationParameters
                   .WhenPropertyChanged(e => e.IsActive,true)
                   .Where(e=>e.Value&&e.Sender.IsSort)
                   .Select(e =>
                   e.Value?  e.Sender.GetSortExpressions<SortExpressionComparer<AssetServiceModel>>()
-                      :SortExpressionComparer<AssetServiceModel>.Descending(e=>e.Name))
-              ;
+                      :SortExpressionComparer<AssetServiceModel>.Descending(e=>e.Name));
+
+          var defaultFilter =
+              new PropertyValue<ParameterOption, bool>(ParameterOption.Default
+                  .SetFilterExpression<AssetServiceModel>(x => x.Active), true);
           
-          var filterPredicate =  notificationParameters
-              .Filter(e=>!e.IsSort)
-              .WhenPropertyChanged(e => e.IsActive,true)
-              .Where(e=>e.Value&&!e.Sender.IsSort)
-              .Select(e => e.Value?  e.Sender.GetFilterExpression<Func<AssetServiceModel, bool>>() :e=>!string.IsNullOrEmpty(e.Name));
-    
-            var searchPredicate = this.WhenAnyValue(x => x.SearchText)
+          var filterPredicate = notificationParameters
+              .WhenPropertyChanged(e => e.IsActive, true)
+              .StartWith(defaultFilter)
+              .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
+              .DistinctUntilChanged()
+              .Where(x=>!x.Sender.IsSort)
+              .Select(e=> (e.Value)?e:defaultFilter)
+              .Select(e => e.Sender.GetFilterExpression<Func<AssetServiceModel, bool>>());
+          
+          var searchPredicate = this.WhenAnyValue(x => x.SearchText)
                 .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
                 .DistinctUntilChanged()
                 .Select(SearchFunc);
@@ -72,7 +77,8 @@ namespace NotiPetApp.ViewModels
             notificationParameters
                 .Filter(e=>e.IsActive)
                 .Bind(out _parameterOptions)
-                .DisposeMany().Subscribe()
+                .DisposeMany()
+                .Subscribe()
                 .DisposeWith(Subscriptions);
             
             _storeService.AssetsServices

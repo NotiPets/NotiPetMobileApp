@@ -19,7 +19,7 @@ namespace NotiPetApp.ViewModels
     {
         private readonly IPetsService _petsService;
         public ReactiveCommand<Unit,Unit> InitializingCommand { get; set; }
-        private readonly ReadOnlyObservableCollection<Pet> _pets;
+        private  ReadOnlyObservableCollection<Pet> _pets;
         public ReadOnlyObservableCollection<Pet> Pets => _pets;
        [Reactive] public string SearchText { get; set; }
 
@@ -28,11 +28,11 @@ namespace NotiPetApp.ViewModels
         {
             _petsService = petsService;
             var filterSearch = this.WhenAnyValue(e => e.SearchText)
-                .Throttle(TimeSpan.FromMilliseconds(100), scheduler:currentThread.CurrentThread)
+                .Throttle(TimeSpan.FromMilliseconds(100), currentThread.CurrentThread)
                 .DistinctUntilChanged()
-                .Select(_petsService.SearchPredicate);
+                .Select(SearchFunc);
             _petsService.Pets.Connect()
-                .ObserveOn(currentThread.MainThread)
+                .ObserveOn(currentThread.CurrentThread)
                 .Filter(filterSearch)
                 .Bind(out _pets)
                 .DisposeMany()
@@ -42,7 +42,8 @@ namespace NotiPetApp.ViewModels
             
 
         }
-
+        Func<Pet, bool> SearchFunc(string text) =>
+            model => string.IsNullOrEmpty(text) || model.Name==text;
         IObservable<Unit> Initialize()
             => _petsService.GetPets().Select(e => Unit.Default);
     }

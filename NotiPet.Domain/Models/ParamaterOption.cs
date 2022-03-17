@@ -25,6 +25,11 @@ namespace NotiPet.Domain.Models
 
         }
 
+        private ParameterOption(bool isActive)
+        {
+            IsActive = isActive;
+        }
+        public static readonly ParameterOption Default = new ParameterOption(false); 
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -9,6 +9,7 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using DynamicData;
+using DynamicData.Binding;
 using DynamicData.Kernel;
 using NotiPet.Domain.Models;
 using NotiPetApp.Helpers;
@@ -43,8 +44,15 @@ namespace NotiPetApp.ViewModels
         }
         private void ActiveFilter(ParameterOption parameterOption)
         {
+            var value = _sourceList.Items
+                .FirstOrDefault(e =>e.Key==parameterOption.Key&&e.Id!=parameterOption.Id&&e.IsActive);
             _sourceList.Edit((update) =>
             {
+                if (value!=null)
+                {
+                    value.SetActive(false);
+                    update.AddOrUpdate(parameterOption);
+                }
                 parameterOption.SetActive(!parameterOption.IsActive);
                 update.AddOrUpdate(parameterOption);
                 
@@ -62,8 +70,9 @@ namespace NotiPetApp.ViewModels
                 notificationsParameters
                     .Group(e=>e.Key)
                     .Transform(x=>new ObservableGroupingCollection<string,ParameterOption,string>(x))
+                    .Sort(SortExpressionComparer<ObservableGroupingCollection<string,ParameterOption,string>>.Descending(x=>x.Key))
                     .Bind(out _parameterOptions)
-                    .DisposeMany()
+                       .DisposeMany()
                     .Subscribe()
                     .DisposeWith(Subscriptions);
             }

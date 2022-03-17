@@ -12,12 +12,11 @@ namespace NotiPet.Data.Services
     {
         private readonly IPetServiceApi _petService;
         private readonly IMapper _mapper;
-        private SourceCache<Pet, Guid> _petSource;
+        private SourceCache<Pet, Guid> _petSource = new SourceCache<Pet, Guid>(e => e.Guid);
         public PetsService(IPetServiceApi petService, IMapper mapper)
         {
             _petService = petService;
             _mapper = mapper;
-            _petSource = new SourceCache<Pet, Guid>(e => e.Guid);
         }
 
 
@@ -31,6 +30,6 @@ namespace NotiPet.Data.Services
         public SourceCache<Pet, Guid> Pets => _petSource;
 
         public Func<Pet, bool> SearchPredicate(string text) =>
-            pet => string.IsNullOrEmpty(text)|| (pet.Description.Contains(text) || pet.Name.Contains(text) ||pet.PetType.Name.Contains(text));
+            pet => string.IsNullOrEmpty(text)|| (pet.Name.Contains(text));
     }
 }
