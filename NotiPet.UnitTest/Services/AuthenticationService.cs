@@ -49,7 +49,7 @@ namespace NotiPet.UnitTest.Services
            observedResultSequence.RecordedMessages.Should().AllSatisfy(x=>x.Should().NotBeNull());
         }
 
-        [Fact]
+        //[Fact]
         public void CallSignUpWithValidAccountShouldBeReturnToken()
         {
             var scheduler = new TestScheduler();
