@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:RegisterViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="NotiPetApp.Views.Authentication.RegisterPage"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
+                x:DataType="viewModels:RegisterViewModel">
+     <views:BasePage.Resources>
+        <converters:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+        <converters:BoolToObjectConverter x:Key="IsRegisterToObjectConverter" TrueObject="Sign Up" FalseObject="Sign in" />
+
+
+        <Style TargetType="controls:EntryCustom"
+        >
+            <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}"/>
+            <Setter  Property="ActiveLineColor" Value="{DynamicResource PrimaryDark}"/>
+            <Setter  Property="LineColor" Value="{DynamicResource PrimaryBackgroundDark}"/>
+            <Setter  Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+            <Setter Property="PlaceHolderSize" Value="16"/>
+            <Setter Property="FontSize"  Value="16"/>
+
+        </Style>
+        <Style TargetType="Button"
+        >
+            <Setter Property="BackgroundColor" Value="White"/>
+
+            <Setter  Property="TextColor" Value="White"/>
+
+            <Setter Property="FontSize"  Value="16"/>
+
+        </Style>
+    </views:BasePage.Resources>
+    <ContentPage.Content>
+            <Grid RowDefinitions="*,1*" x:Name="MainLayout">
+                <BoxView Grid.Row="0"
+                         Margin="0,0,0,50"
+                         >
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0"
+                                             EndPoint="1,1">
+                            <GradientStop Color="#4596EA "
+                                          Offset="0.1" />
+
+                            <GradientStop Color="#00CBCC"
+                                          Offset="0.3" />
+
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+           
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                  Grid.RowSpan="2"
+                  >
+                
+                <ImageButton BackgroundColor="Transparent"
+                             Grid.Column="0"
+                             Command="{Binding NavigateGoBackCommand}"
+                             HorizontalOptions="StartAndExpand"
+                             Margin="20"
+                             Grid.Row="0">
+                    <ImageButton.Source>
+
+                        <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                         Color="{DynamicResource SecondaryLetterLight}"
+                                         FontFamily="{StaticResource FontSolid}"/>
+                    </ImageButton.Source>
+                </ImageButton>
+                <Label HorizontalTextAlignment="Start"
+                       Margin="15"
+                       Padding="10"
+                       Style="{StaticResource LabelHeader}"
+                       Text="SignUp "
+                       TextColor="{DynamicResource SecondaryLetterLight}"
+                       Grid.Row="1"
+                />
+                <pancakeView:PancakeView Grid.Row="2" 
+                                         CornerRadius="14" 
+                                         Padding="10"
+                                         Margin="15"
+                                        VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                         Shadow="{StaticResource ShadowMarkupStyle}"
+                                        >
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                          ColumnDefinitions="Auto,*">
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="0"
+                                              PlaceHolder="Name"
+                                              x:Name="NameEntry"
+                                              Text="{Binding  Name}"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              IsVisible="False">
+
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="0">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                        </controls:EntryCustom>        
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="1"
+                                              PlaceHolder="Last Name"
+                                              x:Name="LastNameEntry"
+                                              Text="{Binding  LastName}" 
+                                              ValidationColor="{DynamicResource ErrorColor}" 
+                                              IsVisible="False">
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="0">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                        </controls:EntryCustom>
+                                     
+                            
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="2"
+                                              PlaceHolder="Id Number"
+                                              x:Name="IdEntry"
+                                              Text="{Binding  PersonalDocument}"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              IsVisible="False">
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="0">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                                     
+                        </controls:EntryCustom>
+        
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="3"
+                                              PlaceHolder="Phone"
+                                              x:Name="PhoneEntry"
+                                              Text="{Binding  Phone}"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              IsVisible="False">
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="0">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                                     
+                        </controls:EntryCustom>
+                        
+                                               <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="0"
+                                              PlaceHolder="Address 1 "
+                                              x:Name="Address1Entry"
+                                              Text="{Binding  Address1}" 
+                                              ValidationColor="{DynamicResource ErrorColor}" 
+                                              IsVisible="False">
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="1">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                        </controls:EntryCustom>
+                                     
+                            
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="1"
+                                              PlaceHolder="Address 2"
+                                              x:Name="Address2Entry"
+                                              Text="{Binding  Address2}"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              IsVisible="False">
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="1">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                                     
+                        </controls:EntryCustom>
+        
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="2"
+                                              PlaceHolder="City"
+                                              x:Name="CityEntry"
+                                              Text="{Binding  City}"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              IsVisible="False">
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="1">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                                     
+                        </controls:EntryCustom>
+                        
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="3"
+                                              PlaceHolder="Province"
+                                              x:Name="ProvinceEntry"
+                                              Text="{Binding  Province}"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              IsVisible="False">
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="1">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                                     
+                        </controls:EntryCustom>
+                        
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="0"
+                                              PlaceHolder="E-mail"
+                                              x:Name="MailEntry"
+                                              Text="{Binding  Email}"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              IsVisible="False">
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="2">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                                     
+                        </controls:EntryCustom>
+                        
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="1"
+                                              PlaceHolder="Password"
+                                              x:Name="PasswordEntry"
+                                              Text="{Binding  Password}"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              IsVisible="False">
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="2">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                                     
+                        </controls:EntryCustom>
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="2"
+                                              PlaceHolder="Password Confirmation"
+                                              x:Name="PasswordConfirmationEntry"
+                                              Text="{Binding   ConfirmPassword}"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              IsVisible="False">
+                            <controls:EntryCustom.Triggers>
+                                <DataTrigger TargetType="controls:EntryCustom" Binding="{Binding Step}" Value="2">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            </controls:EntryCustom.Triggers>
+                                     
+                        </controls:EntryCustom>
+                        
+                        <controls:TouchViewControl       Grid.ColumnSpan="2"
+                                                         CornerRadius="25"
+                                                         Margin="10"
+                                                         Padding="14"
+                                                         Grid.Row="4"  
+                                                         Command="{Binding AuthenticationCommand}"
+                                                         CommandText="{Binding SkipButtonText}"
+                                                         IsVisible="{Binding ShowButton}"
+                                                         BackgroundColor="{DynamicResource PrimaryDark}"/> 
+                    </Grid>
+                </pancakeView:PancakeView>
+
+        </Grid>
+            </Grid>
+    </ContentPage.Content>
+</views:BasePage>

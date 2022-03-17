@@ -85,7 +85,14 @@
                    HorizontalTextAlignment="Center"
                    Margin="2,60,2,10"
                    TextColor="{DynamicResource PrimaryDark}"
-                   Style="{StaticResource LabelTitle}">
+                   Style="{StaticResource LabelTitle}"
+                   converters:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:SocialNetworkAuthenticationViewModel}},Path=LogInCommand}"
+                   converters:TouchEffect.CommandParameter="Register"
+                   converters:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                   converters:TouchEffect.PressedOpacity="0.6"
+                   converters:TouchEffect.AnimationDuration="5"
+                   converters:TouchEffect.PressedScale="1">
+                    
                 
                 <Label.FormattedText>
                     <FormattedString>

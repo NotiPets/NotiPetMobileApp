@@ -36,14 +36,14 @@ namespace ConsoleApp1
             viewModel.Password = "1234";
             service.Authentication(viewModel).Subscribe();*/
             SourceList<string> list = new SourceList<string>();
-            var test = new UserServiceApi(new ApiClient<IUserApi>("https://noti-pet-test.herokuapp.com/api"));
+            /*var test = new UserServiceApi(new ApiClient<IUserApi>("https://noti-pet-test.herokuapp.com/api"));
            var test2 = test.LogIn(new RequestAuthenticationDto()
             {
-                Email = "waldoomaet1",
+                Username = "waldoomaet1",
                 Password = "1234"
             });
            test2.Subscribe();
-           Console.WriteLine( await test2);
+           Console.WriteLine( await test2);*/
 
         }
 

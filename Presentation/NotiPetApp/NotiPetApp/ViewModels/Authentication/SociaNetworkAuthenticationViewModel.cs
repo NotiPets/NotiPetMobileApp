@@ -22,6 +22,7 @@ namespace NotiPetApp.ViewModels
         public ReadOnlyObservableCollection<SocialNetwork> SocialNetworks => _socialNetworks;
         public ReactiveCommand<Unit,Unit> InitializeCommand { get; set; }
         public ReactiveCommand<string,INavigationResult> LogInCommand { get; set; }
+        public ReactiveCommand<string,INavigationResult> RegisterCommand { get; set; }
 
         public SocialNetworkAuthenticationViewModel(INavigationService navigationService, IPageDialogService dialogPage,IAuthenticationService authenticationService) : base(navigationService, dialogPage)
         {
@@ -42,6 +43,7 @@ namespace NotiPetApp.ViewModels
                 "FB" => NavigationService.NavigateAsync(ConstantUri.TabMenu),
                 "GB" => NavigationService.NavigateAsync(ConstantUri.TabMenu),
                 "Skip" => NavigationService.NavigateAsync(ConstantUri.TabMenu),
+                "Register" => NavigationService.NavigateAsync(ConstantUri.Register),
                 _ => NavigationService.NavigateAsync(ConstantUri.Login)
             };
         });

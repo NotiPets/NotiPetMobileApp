@@ -46,9 +46,14 @@ namespace NotiPetApp.ViewModels
        [Reactive] public string BusinessId { get; set; }
        public bool IsRegister { get; set; }
         public ReactiveCommand<Unit,Unit> ChangeAuthenticationCommand { get; set; }
+        
+
         public ReactiveCommand<Unit,Unit> ForgotPasswordCommand { get; set; }
         public ReactiveCommand<Unit,string> AuthenticationCommand { get; set; }
         public ReactiveCommand<string,Unit> NavigateToMenuPageCommand { get; set; }
+        
+        public ReactiveCommand<string,Unit> NavigateToRegisterCommand { get; set; }
+
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
         protected ObservableAsPropertyHelper<string> _errorMessage;
        public string ErrorMessage => _errorMessage.Value;
@@ -82,6 +87,11 @@ namespace NotiPetApp.ViewModels
                 Settings.Token = Observable.Return(b);
                 return NavigationService.NavigateAsync(ConstantUri.TabMenu);
             }));
+            NavigateToRegisterCommand = ReactiveCommand.CreateFromTask<string>(((b, token) =>
+            {
+                  Settings.Token = Observable.Return(b);
+                  return NavigationService.NavigateAsync(ConstantUri.Register);
+             }));
                
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
             AuthenticationCommand = ReactiveCommand.CreateFromObservable(Authentication,ValidationContext.Valid);
