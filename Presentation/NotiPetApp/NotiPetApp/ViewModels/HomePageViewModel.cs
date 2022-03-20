@@ -17,7 +17,7 @@ namespace NotiPetApp.ViewModels
             AppMenuItems = new ObservableCollection<AppMenuItem>()
             {
                 new(ConstantDictionary.Veterinary,"Veterinary",1,ReactiveCommand.CreateFromTask(NavigateToLastVisitVeterinary),SizeItem.Small),
-                new(ConstantDictionary.Bathe,"Shower",2,ReactiveCommand.CreateFromTask(NavigateToActivity),SizeItem.Small),
+                new(ConstantDictionary.Appointment,"Calendar",2,ReactiveCommand.CreateFromTask(NavigateToAppointment),SizeItem.Small),
                 new(ConstantDictionary.Store,"Shop",3,ReactiveCommand.CreateFromTask(ShowNavigateToStory),SizeItem.Small),
                 new(ConstantDictionary.Emergency,"Emergency",4,ReactiveCommand.CreateFromTask(CallEmergency),SizeItem.Large),
             };
@@ -27,17 +27,20 @@ namespace NotiPetApp.ViewModels
         {
           await  NavigationService.NavigateAsync(ConstantUri.Veterinary);
         }
-        async Task NavigateToActivity()
+        async Task NavigateToAppointment()
         {
-            await  NavigationService.NavigateAsync(ConstantUri.Activity);
+            await  NavigationService.NavigateAsync(ConstantUri.Appointment);
         }
         async Task ShowNavigateToStory()
         {
             await  NavigationService.NavigateAsync(ConstantUri.Store);
         }
-        async Task CallEmergency()
+         Task CallEmergency()
         {
-           //TODO Call Emergency
+            //TODO Call Emergency
+            Xamarin.Essentials.PhoneDialer.Open("914");
+            return Task.CompletedTask;
+
         }
     }
 }

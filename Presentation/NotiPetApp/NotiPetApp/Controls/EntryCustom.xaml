@@ -31,7 +31,7 @@
         <Entry Text="{Binding Text}"
                HorizontalTextAlignment="{Binding TextAlignment}"
                FontSize="{Binding FontSize}"
-               Margin="2,10"
+               IsPassword="{Binding IsPassword}"
                x:Name="EntryText"
                TextColor="{Binding TextColor}"
                Grid.Row="1"/>

@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FluentValidation.Results;
+using NotiPetApp.ViewModels;
+using Xamarin.Forms;
 
 namespace NotiPetApp.Helpers
 {
@@ -25,5 +27,19 @@ namespace NotiPetApp.Helpers
 
             }
         }
-    
+        public  static  class CreateHelper 
+        {
+            public  static TViewModel CreateViewModel<TViewModel>()
+                where TViewModel : BaseViewModel
+            {
+                return App.ContainerProvider.Resolve(typeof(TViewModel))  as TViewModel;
+            }
+            public  static TView CreateView<TView>()
+                where TView : ContentView
+            {
+                return App.ContainerProvider.Resolve(typeof(TView))  as TView;
+            }
+        }
+       
+
 }

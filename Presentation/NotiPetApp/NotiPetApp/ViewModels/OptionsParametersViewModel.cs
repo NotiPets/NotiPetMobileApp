@@ -22,11 +22,11 @@ namespace NotiPetApp.ViewModels
 {
     public class OptionsParametersViewModel:BaseViewModel,IInitialize
     {
-        private SourceCache<ParameterOption, string> _sourceList;
+        private SourceCache<ParameterOption, int> _sourceList;
 
-        private  ReadOnlyObservableCollection<ObservableGroupingCollection<string, ParameterOption, string>>
+        private  ReadOnlyObservableCollection<ObservableGroupingCollection<string, ParameterOption, int>>
             _parameterOptions;
-        public ReadOnlyObservableCollection<ObservableGroupingCollection<string, ParameterOption, string>>
+        public ReadOnlyObservableCollection<ObservableGroupingCollection<string, ParameterOption, int>>
             ParameterOptions=>_parameterOptions;
         public ReactiveCommand<ParameterOption,Unit> ActiveFilterCommand { get; set; } 
         public ReactiveCommand<Unit,Unit> CloseCommand { get; } 
@@ -63,14 +63,14 @@ namespace NotiPetApp.ViewModels
         public void Initialize(INavigationParameters parameters)
         {
             if (parameters.ContainsKey(ParameterConstant.OptionsParameter)
-                &&parameters[ParameterConstant.OptionsParameter] is SourceCache<ParameterOption, string> options)
+                &&parameters[ParameterConstant.OptionsParameter] is SourceCache<ParameterOption, int> options)
             {
                 _sourceList = options;
                 var notificationsParameters =    _sourceList.Connect().RefCount();
                 notificationsParameters
                     .Group(e=>e.Key)
-                    .Transform(x=>new ObservableGroupingCollection<string,ParameterOption,string>(x))
-                    .Sort(SortExpressionComparer<ObservableGroupingCollection<string,ParameterOption,string>>.Descending(x=>x.Key))
+                    .Transform(x=>new ObservableGroupingCollection<string,ParameterOption,int>(x))
+                    .Sort(SortExpressionComparer<ObservableGroupingCollection<string,ParameterOption,int>>.Descending(x=>x.Key))
                     .Bind(out _parameterOptions)
                        .DisposeMany()
                     .Subscribe()

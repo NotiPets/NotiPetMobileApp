@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:VetTabViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:views1="http://xamarin.com/schemas/2020/toolkit"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+
+                x:Class="NotiPetApp.Views.Vets.VetTabPage"
+                >
+    <views:BasePage.Resources> 
+        <DataTemplate x:Key="TabItemControlTemplate">
+            <pancakeView:PancakeView CornerRadius="25"
+                                     Margin="5">
+                <pancakeView:PancakeView.Triggers>
+                    <DataTrigger TargetType="pancakeView:PancakeView"
+                                 Value="True"
+                                 Binding="{Binding IsSelected}">
+                        <Setter Property="Shadow" Value="{StaticResource ShadowMarkupStyle}"/>
+                        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}"/>
+                    </DataTrigger>
+                </pancakeView:PancakeView.Triggers>
+                <Label Text="{Binding Text}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontSize="16"
+                       TextColor="{DynamicResource PrimaryLetterColor }"
+                       Style="{StaticResource LabelLarge}">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label"
+                                     Value="True"
+                                     Binding="{Binding IsSelected}">
+                            <Setter Property="TextColor" Value="{DynamicResource SecondaryLetterLight }"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </pancakeView:PancakeView>
+        </DataTemplate> 
+    </views:BasePage.Resources>
+    <Grid 
+          RowDefinitions="Auto,*">
+        <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                     Shadow="{StaticResource ShadowMarkupStyle}"
+                                     Padding="0,5,0,0"
+                                 
+                                     CornerRadius="0,0,30,30">
+                <Grid RowDefinitions="Auto,Auto,Auto"
+                      ColumnDefinitions="Auto,*,Auto"
+                      Padding="0,20,10,20"
+                      Margin="5,2,5,2"
+                      RowSpacing="30">
+                    <ImageButton BackgroundColor="Transparent"
+                                 Command="{Binding NavigateGoBackCommand}"
+                                 Grid.Column="0"
+                                 HorizontalOptions="StartAndExpand"
+                                 Margin="10,5"
+                                 Grid.Row="0">
+                        <ImageButton.Source>
+
+                            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                             Color="{DynamicResource PrimaryDark}"
+                                             FontFamily="{StaticResource FontSolid}"/>
+                        </ImageButton.Source>
+                    </ImageButton>
+                    <views1:TabView Grid.Column="1"
+                                    SelectedIndex="{Binding SelectedIndex}"
+                                    TabItemsSource="{Binding TabItemCollections}"
+                                    IsSwipeEnabled="False"
+                                    IsTabTransitionEnabled="False"
+                                    TabViewItemDataTemplate="{StaticResource TabItemControlTemplate}"
+                                   >
+                        <views1:TabView.TabStripBackgroundView>
+                            <pancakeView:PancakeView 
+                                CornerRadius="20"
+                                Margin="5"
+                                BackgroundColor="{DynamicResource BackgroundColor}"
+                                Border="{pancakeView:BorderMarkup Color={StaticResource PrimaryBackgroundDark},Thickness=1}"/>
+                        </views1:TabView.TabStripBackgroundView>
+
+                    </views1:TabView>
+
+                    <controls:SearchBarControl Grid.ColumnSpan="3"
+                                               Grid.Row="1"
+                                               TextColor="{DynamicResource PrimaryLetterColor}"
+                                               BackgroundColor="{DynamicResource BackgroundColor}"
+                                               CornerRadius="10"
+                                               Margin="0,0,30,0"
+                                               Text="{Binding SearchText}">
+                        <controls:SearchBarControl.SearchPictureUrlSource>
+                            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Search}"
+                                             Color="{StaticResource PrimaryLetterColor}"
+                                             FontFamily="{StaticResource FontSolid}"/>
+                        </controls:SearchBarControl.SearchPictureUrlSource>
+                    </controls:SearchBarControl>
+                    <ScrollView Grid.Row="2"
+                                HorizontalScrollBarVisibility="Never"
+                                Orientation="Horizontal"  
+                                Grid.ColumnSpan="2">
+                        
+                        <controls:StackLayoutListView   Orientation="Horizontal"
+                                                        x:Name="Parameters">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:ParameterOption">
+                                <pancakeView:PancakeView 
+                                                         BackgroundColor="{DynamicResource PrimaryDark}"
+                                                         Padding="15,5"
+                                                         CornerRadius="5"
+                                                         Margin="5,0"
+                                                         >
+                                    <Label
+                                        Style="{StaticResource  LabelSubtitleBold}"
+                                        HorizontalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{x:Static fontIcon:FontIcon.Filter}"
+                                                      TextColor="White"
+                                                      FontFamily="{StaticResource FontSolid}"
+                                                />
+                                                <Span Text=" " CharacterSpacing="10"/>
+                                                <Span Text="{Binding Title}"
+                                                      TextColor="White"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </pancakeView:PancakeView>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </controls:StackLayoutListView>
+                    </ScrollView>
+                    <pancakeView:PancakeView Grid.Row="2"
+                                             BackgroundColor="{DynamicResource BackgroundColor}"
+                                             Padding="15,5"
+                                             CornerRadius="5"
+                                             HorizontalOptions="EndAndExpand"
+                                             Grid.Column="1"
+                                             Grid.ColumnSpan="2">
+                        <pancakeView:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToFilterCommand}"
+                                                  />
+                        </pancakeView:PancakeView.GestureRecognizers>
+                        <Label
+                               Style="{StaticResource  LabelSubtitleBold}"
+                               HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fontIcon:FontIcon.FilterSettings}"
+                                          TextColor="{DynamicResource SecondaryDark}"
+                                          FontFamily="{StaticResource FontSolid}"
+                                         />
+                                    <Span Text=" " CharacterSpacing="10"/>
+                                    <Span Text="Filtro"
+                                          />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </pancakeView:PancakeView>
+                </Grid>
+            </pancakeView:PancakeView>
+
+        <ContentView        Grid.Row="1" 
+                            Content="{Binding TabItem}"/>
+        
+    </Grid>
+</views:BasePage>

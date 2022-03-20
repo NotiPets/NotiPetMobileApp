@@ -64,6 +64,7 @@
         <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
         <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+        <PackageReference Include="Xamarin.Plugin.SharedTransitions" Version="2.4.0" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MainActivity.cs" />
@@ -78,8 +79,14 @@
     </ItemGroup>
     <ItemGroup>
         <AndroidResource Include="Resources\drawable\Artboard.png" />
+        <AndroidResource Include="Resources\drawable\Calendar.png" />
         <AndroidResource Include="Resources\drawable\DogIndividual.png" />
         <AndroidResource Include="Resources\drawable\Emergency.png" />
+        <AndroidResource Include="Resources\drawable\logOut.png" />
+        <AndroidResource Include="Resources\drawable\patas.png" />
+        <AndroidResource Include="Resources\drawable\patita.png" />
+        <AndroidResource Include="Resources\drawable\question.png" />
+        <AndroidResource Include="Resources\drawable\settings.png" />
         <AndroidResource Include="Resources\drawable\Shop.png" />
         <AndroidResource Include="Resources\drawable\Shower.png" />
         <AndroidResource Include="Resources\drawable\Veterinary.png" />

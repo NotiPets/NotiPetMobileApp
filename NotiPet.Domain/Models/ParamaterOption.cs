@@ -12,10 +12,10 @@ namespace NotiPet.Domain.Models
         public string Title { get; }
         public bool IsActive { get; private set; }
         public bool IsSort { get; }
-        public string Id { get; }
+        public int Id { get; }
         public string Key { get; }
         
-        public ParameterOption(string title, bool isActive, bool isSort, string id, string key)
+        public ParameterOption(string title, bool isActive, bool isSort, int id, string key)
         {
             Title = title;
             IsActive = isActive;

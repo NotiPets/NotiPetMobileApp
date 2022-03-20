@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 using Bogus.DataSets;
 using DynamicData.Binding;
@@ -75,13 +76,13 @@ namespace NotiPetApp.ViewModels
                 //TODO Navigate to Fotgot password;
                 return  Task.CompletedTask;
             });
-            NavigateToMenuPageCommand = ReactiveCommand.CreateFromTask<string>(((b, token) =>
+            NavigateToMenuPageCommand = ReactiveCommand.CreateFromTask<string>((param) =>
             {
-                if (string.IsNullOrEmpty(b)) 
-                    return Task.CompletedTask;
-                Settings.Token = Observable.Return(b);
+                if (param == null)
+                    return  Task.CompletedTask;
+                Settings.SetToken(param);
                 return NavigationService.NavigateAsync(ConstantUri.TabMenu);
-            }));
+            });
                
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
             AuthenticationCommand = ReactiveCommand.CreateFromObservable(Authentication,ValidationContext.Valid);
@@ -101,7 +102,7 @@ namespace NotiPetApp.ViewModels
             _errorMessage = AuthenticationCommand
                 .Skip(1)
                 .Select(e=>!string.IsNullOrEmpty(e)?string.Empty:"some of your info isn't correct, try again")
-                .ToProperty(this,x=>x.ErrorMessage,scheduler:_schedulerProvider.CurrentThread);
+                .ToProperty(this,x=>x.ErrorMessage,scheduler:_schedulerProvider.MainThread);
             _isBusy = AuthenticationCommand
                 .IsExecuting.ToProperty(this,x=>x.IsBusy,scheduler:_schedulerProvider.CurrentThread);
         }

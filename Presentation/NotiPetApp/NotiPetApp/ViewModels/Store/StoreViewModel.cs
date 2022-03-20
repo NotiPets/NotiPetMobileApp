@@ -61,7 +61,7 @@ namespace NotiPetApp.ViewModels
                   .SetFilterExpression<AssetServiceModel>(x => x.Active), true);
           
           var filterPredicate = notificationParameters
-              .WhenPropertyChanged(e => e.IsActive, true)
+              .WhenPropertyChanged(e => e.IsActive, false)
               .StartWith(defaultFilter)
               .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
               .DistinctUntilChanged()
@@ -94,9 +94,13 @@ namespace NotiPetApp.ViewModels
             
                 InitializeDataCommand  = ReactiveCommand.CreateFromObservable(InitializeData);
                 NavigateToFilterCommand = ReactiveCommand.CreateFromTask(NavigateToFilter);
+                NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
             
             
         }
+
+        public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get;  }
+
         Func<AssetServiceModel, bool> SearchFunc(string text) =>
             model => string.IsNullOrEmpty(text) || model.Name.ToLower().Contains(text.ToLower());
         IObservable<Unit> InitializeData() => Observable.Create<Unit>(observable =>
@@ -117,7 +121,7 @@ namespace NotiPetApp.ViewModels
             await NavigationService.NavigateAsync(ConstantUri.OptionParameters,new NavigationParameters()
             {
                 {ParameterConstant.OptionsParameter,_storeService.ParametersOptions}
-            });
+            },true);
         }
         public void Initialize(INavigationParameters parameters)
         {

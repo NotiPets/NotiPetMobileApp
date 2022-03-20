@@ -127,6 +127,7 @@
 
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
         <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+        <PackageReference Include="Xamarin.Plugin.SharedTransitions" Version="2.4.0" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\NotiPetApp\NotiPetApp.csproj">
@@ -137,11 +138,26 @@
     <ItemGroup>
       <BundleResource Include="Resources\Artboard.png" />
       <BundleResource Include="Resources\DogIndividual.png" />
+      <BundleResource Include="Resources\logOut.png" />
+      <BundleResource Include="Resources\patas.png" />
+      <BundleResource Include="Resources\question.png" />
+      <BundleResource Include="Resources\settings.png" />
       <BundleResource Include="Resources\Shop.png" />
       <BundleResource Include="Resources\Shower.png" />
       <BundleResource Include="Resources\StartAppAnimations.json" />
       <BundleResource Include="Resources\Veterinary.png" />
         <BundleResource Include="Resources\Emergency.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <BundleResource Include="Resources\Calendar.png">
+        <SubType>Designer</SubType>
+      </BundleResource>
+    </ItemGroup>
+    <ItemGroup>
+      <BundleResource Include="Resources\patita.png">
+        <SubType>Designer</SubType>
+        <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      </BundleResource>
     </ItemGroup>
     
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

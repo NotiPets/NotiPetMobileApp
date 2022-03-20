@@ -13,10 +13,11 @@ namespace NotiPetApp.Helpers
             get=>Preferences.Get(nameof(Username),string.Empty); 
             set=>Preferences.Set(nameof(Username),value);
         }
-        public static IObservable<string> Token
+        public static IObservable<string> Token => Observable.FromAsync(token => GetSecureStorage(nameof(Token)));
+
+        public static  Task SetToken(string token)
         {
-            get => Observable.FromAsync(token => GetSecureStorage(nameof(Token))); 
-            set=>value.Select(e=>SetSecureStorage(nameof(Username),e));
+           return SetSecureStorage(nameof(Token),token);
         }
         static Task<string> GetSecureStorage(string key)
            => DeviceInfo.Platform != DevicePlatform.Unknown ? SecureStorage.GetAsync(key):Task.FromResult(string.Empty);

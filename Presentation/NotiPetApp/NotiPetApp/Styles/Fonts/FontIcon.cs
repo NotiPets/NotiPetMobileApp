@@ -26,5 +26,7 @@ namespace NotiPetApp.Styles.Fonts
         public const string Add = "\ue145";
 
         public const string Back = "\ue5c4";
+
+        public const string ArrowForward = "\ue5e1";
     }
 }

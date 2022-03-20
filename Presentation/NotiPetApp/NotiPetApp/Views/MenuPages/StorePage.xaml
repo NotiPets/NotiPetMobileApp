@@ -14,19 +14,38 @@
                 x:DataType="viewModels:StoreViewModel">
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,*"
-             
               RowSpacing="20">
             <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
                                      Shadow="{StaticResource ShadowMarkupStyle}"
                                      Padding="0,5,0,0"
                                  
                                      CornerRadius="0,0,30,30">
+                
                 <Grid RowDefinitions="Auto,Auto"
-                      Padding="10,20"
+                      Padding="5,20"
                       ColumnDefinitions="*,Auto"
-                      Margin="5,10,5,10"
+                      Margin="2,4,5,10"
                       RowSpacing="30">
+                    <Label Text="Store" 
+                           Grid.ColumnSpan="2"
+                           HorizontalTextAlignment="Center"
+                           Style="{StaticResource LabelLarge}"/>
+                    <ImageButton BackgroundColor="Transparent"
+                                 Command="{Binding NavigateGoBackCommand}"
+                                 Grid.Column="0"
+                                 HorizontalOptions="StartAndExpand"
+                                 Margin="10,2"
+                                 Grid.Row="0">
+                        <ImageButton.Source>
+
+                            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                             Color="{DynamicResource PrimaryDark}"
+                                             FontFamily="{StaticResource FontSolid}"/>
+                        </ImageButton.Source>
+                    </ImageButton>
+                    
                     <controls:SearchBarControl Grid.ColumnSpan="2"
+                                               Grid.Row="1"
                                                TextColor="{DynamicResource PrimaryLetterColor}"
                                                BackgroundColor="{DynamicResource BackgroundColor}"
                                                CornerRadius="10"
@@ -38,7 +57,7 @@
                                              FontFamily="{StaticResource FontSolid}"/>
                         </controls:SearchBarControl.SearchPictureUrlSource>
                     </controls:SearchBarControl>
-                    <ScrollView Grid.Row="1"
+                    <ScrollView Grid.Row="2"
                                HorizontalScrollBarVisibility="Never"
                                 Orientation="Horizontal"   >
                     <controls:StackLayoutListView   Orientation="Horizontal"
@@ -71,7 +90,7 @@
                         </BindableLayout.ItemTemplate>
                     </controls:StackLayoutListView>
                     </ScrollView>
-                    <pancakeView:PancakeView Grid.Row="1"
+                    <pancakeView:PancakeView Grid.Row="2"
                                              BackgroundColor="{DynamicResource BackgroundColor}"
                                              Padding="15,5"
                                              CornerRadius="5"

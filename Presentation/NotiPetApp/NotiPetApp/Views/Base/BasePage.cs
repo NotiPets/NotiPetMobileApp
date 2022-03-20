@@ -9,6 +9,7 @@ using ReactiveUI.XamForms;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using NavigationPage = Xamarin.Forms.NavigationPage;
 
 namespace NotiPetApp.Views
 {
@@ -24,6 +25,7 @@ namespace NotiPetApp.Views
         public BasePage()
         {
             On<iOS>().SetUseSafeArea(true);
+            NavigationPage.SetHasNavigationBar(this,false);
             this.WhenActivated((disposable) => ManageDisposables(disposable));
         }
         

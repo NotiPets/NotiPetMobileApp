@@ -44,18 +44,8 @@
             <Grid RowDefinitions="*,1*">
                 <BoxView Grid.Row="0"
                          Margin="0,0,0,50"
+                         Background="{StaticResource PrimaryColorBrushForFrame}"
                          >
-                    <BoxView.Background>
-                        <LinearGradientBrush StartPoint="0,0"
-                                             EndPoint="1,1">
-                            <GradientStop Color="#4596EA "
-                                          Offset="0.1" />
-
-                            <GradientStop Color="#00CBCC"
-                                          Offset="0.3" />
-
-                        </LinearGradientBrush>
-                    </BoxView.Background>
                 </BoxView>
            
             <Grid RowDefinitions="Auto,Auto,Auto,Auto"
@@ -112,6 +102,7 @@
                         /> 
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="2"
+                                              IsPassword="True"
                                               x:Name="PasswordEntry"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding Password}"
