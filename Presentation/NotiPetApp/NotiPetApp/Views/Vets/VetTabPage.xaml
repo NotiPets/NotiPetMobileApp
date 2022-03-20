@@ -25,7 +25,7 @@
                         <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}"/>
                     </DataTrigger>
                 </pancakeView:PancakeView.Triggers>
-                <Label Text="{Binding Text}"
+                <Label Text="{Binding Title}"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
                        FontSize="16"
@@ -86,6 +86,7 @@
 
                     <controls:SearchBarControl Grid.ColumnSpan="3"
                                                Grid.Row="1"
+                                               BindingContext="{Binding TabItem.ViewModel}"
                                                TextColor="{DynamicResource PrimaryLetterColor}"
                                                BackgroundColor="{DynamicResource BackgroundColor}"
                                                CornerRadius="10"
@@ -98,6 +99,7 @@
                         </controls:SearchBarControl.SearchPictureUrlSource>
                     </controls:SearchBarControl>
                     <ScrollView Grid.Row="2"
+                                BindingContext="{Binding TabItem.ViewModel}"
                                 HorizontalScrollBarVisibility="Never"
                                 Orientation="Horizontal"  
                                 Grid.ColumnSpan="2">
@@ -136,6 +138,7 @@
                                              BackgroundColor="{DynamicResource BackgroundColor}"
                                              Padding="15,5"
                                              CornerRadius="5"
+                                             BindingContext="{Binding TabItem.ViewModel}"
                                              HorizontalOptions="EndAndExpand"
                                              Grid.Column="1"
                                              Grid.ColumnSpan="2">

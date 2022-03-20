@@ -62,6 +62,8 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<StorePage,StoreViewModel>();
             containerRegistry.Register<ProfilePage>(); 
             containerRegistry.Register<ProfileViewModel>();
+            containerRegistry.Register<SpecialistView>();
+            containerRegistry.Register<VeterinaryView>();
             containerRegistry.RegisterForNavigation<CreatePetPage,CreatePetViewModel>();
             containerRegistry.RegisterForNavigation<SocialNetworkAuthenticationPage,SocialNetworkAuthenticationViewModel>();
             containerRegistry.RegisterForNavigation<LogInPage,LoginViewModel>();

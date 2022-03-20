@@ -7,6 +7,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DynamicData.Binding;
+using NotiPetApp.Helpers;
 using ReactiveUI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,21 +19,14 @@ namespace NotiPetApp.Views.Vets
     {
         public SpecialistView()
         {
-            InitializeComponent();
-            
-        }
 
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-            if (ViewModel !=null)
-            {
-                this.WhenPropertyChanged(x => x.ViewModel)
+   
+            InitializeComponent();
+            this.WhenPropertyChanged(x => x.ViewModel)
                     .Select(e => Unit.Default)
                     .InvokeCommand(ViewModel?.InitializeCommand)
                     .DisposeWith(ViewDisposables);
-            }
-
+            
         }
     }
 }

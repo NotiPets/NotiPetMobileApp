@@ -9,6 +9,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using DynamicData;
 using DynamicData.Binding;
+using DynamicData.PLinq;
 using NotiPet.Data.Dtos;
 using NotiPet.Data.Services;
 using NotiPet.Domain.Models;
@@ -80,7 +81,7 @@ namespace NotiPetApp.ViewModels
                 .DisposeMany()
                 .Subscribe()
                 .DisposeWith(Subscriptions);
-            
+
             _storeService.AssetsServices
                 .Connect()
                 .ObserveOn(RxApp.MainThreadScheduler)

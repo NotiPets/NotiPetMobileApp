@@ -3,13 +3,18 @@ using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using DynamicData;
+using DynamicData.Binding;
+using DynamicData.PLinq;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
+using NotiPetApp.Helpers;
 using NotiPetApp.Services;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace NotiPetApp.ViewModels
 {
@@ -20,14 +25,52 @@ namespace NotiPetApp.ViewModels
   
         private readonly ReadOnlyObservableCollection<Specialist> _specialists;
         public ReadOnlyObservableCollection<Specialist> Specialists => _specialists;
-
+        public ReadOnlyObservableCollection<ParameterOption> _parameterOptions;
+        public ReadOnlyObservableCollection<ParameterOption> ParameterOptions=>_parameterOptions;
         public SpecialistViewModel(INavigationService navigationService, IPageDialogService pageDialogService,
             ISpecialistsService specialistsService,
             ISchedulerProvider schedulerProvider) : base(navigationService,pageDialogService)
         {
             _specialistsService = specialistsService;
+            var notificationParameters = _specialistsService.ParametersOptions
+                .Connect()
+                .RefCount();
+            var sortPredicate =  notificationParameters
+                .WhenPropertyChanged(e => e.IsActive,true)
+                .Where(e=>e.Value&&e.Sender.IsSort)
+                .Select(e =>
+                    e.Value?  e.Sender.GetSortExpressions<SortExpressionComparer<Specialist>>()
+                        :SortExpressionComparer<Specialist>.Descending(e=>e.User.Name));
+
+            var defaultFilter =
+                new PropertyValue<ParameterOption, bool>(ParameterOption.Default
+                    .SetFilterExpression<Specialist>(x => !string.IsNullOrEmpty(x.User.Name)), true);
+          
+            var filterPredicate = notificationParameters
+                .WhenPropertyChanged(e => e.IsActive, false)
+                .StartWith(defaultFilter)
+                .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
+                .DistinctUntilChanged()
+                .Where(x=>!x.Sender.IsSort)
+                .Select(e=> (e.Value)?e:defaultFilter)
+                .Select(e => e.Sender.GetFilterExpression<Func<Specialist, bool>>());
+          
+            var searchPredicate = this.WhenAnyValue(x => x.SearchText)
+                .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
+                .DistinctUntilChanged()
+                .Select(SearchFunc);
+            notificationParameters
+                .Filter(e=>e.IsActive)
+                .Bind(out _parameterOptions)
+                .DisposeMany()
+                .Subscribe()
+                .DisposeWith(Subscriptions);
+
             _specialistsService.SpecialistSource
                 .Connect()
+                .Filter(filterPredicate)
+                .Filter(searchPredicate)
+                .Sort(sortPredicate)
                 .ObserveOn(schedulerProvider.MainThread)
                 .Bind(out _specialists)
                 .DisposeMany()
@@ -37,16 +80,33 @@ namespace NotiPetApp.ViewModels
             _isBusy = InitializeCommand
                         .IsExecuting
                         .ToProperty(this, x => x.IsBusy);
+            NavigateToFilterCommand = ReactiveCommand.CreateFromTask(NavigateToFilter);
 
         }
+        async   Task NavigateToFilter()
+        {
+            await NavigationService.NavigateAsync(ConstantUri.OptionParameters,new NavigationParameters()
+            {
+                {ParameterConstant.OptionsParameter,_specialistsService.ParametersOptions}
+            },true);
+        }
+        public ReactiveCommand<Unit, Unit> NavigateToFilterCommand { get; set; }
+        Func<Specialist, bool> SearchFunc(string text) =>
+            model => string.IsNullOrEmpty(text) || model.User.Name.ToLower().Contains(text.ToLower());
+        [Reactive] public string SearchText { get; set; }
 
         protected override IObservable<Unit> ExecuteInitialize()
         {
             return Observable.Create<Unit>(observer =>
             {
-                return _specialistsService.GetSpecialists()
+                var disposable = new CompositeDisposable();
+                 _specialistsService.GetSpecialists()
                     .Select(e => Unit.Default)
                     .Subscribe(observer);
+                 _specialistsService.ParameterOptions().Select(e => Unit.Default)
+                     .Subscribe()
+                     .DisposeWith(disposable);
+                 return disposable;
             });
         }
     }

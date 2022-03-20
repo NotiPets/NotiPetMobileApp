@@ -8,6 +8,7 @@ using DynamicData;
 using DynamicData.PLinq;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
+using NotiPetApp.Controls;
 using NotiPetApp.Helpers;
 using NotiPetApp.Models;
 using NotiPetApp.Services;
@@ -17,6 +18,7 @@ using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Xamarin.Forms;
 
 namespace NotiPetApp.ViewModels
 {
@@ -38,8 +40,8 @@ namespace NotiPetApp.ViewModels
       public ObservableAsPropertyHelper<object> _tabItem;
       public object TabItem=>_tabItem.Value;
 
-      public ObservableCollection<TabItemReactive> TabItemCollections { get; set; }
-      public ReactiveCommand<int,Unit> LoadDataCommand { get; set; }
+      public ObservableCollection<object> TabItemCollections { get;  }
+
 
       public VetTabViewModel(INavigationService navigationService, IPageDialogService dialogPage,
           IVeterinaryService veterinaryService, ISchedulerProvider schedulerProvider,
@@ -48,21 +50,20 @@ namespace NotiPetApp.ViewModels
           _veterinaryService = veterinaryService;
           _schedulerProvider = schedulerProvider;
           _specialistsService = specialistsService;
-          TabItemCollections = new ObservableCollection<TabItemReactive>()
+          TabItemCollections = new ObservableCollection<object>()
           {
-               TabItemReactive.CreateReactive<SpecialistView,SpecialistViewModel>("Specialists"),
-               TabItemReactive.CreateReactive<VeterinaryView,VeterinaryViewModel>("Veterinaries"),
+               new SpecialistView() ,
+               new VeterinaryView()
           };
 
           NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
-
           _tabItem = this.WhenAnyValue(x => x.SelectedIndex)
               .Select(e => TabItemCollections[e])
               .Do(x =>
               {
-                  var tabSelected = TabItemCollections.FirstOrDefault(e => e.IsSelected);
-                  tabSelected?.SetSelected(false);
-                  x.SetSelected(!x.IsSelected);
+                  var tabSelected = TabItemCollections.Select(e=>e as IActivatorView).FirstOrDefault(e => e.IsSelected);
+                  tabSelected?.SetSelected();
+                  (x as IActivatorView)?.SetSelected();
               })
               .ToProperty(this, x => x.TabItem);
 
