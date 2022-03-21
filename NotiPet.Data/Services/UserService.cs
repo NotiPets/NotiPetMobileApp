@@ -10,31 +10,22 @@ using NotiPet.Domain.Service;
 
 namespace NotiPet.Data.Services
 {
-    public class UserService:IUserService,IDisposable
+    public class UserService:IUserService
     {
         private readonly IUserServiceApi _userServiceApi;
         private readonly IMapper _mapper;
-        private SourceCache<UserRole, int> _sourceCache = new SourceCache<UserRole, int>(e=>e.UserId);
-        public SourceCache<UserRole, int> UserRoleSource => _sourceCache;
         public UserService(IUserServiceApi userServiceApi,IMapper mapper)
         {
             _userServiceApi = userServiceApi;
             _mapper = mapper;
         }
 
-        public IObservable<IEnumerable<UserRole>> GetVeterinarians()
+
+        public IObservable<User> GetUserById(string username)
         {
-
-          return  _userServiceApi.GetVeterinarians()
-                .Select(_mapper.Map<IEnumerable<UserRole>>)
-                .Do(_sourceCache.AddOrUpdate);
+            return _userServiceApi.GetUserById(username).
+                    Select(_mapper.Map<User>);
         }
-
-
-
-        public void Dispose()
-        {
-            _sourceCache?.Dispose();
-        }
+        
     }
 }

@@ -11,6 +11,6 @@ namespace NotiPet.Data
         [Post("/LogIn")]
         IObservable<HttpResponseMessage> LogIn(RequestAuthenticationDto requestAuthenticationDto);
         [Post("/SignUp")]
-        IObservable<HttpResponseMessage> SignUp(UserRoleDto userRole);
+        IObservable<HttpResponseMessage> SignUp(UserDto userRole);
     }
 }

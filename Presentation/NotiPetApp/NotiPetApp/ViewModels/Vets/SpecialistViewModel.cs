@@ -40,23 +40,23 @@ namespace NotiPetApp.ViewModels
                 .Where(e=>e.Value&&e.Sender.IsSort)
                 .Select(e =>
                     e.Value?  e.Sender.GetSortExpressions<SortExpressionComparer<Specialist>>()
-                        :SortExpressionComparer<Specialist>.Descending(e=>e.User.Name));
+                        :SortExpressionComparer<Specialist>.Descending(e=>e.User.Names));
 
             var defaultFilter =
                 new PropertyValue<ParameterOption, bool>(ParameterOption.Default
-                    .SetFilterExpression<Specialist>(x => !string.IsNullOrEmpty(x.User.Name)), true);
+                    .SetFilterExpression<Specialist>(x => !string.IsNullOrEmpty(x.User.Names)), true);
           
             var filterPredicate = notificationParameters
                 .WhenPropertyChanged(e => e.IsActive, false)
                 .StartWith(defaultFilter)
-                .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
+                .Throttle(TimeSpan.FromMilliseconds(500), schedulerProvider.CurrentThread)
                 .DistinctUntilChanged()
                 .Where(x=>!x.Sender.IsSort)
                 .Select(e=> (e.Value)?e:defaultFilter)
                 .Select(e => e.Sender.GetFilterExpression<Func<Specialist, bool>>());
           
             var searchPredicate = this.WhenAnyValue(x => x.SearchText)
-                .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
+                .Throttle(TimeSpan.FromMilliseconds(500), schedulerProvider.CurrentThread)
                 .DistinctUntilChanged()
                 .Select(SearchFunc);
             notificationParameters
@@ -92,7 +92,7 @@ namespace NotiPetApp.ViewModels
         }
         public ReactiveCommand<Unit, Unit> NavigateToFilterCommand { get; set; }
         Func<Specialist, bool> SearchFunc(string text) =>
-            model => string.IsNullOrEmpty(text) || model.User.Name.ToLower().Contains(text.ToLower());
+            model => string.IsNullOrEmpty(text) || model.User.Names.ToLower().Contains(text.ToLower());
         [Reactive] public string SearchText { get; set; }
 
         protected override IObservable<Unit> ExecuteInitialize()

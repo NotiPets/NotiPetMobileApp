@@ -15,7 +15,6 @@ namespace NotiPet.Data.Mappers
                     .ReverseMap();
                 cfg.CreateMap<AssetServiceDto, AssetServiceModel>()
                     .ForMember(e => e.Guid, x => x.Ignore());
-                cfg.CreateMap<UserRoleDto, UserRole>().ReverseMap();
                 cfg.CreateMap<PetTypeDto, PetType>().ReverseMap();
                 cfg.CreateMap<PetDto, Pet>()
                     .ForMember(e=>e.Guid,x=>x.Ignore()) 

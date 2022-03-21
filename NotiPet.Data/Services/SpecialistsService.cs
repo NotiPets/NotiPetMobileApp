@@ -39,7 +39,7 @@ namespace NotiPet.Data.Services
                     .SetSortExpression<Specialist>(SortExpressionComparer<Specialist>.Ascending(e=>e.Speciality?.Name)),
                 
                 new ParameterOption("Name",false,true,4,"Sort")
-                    .SetSortExpression<Specialist>(SortExpressionComparer<Specialist>.Ascending(e=>e.User.Name)),
+                    .SetSortExpression<Specialist>(SortExpressionComparer<Specialist>.Ascending(e=>e.User.Names)),
             };
             return Observable.Return(parameters).Do(_parametersOptions.AddOrUpdate);
         }

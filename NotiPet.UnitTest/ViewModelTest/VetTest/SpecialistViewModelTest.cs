@@ -23,10 +23,9 @@ namespace NotiPet.UnitTest.ViewModelTest.VetTest
                 .SpecialistsServiceWith(new SpecialistsService(Mapper, new SpecialistsServiceApiMock()));
             SpecialistViewModel viewModel = mainFixture;
             viewModel.InitializeCommand.Execute().Subscribe();
-            scheduler.AdvanceByMs(200);
+            scheduler.AdvanceByMs(500);
             scheduler.AdvanceByMs(200);
             viewModel.Specialists.Should().NotBeEmpty();
-            viewModel.Specialists.Should().AllBeOfType<Specialist>();
         }
     }
 }

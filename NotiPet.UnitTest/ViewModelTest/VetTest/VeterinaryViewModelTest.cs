@@ -23,8 +23,7 @@ namespace NotiPet.UnitTest.ViewModelTest.VetTest
                 .VeterinaryServiceWith(new VeterinaryService(new BusinessServiceApiMock(), Mapper));
             VeterinaryViewModel viewModel = mainFixture;
             viewModel.InitializeCommand.Execute().Subscribe();
-            scheduler.AdvanceByMs(200);
-            scheduler.AdvanceByMs(200);
+            scheduler.AdvanceByMs(500);
             viewModel.Veterinaries.Should().NotBeEmpty();
 
         }

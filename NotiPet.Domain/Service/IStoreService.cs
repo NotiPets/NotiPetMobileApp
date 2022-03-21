@@ -13,7 +13,5 @@ namespace NotiPet.Domain.Service
 
         public  IObservable<IEnumerable<ParameterOption>> ParameterOptions();
 
-        // public IObservable<AssetServiceDto> GetProduct(string productName);
-        // public IObservable<IEnumerable<AssetServiceDto>> GetProductByProductName(string productName);
     }
 }

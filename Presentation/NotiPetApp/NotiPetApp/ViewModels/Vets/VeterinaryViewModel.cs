@@ -46,14 +46,14 @@ namespace NotiPetApp.ViewModels
             var filterPredicate = notificationParameters
                 .WhenPropertyChanged(e => e.IsActive, false)
                 .StartWith(defaultFilter)
-                .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
+                .Throttle(TimeSpan.FromMilliseconds(500),schedulerProvider.CurrentThread)
                 .DistinctUntilChanged()
                 .Where(x=>!x.Sender.IsSort)
                 .Select(e=> (e.Value)?e:defaultFilter)
                 .Select(e => e.Sender.GetFilterExpression<Func<Veterinary, bool>>());
           
             var searchPredicate = this.WhenAnyValue(x => x.SearchText)
-                .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
+                .Throttle(TimeSpan.FromMilliseconds(500), schedulerProvider.CurrentThread)
                 .DistinctUntilChanged()
                 .Select(SearchFunc);
             notificationParameters

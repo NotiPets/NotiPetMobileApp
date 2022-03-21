@@ -17,7 +17,7 @@ namespace NotiPetApp.ViewModels
         public bool IsBusy => _isBusy.Value;
         protected ObservableAsPropertyHelper<bool> _isBusy;
         protected virtual IObservable<Unit> ExecuteInitialize() => Observable.Empty<Unit>();
-        public ReactiveCommand<Unit,Unit> InitializeCommand { get;  }
+        public ReactiveCommand<Unit,Unit> InitializeCommand { get; protected set; }
         public BaseViewModel(INavigationService navigationService, IPageDialogService dialogPage)
         {
             NavigationService = navigationService;

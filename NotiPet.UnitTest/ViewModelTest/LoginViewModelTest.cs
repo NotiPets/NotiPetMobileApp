@@ -105,14 +105,14 @@ namespace NotiPet.UnitTest.ViewModelTest
             viewModel.IsRegister = true;
             viewModel.Username = generator.UserRoleDto.Username;
             viewModel.Password =  generator.UserRoleDto.Password;
-            viewModel.Name =  generator.UserRoleDto.User.Name;
-            viewModel.LastName = generator.UserRoleDto.User.Lastname;
-            viewModel.Address1 = generator.UserRoleDto.User.Address1;
-            viewModel.Address2 = generator.UserRoleDto.User.Address2;
-            viewModel.City = generator.UserRoleDto.User.City;
-            viewModel.Phone = generator.UserRoleDto.User.Phone;
-            viewModel.PersonalDocument = new PersonalDocument(generator.UserRoleDto.User.Document,generator.UserRoleDto.User.DocumentTypeId);
-            viewModel.Province = generator.UserRoleDto.User.Province;
+            viewModel.Name =  generator.UserRoleDto.Names;
+            viewModel.LastName = generator.UserRoleDto.Lastnames;
+            viewModel.Address1 = generator.UserRoleDto.Address1;
+            viewModel.Address2 = generator.UserRoleDto.Address2;
+            viewModel.City = generator.UserRoleDto.City;
+            viewModel.Phone = generator.UserRoleDto.Phone;
+            viewModel.PersonalDocument = new PersonalDocument(generator.UserRoleDto.Document,generator.UserRoleDto.DocumentType);
+            viewModel.Province = generator.UserRoleDto.Province;
             var canExecute = viewModel.IsValid();
             var result = viewModel.AuthenticationCommand.Execute();
             //ACT
