@@ -33,6 +33,7 @@
                FontSize="{Binding FontSize}"
                IsPassword="{Binding IsPassword}"
                x:Name="EntryText"
+               Margin="{OnPlatform Android=2,iOS=10}"
                TextColor="{Binding TextColor}"
                Grid.Row="1"/>
         <Image Source="{Binding Image}"

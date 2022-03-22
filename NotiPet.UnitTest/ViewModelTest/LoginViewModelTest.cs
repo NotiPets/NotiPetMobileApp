@@ -92,38 +92,7 @@ namespace NotiPet.UnitTest.ViewModelTest
             observedResultSequence.RecordedMessages.Should().Satisfy(e => !string.IsNullOrEmpty(e));
 
         }
-        [Fact]
-        public void Given_IsRegister_When_ForumAccountIsCompleted_Then_RegisterWillSuccessfully()
-        {
-
-
-            var viewModelFixture = new LoginViewModelFixture()
-                .AuthenticationWith(new AuthenticationService(new UserServiceApiMock(),Mapper));
-            var generator = new UserDtoGenerator();
-            var viewModel = (LoginViewModel) viewModelFixture;
-            //ARRANGE
-            viewModel.IsRegister = true;
-            viewModel.Username = generator.UserRoleDto.Username;
-            viewModel.Password =  generator.UserRoleDto.Password;
-            viewModel.Name =  generator.UserRoleDto.Names;
-            viewModel.LastName = generator.UserRoleDto.Lastnames;
-            viewModel.Address1 = generator.UserRoleDto.Address1;
-            viewModel.Address2 = generator.UserRoleDto.Address2;
-            viewModel.City = generator.UserRoleDto.City;
-            viewModel.Phone = generator.UserRoleDto.Phone;
-            viewModel.PersonalDocument = new PersonalDocument(generator.UserRoleDto.Document,generator.UserRoleDto.DocumentType);
-            viewModel.Province = generator.UserRoleDto.Province;
-            var canExecute = viewModel.IsValid();
-            var result = viewModel.AuthenticationCommand.Execute();
-            //ACT
-            using var observedSequence = canExecute.Observe();
-           
-            using var observedResultSequence = result.Observe();
-            //ASSERT
-            observedSequence.RecordedMessages.Should().Satisfy(e => e);
-            observedResultSequence.RecordedMessages.Should().Satisfy(e => !string.IsNullOrEmpty(e) );
-
-        }
+     
         [Fact]
         public void ShouldNotBeEmpty_ErrorMessage_When_LoginFail()
         {

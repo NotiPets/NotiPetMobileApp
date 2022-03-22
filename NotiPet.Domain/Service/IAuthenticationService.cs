@@ -14,5 +14,6 @@ namespace NotiPet.Domain.Service
         public IObservable<string> Authentication(IAuthenticationRequestViewModel viewModel);
         public IObservable<string> SignUp(IRegisterRequestViewModel viewModel);
 
+        public IObservable<List<PersonalDocument>>  GetDocumentTypes();
     }
 }

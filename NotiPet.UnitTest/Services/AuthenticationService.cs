@@ -50,42 +50,7 @@ namespace NotiPet.UnitTest.Services
         }
 
         //[Fact]
-        public void CallSignUpWithValidAccountShouldBeReturnToken()
-        {
-            var scheduler = new TestScheduler();
-            var serviceFixture = new AuthenticationServiceFixture()
-                .MapperWith(Mapper)
-                .UserServiceApiServiceWith(new UserServiceApiMock());
-         
-            IAuthenticationService service =(AuthenticationService) serviceFixture;
-            var fixtureViewModel = new LoginViewModelFixture()
-                .AuthenticationWith(service)
-                .SchedulerProviderWith(new SchedulerProvider(scheduler,scheduler));
-            
-            var generator = new UserDtoGenerator();
-            var viewModel = (LoginViewModel) fixtureViewModel;
-            //ARRANGE
-            viewModel.IsRegister = true;
-            viewModel.Email =generator.UserRoleDto.Email;
-            viewModel.Username = generator.UserRoleDto.Username;
-            viewModel.Password =  generator.UserRoleDto.Password;
-            viewModel.Name =  generator.UserRoleDto.Names;
-            viewModel.LastName = generator.UserRoleDto.Lastnames;
-            viewModel.Address1 = generator.UserRoleDto.Address1;
-            viewModel.Address2 = generator.UserRoleDto.Address2;
-            viewModel.City = generator.UserRoleDto.City;
-            viewModel.Phone = generator.UserRoleDto.Phone;
-            viewModel.BusinessId = generator.UserRoleDto.BusinessId;
-            viewModel.PersonalDocument = new PersonalDocument("1000", 1);
-            var dto = new UserDtoGenerator().AuthenticationDto;
-
-            //ACT
-            var result = service.SignUp(viewModel);
-            using var observedResultSequence = result.Observe();
-           
-            //ASSET
-            observedResultSequence.RecordedMessages.Should().AllSatisfy(e=>e.Should().NotBeNull());
-    }
+      
    
     }
 

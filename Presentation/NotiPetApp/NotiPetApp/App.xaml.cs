@@ -72,6 +72,8 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<VetTabPage,VetTabViewModel>();
             containerRegistry.RegisterForNavigation<AboutPage,AboutViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage,SettingsViewModel>();
+            containerRegistry.RegisterForNavigation<RegisterPage,RegisterViewModel>();
+            
             containerRegistry.RegisterForNavigation<OptionsParametersPage,OptionsParametersViewModel>(ConstantUri.OptionParameters);
             ContainerProvider = Container;
 

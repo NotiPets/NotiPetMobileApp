@@ -14,7 +14,7 @@ namespace NotiPet.UnitTest.Fixtures
         public static implicit operator LoginViewModel(LoginViewModelFixture loginViewModelFixture) =>
             loginViewModelFixture.Build();
 
-        private LoginViewModel Build() => new LoginViewModel(NavigationService,PageDialogService,_authenticationService, new AuthenticationValidator(),new RegisterValidator(),_schedulerProvider);
+        private LoginViewModel Build() => new LoginViewModel(NavigationService,PageDialogService,_authenticationService, new AuthenticationValidator(),_schedulerProvider);
 
         public LoginViewModelFixture AuthenticationWith(IAuthenticationService authenticationService) =>
             this.With(ref _authenticationService, authenticationService);

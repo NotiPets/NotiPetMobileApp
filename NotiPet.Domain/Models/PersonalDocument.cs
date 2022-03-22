@@ -2,13 +2,13 @@ namespace NotiPet.Domain.Models
 {
     public class PersonalDocument
     {
-        public PersonalDocument(string documentId, int documentType)
+        public PersonalDocument(int documentId, string documentType)
         {
             DocumentId = documentId;
             DocumentType = documentType;
         }
 
-        public string DocumentId { get; set; }
-        public int DocumentType { get; set; }
+        public int DocumentId { get; set; }
+        public string  DocumentType { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace NotiPetApp.Helpers
         public const string MyPets = "PetsPage";
         public const string About="AboutPage";
         public const string Settings = "SettingsPage";
+        public const string Register = "RegisterPage";
     }
     public static class ParameterConstant
     {

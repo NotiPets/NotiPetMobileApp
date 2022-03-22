@@ -15,18 +15,6 @@ namespace NotiPet.UnitTest.ValidatorTest
     {
         private readonly AuthenticationValidator _validation = new AuthenticationValidator();
         [Fact]
-        public void Should_have_error_when_InvalidEmail()
-        {     
-            var model = new LoginViewModelFixture();
-            //arrange
-            var authentication = (LoginViewModel)model;
-            authentication.Email = "hello.com";
-            //act
-           var result = _validation.TestValidate(authentication);
-           //asset
-           result.ShouldHaveValidationErrorFor(e => e.Email);
-        }
-        [Fact]
         public void Should_have_error_when_PasswordEmptyOrNull()
         {
             var model = new LoginViewModelFixture();

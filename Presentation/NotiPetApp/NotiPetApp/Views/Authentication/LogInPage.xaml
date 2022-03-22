@@ -14,10 +14,7 @@
     
     
     <views:BasePage.Resources>
-        <converters:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueObject="Sign in" FalseObject="Sign Up" />
-        <converters:BoolToObjectConverter x:Key="IsRegisterToObjectConverter" TrueObject="Sign Up" FalseObject="Sign in" />
-        <converters:BoolToObjectConverter x:Key="IsRegisterToStringConverter" TrueObject="Already have a NotiPed account?" FalseObject="Don’t have a Notipet account yet?" />
-        <converters:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+            <converters:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
 
         <Style TargetType="controls:EntryCustom"
         >
@@ -92,15 +89,6 @@
                                      
                         /> 
                         <controls:EntryCustom Grid.ColumnSpan="2"
-                                              Grid.Row="1"
-                                              x:Name="EmailEntry"
-                                              Text="{Binding Email}"
-                                              IsVisible="{Binding IsRegister}"
-                                              PlaceHolder="Email"
-                                              ValidationColor="{DynamicResource ErrorColor}"
-                                     
-                        /> 
-                        <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="2"
                                               IsPassword="True"
                                               x:Name="PasswordEntry"
@@ -109,19 +97,11 @@
                                               PlaceHolder="Password"
                                      
                         /> 
-
-                        <CheckBox Grid.Row="3"
-                                  IsVisible="{Binding IsRegister}"
-                                  Margin="0,10"
-                                  />
-                        <Label Grid.Row="3" Grid.Column="1" Text="I agree to Notiped  terms and conditions"
-                               IsVisible="{Binding IsRegister}"
-                               VerticalTextAlignment="Center"/>
+                        
                         <Label Grid.Row="4" 
                                Grid.Column="1"
                                Text="Forgot password?"
                                Style="{StaticResource LabelSubtitleBold}"
-                               IsVisible="{Binding IsRegister,Converter={StaticResource InvertedBoolConverter}}"
                                Margin="5,1,5,20" 
                                HorizontalTextAlignment="End"/>
                         <Label Grid.Row="5" 
@@ -140,7 +120,7 @@
                                                 Margin="10"
                                                 Padding="14"
                                                 IsEnabled ="{Binding  IsBusy,Converter={StaticResource InvertedBoolConverter}}"
-                                                CommandText="{Binding IsRegister,Converter={StaticResource IsRegisterToObjectConverter}}"
+                                                CommandText="Login"
                                                 Grid.Row="6"
                                                 BackgroundColor="{DynamicResource PrimaryDark }"/> 
                     </Grid>
@@ -152,11 +132,11 @@
                        Style="{StaticResource LabelTitle}">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{Binding IsRegister,Converter={StaticResource IsRegisterToStringConverter}}"/>
+                            <Span Text="Don’t have a Notipet account yet?"/>
                             <Span Text=" " CharacterSpacing="10"/>
-                            <Span Text="{Binding IsRegister,Converter={StaticResource BoolToObjectConverter}}"  TextColor="{DynamicResource PrimaryDark}">
+                            <Span Text="Sign Up"  TextColor="{DynamicResource PrimaryDark}">
                                 <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ChangeAuthenticationCommand}"/>
+                                    <TapGestureRecognizer Command="{Binding NavigateToSignUpCommand}"/>
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>

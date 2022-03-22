@@ -25,56 +25,45 @@ using ReactiveUI.Validation.States;
 
 namespace NotiPetApp.ViewModels
 {
-    public class LoginViewModel:BaseViewModel,IAuthenticationRequestViewModel,IValidatableViewModel,IRegisterRequestViewModel
+    public class LoginViewModel:BaseViewModel,IAuthenticationRequestViewModel,IValidatableViewModel
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly AuthenticationValidator _validator;
-        private readonly RegisterValidator _registerValidator;
         private readonly ISchedulerProvider _schedulerProvider;
         [Reactive]  public string Email { get; set; }
         
 
        [Reactive]    public string Password { get; set; }
        [Reactive]   public string Username { get; set; }
-       [Reactive]   public string Name { get; set; }
-       [Reactive]   public string LastName { get; set; }
-       [Reactive]   public string Phone { get; set; }
-       [Reactive]  public string Address1 { get; set; }
-       [Reactive]  public string Address2 { get; set; }
-       [Reactive]   public string City { get; set; }
-       [Reactive]   public string Province { get; set; }
-       [Reactive]  public PersonalDocument PersonalDocument { get; set; }
-       [Reactive] public string BusinessId { get; set; }
-       public bool IsRegister { get; set; }
-        public ReactiveCommand<Unit,Unit> ChangeAuthenticationCommand { get; set; }
+       public ReactiveCommand<Unit,Unit> ChangeAuthenticationCommand { get; set; }
         public ReactiveCommand<Unit,Unit> ForgotPasswordCommand { get; set; }
         public ReactiveCommand<Unit,string> AuthenticationCommand { get; set; }
         public ReactiveCommand<string,Unit> NavigateToMenuPageCommand { get; set; }
+        public ReactiveCommand<Unit,Unit> NavigateToSignUpCommand{ get; set; }
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
         protected ObservableAsPropertyHelper<string> _errorMessage;
        public string ErrorMessage => _errorMessage.Value;
         public LoginViewModel(INavigationService navigationService, IPageDialogService dialogPage,
-            IAuthenticationService authenticationService, AuthenticationValidator validator, RegisterValidator registerValidator,
+            IAuthenticationService authenticationService, AuthenticationValidator validator,
             ISchedulerProvider schedulerProvider) : base(navigationService, dialogPage)
         {
             
             ValidationContext = new ValidationContext();
             _authenticationService = authenticationService;
             _validator = validator;
-            _registerValidator = registerValidator;
             _schedulerProvider = schedulerProvider;
             this.WhenAnyValue(e => e.Email)
                 .StartWith(string.Empty)
                 .ToProperty(this, x => x.Email)
                 .DisposeWith(Subscriptions);
-            ChangeAuthenticationCommand = ReactiveCommand.Create(() =>
-            {
-                IsRegister = !IsRegister;
-            });
             ForgotPasswordCommand = ReactiveCommand.CreateFromTask(() =>
             {
                 //TODO Navigate to Fotgot password;
                 return  Task.CompletedTask;
+            });
+            NavigateToSignUpCommand = ReactiveCommand.CreateFromTask<Unit>((param) =>
+            {
+                return NavigationService.NavigateAsync(ConstantUri.Register);
             });
             NavigateToMenuPageCommand = ReactiveCommand.CreateFromTask<string>((param) =>
             {
@@ -109,27 +98,7 @@ namespace NotiPetApp.ViewModels
 
         void ActiveValidation()
         {
-            IObservable<IValidationState> emailValidation = this.WhenAnyValue(e => e.Email)
-                .Select(_ => this)
-                .Select(_registerValidator.Validate)
-                .Select(e=> IsRegister&&!e.IsValid&&e.Errors.HasMessageForProperty(nameof(Email))?  new ValidationState(false,e.Errors.GetMessageForProperty(nameof(Email))):ValidationState.Valid);
-
-            IObservable<IValidationState>  nameValidation = this.WhenAnyValue(e => e.Name)
-                .Select(_ => this)
-                .Select(_registerValidator.Validate)
-                .Select(e=> IsRegister&&!e.IsValid&&e.Errors.HasMessageForProperty(nameof(Name))?  new ValidationState(false,e.Errors.GetMessageForProperty(nameof(Name))):ValidationState.Valid);
-
-            IObservable<IValidationState>  lastNameValidation = this.WhenAnyValue(e => e.LastName)
-                .Select(_ => this)
-                .Select(_registerValidator.Validate)
-                .Select(e=> IsRegister&&!e.IsValid&&e.Errors.HasMessageForProperty(nameof(LastName))?
-                    new ValidationState(false,e.Errors.GetMessageForProperty(nameof(LastName))):ValidationState.Valid);
-            IObservable<IValidationState>  personalDocument = this.WhenAnyValue(e => e.PersonalDocument)
-                .Select(_ => this)
-                .Select(_registerValidator.Validate)
-                .Select(e=> IsRegister&&!e.IsValid&&e.Errors.HasMessageForProperty(nameof(PersonalDocument))?
-                    new ValidationState(false,e.Errors.GetMessageForProperty(nameof(PersonalDocument))):ValidationState.Valid);
-            
+          
             IObservable<IValidationState> passwordValidation = this.WhenAnyValue(e => e.Password)
                 .StartWith()
                 .Skip(1)
@@ -144,18 +113,13 @@ namespace NotiPetApp.ViewModels
                 .Select(e=> !e.IsValid&&e.Errors.HasMessageForProperty(nameof(Username))? new ValidationState(false,e.Errors.GetMessageForProperty(nameof(Username))):ValidationState.Valid);
 
             this.ValidationRule(e => e.Username, userNameValidation);
-            this.ValidationRule(e => e.Name, nameValidation);
-            this.ValidationRule(e => e.LastName, lastNameValidation);
-            this.ValidationRule(e => e.Email, emailValidation);
             this.ValidationRule(e => e.Password, passwordValidation);
             
         }
 
         IObservable<string> Authentication()
         {
-            var observable = IsRegister
-                ? _authenticationService.SignUp(this)
-                : _authenticationService.Authentication(this);
+           var observable = _authenticationService.Authentication(this);
             return observable;
 
         }

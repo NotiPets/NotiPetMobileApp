@@ -7,9 +7,6 @@ namespace NotiPet.Domain.Validator
     {
         public AuthenticationValidator()
         {
-            this.RuleFor(e => e.Email)
-                .EmailAddress()
-                .WithMessage("Email not valid");
             this.RuleFor(e => e.Password)
                 .Must(e=>!string.IsNullOrWhiteSpace(e))
                 .WithMessage("Password not valid");
@@ -49,7 +46,7 @@ namespace NotiPet.Domain.Validator
             this.RuleFor(e => e.Province)
                 .Must(e=>!string.IsNullOrWhiteSpace(e))
                 .WithMessage("Province not valid");
-            this.RuleFor(e => e.PersonalDocument)
+            this.RuleFor(e => e.Document)
                 .NotNull()
                 .WithMessage("PersonalDocument not valid");
             this.RuleFor(e => e.LastName)
@@ -58,9 +55,9 @@ namespace NotiPet.Domain.Validator
             this.RuleFor(e => e.Name)
                 .Must(e=>!string.IsNullOrWhiteSpace(e))
                 .WithMessage("Name not valid");
-            this.RuleFor(e => e.BusinessId)
-                .NotNull()
-                .WithMessage("BusinessId not valid");
+            this.RuleFor(e => e)
+                .Must(e=>string.IsNullOrWhiteSpace(e.ConfirmPassword)&&e.ConfirmPassword.Equals(e.Password))
+                .WithMessage("ConfirmPassword isn't equal");
 
         }
     }
