@@ -19,6 +19,7 @@ namespace NotiPetApp.Helpers
         public const string About="AboutPage";
         public const string Settings = "SettingsPage";
         public const string Register = "RegisterPage";
+        public const string OnBoarding = "OnBoardingPage";
     }
     public static class ParameterConstant
     {

@@ -1,47 +1,45 @@
 using System.Collections.ObjectModel;
+using System.Reactive;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using NotiPetApp.Helpers;
 using NotiPetApp.Models;
 using Prism.Navigation;
 using Prism.Services;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using Xamarin.Forms;
 
 namespace NotiPetApp.ViewModels
 {
-    public class OnBoardingViewModel :  MvvmHelpers.BaseViewModel
+    public class OnBoardingViewModel : BaseViewModel
     {
-        protected static INavigationService NavigationService { get; set; }
-
-        private ObservableCollection<OnboardingModel> items;
-        private int position;
-        private string skipButtonText;
-        public OnBoardingViewModel(INavigationService navigationService)
-        {
-            NavigationService = navigationService;
-            SetSkipButtonText("Siguiente");
-            InitializeOnBoarding();
-            InitializeSkipCommand();
-            ExitCommand = new Command(ExitOnBoarding);
-        }
+        private int _position;
 
         private void SetSkipButtonText(string skipButtonText)
                 => SkipButtonText = skipButtonText;
-
+        public OnBoardingViewModel(INavigationService navigationService, IPageDialogService dialogPage) : base(navigationService, dialogPage)
+        {
+            SetSkipButtonText("Siguiente");
+            InitializeOnBoarding();
+            InitializeSkipCommand();
+            ExitCommand = ReactiveCommand.CreateFromTask(ExitOnBoarding);
+        }
         private void InitializeOnBoarding()
         {
             Items = new ObservableCollection<OnboardingModel>
             {
-                new OnboardingModel
+                new()
                 {
                     Content = "Donde tu mascota estará segura!",
                     Image = "OnBoardingComplete1.png"
                 },
-                new OnboardingModel
+                new()
                 {
                     Content = "Con seguimiento a tiempo real del estado de tus mascotas.",
                     Image = "OnBoardingComplete2.png"
                 },
-                new OnboardingModel
+                new()
                 {
                     Content = "Servicio de atención de emergencias para sus mascotas.",
                     Image = "OnBoardingComplete3.png"
@@ -51,52 +49,45 @@ namespace NotiPetApp.ViewModels
 
         private void InitializeSkipCommand()
         {
-            SkipCommand = new Command(() =>
+            SkipCommand = ReactiveCommand.CreateFromTask( () =>
             {
                 if (LastPositionReached())
                 {
-                    ExitOnBoarding();
+                    return ExitOnBoarding();
                 }
                 else
                 {
-                    MoveToNextPosition();
+                    return MoveToNextPosition();
                 }
             });
         }
 
-        private static void ExitOnBoarding()
-            => NavigationService.NavigateAsync(ConstantUri.SocialNetworkAuthentication);
-
-        private void MoveToNextPosition()
+        private  Task ExitOnBoarding()
+        {
+            Settings.ShowOnBoarding = true;
+           return NavigationService.NavigateAsync(ConstantUri.SocialNetworkAuthentication);
+        }
+        private Task MoveToNextPosition()
         {
             var nextPosition = ++Position;
             Position = nextPosition;
+            return Task.CompletedTask;
         }
 
         private bool LastPositionReached()
             => Position == Items.Count - 1;
 
-        public ObservableCollection<OnboardingModel> Items
-        {
-            get => items;
-            set => SetProperty(ref items, value);
-        }
+        [Reactive] public ObservableCollection<OnboardingModel> Items { get; set; }
 
-        public string SkipButtonText
-        {
-            get => skipButtonText;
-            set => SetProperty(ref skipButtonText, value);
-        }
+        [Reactive] public string SkipButtonText { get; set; }
 
-        public int Position
+        [Reactive] public int Position
         {
-            get => position;
+            get => _position;
             set
             {
-                if (SetProperty(ref position, value))
-                {
-                    UpdateSkipButtonText();
-                }
+                _position = value;
+                UpdateSkipButtonText();
             }
         }
 
@@ -112,8 +103,9 @@ namespace NotiPetApp.ViewModels
             }
         }
 
-        public ICommand SkipCommand { get; private set; }
-        public ICommand ExitCommand { get; private set; }
+        public ReactiveCommand<Unit,Unit> SkipCommand { get; private set; }
+        public ReactiveCommand<Unit,Unit> ExitCommand { get; private set; }
+
 
     }
 }

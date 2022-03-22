@@ -36,9 +36,16 @@ namespace NotiPetApp.ViewModels
         }
          Task Initialize(string token)
          {
-             return string.IsNullOrEmpty(token)
-                 ? NavigationService.NavigateAsync(ConstantUri.OnBoarding)
-                 : NavigationService.NavigateAsync(ConstantUri.TabMenu);
+             if (string.IsNullOrEmpty(token))
+             {
+                 if (Settings.ShowOnBoarding)
+                 {
+                     return NavigationService.NavigateAsync(ConstantUri.OnBoarding);
+                 }
+                 return NavigationService.NavigateAsync(ConstantUri.Login);
+             }
+
+              return   NavigationService.NavigateAsync(ConstantUri.TabMenu);
 
          }
     }
