@@ -19,7 +19,7 @@ namespace NotiPet.Data
             containerRegistry.RegisterSingleton<IAuthenticationService, AuthenticationService>();
             containerRegistry.RegisterSingleton<IPetsService, PetsService>();
             containerRegistry.RegisterSingleton<IMapper>(x=> new Mapper(AutoMapperConfig.GetConfig()));
-            containerRegistry.RegisterSingleton<IUserServiceApi, UserServiceApi>();  
+            containerRegistry.RegisterSingleton<IUserService,UserService>();  
             containerRegistry.RegisterSingleton<IVeterinaryService, VeterinaryService>();
             containerRegistry.RegisterSingleton<ISpecialistsService,SpecialistsService>();
             containerRegistry.RegisterSingleton<IDataBaseProvider<Realm>, RealmDatabaseProvider>(); 

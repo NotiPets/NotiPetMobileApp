@@ -62,15 +62,14 @@ namespace NotiPetApp.ViewModels
                 .DisposeMany()
                 .Subscribe()
                 .DisposeWith(Subscriptions);
-            searchPredicate
-                .Concat(filterPredicate);
-           
-            _veterinaryService.Veterinaries.Connect()
-                .ObserveOn(schedulerProvider.MainThread)
-                .Filter(searchPredicate)
-                .Sort(sortPredicate)
-                .Bind(out _veterinaries)
-                .DisposeMany()
+            
+           var dataList = _veterinaryService.Veterinaries.Connect()
+               .ObserveOn(schedulerProvider.MainThread)
+               .Filter(searchPredicate)
+               .Sort(sortPredicate)
+               .Bind(out _veterinaries);
+            
+               dataList .DisposeMany()
                 .Subscribe()
                 .DisposeWith(Subscriptions);
             NavigateToFilterCommand = ReactiveCommand.CreateFromTask(NavigateToFilter);

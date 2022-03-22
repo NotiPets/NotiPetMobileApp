@@ -19,7 +19,7 @@ namespace NotiPetApp.ViewModels
     {
         private readonly IPetsService _petsService;
         public ReactiveCommand<Unit,Unit> InitializingCommand { get; set; }
-        private  ReadOnlyObservableCollection<Pet> _pets;
+        private readonly  ReadOnlyObservableCollection<Pet> _pets;
         public ReadOnlyObservableCollection<Pet> Pets => _pets;
        [Reactive] public string SearchText { get; set; }
 

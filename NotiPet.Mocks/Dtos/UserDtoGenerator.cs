@@ -16,6 +16,8 @@ namespace NotiPet.Mocks.Services
             var user = new Faker<UserDto>().RuleFor(e => e.Names, x => x.Person.FirstName)
                 .RuleFor(e => e.Lastnames, x => x.Person.LastName)
                 .RuleFor(e => e.Address1, x => x.Person.Address.Street)
+                .RuleFor(e => e.Address2, x => x.Person.Address.Street)
+                .RuleFor(e => e.PictureUrl, x => x.Image.LoremFlickrUrl(keywords: "person"))
                 .RuleFor(e => e.City, x => x.Person.Address.City)
                 .RuleFor(e => e.Province, x => x.Person.Address.Suite)
                 .RuleFor(e => e.Phone, x => x.Person.Phone);

@@ -12,7 +12,6 @@
                  xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                  xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                  xmlns:models="clr-namespace:NotiPetApp.Models;assembly=NotiPetApp"
-
                  x:TypeArguments="viewModels:ProfileViewModel"
                  x:Class="NotiPetApp.Views.MenuPages.ProfilePage">
 
@@ -37,7 +36,7 @@
                                              FontFamily="{StaticResource FontSolid}"/>
                         </Image.Source>
                     </Image>
-                    <forms:CachedImage   Source="DogIndividual"
+                    <forms:CachedImage   Source="{Binding User.PictureUrl}"
                                          Grid.Row="1"
                                          CacheType="Memory"
                                          Grid.ColumnSpan="3"
@@ -56,9 +55,9 @@
                          Grid.ColumnSpan="3">
                       <Label.FormattedText>
                           <FormattedString>
-                              <Span Text="Maria Lopez" />
+                              <Span Text="{Binding User.FullName}" />
                               <Span Text="{x:Static system1:Environment.NewLine}"></Span>
-                              <Span Text="Santo Domingo " Style="{StaticResource LabelSubtitle}"
+                              <Span Text="{Binding User.FullAddress}" Style="{StaticResource LabelSubtitle}"
                                     TextColor="{DynamicResource PrimaryLetterLightColor}"/>
                           </FormattedString>
                       </Label.FormattedText>

@@ -5,6 +5,8 @@ using Foundation;
 
 using Prism;
 using Prism.Ioc;
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.XForms.iOS.EffectsView;
 using UIKit;
 
 namespace NotiPetApp.iOS
@@ -27,7 +29,8 @@ namespace NotiPetApp.iOS
             global::Xamarin.Forms.Forms.Init();
             Syncfusion.SfRating.XForms.iOS.SfRatingRenderer.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
-  
+            SfListViewRenderer.Init();
+            SfEffectsViewRenderer.Init();
             LoadApplication(new App(new IosInitializer()));
 
             return base.FinishedLaunching(app, options);

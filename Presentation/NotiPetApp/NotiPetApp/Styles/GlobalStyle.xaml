@@ -67,7 +67,7 @@
         <Setter Property="CellTitleColor" Value="{DynamicResource PrimaryLetterColor}"/>
     </Style>
     <ControlTemplate x:Key="TabItemControlTemplate">
-        <pancakeView:PancakeView CornerRadius="25"
+        <pancakeView:PancakeView CornerRadius="20"
                                  Margin="5"
                                  Shadow="{pancakeView:ShadowMarkup Offset='0,0',Color=Transparent,BlurRadius=0}"
                                  BackgroundColor="Transparent">

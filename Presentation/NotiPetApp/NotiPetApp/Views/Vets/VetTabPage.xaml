@@ -13,10 +13,10 @@
 
                 x:Class="NotiPetApp.Views.Vets.VetTabPage"
                 >
-    <views:BasePage.Resources> 
+    <views:BasePage.Resources>
         <DataTemplate x:Key="TabItemControlTemplate">
-            <pancakeView:PancakeView CornerRadius="25"
-                                     Margin="5">
+            <pancakeView:PancakeView CornerRadius="20"
+                                     Margin="5,5,5,10">
                 <pancakeView:PancakeView.Triggers>
                     <DataTrigger TargetType="pancakeView:PancakeView"
                                  Value="True"
@@ -41,6 +41,9 @@
                 </Label>
             </pancakeView:PancakeView>
         </DataTemplate> 
+        <DataTemplate x:Key="EmptyTemplate"> 
+            <StackLayout IsVisible="False"/>
+        </DataTemplate>
     </views:BasePage.Resources>
     <Grid 
           RowDefinitions="Auto,*">
@@ -71,6 +74,7 @@
                                     SelectedIndex="{Binding SelectedIndex}"
                                     TabItemsSource="{Binding TabItemCollections}"
                                     IsSwipeEnabled="False"
+                                    TabContentDataTemplate="{StaticResource EmptyTemplate}"
                                     IsTabTransitionEnabled="False"
                                     TabViewItemDataTemplate="{StaticResource TabItemControlTemplate}"
                                    >

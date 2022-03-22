@@ -9,6 +9,7 @@
                 xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:xForms1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
                 x:Class="NotiPetApp.Views.MenuPages.StorePage"
                 x:TypeArguments="viewModels:StoreViewModel"
                 x:DataType="viewModels:StoreViewModel">
@@ -119,11 +120,11 @@
                 </Grid>
             </pancakeView:PancakeView>
 
-            <CollectionView 
-                            Grid.Row="1"
-                            x:Name="Products"
+            <xForms1:SfListView   AutoFitMode="Height"
+                                  Grid.Row="1"
+                                  x:Name="Products"
             >
-                <CollectionView.ItemTemplate>
+                <xForms1:SfListView.ItemTemplate>
                 <DataTemplate x:DataType="models:AssetServiceModel">
                   <Grid RowDefinitions="Auto,Auto,Auto,Auto"
                         ColumnDefinitions="110,Auto,*"
@@ -181,8 +182,8 @@
                                  />
                   </Grid>
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            </xForms1:SfListView.ItemTemplate>
+        </xForms1:SfListView >
             </Grid>
     </ContentPage.Content>
 </views:BasePage> 

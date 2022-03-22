@@ -5,7 +5,9 @@
                        xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                        xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
                        xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                       xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
                        x:Class="NotiPetApp.Views.Vets.SpecialistView"
                        Title="Specialist">
-    <CollectionView ItemsSource="{Binding Specialists}"/>
+    <ListView ItemsSource="{Binding Specialists}"
+             />
 </controls:TabItemReactive>

@@ -48,5 +48,8 @@ namespace NotiPet.Domain.Models
         public bool Active { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
+
+        public string FullName => $"{Names} {Lastnames}";
+        public string FullAddress => $"{City}, {Province}, {Address1}, {Address2}";
     }
 }

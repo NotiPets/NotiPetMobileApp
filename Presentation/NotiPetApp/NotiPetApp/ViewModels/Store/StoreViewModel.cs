@@ -81,7 +81,6 @@ namespace NotiPetApp.ViewModels
                 .DisposeMany()
                 .Subscribe()
                 .DisposeWith(Subscriptions);
-
             _storeService.AssetsServices
                 .Connect()
                 .ObserveOn(RxApp.MainThreadScheduler)
@@ -92,8 +91,7 @@ namespace NotiPetApp.ViewModels
                 .DisposeMany()
                 .Subscribe()
                 .DisposeWith(Subscriptions);
-            
-                InitializeDataCommand  = ReactiveCommand.CreateFromObservable(InitializeData);
+            InitializeDataCommand  = ReactiveCommand.CreateFromObservable(InitializeData);
                 NavigateToFilterCommand = ReactiveCommand.CreateFromTask(NavigateToFilter);
                 NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
             

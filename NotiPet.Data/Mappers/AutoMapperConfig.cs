@@ -12,6 +12,9 @@ namespace NotiPet.Data.Mappers
             {
                 cfg.CreateMap<AssetServiceTypeDto, AssetServiceType>();
                 cfg.CreateMap<UserDto, User>()
+                    .ForMember(e=>e.FullName,x=>x.Ignore())
+                    .ForMember(e=>e.FullAddress,x=>x.Ignore())
+
                     .ReverseMap();
                 cfg.CreateMap<AssetServiceDto, AssetServiceModel>()
                     .ForMember(e => e.Guid, x => x.Ignore());
