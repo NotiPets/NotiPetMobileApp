@@ -84,6 +84,9 @@
         <AndroidResource Include="Resources\drawable\DogIndividual.png" />
         <AndroidResource Include="Resources\drawable\Emergency.png" />
         <AndroidResource Include="Resources\drawable\logOut.png" />
+        <AndroidResource Include="Resources\drawable\OnBoardingComplete1.png" />
+        <AndroidResource Include="Resources\drawable\OnBoardingComplete2.png" />
+        <AndroidResource Include="Resources\drawable\OnBoardingComplete3.png" />
         <AndroidResource Include="Resources\drawable\patas.png" />
         <AndroidResource Include="Resources\drawable\patita.png" />
         <AndroidResource Include="Resources\drawable\question.png" />
