@@ -46,7 +46,15 @@ namespace NotiPetApp.Controls
         }
 
         #endregion
-       
+        
+        public static readonly BindableProperty IsPasswordProperty 
+            = BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(EntryCustom),defaultValue: false);
+
+        public bool IsPassword
+        {
+            get { return (bool)GetValue(IsPasswordProperty); }
+            set { SetValue(IsPasswordProperty, value); }
+        }
         #region Text
 
         public static readonly BindableProperty TextAlignmentProperty 

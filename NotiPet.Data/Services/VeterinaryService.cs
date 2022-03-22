@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reactive.Linq;
 using AutoMapper;
 using DynamicData;
+using DynamicData.Binding;
 using ImTools;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
@@ -28,6 +29,21 @@ namespace NotiPet.Data.Services
     public IObservable<IEnumerable<Veterinary>> GetVeterinary()
                     =>    _businessService.GetBusiness().Select(_mapper.Map<IEnumerable<Veterinary>>)
                                   .Do(_sourceCache.AddOrUpdate);
-        
+    private readonly SourceCache<ParameterOption, int> _parametersOptions =
+        new SourceCache<ParameterOption, int>(x=>x.Id);
+    public SourceCache<ParameterOption, int> ParametersOptions => _parametersOptions;
+    public IObservable<IEnumerable<ParameterOption>> ParameterOptions()
+    {
+        var parameters = new List<ParameterOption>()
+        {
+                
+            new ParameterOption("Name",false,true,3,"Sort")
+                .SetSortExpression(SortExpressionComparer<Veterinary>.Ascending(e=>e.Name)),
+                
+            new ParameterOption("Province",false,true,4,"Sort")
+                .SetSortExpression(SortExpressionComparer<Veterinary>.Ascending(e=>e.Province)),
+        };
+        return Observable.Return(parameters).Do(_parametersOptions.AddOrUpdate);
+    }
     }
 }

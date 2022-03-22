@@ -9,6 +9,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using DynamicData;
 using DynamicData.Binding;
+using DynamicData.PLinq;
 using NotiPet.Data.Dtos;
 using NotiPet.Data.Services;
 using NotiPet.Domain.Models;
@@ -19,6 +20,7 @@ using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Xamarin.Forms.Internals;
 
 namespace NotiPetApp.ViewModels
 {
@@ -47,24 +49,28 @@ namespace NotiPetApp.ViewModels
             var notificationParameters = _storeService.ParametersOptions
                 .Connect()
                 .RefCount();
-          
 
-            
           var sortPredicate =  notificationParameters
                   .WhenPropertyChanged(e => e.IsActive,true)
                   .Where(e=>e.Value&&e.Sender.IsSort)
                   .Select(e =>
                   e.Value?  e.Sender.GetSortExpressions<SortExpressionComparer<AssetServiceModel>>()
-                      :SortExpressionComparer<AssetServiceModel>.Descending(e=>e.Name))
-              ;
+                      :SortExpressionComparer<AssetServiceModel>.Descending(e=>e.Name));
+
+          var defaultFilter =
+              new PropertyValue<ParameterOption, bool>(ParameterOption.Default
+                  .SetFilterExpression<AssetServiceModel>(x => x.Active), true);
           
-          var filterPredicate =  notificationParameters
-              .Filter(e=>!e.IsSort)
-              .WhenPropertyChanged(e => e.IsActive,true)
-              .Where(e=>e.Value&&!e.Sender.IsSort)
-              .Select(e => e.Value?  e.Sender.GetFilterExpression<Func<AssetServiceModel, bool>>() :e=>!string.IsNullOrEmpty(e.Name));
-    
-            var searchPredicate = this.WhenAnyValue(x => x.SearchText)
+          var filterPredicate = notificationParameters
+              .WhenPropertyChanged(e => e.IsActive, false)
+              .StartWith(defaultFilter)
+              .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
+              .DistinctUntilChanged()
+              .Where(x=>!x.Sender.IsSort)
+              .Select(e=> (e.Value)?e:defaultFilter)
+              .Select(e => e.Sender.GetFilterExpression<Func<AssetServiceModel, bool>>());
+          
+          var searchPredicate = this.WhenAnyValue(x => x.SearchText)
                 .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
                 .DistinctUntilChanged()
                 .Select(SearchFunc);
@@ -72,9 +78,9 @@ namespace NotiPetApp.ViewModels
             notificationParameters
                 .Filter(e=>e.IsActive)
                 .Bind(out _parameterOptions)
-                .DisposeMany().Subscribe()
+                .DisposeMany()
+                .Subscribe()
                 .DisposeWith(Subscriptions);
-            
             _storeService.AssetsServices
                 .Connect()
                 .ObserveOn(RxApp.MainThreadScheduler)
@@ -85,12 +91,15 @@ namespace NotiPetApp.ViewModels
                 .DisposeMany()
                 .Subscribe()
                 .DisposeWith(Subscriptions);
-            
-                InitializeDataCommand  = ReactiveCommand.CreateFromObservable(InitializeData);
+            InitializeDataCommand  = ReactiveCommand.CreateFromObservable(InitializeData);
                 NavigateToFilterCommand = ReactiveCommand.CreateFromTask(NavigateToFilter);
+                NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
             
             
         }
+
+        public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get;  }
+
         Func<AssetServiceModel, bool> SearchFunc(string text) =>
             model => string.IsNullOrEmpty(text) || model.Name.ToLower().Contains(text.ToLower());
         IObservable<Unit> InitializeData() => Observable.Create<Unit>(observable =>
@@ -111,7 +120,7 @@ namespace NotiPetApp.ViewModels
             await NavigationService.NavigateAsync(ConstantUri.OptionParameters,new NavigationParameters()
             {
                 {ParameterConstant.OptionsParameter,_storeService.ParametersOptions}
-            });
+            },true);
         }
         public void Initialize(INavigationParameters parameters)
         {

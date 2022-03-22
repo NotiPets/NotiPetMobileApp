@@ -1,111 +1,109 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{30838F75-8EF7-4B42-8A37-238440EE153B}</ProjectGuid>
-    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <RootNamespace>NotiPetApp.Droid</RootNamespace>
-    <AssemblyName>NotiPetApp.Droid</AssemblyName>
-    <AndroidApplication>True</AndroidApplication>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
-    <AndroidResgenClass>Resource</AndroidResgenClass>
-    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
-    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
-    <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Mono.Android" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="AiForms.SettingsView" Version="1.3.29" />
-    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
-    <PackageReference Include="DynamicData" Version="7.5.4" />
-    <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
-    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
-    <PackageReference Include="ReactiveUI" Version="17.1.50" />
-    <PackageReference Include="ReactiveUI.Fody" Version="17.1.50" />
-    <PackageReference Include="ReactiveUI.Validation" Version="2.2.1" />
-    <PackageReference Include="ReactiveUI.XamForms" Version="17.1.50" />
-    <PackageReference Include="Realm" Version="10.10.0" />
-    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-    <PackageReference Include="Syncfusion.Licensing" Version="19.4.0.52" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.4.0.52" />
-    <PackageReference Include="System.Reactive" Version="5.0.0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="MainActivity.cs" />
-    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
-    <Compile Include="Resources\Resource.Designer.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AboutResources.txt" />
-    <None Include="Assets\AboutAssets.txt" />
-    <None Include="Properties\AndroidManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Artboard.png" />
-    <AndroidResource Include="Resources\drawable\DogIndividual.png" />
-    <AndroidResource Include="Resources\drawable\Emergency.png" />
-    <AndroidResource Include="Resources\drawable\Shop.png" />
-    <AndroidResource Include="Resources\drawable\Shower.png" />
-    <AndroidResource Include="Resources\drawable\Veterinary.png" />
-    <AndroidResource Include="Resources\layout\Tabbar.axml" />
-    <AndroidResource Include="Resources\layout\Toolbar.axml" />
-    <AndroidResource Include="Resources\values\styles.xml" />
-    <AndroidResource Include="Resources\values\colors.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NotiPetApp\NotiPetApp.csproj">
-      <Project>{F10D8C09-1B97-4B7B-9367-2748A3A72EC1}</Project>
-      <Name>NotiPetApp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\StartAppAnimations.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\OnBoardingComplete1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\OnBoardingComplete2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\OnBoardingComplete3.png" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{30838F75-8EF7-4B42-8A37-238440EE153B}</ProjectGuid>
+        <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <OutputType>Library</OutputType>
+        <RootNamespace>NotiPetApp.Droid</RootNamespace>
+        <AssemblyName>NotiPetApp.Droid</AssemblyName>
+        <AndroidApplication>True</AndroidApplication>
+        <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+        <AndroidResgenClass>Resource</AndroidResgenClass>
+        <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+        <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+        <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+        <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+        <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+        <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>portable</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug</OutputPath>
+        <DefineConstants>DEBUG;</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AndroidLinkMode>None</AndroidLinkMode>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release</OutputPath>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <AndroidManagedSymbols>true</AndroidManagedSymbols>
+        <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Mono.Android" />
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AiForms.SettingsView" Version="1.3.29" />
+        <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
+        <PackageReference Include="DynamicData" Version="7.5.4" />
+        <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+        <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+        <PackageReference Include="ReactiveUI" Version="17.1.50" />
+        <PackageReference Include="ReactiveUI.Fody" Version="17.1.50" />
+        <PackageReference Include="ReactiveUI.Validation" Version="2.2.1" />
+        <PackageReference Include="ReactiveUI.XamForms" Version="17.1.50" />
+        <PackageReference Include="Realm" Version="10.10.0" />
+        <PackageReference Include="Syncfusion.Licensing" Version="19.4.0.52" />
+        <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.4.0.52" />
+        <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.4.0.52" />
+        <PackageReference Include="System.Reactive" Version="5.0.0" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+        <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+        <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
+        <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+        <PackageReference Include="Xamarin.Plugin.SharedTransitions" Version="2.4.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="MainActivity.cs" />
+        <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+        <Compile Include="Resources\Resource.Designer.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Resources\AboutResources.txt" />
+        <None Include="Assets\AboutAssets.txt" />
+        <None Include="Properties\AndroidManifest.xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <AndroidResource Include="Resources\drawable\Artboard.png" />
+        <AndroidResource Include="Resources\drawable\Calendar.png" />
+        <AndroidResource Include="Resources\drawable\DogIndividual.png" />
+        <AndroidResource Include="Resources\drawable\Emergency.png" />
+        <AndroidResource Include="Resources\drawable\logOut.png" />
+        <AndroidResource Include="Resources\drawable\patas.png" />
+        <AndroidResource Include="Resources\drawable\patita.png" />
+        <AndroidResource Include="Resources\drawable\question.png" />
+        <AndroidResource Include="Resources\drawable\settings.png" />
+        <AndroidResource Include="Resources\drawable\Shop.png" />
+        <AndroidResource Include="Resources\drawable\Shower.png" />
+        <AndroidResource Include="Resources\drawable\Veterinary.png" />
+        <AndroidResource Include="Resources\layout\Tabbar.axml" />
+        <AndroidResource Include="Resources\layout\Toolbar.axml" />
+        <AndroidResource Include="Resources\values\styles.xml" />
+        <AndroidResource Include="Resources\values\colors.xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\NotiPetApp\NotiPetApp.csproj">
+            <Project>{F10D8C09-1B97-4B7B-9367-2748A3A72EC1}</Project>
+            <Name>NotiPetApp</Name>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <AndroidAsset Include="Assets\StartAppAnimations.json" />
+    </ItemGroup>
+    <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

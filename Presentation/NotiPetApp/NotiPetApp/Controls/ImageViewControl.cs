@@ -1,3 +1,4 @@
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 
@@ -20,6 +21,14 @@ namespace NotiPetApp.Controls
         {
             get => (string) GetValue(TextProperty) ; 
             set=>SetValue(TextProperty,value); 
+        }
+        public static readonly BindableProperty CommandProperty =
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ImageViewControl));
+
+        public ICommand Command
+        {
+            get => (ICommand) GetValue(CommandProperty) ; 
+            set=>SetValue(CommandProperty,value); 
         }
     }
 }

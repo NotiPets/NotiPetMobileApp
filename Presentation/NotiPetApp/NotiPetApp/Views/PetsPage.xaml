@@ -96,55 +96,10 @@
                 </Grid>
             </pancakeView:PancakeView>
 
-            <CollectionView 
+            <CollectionView ItemsSource="{Binding Pets}"
                             Grid.Row="1"
                             x:Name="Pets"
             >
-                <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Pet">
-                  <Grid RowDefinitions="Auto,Auto,Auto,Auto"
-                        ColumnDefinitions="110,Auto,*"
-                        
-                        Padding="10">
-                      <pancakeView:PancakeView    Grid.RowSpan="4"
-                                Grid.Column="0"
-                                Padding="0"
-                                CornerRadius="20"
-                                Margin="5,10,10,0">
-                      <forms:CachedImage  Source="{Binding PictureUrl}"
-                                        
-                                          
-                                          
-                                          CacheType="Memory"
-                                        
-                                          Aspect="AspectFill"
-                                          WidthRequest="50"/>
-                      </pancakeView:PancakeView>
-                      <Label Text="{Binding Name}"
-                             Grid.Row="1"
-                             Style="{StaticResource LabelTitleBold}"
-                             Grid.Column="1"
-                             Grid.ColumnSpan="2"/>
-                          <Label Text="{Binding Description}"
-                                 Grid.Row="2"
-                                 MaxLines="1"
-                                 Style="{StaticResource LabelSubtitleBold}"
-                                 LineBreakMode="TailTruncation"
-                                 Grid.Column="1"
-                                 Grid.ColumnSpan="2"/>
-
-                          <Label Text="{Binding PetType.Name}"
-                                 Grid.Row="3"
-                                 Grid.Column="1"
-                                 Grid.ColumnSpan="2"
-                                 HorizontalTextAlignment="End"
-                                 TextColor="{DynamicResource SecondaryLight}"
-                                 Style="{StaticResource LabelSubtitleBold}"
-                               
-                                 />
-                  </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            </CollectionView>
             </Grid>
 </views:BasePage>

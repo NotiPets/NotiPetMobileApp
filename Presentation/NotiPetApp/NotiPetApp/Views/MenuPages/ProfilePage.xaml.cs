@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
+using NotiPetApp.ViewModels;
 using ReactiveUI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,12 +17,8 @@ namespace NotiPetApp.Views.MenuPages
         public ProfilePage()
         {
             InitializeComponent();
+            BindingContext = App.Current.Container.Resolve(typeof(ProfileViewModel));
         }
-
-        protected override CompositeDisposable ManageDisposables(CompositeDisposable disposables)
-        {
-            //disposables.Add(this.OneWayBind(ViewModel,x=>x.LogOutCommand,vw=>vw.CellLogout.Command  ));
-            return base.ManageDisposables(disposables);
-        }
+        
     }
 }

@@ -30,6 +30,13 @@ namespace NotiPetApp.Views
                 {
                     ViewModel.IsAnimating = false;
                 }));
+            disposables.Add(Observable.FromEventPattern(
+                (handler)=>Disappearing+=handler, 
+                (handler)=>Disappearing-=handler)
+                .Subscribe((e) =>
+                {
+                    LottieView.IsVisible = false;
+                }));
            
             return base.ManageDisposables(disposables);
         }

@@ -3,6 +3,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Bogus.DataSets;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace NotiPetApp.Helpers
 {
@@ -10,13 +11,14 @@ namespace NotiPetApp.Helpers
     {
         public static string Username
         {
-            get=>Preferences.Get(nameof(Username),string.Empty); 
+            get=>DeviceInfo.Platform != DevicePlatform.Unknown? Preferences.Get(nameof(Username),string.Empty):string.Empty; 
             set=>Preferences.Set(nameof(Username),value);
         }
-        public static IObservable<string> Token
+        public static IObservable<string> Token => Observable.FromAsync(token => GetSecureStorage(nameof(Token)));
+
+        public static  Task SetToken(string token)
         {
-            get => Observable.FromAsync(token => GetSecureStorage(nameof(Token))); 
-            set=>value.Select(e=>SetSecureStorage(nameof(Username),e));
+           return SetSecureStorage(nameof(Token),token);
         }
         static Task<string> GetSecureStorage(string key)
            => DeviceInfo.Platform != DevicePlatform.Unknown ? SecureStorage.GetAsync(key):Task.FromResult(string.Empty);

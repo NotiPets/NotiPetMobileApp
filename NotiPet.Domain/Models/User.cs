@@ -4,33 +4,52 @@ namespace NotiPet.Domain.Models
 {
     public class User
     {
-        public User(int id, string document, string name, DateTime create, string lastname, DateTime updated, string phone, string address1, string address2, string city, string province, int documentTypeId)
+        public User(string id, int role, string businessId, Veterinary business, string username, string password, string email, int documentType, string document, string names, string lastnames, string phone, string address1, string address2, string city, string province, string pictureUrl, bool active, DateTime created, DateTime updated)
         {
             Id = id;
+            Role = role;
+            BusinessId = businessId;
+            Business = business;
+            Username = username;
+            Password = password;
+            Email = email;
+            DocumentType = documentType;
             Document = document;
-            Name = name;
-            Create = create;
-            Lastname = lastname;
-            Updated = updated;
+            Names = names;
+            Lastnames = lastnames;
             Phone = phone;
             Address1 = address1;
             Address2 = address2;
             City = city;
             Province = province;
-            DocumentTypeId = documentTypeId;
+            PictureUrl = pictureUrl;
+            Active = active;
+            Created = created;
+            Updated = updated;
         }
 
-        public int Id { get;  }
-        public string Document { get;  }
-        public string Name { get;  }
-        public DateTime Create { get; }
-        public string Lastname { get;  }
-        public DateTime Updated { get; }
-        public string Phone { get;  }
-        public string Address1 { get; }
-        public string Address2 { get;  }
-        public string City { get; }
-        public string  Province { get;}
-        public int DocumentTypeId { get; }
+        public string Id { get; set; }
+        public int Role { get; set; }
+        public string BusinessId { get; set; }
+        public Veterinary Business { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+        public int DocumentType { get; set; }
+        public string Document { get; set; }
+        public string Names { get; set; }
+        public string Lastnames { get; set; }
+        public string Phone { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string PictureUrl { get; set; }
+        public bool Active { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Updated { get; set; }
+
+        public string FullName => $"{Names} {Lastnames}";
+        public string FullAddress => $"{City}, {Province}, {Address1}, {Address2}";
     }
 }

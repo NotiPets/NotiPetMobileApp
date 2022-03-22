@@ -9,6 +9,7 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using DynamicData;
+using DynamicData.Binding;
 using DynamicData.Kernel;
 using NotiPet.Domain.Models;
 using NotiPetApp.Helpers;
@@ -21,11 +22,11 @@ namespace NotiPetApp.ViewModels
 {
     public class OptionsParametersViewModel:BaseViewModel,IInitialize
     {
-        private SourceCache<ParameterOption, string> _sourceList;
+        private SourceCache<ParameterOption, int> _sourceList;
 
-        private  ReadOnlyObservableCollection<ObservableGroupingCollection<string, ParameterOption, string>>
+        private  ReadOnlyObservableCollection<ObservableGroupingCollection<string, ParameterOption, int>>
             _parameterOptions;
-        public ReadOnlyObservableCollection<ObservableGroupingCollection<string, ParameterOption, string>>
+        public ReadOnlyObservableCollection<ObservableGroupingCollection<string, ParameterOption, int>>
             ParameterOptions=>_parameterOptions;
         public ReactiveCommand<ParameterOption,Unit> ActiveFilterCommand { get; set; } 
         public ReactiveCommand<Unit,Unit> CloseCommand { get; } 
@@ -43,8 +44,15 @@ namespace NotiPetApp.ViewModels
         }
         private void ActiveFilter(ParameterOption parameterOption)
         {
+            var value = _sourceList.Items
+                .FirstOrDefault(e =>e.Key==parameterOption.Key&&e.Id!=parameterOption.Id&&e.IsActive);
             _sourceList.Edit((update) =>
             {
+                if (value!=null)
+                {
+                    value.SetActive(false);
+                    update.AddOrUpdate(parameterOption);
+                }
                 parameterOption.SetActive(!parameterOption.IsActive);
                 update.AddOrUpdate(parameterOption);
                 
@@ -55,15 +63,16 @@ namespace NotiPetApp.ViewModels
         public void Initialize(INavigationParameters parameters)
         {
             if (parameters.ContainsKey(ParameterConstant.OptionsParameter)
-                &&parameters[ParameterConstant.OptionsParameter] is SourceCache<ParameterOption, string> options)
+                &&parameters[ParameterConstant.OptionsParameter] is SourceCache<ParameterOption, int> options)
             {
                 _sourceList = options;
                 var notificationsParameters =    _sourceList.Connect().RefCount();
                 notificationsParameters
                     .Group(e=>e.Key)
-                    .Transform(x=>new ObservableGroupingCollection<string,ParameterOption,string>(x))
+                    .Transform(x=>new ObservableGroupingCollection<string,ParameterOption,int>(x))
+                    .Sort(SortExpressionComparer<ObservableGroupingCollection<string,ParameterOption,int>>.Descending(x=>x.Key))
                     .Bind(out _parameterOptions)
-                    .DisposeMany()
+                       .DisposeMany()
                     .Subscribe()
                     .DisposeWith(Subscriptions);
             }

@@ -7,6 +7,7 @@ namespace NotiPetApp.ViewModels
     {
         public TabMenuViewModel(INavigationService navigationService, IPageDialogService dialogPage) : base(navigationService, dialogPage)
         {
+
         }
     }
 }

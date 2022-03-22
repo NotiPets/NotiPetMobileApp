@@ -8,8 +8,6 @@ namespace NotiPet.Domain.Service
 {
     public interface IUserService
     {
-        public SourceCache<UserRole,int> UserRoleSource { get; }
-        public IObservable<IEnumerable<UserRole>> GetVeterinarians();
-
+        public  IObservable<User> GetUserById(string username);
     }
 }

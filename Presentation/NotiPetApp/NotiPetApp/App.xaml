@@ -1,15 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <dryIoc:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
-                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                         xmlns:dryIoc="http://prismlibrary.com"
-                         xmlns:styles="clr-namespace:NotiPetApp.Styles;assembly=NotiPetApp"
-                         x:Class="NotiPetApp.App">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dryIoc="http://prismlibrary.com"
+             xmlns:styles="clr-namespace:NotiPetApp.Styles;assembly=NotiPetApp"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             x:Class="NotiPetApp.App">
     <Application.Resources>
         <StyleSheet  Source="Styles/SizeStyle.css"/>    
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <styles:GlobalStyle/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <styles:GlobalStyle/>
+        </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+
     </Application.Resources>
 </dryIoc:PrismApplication>

@@ -17,16 +17,15 @@ namespace NotiPetApp.ViewModels
 {
     public class StartViewModel:BaseViewModel
     {
-        private readonly IDataBaseProvider<Realm> _realm;
         [Reactive]   public bool IsAnimating { get; set; }
         public ReactiveCommand<Unit,string> InitializeCommand { get; set; }
-        public StartViewModel(INavigationService navigationService, IPageDialogService dialogPage,IDataBaseProvider<Realm> realm) : base(navigationService, dialogPage)
+        public StartViewModel(INavigationService navigationService, IPageDialogService dialogPage) : base(navigationService, dialogPage)
         {
-            _realm = realm;
+
             IsAnimating = true;
-            InitializeCommand = ReactiveCommand.CreateFromObservable(()=>Settings.Token.Select(e => e));
-            InitializeCommand.
-                InvokeCommand(ReactiveCommand.CreateFromTask<string>(Initialize));
+            InitializeCommand = ReactiveCommand.CreateFromObservable(()=>Settings.Token);
+            InitializeCommand
+                .InvokeCommand(ReactiveCommand.CreateFromTask<string>(Initialize));
             this.WhenAnyValue(x => x.IsAnimating)
                 .StartWith(true)
                 .Where(e => !e)

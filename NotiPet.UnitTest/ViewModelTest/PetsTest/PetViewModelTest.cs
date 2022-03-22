@@ -21,9 +21,8 @@ namespace NotiPet.UnitTest.ViewModelTest
         [Fact]
         public void PetsListNotBeEmptyWhenExecutingInitializing()
         {
-            var scheduler = new TestScheduler();
-
-                
+            var scheduler = new TestScheduler(); 
+                 
                 var petServiceApi = new PetServiceApiMock();
                 IPetsService petsService = new PetsService(petServiceApi,Mapper);
                 var viewModelFixture = new PetsViewModelFixture()
@@ -37,14 +36,13 @@ namespace NotiPet.UnitTest.ViewModelTest
                 viewModel.InitializingCommand.Execute().Subscribe();
                 scheduler.AdvanceByMs(100);
                 //Asset
-                viewModel.Pets.Should().NotBeEmpty(); 
-          
+                viewModel.Pets.Should().NotBeEmpty();
+
         }
         [Fact]
         public void SearchingPetShouldBeReturnResultBySearching()
         {
-            var scheduler = new TestScheduler();
-
+           var scheduler = new TestScheduler(); 
                 var petServiceApi = new PetServiceApiMock();
                 IPetsService petsService = new PetsService(petServiceApi, Mapper);
                 var viewModelFixture = new PetsViewModelFixture()

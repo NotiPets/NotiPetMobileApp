@@ -12,6 +12,7 @@ using NotiPetApp.Views;
 using NotiPetApp.Views.Authentication;
 using NotiPetApp.Views.MenuPages;
 using NotiPetApp.Views.Vets;
+using Plugin.SharedTransitions;
 using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -37,37 +38,46 @@ namespace NotiPetApp
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTg0NDIxQDMxMzkyZTM0MmUzMFNLQ3ZJWkRQZkwyc2pYTXkzZCtyTStaOG5DeHpBaWg5djNaQ0RmK2R1QzQ9");
             InitializeComponent();
             NavigationService.NavigateAsync(ConstantUri.Start);
-           
+            
+            
         }
 
+        public static IContainerProvider ContainerProvider;
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         { 
             base.ConfigureModuleCatalog(moduleCatalog);
             moduleCatalog.AddModule<MocksModule>();
             moduleCatalog.AddModule<DataModule>();
+            
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<ISchedulerProvider>(() => new SchedulerProvider(RxApp.MainThreadScheduler,RxApp.TaskpoolScheduler));
             containerRegistry.RegisterForNavigation<TabMenuPage,TabMenuViewModel>();
-            containerRegistry.RegisterForNavigation<HomePage,HomeViewModel>();
-            containerRegistry.RegisterForNavigation<AppointmentPage>();
+            containerRegistry.RegisterForNavigation<SharedTransitionNavigationPage>();
+            containerRegistry.Register<HomeViewModel>();
+            containerRegistry.Register<HomePage>();
+            containerRegistry.RegisterForNavigation<AppointmentPage,AppointmentViewModel>();
             containerRegistry.RegisterForNavigation<StorePage,StoreViewModel>();
-            containerRegistry.RegisterForNavigation<ProfilePage>(); 
+            containerRegistry.Register<ProfilePage>(); 
+            containerRegistry.Register<ProfileViewModel>();
+            containerRegistry.Register<SpecialistView>();
+            containerRegistry.Register<VeterinaryView>();
             containerRegistry.RegisterForNavigation<CreatePetPage,CreatePetViewModel>();
             containerRegistry.RegisterForNavigation<SocialNetworkAuthenticationPage,SocialNetworkAuthenticationViewModel>();
             containerRegistry.RegisterForNavigation<LogInPage,LoginViewModel>();
             containerRegistry.RegisterForNavigation<StartPage,StartViewModel>();
             containerRegistry.RegisterForNavigation<PetsPage,PetsViewModel>();
-            containerRegistry.RegisterForNavigation<ProfilePage,ProfileViewModel>();
-            containerRegistry.RegisterForNavigation<OnBoardingPage, OnBoardingViewModel>();
-
-
-            containerRegistry.RegisterForNavigation<OptionsParametersPage,OptionsParametersViewModel>(ConstantUri.OptionParameters);
-            containerRegistry.Register<VeterinaryViewModel>();
-            containerRegistry.Register<VeterinaryView>();
+            containerRegistry.RegisterForNavigation<VetTabPage,VetTabViewModel>();
+            containerRegistry.RegisterForNavigation<AboutPage,AboutViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsPage,SettingsViewModel>();
+            containerRegistry.RegisterForNavigation<RegisterPage,RegisterViewModel>();
             
+            containerRegistry.RegisterForNavigation<OptionsParametersPage,OptionsParametersViewModel>(ConstantUri.OptionParameters);
+            ContainerProvider = Container;
+
+
         }
 
     }

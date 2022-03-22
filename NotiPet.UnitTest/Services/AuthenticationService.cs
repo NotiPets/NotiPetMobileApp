@@ -49,43 +49,8 @@ namespace NotiPet.UnitTest.Services
            observedResultSequence.RecordedMessages.Should().AllSatisfy(x=>x.Should().NotBeNull());
         }
 
-        [Fact]
-        public void CallSignUpWithValidAccountShouldBeReturnToken()
-        {
-            var scheduler = new TestScheduler();
-            var serviceFixture = new AuthenticationServiceFixture()
-                .MapperWith(Mapper)
-                .UserServiceApiServiceWith(new UserServiceApiMock());
-         
-            IAuthenticationService service =(AuthenticationService) serviceFixture;
-            var fixtureViewModel = new LoginViewModelFixture()
-                .AuthenticationWith(service)
-                .SchedulerProviderWith(new SchedulerProvider(scheduler,scheduler));
-            
-            var generator = new UserDtoGenerator();
-            var viewModel = (LoginViewModel) fixtureViewModel;
-            //ARRANGE
-            viewModel.IsRegister = true;
-            viewModel.Email =generator.UserRoleDto.Email;
-            viewModel.Username = generator.UserRoleDto.Username;
-            viewModel.Password =  generator.UserRoleDto.Password;
-            viewModel.Name =  generator.UserRoleDto.User.Name;
-            viewModel.LastName = generator.UserRoleDto.User.Lastname;
-            viewModel.Address1 = generator.UserRoleDto.User.Address1;
-            viewModel.Address2 = generator.UserRoleDto.User.Address2;
-            viewModel.City = generator.UserRoleDto.User.City;
-            viewModel.Phone = generator.UserRoleDto.User.Phone;
-            viewModel.BusinessId = generator.UserRoleDto.BusinessId;
-            viewModel.PersonalDocument = new PersonalDocument("1000", 1);
-            var dto = new UserDtoGenerator().AuthenticationDto;
-
-            //ACT
-            var result = service.SignUp(viewModel);
-            using var observedResultSequence = result.Observe();
-           
-            //ASSET
-            observedResultSequence.RecordedMessages.Should().AllSatisfy(e=>e.Should().NotBeNull());
-    }
+        //[Fact]
+      
    
     }
 

@@ -21,14 +21,16 @@ namespace NotiPet.Mocks.Services
               => Observable.Return(generator.AuthenticationDto.Email.Equals(requestAuthenticationDto.Username)&&generator.AuthenticationDto.Password.Equals(requestAuthenticationDto.Password)?
                   generator.AuthenticationDto:null);
 
-        public IObservable<JwtDto> SingUp(UserRoleDto userRole)
+        public IObservable<JwtDto> SingUp(UserDto userRole)
                => Observable.Return(new JwtDto()
                {
                    Jwt = Guid.NewGuid().ToString()
                });
-        
 
-         public IObservable<IEnumerable<UserRoleDto>> GetVeterinarians()
-            => Observable.Return(generator.Veterinaries);
+        public IObservable<UserDto> GetUserById(string username)
+        {
+            return  Observable.Return(generator.UserRoleDto);
+        }
+        
     }
 }

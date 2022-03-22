@@ -20,7 +20,7 @@ namespace NotiPetApp.Views
 
         protected override CompositeDisposable ManageDisposables(CompositeDisposable disposables)
         {
-            disposables.Add(this.OneWayBind(ViewModel,vm=>vm.Pets,vw=>vw.Pets.ItemsSource));
+            //disposables.Add(this.OneWayBind(ViewModel,vm=>vm.Pets,vw=>vw.Pets.ItemsSource));
             return base.ManageDisposables(disposables);
         }
         protected override void OnBindingContextChanged()

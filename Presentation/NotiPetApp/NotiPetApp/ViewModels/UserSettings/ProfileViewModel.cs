@@ -1,7 +1,12 @@
 
+using System;
+using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Threading.Tasks;
+using NotiPet.Domain.Models;
+using NotiPet.Domain.Service;
 using NotiPetApp.Helpers;
+using NotiPetApp.Models;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
@@ -10,15 +15,48 @@ namespace NotiPetApp.ViewModels
 {
     public class ProfileViewModel:BaseViewModel
     {
-        public ReactiveCommand<Unit,Unit> LogOutCommand { get; set; }
-        public ProfileViewModel(INavigationService navigationService, IPageDialogService dialogPage) : base(navigationService, dialogPage)
+        private readonly IUserService _userService;
+        private ObservableAsPropertyHelper<User> _user;
+        public User User => _user.Value;
+        public ReactiveCommand<Unit,User> GetUserCommand { get; set; }
+        public ProfileViewModel(INavigationService navigationService, IPageDialogService dialogPage,
+            IUserService userService) : base(navigationService, dialogPage)
         {
-            LogOutCommand = ReactiveCommand.CreateFromTask(LogOut);
+            _userService = userService;
+            AppMenuItems = new ObservableCollection<AppMenuItem>()
+            {
+                new(ConstantDictionary.MyPets,"patas",1,ReactiveCommand.CreateFromTask(NavigateToMyPets),SizeItem.Small),
+                new(ConstantDictionary.About,"question",2,ReactiveCommand.CreateFromTask(NavigateToAbout),SizeItem.Small),
+                new(ConstantDictionary.Settings,"settings",3,ReactiveCommand.CreateFromTask(NavigateToSettings),SizeItem.Small),
+                new(ConstantDictionary.Logout,"logOut",4,ReactiveCommand.CreateFromTask(LogOut),SizeItem.Small),
+            };
+            GetUserCommand = ReactiveCommand.CreateFromObservable(GetUserById);
+            _user = GetUserCommand.Execute().ToProperty(this, e => e.User);
+            InitializeCommand
+                .InvokeCommand(GetUserCommand);
         }
 
-        Task LogOut()
+        Task NavigateToMyPets()
         {
-         return   NavigationService.NavigateAsync(ConstantUri.SocialNetworkAuthentication);
+            return NavigationService.NavigateAsync(ConstantUri.MyPets);
+        }
+        Task NavigateToAbout()
+        {
+            return NavigationService.NavigateAsync(ConstantUri.About);
+        }
+        Task NavigateToSettings()
+        {
+            return NavigationService.NavigateAsync(ConstantUri.Settings);
+        }
+       public ObservableCollection<AppMenuItem> AppMenuItems { get; }
+
+       IObservable<User> GetUserById()
+       {
+           return _userService.GetUserById(Settings.Username);
+       }
+       Task LogOut()
+        {
+             return   NavigationService.NavigateAsync(ConstantUri.SocialNetworkAuthentication);
         }
     }
 }

@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
-          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
-          xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-          xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
-          xmlns:styles="clr-namespace:NotiPetApp.Styles;assembly=NotiPetApp"
-          xmlns:models="clr-namespace:NotiPetApp.Models;assembly=NotiPetApp"
-          xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
-          x:TypeArguments="viewModels:HomeViewModel"
-            
-          x:Class="NotiPetApp.Views.MenuPages.HomePage">
-    <ContentPage.Resources>
+<views:ContentViewBase xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                 xmlns:styles="clr-namespace:NotiPetApp.Styles;assembly=NotiPetApp"
+                 xmlns:models="clr-namespace:NotiPetApp.Models;assembly=NotiPetApp"
+                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                 xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
+                 x:TypeArguments="viewModels:HomeViewModel"
+               
+                 x:Class="NotiPetApp.Views.MenuPages.HomePage">
+    <views:ContentViewBase.Resources>
         <Style TargetType="pancakeView:PancakeView">
             <Setter Property="BackgroundColor" Value="{DynamicResource SecondBackgroundColor}"/>
             <Setter Property="Shadow" Value="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"/>
@@ -37,36 +38,53 @@
             <styles:MenuItemTemplateSelector.SmallItemDataTemplate>
                 <DataTemplate x:DataType="models:AppMenuItem">
                     <pancakeView:PancakeView   StyleClass="photo"
+                                               effects:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                               effects:TouchEffect.PressedOpacity="0.6"
+                                               effects:TouchEffect.AnimationDuration="5"
+                                               effects:TouchEffect.PressedScale="0.8"
+                                               effects:TouchEffect.Command="{Binding ReactiveCommand}"
                                                >
                         <controls:ImageViewControl ControlTemplate="{StaticResource ImageViewControl}"
                                                    ImageSource="{Binding Image}"
-                                                   Text="{Binding Name}"/> 
+                                                   Text="{Binding Name}"
+                                                   Command="{Binding ReactiveCommand}"/> 
                     </pancakeView:PancakeView>
                 </DataTemplate>
             </styles:MenuItemTemplateSelector.SmallItemDataTemplate>
             <styles:MenuItemTemplateSelector.MediumItemDataTemplate>
                 <DataTemplate x:DataType="models:AppMenuItem">
-                    <pancakeView:PancakeView   
+                    <pancakeView:PancakeView                                                  effects:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                        effects:TouchEffect.PressedOpacity="0.6"
+                        effects:TouchEffect.AnimationDuration="5"
+                        effects:TouchEffect.PressedScale="0.8"
+                        effects:TouchEffect.Command="{TemplateBinding ReactiveCommand}"
                                                StyleClass="medium">
                         <controls:ImageViewControl ControlTemplate="{StaticResource ImageViewControl}"
                                                    ImageSource="{Binding Image}"
-                                                   Text="{Binding Name}"/> 
+                                                   Text="{Binding Name}"
+                                                   Command="{Binding ReactiveCommand}"/> 
                     </pancakeView:PancakeView>
                 </DataTemplate>
             </styles:MenuItemTemplateSelector.MediumItemDataTemplate>
             <styles:MenuItemTemplateSelector.LargeItemDataTemplate>
                 <DataTemplate x:DataType="models:AppMenuItem">
                     <pancakeView:PancakeView   StyleClass="large"
+                                               effects:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                               effects:TouchEffect.PressedOpacity="0.6"
+                                               effects:TouchEffect.AnimationDuration="5"
+                                               effects:TouchEffect.PressedScale="0.8"
+                                               effects:TouchEffect.Command="{Binding ReactiveCommand}"
                                                >
                         <controls:ImageViewControl ControlTemplate="{StaticResource ImageViewControl}"
                                                    ImageSource="{Binding Image}"
-                                                   Text="{Binding Name}"/> 
+                                                   Text="{Binding Name}"
+                                                   /> 
                     </pancakeView:PancakeView>
 
                 </DataTemplate>
             </styles:MenuItemTemplateSelector.LargeItemDataTemplate>
         </styles:MenuItemTemplateSelector>
-    </ContentPage.Resources>
+    </views:ContentViewBase.Resources>
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,Auto,Auto"
               HorizontalOptions="CenterAndExpand"
@@ -94,4 +112,4 @@
                           Style="{StaticResource GalleryStyle}" />
         </Grid>
     </ContentPage.Content>
-</views:BasePage>
+</views:ContentViewBase>

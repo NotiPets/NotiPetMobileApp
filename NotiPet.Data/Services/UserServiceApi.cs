@@ -23,14 +23,13 @@ namespace NotiPet.Data.Services
                 .Select(e=>e.Result);
         }
 
-        public IObservable<JwtDto> SingUp(UserRoleDto userRole)
+        public IObservable<JwtDto> SingUp(UserDto userRole)
         {
             return RemoteRequestObservableAsync<JwtDto>(_apiClient.Client.SignUp(userRole))
                 .Select(e=>e.Result);
         }
 
-
-        public IObservable<IEnumerable<UserRoleDto>> GetVeterinarians()
+        public IObservable<UserDto> GetUserById(string username)
         {
             throw new NotImplementedException();
         }

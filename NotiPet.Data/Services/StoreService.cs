@@ -22,8 +22,8 @@ namespace NotiPet.Data.Services
         private readonly SourceCache<AssetServiceModel, Guid> _assetSourceCache =
             new SourceCache<AssetServiceModel, Guid>(e => e.Guid);
 
-        private readonly SourceCache<ParameterOption, string> _parametersOptions =
-            new SourceCache<ParameterOption, string>(x=>x.Id);
+        private readonly SourceCache<ParameterOption, int> _parametersOptions =
+            new SourceCache<ParameterOption, int>(x=>x.Id);
 
 
 
@@ -34,12 +34,13 @@ namespace NotiPet.Data.Services
         }
 
         public SourceCache<AssetServiceModel, Guid> AssetsServices => _assetSourceCache;
-        public SourceCache<ParameterOption, string> ParametersOptions => _parametersOptions;
+        public SourceCache<ParameterOption, int> ParametersOptions => _parametersOptions;
 
 
         public IObservable<IEnumerable<AssetServiceModel>> GetAllProducts()
 
         {
+            _assetSourceCache.Clear();
          return   _assetServiceApi.GetAllProducts()
              .Select(e=>_mapper.Map<List<AssetServiceModel>>(e))
                 .Do(_assetSourceCache.AddOrUpdate);
@@ -49,16 +50,16 @@ namespace NotiPet.Data.Services
         {
             var parameters = new List<ParameterOption>()
             {
-                new ParameterOption("Bed",false,false,Guid.NewGuid().ToString(),"Filter")
+                new ParameterOption("Bed",false,false,1,"Filter")
                     .SetFilterExpression<AssetServiceModel>(e => e.AssetServiceType.Description == "Toys"),
                 
-                new ParameterOption("Toys",false,false,Guid.NewGuid().ToString(),"Filter")
+                new ParameterOption("Toys",false,false,2,"Filter")
                     .SetFilterExpression<AssetServiceModel>(e => e.AssetServiceType.Description  == "Bed"),
                 
-                new ParameterOption("Price",false,true,Guid.NewGuid().ToString(),"Sort")
+                new ParameterOption("Price",false,true,3,"Sort")
                     .SetSortExpression<AssetServiceModel>(SortExpressionComparer<AssetServiceModel>.Ascending(e=>e.Price)),
                 
-                new ParameterOption("Added Recently",false,true,Guid.NewGuid().ToString(),"Sort")
+                new ParameterOption("Added Recently",false,true,4,"Sort")
                     .SetSortExpression<AssetServiceModel>(SortExpressionComparer<AssetServiceModel>.Ascending(e=>e.Created)),
             };
             return Observable.Return(parameters).Do(_parametersOptions.AddOrUpdate);

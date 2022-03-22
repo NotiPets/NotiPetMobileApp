@@ -28,7 +28,7 @@ namespace NotiPet.Mocks.Dtos
         public BusinnessDtoGenerator()
         {
             var business = new Faker<BusinessDto>()
-                .RuleFor(e=>e.Id,x=>Guid.NewGuid().ToString())
+                .RuleFor(e=>e.Id,x=>x.IndexFaker.ToString())
                 .RuleFor(e => e.Name, x => x.Company.CompanyName())
                 .RuleFor(e => e.City, x => x.Company.Locale)
                 .RuleFor(e => e.Email, x => x.Person.Email)
@@ -38,6 +38,20 @@ namespace NotiPet.Mocks.Dtos
                 .RuleFor(e => e.Latitude, x => x.Address.Latitude())
                 .RuleFor(e=>e.PictureUrl, x=>x.Image.LoremFlickrUrl(keywords:"company"));
             BusinessDtos = business.Generate(10);
+        }
+
+        public static BusinessDto Generate()
+        {
+           return  new Faker<BusinessDto>()
+                .RuleFor(e=>e.Id,x=>x.IndexFaker.ToString())
+                .RuleFor(e => e.Name, x => x.Company.CompanyName())
+                .RuleFor(e => e.City, x => x.Company.Locale)
+                .RuleFor(e => e.Email, x => x.Person.Email)
+                .RuleFor(e => e.City, x => x.Address.City())
+                .RuleFor(e => e.Province, x => x.Address.State())
+                .RuleFor(e => e.Longitude, x => x.Address.Longitude())
+                .RuleFor(e => e.Latitude, x => x.Address.Latitude())
+                .RuleFor(e=>e.PictureUrl, x=>x.Image.LoremFlickrUrl(keywords:"company")).Generate();
         }
     }
 }

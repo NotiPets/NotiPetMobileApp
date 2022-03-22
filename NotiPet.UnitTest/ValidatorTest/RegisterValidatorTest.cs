@@ -13,9 +13,9 @@ namespace NotiPet.UnitTest.ValidatorTest
         [Fact]
         public void Should_have_Message_error_when_ShouldHaveAnyValidationError()
         {
-            var model = new LoginViewModelFixture();
+            var model = new RegisterViewModelFixture();
             //arrange
-            var authentication = (LoginViewModel)model;
+            var authentication = (RegisterViewModel)model;
             //act
             var result = _validation.TestValidate(authentication);
             //asset
