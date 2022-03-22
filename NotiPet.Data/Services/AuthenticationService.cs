@@ -65,7 +65,7 @@ namespace NotiPet.Data.Services
             var user = new User(Guid.NewGuid().ToString(),1,register.BusinessId,null,register.Username,register.Password,register.Email,register.DocumentType,register.Document,register.Name,register.LastName,register.Phone,register.Address1,register.Address2,register.City,register.Province,null,true,DateTime.Today,DateTime.Today);
 
              return  _userServiceApi.SingUp(_mapper.Map<UserDto>(user))
-                 .Select(x=>x.Jwt);
+                 .Select(x=>x?.Jwt);
         }
 
         public IObservable<List<PersonalDocument>> GetDocumentTypes()

@@ -56,7 +56,7 @@ namespace NotiPet.Domain.Validator
                 .Must(e=>!string.IsNullOrWhiteSpace(e))
                 .WithMessage("Name not valid");
             this.RuleFor(e => e)
-                .Must(e=>string.IsNullOrWhiteSpace(e.ConfirmPassword)&&e.ConfirmPassword.Equals(e.Password))
+                .Must(e=>!string.IsNullOrWhiteSpace(e.ConfirmPassword)&&e.ConfirmPassword.Equals(e.Password))
                 .WithMessage("ConfirmPassword isn't equal");
 
         }

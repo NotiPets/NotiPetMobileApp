@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
@@ -21,6 +22,9 @@ namespace NotiPetApp.Views.Authentication
         }
         protected override CompositeDisposable ManageDisposables(CompositeDisposable disposables)
         {
+            disposables.Add(this.WhenAnyValue(e => e.ViewModel.PersonalDocument)
+                .Select(e => e != null)
+                .BindTo(this, e => e.DocumentIdLB.IsVisible));
             disposables.Add(this.BindValidation(ViewModel,wm=>wm.Name,vw=>vw.UsernameLB.ValidationMessage));
             disposables.Add(this.BindValidation(ViewModel,wm=>wm.LastName,vw=>vw.LastnameLB.ValidationMessage));
             disposables.Add(this.BindValidation(ViewModel,wm=>wm.Username,vw=>vw.UsernameLB.ValidationMessage));

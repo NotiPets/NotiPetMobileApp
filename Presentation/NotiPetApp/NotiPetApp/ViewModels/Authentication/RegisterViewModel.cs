@@ -49,7 +49,7 @@ namespace NotiPetApp.ViewModels
         [Reactive]   public string  Document { get; set; }
         [Reactive] public string BusinessId { get; set; }
 
-        public IEnumerable<PersonalDocument> DocumentTypes { get;}
+        public List<PersonalDocument> DocumentTypes { get; private set; }
 
         public PersonalDocument PersonalDocument
         {
@@ -69,7 +69,8 @@ namespace NotiPetApp.ViewModels
         public ReactiveCommand<Unit,string> AuthenticationCommand { get; set; }
 
 
-        public RegisterViewModel(INavigationService navigationService, IPageDialogService dialogPage,IAuthenticationService     authenticationService,RegisterValidator validator) : base(navigationService, dialogPage)
+        public RegisterViewModel(INavigationService navigationService, IPageDialogService dialogPage,
+            IAuthenticationService authenticationService,RegisterValidator validator) : base(navigationService, dialogPage)
         {
             _authenticationService = authenticationService;
             _validator = validator;
@@ -96,13 +97,15 @@ namespace NotiPetApp.ViewModels
 
         protected override IObservable<Unit> ExecuteInitialize()
         {
-            return Observable.Create<Unit>(_ =>
+            return Observable.Create<Unit>(observer =>
             {
-                var disposable = new CompositeDisposable();
+                DocumentTypes = new List<PersonalDocument>();
+                var compositeDisposable = new CompositeDisposable();
                  _authenticationService.GetDocumentTypes()
-                    .BindTo(this,x=>x.DocumentTypes)
-                    .DisposeWith(disposable);;
-                 return disposable;
+                     .Do(DocumentTypes.AddRange)
+                     .Subscribe()
+                     .DisposeWith(compositeDisposable);
+                 return compositeDisposable;
             });
         }
         
@@ -164,7 +167,7 @@ namespace NotiPetApp.ViewModels
                 .Select(_validator.Validate)
                 .Select(e=> !e.IsValid&&e.Errors.HasMessageForProperty(nameof(City))? new ValidationState(false,e.Errors.GetMessageForProperty(nameof(City))):ValidationState.Valid);
 
-            IObservable<IValidationState> provinceValidation = this.WhenAnyValue(e => e.City)
+            IObservable<IValidationState> provinceValidation = this.WhenAnyValue(e => e.Province)
                 .StartWith()
                 .Skip(1)
                 .Select(_ => this)
