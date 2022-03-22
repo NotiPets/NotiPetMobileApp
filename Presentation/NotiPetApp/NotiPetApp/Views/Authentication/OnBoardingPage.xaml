@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotiPetApp.Views.Authentication.OnBoardingPage"
+             xmlns:ob="clr-namespace:NotiPetApp.Models;assembly=NotiPetApp"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BlueColor">#071D92</Color>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryDark}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="600" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" 
+                    HorizontalOptions="End"
+                    Margin="0,0,20,0"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    BackgroundColor="Transparent"
+                    TextColor="{StaticResource PrimaryDark}"
+                    Text="Iniciar sesión"
+                    Command="{Binding ExitCommand}"/>
+            <CarouselView x:Name="onBoardingCarousel" 
+                          Grid.Row="1"
+                          ItemsSource="{Binding Items}"                          
+                          VerticalOptions="Center"
+                          Position="{Binding Position}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="ob:OnboardingModel">
+                        <ContentView>
+                            <StackLayout Orientation="Vertical" Margin="0,100">
+                                <Image                                  
+                                       Source="{Binding Image}"
+                                       Aspect="AspectFill"
+                                       FlexLayout.AlignSelf="Center"/>
+                                <Label Text="{Binding Title}"
+                                       FontAttributes="Bold"
+                                       FontSize="Title" />
+                                <Label Text="{Binding Content}"
+                                       Margin="10,0"
+                                       TextColor="{StaticResource PrimaryLetterColor}"
+                                       FontSize="Body"/>
+  
+                            </StackLayout>
+                        </ContentView>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <Button Grid.Row="2" WidthRequest="260"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="Start"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    BackgroundColor="{StaticResource PrimaryDark}"
+                    CornerRadius="20"
+                    TextColor="{StaticResource SecondaryLetterLight}"
+                    Text="{Binding SkipButtonText}"
+                    Command="{Binding SkipCommand}"/>
+            <IndicatorView 
+                           Grid.Row="2"
+                           IndicatorsShape="Circle"
+                           IndicatorColor="{StaticResource BlueColor}"
+                           SelectedIndicatorColor="DarkGray"
+                           HorizontalOptions="Center"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
