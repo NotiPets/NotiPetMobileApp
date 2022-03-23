@@ -140,6 +140,12 @@
       <BundleResource Include="Resources\Artboard.png" />
       <BundleResource Include="Resources\DogIndividual.png" />
       <BundleResource Include="Resources\logOut.png" />
+      <BundleResource Include="Resources\OnBoarding1.png" />
+      <BundleResource Include="Resources\OnBoarding2.png" />
+      <BundleResource Include="Resources\OnBoarding3.png" />
+      <BundleResource Include="Resources\OnBoardingComplete1.png" />
+      <BundleResource Include="Resources\OnBoardingComplete2.png" />
+      <BundleResource Include="Resources\OnBoardingComplete3.png" />
       <BundleResource Include="Resources\patas.png" />
       <BundleResource Include="Resources\question.png" />
       <BundleResource Include="Resources\settings.png" />
