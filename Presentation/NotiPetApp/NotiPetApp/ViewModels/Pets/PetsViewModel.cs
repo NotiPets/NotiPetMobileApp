@@ -22,7 +22,6 @@ namespace NotiPetApp.ViewModels
         public ReactiveCommand<Unit,Unit> InitializingCommand { get; set; }
         private readonly  ReadOnlyObservableCollection<Pet> _pets;
         public ReadOnlyObservableCollection<Pet> Pets => _pets;
-        //NavigateToRegisterPetCommand
        [Reactive] public string SearchText { get; set; }
        public ReactiveCommand<Unit,Unit> NavigateToRegisterPetCommand{ get; set; }
 

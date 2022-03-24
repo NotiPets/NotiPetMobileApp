@@ -19,6 +19,9 @@ namespace NotiPetApp.ViewModels
         private ObservableAsPropertyHelper<User> _user;
         public User User => _user.Value;
         public ReactiveCommand<Unit,User> GetUserCommand { get; set; }
+        public ReactiveCommand<Unit,Unit> NavigateToEditProfileCommand{ get; set; }
+
+        //NavigateToEditProfileCommand
         public ProfileViewModel(INavigationService navigationService, IPageDialogService dialogPage,
             IUserService userService) : base(navigationService, dialogPage)
         {
@@ -30,6 +33,11 @@ namespace NotiPetApp.ViewModels
                 new(ConstantDictionary.Settings,"settings",3,ReactiveCommand.CreateFromTask(NavigateToSettings),SizeItem.Small),
                 new(ConstantDictionary.Logout,"logOut",4,ReactiveCommand.CreateFromTask(LogOut),SizeItem.Small),
             };
+            
+            NavigateToEditProfileCommand = ReactiveCommand.CreateFromTask<Unit>((param) =>
+            {
+                return NavigationService.NavigateAsync(ConstantUri.EditProfile);
+            });
             GetUserCommand = ReactiveCommand.CreateFromObservable(GetUserById);
             _user = GetUserCommand.Execute().ToProperty(this, e => e.User);
             InitializeCommand
