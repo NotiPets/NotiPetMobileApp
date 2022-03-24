@@ -15,7 +15,146 @@
     <controls:TabItemReactive.Resources>
         <converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/> 
     </controls:TabItemReactive.Resources>
-     <ListView  x:Name="VeterinariesCollection" 
-                ItemsSource="{Binding Veterinaries}"
-     />
+        <CollectionView ItemsSource="{Binding Veterinaries}"  Margin="10,5,10,5" >
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Margin="10">
+                <pancakeView:PancakeView  Margin="5"  Shadow="{StaticResource ShadowMarkupStyle}"  CornerRadius="20"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
+                      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                      ColumnDefinitions="110,Auto,*">
+                    
+                    <pancakeView:PancakeView  Grid.Column="0" 
+                                              Padding="0" Grid.RowSpan="4"
+                                              CornerRadius="20"
+                                              Margin="5,10,10,0" >
+                       <Image  Source="{Binding PictureUrl}"
+                                          Aspect="AspectFill"
+                                          HeightRequest="80"
+                                          WidthRequest="50"/>
+                      </pancakeView:PancakeView>
+                
+                   <Label Text="{Binding Name}"
+                            FontSize="18"
+                             Grid.Row="1"
+                             Style="{StaticResource LabelTitleBold}"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="2"/>
+                          <Label Text="{Binding Address1}"
+                                 Grid.Row="2"
+                                 FontSize="12"
+                                 MaxLines="1"
+                                 Style="{StaticResource LabelSubtitleBold}"
+                                 LineBreakMode="TailTruncation"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="2"/>
+                      <xForms1:SfRating Precision="Half" 
+                                        ItemCount="5" 
+                                        IsEnabled="False" 
+                                       Margin="0,0,10,0" 
+                                        ItemSize="15" 
+                                        Value="4" 
+                                        HeightRequest="25" 
+                                         Grid.Row="3" 
+                                        Grid.Column="1"> 
+                           <xForms1:SfRating.RatingSettings> 
+                               <xForms1:SfRatingSettings RatedFill="{DynamicResource RatingColor}" UnRatedFill="Transparent" RatedStroke="LightGray" RatedStrokeWidth="1" UnRatedStrokeWidth="1" />
+                           </xForms1:SfRating.RatingSettings> 
+                           </xForms1:SfRating> 
+                          <Label Text="125 Reviews"
+                                 Grid.Row="3"
+                                 Grid.Column="2"
+                                 Style="{StaticResource LabelSmall}"
+                                 />
+                   
+                   <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="10,0,5,5" Padding="5,10,10,5">
+                       <pancakeView:PancakeView WidthRequest="25"
+                                                CornerRadius="25" Margin="20,0,5,0"
+                                                BackgroundColor="#dae9ed"
+                                                Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
+                                                HeightRequest="25">
+           
+                           <Image Source="calendar.png"
+                                  VerticalOptions="CenterAndExpand"
+                                  Margin="5"
+                              
+                           />
+                       </pancakeView:PancakeView>
+                       
+                       <Label FontSize="12"
+                           Style="{StaticResource LabelSubtitleBold}" 
+                           HorizontalTextAlignment="Start" 
+                       >
+                           <Label.FormattedText>
+                               <FormattedString>
+                                   <Span Text="8 AM" ></Span>
+                                   <Span Text=" - " ></Span>
+                                   <Span Text="6 PM"  ></Span>
+
+                               </FormattedString>
+                           </Label.FormattedText>
+                       </Label>
+                       
+                       <pancakeView:PancakeView WidthRequest="25"
+                                                CornerRadius="25" Margin="20,0,5,0"
+                                                BackgroundColor="#dae9ed"
+                                                Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
+                                                HeightRequest="25">
+           
+                           <Image Source="location.png"
+                                  VerticalOptions="CenterAndExpand"
+                                  Margin="5"
+                              
+                           />
+                       </pancakeView:PancakeView>
+                       
+                       <Label 
+                           Style="{StaticResource LabelSubtitleBold}" 
+                           HorizontalTextAlignment="Start" 
+                       >
+                           <Label.FormattedText>
+                               <FormattedString>
+                                   <Span Text="1.5" ></Span>
+                                   <Span Text=" " ></Span>
+                                   <Span Text="km"  ></Span>
+
+                               </FormattedString>
+                           </Label.FormattedText>
+                       </Label>
+                       
+                       <pancakeView:PancakeView WidthRequest="25"
+                                                CornerRadius="25" Margin="20,0,5,0"
+                                                BackgroundColor="#dae9ed"
+                                                HeightRequest="25">
+           
+                           <Image Source="cartera.png"
+                                  VerticalOptions="CenterAndExpand"
+                                  Margin="5"
+                              
+                           />
+                       </pancakeView:PancakeView>
+                       
+                       <Label 
+                           Style="{StaticResource LabelSubtitleBold}" 
+                           HorizontalTextAlignment="Start" 
+                       >
+                           <Label.FormattedText>
+                               <FormattedString>
+                                   <Span Text="$" ></Span>
+                                   <Span Text=" " ></Span>
+                                   <Span Text="20"  ></Span>
+
+                               </FormattedString>
+                           </Label.FormattedText>
+                       </Label>
+                   </StackLayout>
+                   
+
+                </Grid>
+             
+                </pancakeView:PancakeView>
+                </StackLayout>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </controls:TabItemReactive>

@@ -15,19 +15,19 @@ namespace NotiPet.Mocks.Dtos
             {
                 new SpecialityDto()
                 {
-                    Name = "Veterniario"
+                    Name = "Veterniario", Description = "Veterinario Dentista"
                 },
                 new SpecialityDto()
                 {
-                    Name = "Terapista"
+                    Name = "Terapista", Description = "Veterinario Dentista"
                 },
                 new SpecialityDto()
                 {
-                    Name = "Anestesiólogo"
+                    Name = "Anestesiólogo" , Description = "Veterinario Dentista"
                 },
                 new SpecialityDto()
                 {
-                    Name = "Gastroenterólogo"
+                    Name = "Gastroenterólogo" , Description = "Veterinario Dentista"
                 },
             };
         }

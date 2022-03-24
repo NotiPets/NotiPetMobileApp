@@ -22,7 +22,7 @@ namespace NotiPet.Domain.Models
             Address2 = address2;
             City = city;
             Province = province;
-            PictureUrl = pictureUrl;
+            PictureUrl = /*pictureUrl*/ "https://www.hogarmania.com/archivos/202008/como-llevar-perro-veterinario-portada-668x400x80xX-1.jpg";
             Active = active;
             Created = created;
             Updated = updated;

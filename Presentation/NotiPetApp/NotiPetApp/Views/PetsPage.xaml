@@ -12,94 +12,174 @@
                 x:Class="NotiPetApp.Views.PetsPage">
         <Grid RowDefinitions="Auto,*"
               RowSpacing="20">
-            <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
-                                     Shadow="{StaticResource ShadowMarkupStyle}"
-                                     Padding="0,5,0,0"
-                                 
-                                     CornerRadius="0,0,30,30">
-                <Grid RowDefinitions="Auto,Auto"
-                      Padding="10,20"
-                      ColumnDefinitions="*,Auto"
-                      Margin="5,10,5,10"
-                      RowSpacing="30">
-                    <controls:SearchBarControl Grid.ColumnSpan="2"
-                                               TextColor="{DynamicResource PrimaryLetterColor}"
-                                               BackgroundColor="{DynamicResource BackgroundColor}"
-                                               CornerRadius="10"
-                                               Margin="0,0,30,0"
-                                               Text="{Binding SearchText}">
-                        <controls:SearchBarControl.SearchPictureUrlSource>
-                            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Search}"
-                                             Color="{StaticResource PrimaryLetterColor}"
+            <!-- <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}" -->
+            <!--                          Shadow="{StaticResource ShadowMarkupStyle}" -->
+            <!--                          Padding="0,5,0,0" -->
+            <!--                       -->
+            <!--                          CornerRadius="0,0,30,30"> -->
+                
+                <Grid RowDefinitions="Auto,Auto,Auto" Padding="5,20,5,0"
+                      ColumnDefinitions="*,Auto,*">
+                    <Image BackgroundColor="Transparent"
+                           HorizontalOptions="Start"
+                           Margin="10,0"
+                           Grid.Column="0">
+                        <Image.Source>
+                            <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                              Color="{StaticResource PrimaryDark}"
+                                              FontFamily="{StaticResource FontSolid}"/>
+                        </Image.Source>
+                    </Image>
+                    <Label Text="My Pets"  Grid.Column="1"
+                           Style="{StaticResource LabelLarge}"/>
+                    <Image BackgroundColor="Transparent"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    Margin="10,0"
+                                                    Grid.Column="2">
+                        <Image.Source>
+                            <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.Add}"
+                                             Color="{StaticResource PrimaryDark}"
                                              FontFamily="{StaticResource FontSolid}"/>
-                        </controls:SearchBarControl.SearchPictureUrlSource>
-                    </controls:SearchBarControl>
-                    <ScrollView Grid.Row="1"
-                               HorizontalScrollBarVisibility="Never"
-                                Orientation="Horizontal"   >
-                    <controls:StackLayoutListView   Orientation="Horizontal"
-                                                    x:Name="Parameters">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate x:DataType="models:ParameterOption">
-                                <pancakeView:PancakeView 
-                                                         BackgroundColor="{DynamicResource PrimaryDark}"
-                                                         Padding="15,5"
-                                                         CornerRadius="5"
-                                                         Margin="5,0"
-                                                         >
-                                    <Label
-                                        Style="{StaticResource  LabelSubtitleBold}"
-                                        HorizontalTextAlignment="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{x:Static fontIcon:FontIcon.Filter}"
-                                                      TextColor="White"
-                                                      FontFamily="{StaticResource FontSolid}"
-                                                />
-                                                <Span Text=" " CharacterSpacing="10"/>
-                                                <Span Text="{Binding Title}"
-                                                      TextColor="White"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </pancakeView:PancakeView>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </controls:StackLayoutListView>
-                    </ScrollView>
-                    <pancakeView:PancakeView Grid.Row="1"
-                                             BackgroundColor="{DynamicResource BackgroundColor}"
-                                             Padding="15,5"
-                                             CornerRadius="5"
-         
-                                             Grid.Column="1">
-                        <pancakeView:PancakeView.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding NavigateToFilterCommand}"
-                                                  />
-                        </pancakeView:PancakeView.GestureRecognizers>
-                        <Label
-                               Style="{StaticResource  LabelSubtitleBold}"
-                               HorizontalTextAlignment="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{x:Static fontIcon:FontIcon.FilterSettings}"
-                                          TextColor="{DynamicResource SecondaryDark}"
-                                          FontFamily="{StaticResource FontSolid}"
-                                         />
-                                    <Span Text=" " CharacterSpacing="10"/>
-                                    <Span Text="Filtro"
-                                          />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                    </pancakeView:PancakeView>
+                        </Image.Source>
+                    </Image>
                 </Grid>
-            </pancakeView:PancakeView>
+                <!-- <Grid RowDefinitions="Auto,Auto" -->
+                <!--       Padding="10,20" -->
+                <!--       ColumnDefinitions="*,Auto" -->
+                <!--       Margin="5,10,5,10" -->
+                <!--       RowSpacing="30"> -->
+                <!--     <controls:SearchBarControl Grid.ColumnSpan="2" -->
+                <!--                                TextColor="{DynamicResource PrimaryLetterColor}" -->
+                <!--                                BackgroundColor="{DynamicResource BackgroundColor}" -->
+                <!--                                CornerRadius="10" -->
+                <!--                                Margin="0,0,30,0" -->
+                <!--                                Text="{Binding SearchText}"> -->
+                <!--         <controls:SearchBarControl.SearchPictureUrlSource> -->
+                <!--             <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Search}" -->
+                <!--                              Color="{StaticResource PrimaryLetterColor}" -->
+                <!--                              FontFamily="{StaticResource FontSolid}"/> -->
+                <!--         </controls:SearchBarControl.SearchPictureUrlSource> -->
+                <!--     </controls:SearchBarControl> -->
+                <!--     <ScrollView Grid.Row="1" -->
+                <!--                HorizontalScrollBarVisibility="Never" -->
+                <!--                 Orientation="Horizontal"   > -->
+                <!--     <controls:StackLayoutListView   Orientation="Horizontal" -->
+                <!--                                     x:Name="Parameters"> -->
+                <!--         <BindableLayout.ItemTemplate> -->
+                <!--             <DataTemplate x:DataType="models:ParameterOption"> -->
+                <!--                 <pancakeView:PancakeView  -->
+                <!--                                          BackgroundColor="{DynamicResource PrimaryDark}" -->
+                <!--                                          Padding="15,5" -->
+                <!--                                          CornerRadius="5" -->
+                <!--                                          Margin="5,0" -->
+                <!--                                          > -->
+                <!--                     <Label -->
+                <!--                         Style="{StaticResource  LabelSubtitleBold}" -->
+                <!--                         HorizontalTextAlignment="Center"> -->
+                <!--                         <Label.FormattedText> -->
+                <!--                             <FormattedString> -->
+                <!--                                 <Span Text="{x:Static fontIcon:FontIcon.Filter}" -->
+                <!--                                       TextColor="White" -->
+                <!--                                       FontFamily="{StaticResource FontSolid}" -->
+                <!--                                 /> -->
+                <!--                                 <Span Text=" " CharacterSpacing="10"/> -->
+                <!--                                 <Span Text="{Binding Title}" -->
+                <!--                                       TextColor="White"/> -->
+                <!--                             </FormattedString> -->
+                <!--                         </Label.FormattedText> -->
+                <!--                     </Label> -->
+                <!--                 </pancakeView:PancakeView> -->
+                <!--             </DataTemplate> -->
+                <!--         </BindableLayout.ItemTemplate> -->
+                <!--     </controls:StackLayoutListView> -->
+                <!--     </ScrollView> -->
+                <!--     <pancakeView:PancakeView Grid.Row="1" -->
+                <!--                              BackgroundColor="{DynamicResource BackgroundColor}" -->
+                <!--                              Padding="15,5" -->
+                <!--                              CornerRadius="5" -->
+                <!-- -->
+                <!--                              Grid.Column="1"> -->
+                <!--         <pancakeView:PancakeView.GestureRecognizers> -->
+                <!--             <TapGestureRecognizer Command="{Binding NavigateToFilterCommand}" -->
+                <!--                                   /> -->
+                <!--         </pancakeView:PancakeView.GestureRecognizers> -->
+                <!--         <Label -->
+                <!--                Style="{StaticResource  LabelSubtitleBold}" -->
+                <!--                HorizontalTextAlignment="Center"> -->
+                <!--             <Label.FormattedText> -->
+                <!--                 <FormattedString> -->
+                <!--                     <Span Text="{x:Static fontIcon:FontIcon.FilterSettings}" -->
+                <!--                           TextColor="{DynamicResource SecondaryDark}" -->
+                <!--                           FontFamily="{StaticResource FontSolid}" -->
+                <!--                          /> -->
+                <!--                     <Span Text=" " CharacterSpacing="10"/> -->
+                <!--                     <Span Text="Filtro" -->
+                <!--                           /> -->
+                <!--                 </FormattedString> -->
+                <!--             </Label.FormattedText> -->
+                <!--         </Label> -->
+                <!--     </pancakeView:PancakeView> -->
+                <!-- </Grid> -->
+            <!-- </pancakeView:PancakeView> -->
 
             <CollectionView ItemsSource="{Binding Pets}"
                             Grid.Row="1"
                             x:Name="Pets"
             >
+                 <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Margin="10">
+                     <pancakeView:PancakeView  Shadow="{StaticResource ShadowMarkupStyle}" Padding="20" Margin="20"   CornerRadius="20" HeightRequest="200"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
+                      <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                      ColumnDefinitions="110,Auto,*">
+                          
+                          <Image BackgroundColor="Transparent"
+                                 HorizontalOptions="EndAndExpand"
+                                 Grid.ColumnSpan="3"
+                                 Grid.Column="0">
+                              <Image.Source>
+                                  <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.EditIcon}"
+                                                    Color="{StaticResource PrimaryDark}"
+                                                    FontFamily="{StaticResource FontSolid}"/>
+                              </Image.Source>
+                          </Image>
+                    <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
+                                              Padding="0" Grid.Row="0" Grid.RowSpan="2"
+                                              CornerRadius="60"
+                                              Margin="5,10,10,0" >
+                       <Image  Source="{Binding PictureUrl}"
+                                          Aspect="AspectFill" 
+                                          HeightRequest="120"
+                                          WidthRequest="120"/>
+                      </pancakeView:PancakeView>
+                
+                   <Label Text="{Binding Name}"
+                            FontSize="20"
+                             Grid.Row="3"
+                            HorizontalOptions="CenterAndExpand"            
+                            Style="{StaticResource LabelTitleBold}"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"/>
+                   
+                          <Label Text="{Binding PetType.Name}"
+                                 Grid.Row="4"
+                                 FontSize="16"
+                                 MaxLines="1"
+                                 HorizontalOptions="CenterAndExpand"            
+                                 TextColor="{DynamicResource PrimaryLetterLightColor}"
+                                 Style="{StaticResource LabelSubtitleBold}"
+                                 LineBreakMode="TailTruncation"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="3"/>
+
+                </Grid>
+             
+                </pancakeView:PancakeView>
+              
+                </StackLayout>
+               
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
             </CollectionView>
             </Grid>
 </views:BasePage>

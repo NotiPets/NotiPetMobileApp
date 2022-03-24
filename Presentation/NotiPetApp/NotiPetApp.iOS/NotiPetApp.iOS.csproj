@@ -138,7 +138,9 @@
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\Artboard.png" />
+      <BundleResource Include="Resources\cartera.png" />
       <BundleResource Include="Resources\DogIndividual.png" />
+      <BundleResource Include="Resources\location.png" />
       <BundleResource Include="Resources\logOut.png" />
       <BundleResource Include="Resources\OnBoarding1.png" />
       <BundleResource Include="Resources\OnBoarding2.png" />

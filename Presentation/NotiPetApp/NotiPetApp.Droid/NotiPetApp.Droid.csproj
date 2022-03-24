@@ -81,8 +81,10 @@
     <ItemGroup>
         <AndroidResource Include="Resources\drawable\Artboard.png" />
         <AndroidResource Include="Resources\drawable\Calendar.png" />
+        <AndroidResource Include="Resources\drawable\cartera.png" />
         <AndroidResource Include="Resources\drawable\DogIndividual.png" />
         <AndroidResource Include="Resources\drawable\Emergency.png" />
+        <AndroidResource Include="Resources\drawable\location.png" />
         <AndroidResource Include="Resources\drawable\logOut.png" />
         <AndroidResource Include="Resources\drawable\OnBoarding1.png" />
         <AndroidResource Include="Resources\drawable\OnBoarding2.png" />
