@@ -8,6 +8,8 @@ namespace NotiPet.Domain.Models
         public string Name { get;  }
 
         public string Description { get;  }
+        
+        //TODO: FALTA EXPERIENCIA DEL ESPECIALISTA 
 
         public Speciality(int id, string name, string description)
         {

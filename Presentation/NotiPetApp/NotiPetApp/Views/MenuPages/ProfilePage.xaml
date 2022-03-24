@@ -35,6 +35,9 @@
                                              Color="{StaticResource PrimaryDark}"
                                              FontFamily="{StaticResource FontSolid}"/>
                         </Image.Source>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToEditProfileCommand}" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
                     </Image>
                     <forms:CachedImage   Source="{Binding User.PictureUrl}"
                                          Grid.Row="1"

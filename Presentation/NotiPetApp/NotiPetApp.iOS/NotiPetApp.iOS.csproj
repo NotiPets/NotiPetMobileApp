@@ -117,7 +117,8 @@
         <PackageReference Include="ReactiveUI.Validation" Version="2.2.1" />
         <PackageReference Include="ReactiveUI.XamForms" Version="17.1.50" />
         <PackageReference Include="Realm" Version="10.10.0" />
-        <PackageReference Include="Syncfusion.Licensing" Version="19.4.0.52" />
+        <PackageReference Include="Syncfusion.Licensing" Version="19.4.0.56" />
+        <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.4.0.56" />
         <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.4.0.52" />
         <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.4.0.52" />
         <PackageReference Include="System.Reactive" Version="5.0.0" />
@@ -138,8 +139,17 @@
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Resources\Artboard.png" />
+      <BundleResource Include="Resources\cartera.png" />
       <BundleResource Include="Resources\DogIndividual.png" />
+      <BundleResource Include="Resources\equality.png" />
+      <BundleResource Include="Resources\location.png" />
       <BundleResource Include="Resources\logOut.png" />
+      <BundleResource Include="Resources\OnBoarding1.png" />
+      <BundleResource Include="Resources\OnBoarding2.png" />
+      <BundleResource Include="Resources\OnBoarding3.png" />
+      <BundleResource Include="Resources\OnBoardingComplete1.png" />
+      <BundleResource Include="Resources\OnBoardingComplete2.png" />
+      <BundleResource Include="Resources\OnBoardingComplete3.png" />
       <BundleResource Include="Resources\patas.png" />
       <BundleResource Include="Resources\question.png" />
       <BundleResource Include="Resources\settings.png" />

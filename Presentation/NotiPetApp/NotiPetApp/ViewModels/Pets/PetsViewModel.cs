@@ -7,6 +7,7 @@ using System.Reactive.Linq;
 using DynamicData;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
+using NotiPetApp.Helpers;
 using NotiPetApp.Services;
 using Prism.Navigation;
 using Prism.Services;
@@ -22,6 +23,8 @@ namespace NotiPetApp.ViewModels
         private readonly  ReadOnlyObservableCollection<Pet> _pets;
         public ReadOnlyObservableCollection<Pet> Pets => _pets;
        [Reactive] public string SearchText { get; set; }
+       public ReactiveCommand<Unit,Unit> NavigateToRegisterPetCommand{ get; set; }
+
 
         public PetsViewModel(INavigationService navigationService, IPageDialogService dialogPage,
             IPetsService petsService,    ISchedulerProvider currentThread) : base(navigationService, dialogPage)
@@ -38,6 +41,10 @@ namespace NotiPetApp.ViewModels
                 .DisposeMany()
                 .Subscribe()
                 .DisposeWith(Subscriptions);
+            NavigateToRegisterPetCommand = ReactiveCommand.CreateFromTask<Unit>((param) =>
+            {
+                return NavigationService.NavigateAsync(ConstantUri.RegisterOrEditPet);
+            });
             InitializingCommand = ReactiveCommand.CreateFromObservable(Initialize);
             
 

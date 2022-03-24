@@ -32,17 +32,17 @@ namespace NotiPetApp.ViewModels
                 new()
                 {
                     Content = "Donde tu mascota estará segura!",
-                    Image = "OnBoardingComplete1.png"
+                    Image = "OnBoarding1.png"
                 },
                 new()
                 {
                     Content = "Con seguimiento a tiempo real del estado de tus mascotas.",
-                    Image = "OnBoardingComplete2.png"
+                    Image = "OnBoarding2.png"
                 },
                 new()
                 {
                     Content = "Servicio de atención de emergencias para sus mascotas.",
-                    Image = "OnBoardingComplete3.png"
+                    Image = "OnBoarding3.png"
                 }
             };
         }

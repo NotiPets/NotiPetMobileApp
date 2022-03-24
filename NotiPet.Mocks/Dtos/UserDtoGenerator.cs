@@ -25,6 +25,8 @@ namespace NotiPet.Mocks.Services
                 .RuleFor(e => e.Province, x => x.Person.Address.Suite)
                 .RuleFor(e => e.Document, x => Guid.NewGuid().ToString())
                 .RuleFor(e => e.Phone, x => x.Person.Phone);
+            
+
 
 
 
