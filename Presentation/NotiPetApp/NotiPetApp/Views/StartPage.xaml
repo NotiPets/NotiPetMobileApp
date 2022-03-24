@@ -12,7 +12,7 @@
         Animation="StartAppAnimations.json" 
         AutoPlay="True"
         Speed="4"
-        IsAnimating="True"
+        IsAnimating="True" 
         VerticalOptions="FillAndExpand"
         HorizontalOptions="FillAndExpand" />
 

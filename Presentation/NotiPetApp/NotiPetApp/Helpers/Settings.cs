@@ -9,6 +9,11 @@ namespace NotiPetApp.Helpers
 {
     public static class Settings
     {
+        public static bool ShowOnBoarding
+        {
+            get => DeviceInfo.Platform != DevicePlatform.Unknown && Preferences.Get(nameof(ShowOnBoarding), true);
+            set => Preferences.Set(nameof(ShowOnBoarding), value);
+        }
         public static string Username
         {
             get=>DeviceInfo.Platform != DevicePlatform.Unknown? Preferences.Get(nameof(Username),string.Empty):string.Empty; 
