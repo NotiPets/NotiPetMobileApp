@@ -33,6 +33,7 @@
                     <Label Text="My Pets"  Grid.Column="1"
                            Style="{StaticResource LabelLarge}"/>
                     <Image BackgroundColor="Transparent"
+                           
                                                     HorizontalOptions="EndAndExpand"
                                                     Margin="10,0"
                                                     Grid.Column="2">
@@ -41,6 +42,10 @@
                                              Color="{StaticResource PrimaryDark}"
                                              FontFamily="{StaticResource FontSolid}"/>
                         </Image.Source>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding NavigateToRegisterPetCommand}" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
                     </Image>
                 </Grid>
                 <!-- <Grid RowDefinitions="Auto,Auto" -->

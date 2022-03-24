@@ -11,11 +11,11 @@
                        xmlns:xForms1="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                        x:Class="NotiPetApp.Views.Vets.SpecialistView" 
                        Title="Specialist">
-    <CollectionView ItemsSource="{Binding Specialists}"  Margin="10,5,10,5" >
+    <CollectionView ItemsSource="{Binding Specialists}"  Margin="10,5,10,5"  >
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout Margin="10">
-                <pancakeView:PancakeView  Margin="5"   CornerRadius="20" Shadow="{StaticResource ShadowMarkupStyle}"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
+                <pancakeView:PancakeView   CornerRadius="20" Shadow="{StaticResource ShadowMarkupStyle}"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
                       <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                       ColumnDefinitions="110,Auto,*">
                     
