@@ -15,6 +15,7 @@ namespace NotiPet.Data.Services
         private readonly ISpecialistServiceApi _serviceApi;
         public SourceCache<Specialist, int> SpecialistSource => _specialistSource;
         private readonly SourceCache<Specialist, int> _specialistSource = new(x => x.Id);
+        private readonly SourceCache<Speciality, int> _specialitySource = new(x => x.Id);
 
         public SpecialistsService(IMapper mapper,ISpecialistServiceApi serviceApi)
         {
@@ -27,9 +28,19 @@ namespace NotiPet.Data.Services
                  .Select(_mapper.Map<List<Specialist>>)
                 .Do(_specialistSource.AddOrUpdate);
         }
+
+        public IObservable<IEnumerable<Speciality>> GetSpecialities()
+        {
+            return _serviceApi.GetSpecialities()
+                .Select(_mapper.Map<IEnumerable<Speciality>>)
+                .Do(_specialitySource.AddOrUpdate);
+        }
+
         private readonly SourceCache<ParameterOption, int> _parametersOptions =
             new SourceCache<ParameterOption, int>(x=>x.Id);
         public SourceCache<ParameterOption, int> ParametersOptions => _parametersOptions;
+        public SourceCache<Speciality, int> SpecialitySource => _specialitySource;
+
         public IObservable<IEnumerable<ParameterOption>> ParameterOptions()
         {
             var parameters = new List<ParameterOption>()

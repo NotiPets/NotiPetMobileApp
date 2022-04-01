@@ -15,22 +15,24 @@
     <controls:TabItemReactive.Resources>
         <converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/> 
     </controls:TabItemReactive.Resources>
-        <CollectionView ItemsSource="{Binding Veterinaries}"  Margin="10,5,10,5" >
-        <CollectionView.ItemTemplate>
+        <ListView ItemsSource="{Binding Veterinaries}"  Margin="10,5,10,5" 
+                  HasUnevenRows="True"
+                  >
+        <ListView.ItemTemplate>
             <DataTemplate>
-                <StackLayout Margin="10">
-                <pancakeView:PancakeView  Margin="5"  Shadow="{StaticResource ShadowMarkupStyle}"  CornerRadius="20"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
-                      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                <ViewCell>
+              <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                            Margin="10"
                       ColumnDefinitions="110,Auto,*">
                     
                     <pancakeView:PancakeView  Grid.Column="0" 
                                               Padding="0" Grid.RowSpan="4"
                                               CornerRadius="20"
                                               Margin="5,10,10,0" >
-                       <Image  Source="{Binding PictureUrl}"
-                                          Aspect="AspectFill"
-                                          HeightRequest="80"
-                                          WidthRequest="50"/>
+                       <forms:CachedImage   Source="{Binding PictureUrl}"
+                                            Aspect="AspectFill"
+                                            HeightRequest="80"
+                                            WidthRequest="50"/>
                       </pancakeView:PancakeView>
                 
                    <Label Text="{Binding Name}"
@@ -150,11 +152,8 @@
                    
 
                 </Grid>
-             
-                </pancakeView:PancakeView>
-                </StackLayout>
-
+                </ViewCell>
             </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+        </ListView.ItemTemplate>
+    </ListView>
 </controls:TabItemReactive>

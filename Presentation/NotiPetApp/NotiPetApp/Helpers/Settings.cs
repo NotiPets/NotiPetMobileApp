@@ -30,5 +30,11 @@ namespace NotiPetApp.Helpers
        
       static  Task SetSecureStorage(string key,string value)
             => DeviceInfo.Platform != DevicePlatform.Unknown ? SecureStorage.SetAsync(key,value):Task.CompletedTask;
+
+     static void ClearStorage()
+      {
+          SecureStorage.RemoveAll();
+          Preferences.Clear();
+      }
     }
 }

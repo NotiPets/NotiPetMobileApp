@@ -26,6 +26,11 @@ namespace NotiPet.Data.Services
             return _userServiceApi.GetUserById(username).
                     Select(_mapper.Map<User>);
         }
-        
+
+        public IObservable<User> UpdateUser(string id, User user)
+        {
+           return _userServiceApi.UpdateUser(id, _mapper.Map<UserDto>(user))
+               .Select(_mapper.Map<User>);
+        }
     }
 }

@@ -8,12 +8,13 @@ namespace NotiPet.Mocks.Services
 {
     public class UserDtoGenerator
     {
-        public UserDto UserRoleDto { get; }
+        public UserDto UserRoleDto { get; set; }
         public AuthenticationDto AuthenticationDto { get;  }
 
         public UserDtoGenerator()
         {
             var user = new Faker<UserDto>().RuleFor(e => e.Names, x => x.Person.FirstName)
+                .RuleFor(e => e.Id, x => x.Hashids.Encode())
                 .RuleFor(e => e.Lastnames, x => x.Person.LastName)
                 .RuleFor(e => e.Username, x => x.Person.UserName)
                 .RuleFor(e => e.Password, x => Guid.NewGuid().ToString())

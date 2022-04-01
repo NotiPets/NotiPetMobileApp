@@ -33,5 +33,10 @@ namespace NotiPet.Data.Services
         {
             throw new NotImplementedException();
         }
+
+        public IObservable<UserDto> UpdateUser(string id, UserDto user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

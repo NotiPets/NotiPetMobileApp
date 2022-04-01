@@ -8,7 +8,9 @@ using NotiPet.Mocks.Services;
 using NotiPetApp.Helpers;
 using NotiPetApp.Services;
 using NotiPetApp.ViewModels;
+using NotiPetApp.ViewModels.Activity;
 using NotiPetApp.Views;
+using NotiPetApp.Views.Activity;
 using NotiPetApp.Views.Authentication;
 using NotiPetApp.Views.MenuPages;
 using NotiPetApp.Views.Vets;
@@ -75,7 +77,9 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<OnBoardingPage,OnBoardingViewModel>();
             containerRegistry.RegisterForNavigation<RegisterOrEditPetPage, RegisterOrEditPetViewModel>();
             containerRegistry.RegisterForNavigation<EditProfilePage, EditProfileViewModel>();
-            
+            containerRegistry.RegisterForNavigation<SelectSpecialityPopUp,SelectSpecialityViewModel >();
+            containerRegistry.RegisterForNavigation<RegisterPage,RegisterViewModel >();
+            containerRegistry.RegisterForNavigation<ConfirmAppointmentPage, ConfirmAppointmentViewModel>();
             containerRegistry.RegisterForNavigation<OptionsParametersPage,OptionsParametersViewModel>(ConstantUri.OptionParameters);
             ContainerProvider = Container;
 

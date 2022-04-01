@@ -9,5 +9,6 @@ namespace NotiPet.Data.Services
     public interface ISpecialistServiceApi
     {
         public IObservable<IEnumerable<SpecialistDto>> GetSpecialist();
+        IObservable<IEnumerable<SpecialityDto>> GetSpecialities();
     }
 }

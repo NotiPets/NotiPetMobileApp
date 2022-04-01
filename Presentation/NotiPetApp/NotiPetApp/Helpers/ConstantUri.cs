@@ -23,7 +23,8 @@ namespace NotiPetApp.Helpers
 
         public const string RegisterOrEditPet = "RegisterOrEditPetPage";
         public const string EditProfile = "EditProfilePage";
-
+        public const string SelectSpeciality = "SelectSpecialityPopUp";
+        public const string ShowSpecialists = "";
     }
     public static class ParameterConstant
     {

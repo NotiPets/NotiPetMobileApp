@@ -27,10 +27,13 @@ namespace NotiPet.Data.Mappers
                 cfg.CreateMap<AuthenticationDto,Authentication>(); 
                 cfg.CreateMap<IAuthenticationRequestViewModel,RequestAuthenticationDto>(); 
                 cfg.CreateMap<SpecialistDto,Specialist>()
-                    .ReverseMap(); 
-                cfg.CreateMap<SpecialityDto,Speciality>()
-                    .ReverseMap(); 
- 
+                    .ReverseMap();
+                cfg.CreateMap<SaleDto, Sales>();
+                cfg.CreateMap<RequestOrder, RequestOrderDto>();
+                cfg.CreateMap<Order, OrderDto>()
+                    .ReverseMap();
+                cfg.CreateMap<AppointmentDto, Appointment>()
+                    .ReverseMap();
                 cfg.ShouldUseConstructor = x =>! x.IsPrivate;
             }); 
             automapper.AssertConfigurationIsValid();

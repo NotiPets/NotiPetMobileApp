@@ -31,6 +31,16 @@ namespace NotiPet.Mocks.Services
         {
             return  Observable.Return(generator.UserRoleDto);
         }
-        
+
+        public IObservable<UserDto> UpdateUser(string id, UserDto user)
+        {
+            if (  generator.UserRoleDto.Id != user.Id)
+            {
+                throw new NullReferenceException();
+            }
+
+            generator.UserRoleDto = user;
+            return  Observable.Return(generator.UserRoleDto);
+        }
     }
 }

@@ -18,7 +18,7 @@
         <Style TargetType="views1:TabViewItem"
                x:Key="TabViewStyle"
                
-               >
+        >
             <Setter Property="TextColorSelected" Value="{DynamicResource PrimaryDark}"/>
             <Setter Property="TextColor" Value="{DynamicResource PrimaryBackgroundDark}"/>
         </Style>
@@ -55,6 +55,7 @@
                                          views1:TouchEffect.PressedOpacity="0.6"
                                          views1:TouchEffect.AnimationDuration="5"
                                          views1:TouchEffect.PressedScale="0.8"
+                                         views1:TouchEffect.Command="{TemplateBinding  TapCommand}"
                                          HorizontalOptions="CenterAndExpand"
                                          CornerRadius="35"
                                          Margin="23"
@@ -110,6 +111,7 @@
     </views1:TabViewItem>
     <views1:TabViewItem ControlTemplate="{StaticResource FabItemControlTemplate}"
                         Icon="patita"
+                        TapCommand="{Binding SelectSpecialityCommand}"
                         Text="Services"
                   
     />
@@ -129,28 +131,4 @@
         <menuPages:ProfilePage />
     </views1:TabViewItem>
 </views1:TabView>
-    <!--<menuPages:HomePage Title="Home">
-        <menuPages:HomePage.IconImageSource>
-            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Home}"
-                             FontFamily="{StaticResource FontSolid}"/>
-        </menuPages:HomePage.IconImageSource>
-    </menuPages:HomePage >
-    <menuPages:AppointmentPage Title="Appointment">
-        <menuPages:AppointmentPage.IconImageSource>
-            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Clock}"
-                             FontFamily="{StaticResource FontSolid}"/>
-        </menuPages:AppointmentPage.IconImageSource>
-    </menuPages:AppointmentPage>
-    <views:PetsPage Title="Pets">
-        <views:PetsPage.IconImageSource>
-            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Store}"
-                             FontFamily="{StaticResource FontSolid}"/>
-        </views:PetsPage.IconImageSource>
-    </views:PetsPage>
-    <menuPages:ProfilePage Title="Profile">
-        <menuPages:ProfilePage.IconImageSource>
-            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.UserIcon}"
-                             FontFamily="{StaticResource FontSolid}"/>
-        </menuPages:ProfilePage.IconImageSource>
-      </menuPages:ProfilePage>-->
 </views:BasePage>
