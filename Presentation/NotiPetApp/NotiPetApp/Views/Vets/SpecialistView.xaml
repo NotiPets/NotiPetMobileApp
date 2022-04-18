@@ -13,6 +13,7 @@
                        x:Class="NotiPetApp.Views.Vets.SpecialistView" 
                        x:DataType="viewModels:SpecialistViewModel"
                        Title="Specialist">
+
     <ListView ItemsSource="{Binding Specialists}"  Margin="10,5,10,5" 
               HasUnevenRows="True"
               SelectionMode="None"
@@ -22,6 +23,7 @@
                 <ViewCell>
                 <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                       Margin="10"
+
                       ColumnDefinitions="110,Auto,*">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:SpecialistViewModel}},Path=ShowDetailCommand}"

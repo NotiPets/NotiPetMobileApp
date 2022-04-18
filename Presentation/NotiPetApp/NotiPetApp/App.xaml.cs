@@ -83,6 +83,10 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<SelectSpecialityPopUp,SelectSpecialityViewModel >();
             containerRegistry.RegisterForNavigation<RegisterPage,RegisterViewModel >();
             containerRegistry.RegisterForNavigation<ConfirmAppointmentPage, ConfirmAppointmentViewModel>();
+
+            containerRegistry.RegisterForNavigation<SpecialistDetailView, SpecialistDetailViewModel>();
+            containerRegistry.RegisterForNavigation<VeterinaryDetailView,VeterinaryDetailViewModel>();
+
             containerRegistry.RegisterForNavigation<OptionsParametersPage,OptionsParametersViewModel>(ConstantUri.OptionParameters);
             containerRegistry.RegisterForNavigation<SpecialistDetailPage, SpecialistDetailViewModel>(); 
             containerRegistry.RegisterForNavigation<VeterinaryPickerPage, VeterinaryPickerViewModel>();  
