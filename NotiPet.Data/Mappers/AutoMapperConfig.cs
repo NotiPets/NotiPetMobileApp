@@ -1,15 +1,25 @@
+using System;
 using AutoMapper;
 using NotiPet.Data.Dtos;
 using NotiPet.Domain.Models;
 
 namespace NotiPet.Data.Mappers
 {
+    public  class DateTimeOffsetToDateTimeConverter : ITypeConverter<DateTimeOffset, DateTime>
+    {
+        public DateTime Convert(DateTimeOffset source, DateTime destination, ResolutionContext context)
+        {
+            return source.DateTime;
+        }
+    }
     public class AutoMapperConfig
     {
         public static MapperConfiguration GetConfig()
         {
             var automapper = new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<DateTimeOffset, DateTime>()
+                    .ConvertUsing<DateTimeOffsetToDateTimeConverter>();
                 cfg.CreateMap<AssetServiceTypeDto, AssetServiceType>();
                 cfg.CreateMap<UserDto, User>()
                     .ForMember(e=>e.FullName,x=>x.Ignore())

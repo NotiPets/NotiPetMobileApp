@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:SpecialistDetailViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                x:Class="NotiPetApp.Views.Vets.SpecialistDetailPage"
+                x:DataType="viewModels:SpecialistDetailViewModel">
+    <Grid>
+        
+        <ScrollView>
+    <Grid RowDefinitions="450,Auto,Auto,Auto,Auto,Auto">
+        <forms:CachedImage   Source="{Binding Specialist.User.PictureUrl,TargetNullValue='notImage'}"
+                             Aspect="AspectFill"
+                             Margin="0,0,0,28"
+                             ErrorPlaceholder="notImage"
+                             WidthRequest="50"/>
+
+        <pancakeView:PancakeView  VerticalOptions="End"
+                                  Padding="15,10"
+                                  CornerRadius="10"
+                                 HorizontalOptions="CenterAndExpand"
+                                 BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                 Shadow="{StaticResource ShadowMarkupStyle}"
+                                >
+            <Grid RowDefinitions="Auto,Auto"
+                  ColumnSpacing="80"
+                  RowSpacing="0"
+                  ColumnDefinitions="Auto,Auto">
+                <Label Text="{Binding Specialist.User.FullName}"
+                       FontSize="20"
+                       Grid.Row="1"
+                       Style="{StaticResource LabelTitleBold}"/>
+                <Label Text="{Binding Specialist.Speciality.Description}"
+                       Grid.Row="2"
+                       FontSize="16"
+                       MaxLines="1"
+                       Style="{StaticResource LabelSubtitle}"
+                       LineBreakMode="TailTruncation"/>
+                <Label 
+                    Style="{StaticResource LabelSubtitle}" 
+                    HorizontalTextAlignment="Start" 
+                    Grid.Row="3"
+                >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="10"></Span>
+                            <Span Text=" " ></Span>
+                            <Span Text="años de experiencia"  ></Span>
+
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <pancakeView:PancakeView 
+                       Grid.Column="1"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       CornerRadius="25"
+                       BackgroundGradientStops="{StaticResource SecondaryColorBrushForFrame}"
+                     
+                       Grid.RowSpan="4">
+               
+                    <Label Text="4.9"
+                           Margin="20,10,20,25"
+                           VerticalTextAlignment="Start"
+                           TextColor="{StaticResource SecondaryLetterLight}"
+                           Style="{StaticResource LabelHeader}" 
+                    />
+             
+                </pancakeView:PancakeView >
+                <Label 
+                    Style="{StaticResource LabelSubtitleBold}" 
+                    HorizontalTextAlignment="Start" 
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    Margin="0,5"
+                    Text="125 reviews" 
+                />
+            </Grid>
+        </pancakeView:PancakeView>
+
+        <Label  Text="Biography"
+                Margin="10"
+                Style="{StaticResource LabelTitleBold}"
+                Grid.Row="2"/>
+        <Label  Text=""
+                TextType="Html"
+                Margin="10"
+                Style="{StaticResource LabelTitleBold}"
+                Grid.Row="3"/>
+        <Label  Text="Reseñas"
+                Margin="10"
+                Style="{StaticResource LabelTitleBold}"
+                Grid.Row="4"/>
+        <CarouselView  Grid.Row="5"/>
+    </Grid>
+    </ScrollView>
+        <ImageButton BackgroundColor="{DynamicResource BackgroundColor}"
+                     Command="{Binding NavigateGoBackCommand}"
+                     HorizontalOptions="StartAndExpand"
+                     VerticalOptions="Start"
+                     CornerRadius="20"
+                     Margin="10,28"
+                     Padding="4"
+        >
+            <ImageButton.Source>
+
+                <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                 Color="{DynamicResource PrimaryDark}"
+                                 FontFamily="{StaticResource FontSolid}"/>
+            </ImageButton.Source>
+        </ImageButton>
+    </Grid>
+</views:BasePage>

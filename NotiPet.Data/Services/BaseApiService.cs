@@ -19,8 +19,8 @@ namespace NotiPet.Data.Services
 
         protected    IObservable<Response<TData>> RemoteRequestObservableAsync<TData>(IObservable<HttpResponseMessage> task,bool useRequestModel=true)
         {
-
-                return task.ObserveOn(TaskPoolScheduler.Default)
+           
+            return task.ObserveOn(TaskPoolScheduler.Default)
                     .Timeout(TimeSpan.FromSeconds(60))
                     .Retry(3)
                     .Select( responseMessage =>

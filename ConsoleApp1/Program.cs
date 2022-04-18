@@ -25,17 +25,9 @@ namespace ConsoleApp1
     {
         static async Task Main(string[] args)
         {
-            var veterinary =
-                new VeterinaryService(
-                    new BusinessServiceApi(
-                        new ApiClient<IBusinessApi>(new ApiProvider("https://notipet-wr-dev.herokuapp.com/api"))),
-                    new Mapper(AutoMapperConfig.GetConfig()));
-          var a=  veterinary.GetVeterinary();
-          a.Subscribe();
-           foreach (var item in a)
-           {
-               Console.WriteLine(item);
-           }
+            Console.WriteLine(DateTime.Now.ToUniversalTime());
+            Console.WriteLine(DateTime.Now);
+            Console.WriteLine(DateTime.UtcNow);
         }
 
         private static HttpClient client = new HttpClient();

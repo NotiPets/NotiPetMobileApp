@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="popUp:TermsAndConditionsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:popUp="clr-namespace:NotiPetApp.ViewModels.PopUp;assembly=NotiPetApp"
+                x:Class="NotiPetApp.Views.PopUp.TermsAndConditionsPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,Auto,Auto" Padding="5,20,5,0"
+              ColumnDefinitions="*,Auto,*">
+            <ImageButton BackgroundColor="Transparent"
+                         HorizontalOptions="Start"
+                         Margin="10,0"
+                         Command="{Binding NavigateGoBackCommand}"
+                         Grid.Column="0">
+                <ImageButton.Source>
+                    <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                      Color="{StaticResource PrimaryDark}"
+                                      FontFamily="{StaticResource FontSolid}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <Label Text="Terms And Conditions"  Grid.Column="1"
+                   Style="{StaticResource LabelLarge}"/>
+
+            <Label Text="{Binding Text}"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="3"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" />
+
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>
