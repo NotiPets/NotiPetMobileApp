@@ -11,7 +11,7 @@
                        xmlns:xForms1="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                        x:Class="NotiPetApp.Views.Vets.SpecialistView" 
                        Title="Specialist">
-    <CollectionView ItemsSource="{Binding Specialists}"  Margin="10,5,10,5"  >
+    <CollectionView ItemsSource="{Binding Specialists}" SelectedItem="{Binding SelectedSpecialist, Mode=TwoWay}" Margin="10,5,10,5"  >
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout Margin="10">
