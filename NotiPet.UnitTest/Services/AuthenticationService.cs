@@ -36,11 +36,6 @@ namespace NotiPet.UnitTest.Services
             viewModel.Username = "fiji1984@eiibps.com";
             viewModel.Password = "12345";
             var dto = new UserDtoGenerator().AuthenticationDto;
-            Authentication expect = new AuthenticationFixture()
-                .EmailWith(dto.Email)
-                .PasswordWith(dto.Password)
-                .TokenWith(dto.Token)
-                .IsRegisterWith(dto.IsRegister);
             //ACT
            var result = service.Authentication(viewModel);
            using var observedResultSequence = result.Observe();

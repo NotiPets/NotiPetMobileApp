@@ -16,9 +16,16 @@ namespace NotiPet.Mocks.Services
             petDtos = new PetDtoGenerator().Veterinaries;
         }
 
-        public IObservable<IEnumerable<PetDto>> GetPets()
+        public IObservable<IEnumerable<PetDto>> GetPets(string userId)
         {
            return Observable.Return(petDtos);
+        }
+
+
+
+        public IObservable<PetDto> SavePets(PetDto petDto)
+        {
+            return Observable.Return(petDto);
         }
     }
 }

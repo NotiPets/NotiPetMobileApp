@@ -120,16 +120,19 @@
                 </Grid>
             </pancakeView:PancakeView>
 
-            <xForms1:SfListView   AutoFitMode="Height"
-                                  Grid.Row="1"
-                                  x:Name="Products"
+            <ListView 
+                Grid.Row="1"
+                ItemsSource="{Binding Products}"
+                 x:Name="Products"
+                HasUnevenRows="True"
             >
-                <xForms1:SfListView.ItemTemplate>
+                <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:AssetServiceModel">
-                  <Grid RowDefinitions="Auto,Auto,Auto,Auto"
-                        ColumnDefinitions="110,Auto,*"
+                    <ViewCell>
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                          ColumnDefinitions="110,Auto,*"
                         
-                        Padding="10">
+                          Padding="10">
                       <pancakeView:PancakeView    Grid.RowSpan="4"
                                 Grid.Column="0"
                                 Padding="0"
@@ -181,9 +184,10 @@
                                  HorizontalTextAlignment="Center"
                                  />
                   </Grid>
+                    </ViewCell>
                 </DataTemplate>
-            </xForms1:SfListView.ItemTemplate>
-        </xForms1:SfListView >
+            </ListView.ItemTemplate>
+        </ListView >
             </Grid>
     </ContentPage.Content>
 </views:BasePage> 

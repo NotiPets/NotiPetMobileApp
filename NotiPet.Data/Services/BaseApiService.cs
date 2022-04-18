@@ -17,10 +17,10 @@ namespace NotiPet.Data.Services
     {
         protected Dictionary<int, CancellationTokenSource> runningTasks = new Dictionary<int, CancellationTokenSource>();
 
-        protected    IObservable<Response<TData>> RemoteRequestObservableAsync<TData>(IObservable<HttpResponseMessage> task)
+        protected    IObservable<Response<TData>> RemoteRequestObservableAsync<TData>(IObservable<HttpResponseMessage> task,bool useRequestModel=true)
         {
-
-                return task.ObserveOn(TaskPoolScheduler.Default)
+           
+            return task.ObserveOn(TaskPoolScheduler.Default)
                     .Timeout(TimeSpan.FromSeconds(60))
                     .Retry(3)
                     .Select( responseMessage =>
@@ -30,8 +30,14 @@ namespace NotiPet.Data.Services
                             var jsonResult = await responseMessage.Content.ReadAsStringAsync();
                             if (responseMessage.IsSuccessStatusCode)
                             {
-                                var resultOk = await Task.Run(() => JsonConvert.DeserializeObject<Request<TData>>(jsonResult));
-                                return Response<TData>.Ok(resultOk.Data);
+                                if (useRequestModel)
+                                {
+                                    var resultRequestOk = await Task.Run(() =>  JsonConvert.DeserializeObject<Request<TData>>(jsonResult));
+                                    return Response<TData>.Ok(resultRequestOk.Data);
+                                }
+                                var resultOk = await Task.Run(() =>  JsonConvert.DeserializeObject<TData>(jsonResult));
+                                return Response<TData>.Ok(resultOk);
+
                             }
                             var result = await Task.Run(() => JsonConvert.DeserializeObject<Error>(jsonResult));
                             return Response<TData>.Error(result);

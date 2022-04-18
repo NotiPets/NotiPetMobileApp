@@ -22,7 +22,6 @@ namespace NotiPetApp.ViewModels
         public ReactiveCommand<Unit,Unit> InitializingCommand { get; set; }
         private readonly  ReadOnlyObservableCollection<Pet> _pets;
         public ReadOnlyObservableCollection<Pet> Pets => _pets;
-       [Reactive] public string SearchText { get; set; }
        public ReactiveCommand<Unit,Unit> NavigateToRegisterPetCommand{ get; set; }
 
 
@@ -30,28 +29,22 @@ namespace NotiPetApp.ViewModels
             IPetsService petsService,    ISchedulerProvider currentThread) : base(navigationService, dialogPage)
         {
             _petsService = petsService;
-            var filterSearch = this.WhenAnyValue(e => e.SearchText)
-                .Throttle(TimeSpan.FromMilliseconds(100), currentThread.CurrentThread)
-                .DistinctUntilChanged()
-                .Select(SearchFunc);
             _petsService.Pets.Connect()
                 .ObserveOn(currentThread.CurrentThread)
-                .Filter(filterSearch)
                 .Bind(out _pets)
                 .DisposeMany()
                 .Subscribe()
                 .DisposeWith(Subscriptions);
-            NavigateToRegisterPetCommand = ReactiveCommand.CreateFromTask<Unit>((param) =>
-            {
-                return NavigationService.NavigateAsync(ConstantUri.RegisterOrEditPet);
-            });
+            NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
+            NavigateToRegisterPetCommand = ReactiveCommand.CreateFromTask<Unit>((param) => NavigationService.NavigateAsync(ConstantUri.RegisterOrEditPet));
             InitializingCommand = ReactiveCommand.CreateFromObservable(Initialize);
             
 
         }
-        Func<Pet, bool> SearchFunc(string text) =>
-            model => string.IsNullOrEmpty(text) || model.Name==text;
+
+        public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get; set; }
+
         IObservable<Unit> Initialize()
-            => _petsService.GetPets().Select(e => Unit.Default);
+            => _petsService.GetPets(Settings.UserId).Select(e => Unit.Default);
     }
 }

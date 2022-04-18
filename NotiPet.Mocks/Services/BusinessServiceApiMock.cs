@@ -17,5 +17,10 @@ namespace NotiPet.Mocks.Services
         }
         public IObservable<IEnumerable<BusinessDto>> GetBusiness()
              => Observable.Return(_generator.BusinessDtos);
+
+        public IObservable<BusinessDto> GetBusiness(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

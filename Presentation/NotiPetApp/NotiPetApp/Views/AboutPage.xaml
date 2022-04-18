@@ -4,12 +4,25 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 x:Class="NotiPetApp.Views.AboutPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Hello, world!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid RowDefinitions="Auto,*"
+              Padding="10,15,0,0"> 
+            <ImageButton BackgroundColor="Transparent"
+                         Command="{Binding NavigateGoBackCommand}"
+                         Grid.Column="0"
+                         
+                         HorizontalOptions="StartAndExpand"
+                         Margin="10,5"
+                         Grid.Row="0">
+                <ImageButton.Source>
+
+                    <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                     Color="{DynamicResource PrimaryDark}"
+                                     FontFamily="{StaticResource FontSolid}"/>
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
     </ContentPage.Content>
 </views:BasePage>

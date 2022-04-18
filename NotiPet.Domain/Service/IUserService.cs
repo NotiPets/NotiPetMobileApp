@@ -9,5 +9,6 @@ namespace NotiPet.Domain.Service
     public interface IUserService
     {
         public  IObservable<User> GetUserById(string username);
+        public  IObservable<User> UpdateUser(string id,User user);
     }
 }

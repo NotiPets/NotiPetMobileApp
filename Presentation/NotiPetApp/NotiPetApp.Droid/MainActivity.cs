@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.GoogleClient;
 using Prism;
 using Prism.Ioc;
 
@@ -22,6 +23,7 @@ namespace NotiPetApp.Droid
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState); 
+            GoogleClientManager.Initialize(this, null, "662328821833-45lk4879kh045nif1havvcvvt5pp6d8h.apps.googleusercontent.com");
             LoadApplication(new App(new AndroidInitializer()));
         }
     }

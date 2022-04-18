@@ -7,7 +7,7 @@ namespace NotiPet.Mocks.Dtos
 {
     public class SpecialityDtoGenerator
     {
-        public static  List<SpecialityDto>  SpecialistDtos { get; set; }
+        public   List<SpecialityDto>  SpecialistDtos { get; set; }
 
         public SpecialityDtoGenerator()
         {
@@ -33,7 +33,7 @@ namespace NotiPet.Mocks.Dtos
         }
         public static SpecialityDto GenerateDto()
         {
-            return SpecialistDtos?.First();
+            return new SpecialityDtoGenerator().SpecialistDtos.FirstOrDefault();
         }
     }
 }

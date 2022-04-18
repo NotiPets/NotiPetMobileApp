@@ -13,15 +13,14 @@ namespace NotiPet.UnitTest.Fixtures.User
 
         private AuthenticationDto BuildDto() => JsonConvert.DeserializeObject<AuthenticationDto>("");
 
-        private Authentication Build() => new Authentication(_token,_isRegister,_email,_password);
+        private Authentication Build() => new Authentication(_token,_user);
         public AuthenticationFixture TokenWith(string token) => this.With(ref _token, token);
-        public AuthenticationFixture IsRegisterWith(bool register) => this.With(ref _isRegister,register);
-        public AuthenticationFixture EmailWith(string email) => this.With(ref _email,email);
-        public AuthenticationFixture PasswordWith(string password) => this.With(ref _password,password);
+
+        public AuthenticationFixture EmailWith( Domain.Models.User user) => this.With(ref _user,user);
+
         
         private string _token;
-        private bool _isRegister;
-        private string _email ;
-        private string _password;
+        private Domain.Models.User _user ;
+
     }
 }

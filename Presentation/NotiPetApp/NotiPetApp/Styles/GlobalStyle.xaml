@@ -97,7 +97,7 @@
     </ControlTemplate>
     <LinearGradientBrush StartPoint="0,0"
                          EndPoint="1,1"
-                         x:Key="PrimaryColorBrushForFrame">
+                         x:Key="PrimaryColorBrushForBox">
         <GradientStop Color="#4596EA "
                       Offset="0.1" />
 
@@ -105,10 +105,22 @@
                       Offset="0.3" />
 
     </LinearGradientBrush>
+    <LinearGradientBrush StartPoint="0,0"
+                         EndPoint="1,1"
+                         x:Key="PrimaryColorBrushForFrame">
+        <GradientStop Color="#4596EA "
+                      Offset="0.1" />
+
+        <GradientStop Color="#00CBCC"
+                      Offset="0.6" />
+
+    </LinearGradientBrush>
+    
     <pancakeView:GradientStopCollection x:Key="SecondaryColorBrushForFrame">
         <pancakeView:GradientStop Color="#4596EA"/>
         <pancakeView:GradientStop Color="#00CBCC" Offset="0.6"/>
     </pancakeView:GradientStopCollection>
+    
     <pancakeView:DropShadow Offset='2,5'
                               x:Key="ShadowMarkupStyle"
                               BlurRadius="5"

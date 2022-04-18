@@ -1,10 +1,13 @@
+using Newtonsoft.Json;
+
 namespace NotiPet.Data.Dtos
 {
     public class AuthenticationDto
     {
-        public string Token { get; set; }
-        public bool IsRegister { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        [JsonProperty("jwt")]
+        public string Jwt { get; set; }
+
+        [JsonProperty("user")]
+        public UserDto User { get; set; }
     }
 }

@@ -4,28 +4,55 @@ namespace NotiPet.Domain.Models
 {
     public class Appointment
     {
-        public Appointment(int id, DateTime created, DateTime update, bool active, DateTime date, bool isEmergency, int pet, int appointmentStatusId, int assetServiceId)
+        public Appointment(string id, string specialistId, Specialist specialist, EAppointmentStatus appointmentStatus, bool isEmergency, bool active, DateTime date, DateTime updated)
         {
             Id = id;
-            Created = created;
-            Update = update;
+            SpecialistId = specialistId;
+            Specialist = specialist;
+            AppointmentStatus = appointmentStatus;
+            IsEmergency = isEmergency;
             Active = active;
             Date = date;
-            IsEmergency = isEmergency;
-            Pet = pet;
-            AppointmentStatusId = appointmentStatusId;
-            AssetServiceId = assetServiceId;
+            Created = DateTime.Now;
+            Updated = updated;
         }
 
-        public int Id { get;  }
-        public DateTime Created { get; }
-        public DateTime Update { get;  }
+        public string Id { get;  }
+        public string SpecialistId { get; }
+        public Specialist Specialist { get;  }
+        public EAppointmentStatus AppointmentStatus { get;  }
+        public bool IsEmergency { get;  }
         public bool Active { get;  }
-        public DateTime Date { get; }
-        public bool IsEmergency { get; }
-        public int Pet { get;  }
-        public int AppointmentStatusId { get; }
-        public int AssetServiceId { get;  }
+        public DateTime Date { get;  }
+        public DateTime Created { get;}
+        public DateTime Updated { get; }
 
     }
+    public class CreateAppointment
+    {
+        public CreateAppointment(DateTime date, string petId, string userId)
+        {
+            Date = date;
+            PetId = petId;
+            UserId = userId;
+        }
+
+        public DateTime Date { get; set; }
+        public bool IsEmergency { get; set; }
+        public string PetId { get; set; }
+        public int AppointmentStatusId { get; set; }
+        public int AssetServiceId { get; set; }
+        public string UserId { get; set; }
+        public int BusinessId { get; set; }
+    }
+
+   public enum EAppointmentStatus
+    {
+        Requested = 0,
+        Accepted = 1,
+        Cancelled = 2
+        
+    }
+    
+    
 }

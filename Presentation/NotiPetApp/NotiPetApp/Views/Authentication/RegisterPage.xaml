@@ -11,6 +11,7 @@
                 xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                 xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                xmlns:converters1="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                 x:DataType="viewModels:RegisterViewModel">
      <views:BasePage.Resources>
          <Style TargetType="controls:EntryCustom"
@@ -23,6 +24,7 @@
             <Setter Property="FontSize"  Value="16"/>
 
         </Style>
+         <converters1:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
         <Style TargetType="Button"
         >
             <Setter Property="BackgroundColor" Value="White"/>
@@ -37,7 +39,7 @@
             <Grid RowDefinitions="*,1*" x:Name="MainLayout">
                 <BoxView Grid.Row="0"
                          Margin="0,0,0,50"
-                         Background="{StaticResource PrimaryColorBrushForFrame}">
+                         Background="{StaticResource PrimaryColorBrushForBox}">
                 </BoxView>
            <ScrollView    Grid.RowSpan="2">
             <Grid RowDefinitions="Auto,Auto,Auto,Auto"
@@ -77,7 +79,7 @@
                   
                     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
                           ColumnDefinitions="Auto,*">
-                        <forms:CachedImage   Source="patita"
+                        <forms:CachedImage   Source="{Binding PicturePhoto,Converter={StaticResource Base64StringToImageSource},FallbackValue=patita,TargetNullValue=patita}"
                                              Grid.Row="0"
                                              CacheType="Memory"
                                              Grid.ColumnSpan="2"
@@ -85,11 +87,32 @@
                                              Aspect="AspectFill"
                                              WidthRequest="100"
                                              Margin="10,30"
-                                             HeightRequest="100">
+                                             converters:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                             converters:TouchEffect.PressedOpacity="0.6"
+                                             converters:TouchEffect.AnimationDuration="5"
+                                             converters:TouchEffect.PressedScale="0.8"
+                                             converters:TouchEffect.Command="{Binding GetPhotoCommand }"
+                                             HeightRequest="100" >
                             <forms:CachedImage.Transformations>
                                 <transformations:CircleTransformation />
                             </forms:CachedImage.Transformations>
                         </forms:CachedImage>
+                        <Image 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Start"
+                               Margin="10,28"
+                               TranslationX="10"
+                               TranslationY="-20"
+                               Grid.ColumnSpan="2"
+                          
+                        >
+                            <Image.Source>
+
+                                <FontImageSource Glyph="{x:Static fontIcon:FontIcon.AddPhoto}"
+                                                 Color="{DynamicResource PrimaryDark}"
+                                                 FontFamily="{StaticResource FontSolid}"/>
+                            </Image.Source>
+                        </Image>
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="1"
                                               PlaceHolder="Name"
@@ -205,7 +228,12 @@
                                       
                         />
                         <Label     Grid.Row="16" Grid.Column="1" Text="I agree to Notiped  terms and conditions."
-                                   VerticalTextAlignment="Center"/>
+                                   VerticalTextAlignment="Center"
+                                   >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToTermAndConditionsCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                         <controls:TouchViewControl       Grid.ColumnSpan="2"
                                                          Command="{Binding AuthenticationCommand}"
                                                          CornerRadius="25"

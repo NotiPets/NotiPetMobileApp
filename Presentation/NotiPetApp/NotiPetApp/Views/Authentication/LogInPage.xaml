@@ -41,7 +41,7 @@
             <Grid RowDefinitions="*,1*">
                 <BoxView Grid.Row="0"
                          Margin="0,0,0,50"
-                         Background="{StaticResource PrimaryColorBrushForFrame}"
+                         Background="{StaticResource PrimaryColorBrushForBox}"
                          >
                 </BoxView>
            

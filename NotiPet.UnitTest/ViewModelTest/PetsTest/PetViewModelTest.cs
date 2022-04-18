@@ -39,26 +39,6 @@ namespace NotiPet.UnitTest.ViewModelTest
                 viewModel.Pets.Should().NotBeEmpty();
 
         }
-        [Fact]
-        public void SearchingPetShouldBeReturnResultBySearching()
-        {
-           var scheduler = new TestScheduler(); 
-                var petServiceApi = new PetServiceApiMock();
-                IPetsService petsService = new PetsService(petServiceApi, Mapper);
-                var viewModelFixture = new PetsViewModelFixture()
-                    .PetServiceWith(petsService)
-                    .SchedulerWith(new SchedulerProvider(scheduler, scheduler));
-                
-                //Arrange
-                var viewModel = (PetsViewModel) viewModelFixture;
-                var text = "Labrador Retriever";
-                Expression<Func<Pet, bool>> expression = e => petsService.SearchPredicate(text).Invoke(e);
-                //Act
-                viewModel.InitializingCommand.Execute().Subscribe();
-                viewModel.SearchText = text;
-                scheduler.AdvanceByMs(100);
-                //Arrange
-                viewModel.Pets.Should().OnlyContain(expression);
-        }
+
     }
 }

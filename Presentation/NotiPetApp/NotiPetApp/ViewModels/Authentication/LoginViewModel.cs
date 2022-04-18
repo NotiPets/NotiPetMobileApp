@@ -37,8 +37,8 @@ namespace NotiPetApp.ViewModels
        [Reactive]   public string Username { get; set; }
        public ReactiveCommand<Unit,Unit> ChangeAuthenticationCommand { get; set; }
         public ReactiveCommand<Unit,Unit> ForgotPasswordCommand { get; set; }
-        public ReactiveCommand<Unit,string> AuthenticationCommand { get; set; }
-        public ReactiveCommand<string,Unit> NavigateToMenuPageCommand { get; set; }
+        public ReactiveCommand<Unit,Authentication> AuthenticationCommand { get; set; }
+        public ReactiveCommand<Authentication,Unit> NavigateToMenuPageCommand { get; set; }
         public ReactiveCommand<Unit,Unit> NavigateToSignUpCommand{ get; set; }
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
         protected ObservableAsPropertyHelper<string> _errorMessage;
@@ -65,16 +65,18 @@ namespace NotiPetApp.ViewModels
             {
                 return NavigationService.NavigateAsync(ConstantUri.Register);
             });
-            NavigateToMenuPageCommand = ReactiveCommand.CreateFromTask<string>((param) =>
-            {
-                if (param == null)
-                    return  Task.CompletedTask;
-                Settings.SetToken(param);
-                return NavigationService.NavigateAsync(ConstantUri.TabMenu);
-            });
+  
                
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
             AuthenticationCommand = ReactiveCommand.CreateFromObservable(Authentication,ValidationContext.Valid);
+            var canExecuteMenu = AuthenticationCommand.Select(e => e != null&&!string.IsNullOrEmpty(e.Jwt));
+            NavigateToMenuPageCommand = ReactiveCommand.CreateFromTask<Authentication>((param) =>
+            {
+                Settings.SetToken(param.Jwt);
+                Settings.Username = param.User.Username;
+                Settings.UserId = param.User.Id;
+                return NavigationService.NavigateAsync(ConstantUri.TabMenu);
+            },canExecuteMenu);
             AuthenticationCommand
                 .InvokeCommand(NavigateToMenuPageCommand);
             ActiveValidation();
@@ -90,7 +92,7 @@ namespace NotiPetApp.ViewModels
             }
             _errorMessage = AuthenticationCommand
                 .Skip(1)
-                .Select(e=>!string.IsNullOrEmpty(e)?string.Empty:"some of your info isn't correct, try again")
+                .Select(e=>e!=null&&!string.IsNullOrEmpty(e.Jwt)?string.Empty:"some of your info isn't correct, try again")
                 .ToProperty(this,x=>x.ErrorMessage,scheduler:_schedulerProvider.MainThread);
             _isBusy = AuthenticationCommand
                 .IsExecuting.ToProperty(this,x=>x.IsBusy,scheduler:_schedulerProvider.CurrentThread);
@@ -117,7 +119,7 @@ namespace NotiPetApp.ViewModels
             
         }
 
-        IObservable<string> Authentication()
+        IObservable<Authentication> Authentication()
         {
            var observable = _authenticationService.Authentication(this);
             return observable;

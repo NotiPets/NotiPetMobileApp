@@ -25,8 +25,9 @@ namespace ConsoleApp1
     {
         static async Task Main(string[] args)
         {
-
-
+            Console.WriteLine(DateTime.Now.ToUniversalTime());
+            Console.WriteLine(DateTime.Now);
+            Console.WriteLine(DateTime.UtcNow);
         }
 
         private static HttpClient client = new HttpClient();

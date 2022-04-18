@@ -8,5 +8,7 @@ namespace NotiPet.Data
     {
         [Get("/Businesses")]
         IObservable<HttpResponseMessage> GetBusinesses();
+        [Get("/Businesses/{id}")]
+        IObservable<HttpResponseMessage> GetBusinesses(int id);
     }
 }

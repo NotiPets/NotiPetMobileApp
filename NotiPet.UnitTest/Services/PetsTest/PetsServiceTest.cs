@@ -26,7 +26,7 @@ namespace NotiPet.UnitTest.Services.PetsTest
             IPetsService petService = (PetsService)petServiceFixture;
             
             //act
-            petService.GetPets()
+            petService.GetPets("test")
                 .Subscribe();
             
             //assert

@@ -9,11 +9,11 @@ namespace NotiPet.Mocks
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IAssetServiceApi, AssetServiceApiMock>();
+            /*containerRegistry.RegisterSingleton<IAssetServiceApi, AssetServiceApiMock>();
             containerRegistry.RegisterSingleton<IUserServiceApi,UserServiceApiMock>(); 
             containerRegistry.RegisterSingleton<IPetServiceApi,PetServiceApiMock>();
             containerRegistry.RegisterSingleton<IBusinessServiceApi,BusinessServiceApiMock>();
-            containerRegistry.RegisterSingleton<ISpecialistServiceApi,SpecialistsServiceApiMock>();
+            containerRegistry.RegisterSingleton<ISpecialistServiceApi,SpecialistsServiceApiMock>();*/
         }
 
         public void OnInitialized(IContainerProvider containerProvider)

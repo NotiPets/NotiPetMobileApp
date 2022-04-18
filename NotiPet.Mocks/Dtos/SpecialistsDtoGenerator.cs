@@ -18,5 +18,14 @@ namespace NotiPet.Mocks.Dtos
             
             Specialists = specialist.GenerateLazy(300);
         }
+
+        public static SpecialistDto GetSpecialist()
+        {
+            return new Faker<SpecialistDto>()
+                .RuleFor(x=>x.User,UserDtoGenerator.GenerateUser)
+                .RuleFor(x=>x.Id,x=>x.IndexFaker)
+                .RuleFor(x=>x.Speciality,SpecialityDtoGenerator.GenerateDto);
+        }
+        
     }
 }

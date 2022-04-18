@@ -19,8 +19,8 @@ namespace NotiPet.Data.Services
         private readonly IAssetServiceApi _assetServiceApi;
         private readonly IMapper _mapper;
 
-        private readonly SourceCache<AssetServiceModel, Guid> _assetSourceCache =
-            new SourceCache<AssetServiceModel, Guid>(e => e.Guid);
+        private readonly SourceCache<AssetServiceModel, int> _assetSourceCache =
+            new SourceCache<AssetServiceModel, int>(e => e.Id);
 
         private readonly SourceCache<ParameterOption, int> _parametersOptions =
             new SourceCache<ParameterOption, int>(x=>x.Id);
@@ -33,7 +33,7 @@ namespace NotiPet.Data.Services
             _mapper = mapper;
         }
 
-        public SourceCache<AssetServiceModel, Guid> AssetsServices => _assetSourceCache;
+        public SourceCache<AssetServiceModel, int> AssetsServices => _assetSourceCache;
         public SourceCache<ParameterOption, int> ParametersOptions => _parametersOptions;
 
 
@@ -50,11 +50,11 @@ namespace NotiPet.Data.Services
         {
             var parameters = new List<ParameterOption>()
             {
-                new ParameterOption("Bed",false,false,1,"Filter")
-                    .SetFilterExpression<AssetServiceModel>(e => e.AssetServiceType.Description == "Toys"),
+                new ParameterOption($"{AssetsServiceTypeId.Product}",false,false,1,"Filter")
+                    .SetFilterExpression<AssetServiceModel>(e => e.AssetServiceType == AssetsServiceTypeId.Product),
                 
-                new ParameterOption("Toys",false,false,2,"Filter")
-                    .SetFilterExpression<AssetServiceModel>(e => e.AssetServiceType.Description  == "Bed"),
+                new ParameterOption($"{AssetsServiceTypeId.Service}",false,false,2,"Filter")
+                    .SetFilterExpression<AssetServiceModel>(e => e.AssetServiceType == AssetsServiceTypeId.Service),
                 
                 new ParameterOption("Price",false,true,3,"Sort")
                     .SetSortExpression<AssetServiceModel>(SortExpressionComparer<AssetServiceModel>.Ascending(e=>e.Price)),
@@ -64,7 +64,13 @@ namespace NotiPet.Data.Services
             };
             return Observable.Return(parameters).Do(_parametersOptions.AddOrUpdate);
         }
-        
+
+        public IObservable<IEnumerable<AssetServiceModel>> GetServicesByBusinessId(int id)
+        {
+            return _assetServiceApi.GetServicesByBusinessId(id)
+                .Select(e => _mapper.Map<IEnumerable<AssetServiceModel>>(e));
+        }
+
         public void Dispose()
         {
             Dispose(true);

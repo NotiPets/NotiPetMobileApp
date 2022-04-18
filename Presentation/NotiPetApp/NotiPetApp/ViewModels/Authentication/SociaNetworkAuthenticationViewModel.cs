@@ -32,8 +32,14 @@ namespace NotiPetApp.ViewModels
                 .Subscribe()
                 .DisposeWith(Subscriptions);
             InitializeCommand = ReactiveCommand.CreateFromObservable(InitializeData);
+            NavigateToSignUpCommand = ReactiveCommand.CreateFromTask<Unit>((param) =>
+            {
+                return NavigationService.NavigateAsync(ConstantUri.Register);
+            });
             LogInCommand = ReactiveCommand.CreateFromObservable<string,INavigationResult>(Authentication);
         }
+
+        public ReactiveCommand<Unit, Unit> NavigateToSignUpCommand { get; set; }
 
         IObservable<INavigationResult> Authentication(string code) => Observable.FromAsync(() =>
         {

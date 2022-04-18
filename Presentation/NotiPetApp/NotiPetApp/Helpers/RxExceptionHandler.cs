@@ -1,12 +1,19 @@
 using System;
 using System.Diagnostics;
 using System.Reactive.Concurrency;
+using Prism.Services;
 using ReactiveUI;
 
 namespace NotiPetApp
 {
     public class RxExceptionHandler : IObserver<Exception>
     {
+        private readonly IPageDialogService _dialogService;
+
+        public RxExceptionHandler(IPageDialogService dialogService)
+        {
+            _dialogService = dialogService;
+        }
         public void OnNext(Exception ex)
         {
             if (Debugger.IsAttached)
@@ -14,7 +21,11 @@ namespace NotiPetApp
                 Debugger.Break();
             }
 
-            RxApp.MainThreadScheduler.Schedule(() => { throw ex; });
+            RxApp.MainThreadScheduler.Schedule(() =>
+            {
+                _dialogService.DisplayAlertAsync("Error",ex.Message,"Ok");
+                // throw ex;
+            });
         }
 
         public void OnError(Exception ex)
@@ -24,7 +35,11 @@ namespace NotiPetApp
                 Debugger.Break();
             }
 
-            RxApp.MainThreadScheduler.Schedule(() => { throw ex; });
+            RxApp.MainThreadScheduler.Schedule(() =>
+            {
+                _dialogService.DisplayAlertAsync("Error",ex.Message,"Ok");
+               // throw ex;
+            });
         }
 
         public void OnCompleted()

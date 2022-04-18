@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -25,10 +26,10 @@ namespace NotiPetApp.ViewModels
         private readonly ReadOnlyObservableCollection<Veterinary> _veterinaries;
         public ReadOnlyObservableCollection<ParameterOption> _parameterOptions;
         public ReadOnlyObservableCollection<ParameterOption> ParameterOptions=>_parameterOptions;
+        public ReactiveCommand<int,Unit> ShowDetailCommand  { get; set; }
         public VeterinaryViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IVeterinaryService veterinaryService, ISchedulerProvider schedulerProvider) : base(navigationService,pageDialogService)
         {
             _veterinaryService = veterinaryService;
-
             var notificationParameters = _veterinaryService.ParametersOptions
                 .Connect()
                 .RefCount();
@@ -73,6 +74,7 @@ namespace NotiPetApp.ViewModels
                 .Subscribe()
                 .DisposeWith(Subscriptions);
             NavigateToFilterCommand = ReactiveCommand.CreateFromTask(NavigateToFilter);
+            ShowDetailCommand = ReactiveCommand.CreateFromTask<int>(NavigateToDetail);
         }
         Func<Veterinary, bool> SearchFunc(string text) =>
             model => string.IsNullOrEmpty(text) || model.Name.ToLower().Contains(text.ToLower());
@@ -85,6 +87,13 @@ namespace NotiPetApp.ViewModels
                 {ParameterConstant.OptionsParameter,_veterinaryService.ParametersOptions}
             },true);
         }
+        async   Task NavigateToDetail(int id)
+        {
+            await NavigationService.NavigateAsync(ConstantUri.ConfirmAppointmentPage,new NavigationParameters()
+            {
+                {ParameterConstant.VeterinaryId,id}
+            },true);
+        }
         public ReactiveCommand<Unit, Unit> NavigateToFilterCommand { get; set; }
 
         protected override IObservable<Unit> ExecuteInitialize()
@@ -92,10 +101,9 @@ namespace NotiPetApp.ViewModels
             return Observable.Create<Unit>(observer =>
             {
                 var disposable = new CompositeDisposable();
-                 _veterinaryService.GetVeterinary()
+                _veterinaryService.GetVeterinary()
                     .Select(e => Unit.Default)
-                    .Subscribe(observer)
-                    .DisposeWith(disposable);
+                    .Subscribe(observer);
                  _veterinaryService.ParameterOptions().Select(e => Unit.Default)
                     .Subscribe(observer)
                     .DisposeWith(disposable);

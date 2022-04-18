@@ -89,7 +89,7 @@ namespace NotiPet.UnitTest.ViewModelTest
             using var observedResultSequence = result.Observe();
             //ASSERT
             observedSequence.RecordedMessages.Should().Satisfy(e => e);
-            observedResultSequence.RecordedMessages.Should().Satisfy(e => !string.IsNullOrEmpty(e));
+            observedResultSequence.RecordedMessages.Should().Satisfy(e => e!=null);
 
         }
      

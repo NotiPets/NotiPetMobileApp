@@ -4,7 +4,7 @@ namespace NotiPet.Domain.Models
 {
     public class User
     {
-        public User(string id, int role, string businessId, Veterinary business, string username, string password, string email, int documentType, string document, string names, string lastnames, string phone, string address1, string address2, string city, string province, string pictureUrl, bool active, DateTime created, DateTime updated)
+        public User(string id, int role, int businessId, Veterinary business, string username, string password, string email, int documentType, string document, string names, string lastnames, string phone, string address1, string address2, string city, string province, string pictureUrl, bool active, DateTime created, DateTime updated)
         {
             Id = id;
             Role = role;
@@ -30,7 +30,7 @@ namespace NotiPet.Domain.Models
 
         public string Id { get; set; }
         public int Role { get; set; }
-        public string BusinessId { get; set; }
+        public int BusinessId { get; set; }
         public Veterinary Business { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }

@@ -20,6 +20,16 @@ namespace NotiPetApp.Views.Authentication
             InitializeComponent();
             
         }
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            if (ViewModel!=null)
+            {
+                WhenAppearing
+                    .InvokeCommand(ViewModel?.InitializeCommand);
+            }
+           
+        }
         protected override CompositeDisposable ManageDisposables(CompositeDisposable disposables)
         {
             disposables.Add(this.WhenAnyValue(e => e.ViewModel.PersonalDocument)

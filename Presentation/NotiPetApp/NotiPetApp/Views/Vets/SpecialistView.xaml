@@ -9,24 +9,35 @@
                        xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                        xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                        xmlns:xForms1="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+                       xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
                        x:Class="NotiPetApp.Views.Vets.SpecialistView" 
+                       x:DataType="viewModels:SpecialistViewModel"
                        Title="Specialist">
-    <CollectionView ItemsSource="{Binding Specialists}" SelectedItem="{Binding SelectedSpecialist, Mode=TwoWay}" Margin="10,5,10,5"  >
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <StackLayout Margin="10">
-                <pancakeView:PancakeView   CornerRadius="20" Shadow="{StaticResource ShadowMarkupStyle}"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
-                      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+
+    <ListView ItemsSource="{Binding Specialists}"  Margin="10,5,10,5" 
+              HasUnevenRows="True"
+              SelectionMode="None"
+              SeparatorVisibility="None">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Specialist">
+                <ViewCell>
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                      Margin="10"
+
                       ColumnDefinitions="110,Auto,*">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:SpecialistViewModel}},Path=ShowDetailCommand}"
+                                              CommandParameter="{Binding User.Id}"/>
+                    </Grid.GestureRecognizers>
                     
                     <pancakeView:PancakeView  Grid.Column="0" 
                                               Padding="0" Grid.RowSpan="4"
                                               CornerRadius="20"
                                               Margin="5,10,10,0" >
-                       <Image  Source="{Binding User.PictureUrl}"
-                                          Aspect="AspectFill"
-                                          HeightRequest="80"
-                                          WidthRequest="50"/>
+                       <forms:CachedImage   Source="{Binding User.PictureUrl}"
+                                            Aspect="AspectFill"
+                                            HeightRequest="80"
+                                            WidthRequest="50"/>
                       </pancakeView:PancakeView>
                 
                    <Label Text="{Binding User.FullName}"
@@ -132,10 +143,9 @@
                    
 
                 </Grid>
-             
-                </pancakeView:PancakeView>
-                </StackLayout>
+
+                </ViewCell>
             </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+        </ListView.ItemTemplate>
+    </ListView>
 </controls:TabItemReactive>

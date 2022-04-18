@@ -38,7 +38,7 @@ namespace NotiPet.UnitTest.ViewModelTest
             var resultCommand = viewModel.AuthenticationCommand.Execute();
             observedSequence.RecordedMessages.Should().Satisfy(canExecute => canExecute);
             using var observedCommandSequence = resultCommand.Observe();
-           observedCommandSequence.RecordedMessages.Should().Satisfy(e => !string.IsNullOrEmpty(e));
+           observedCommandSequence.RecordedMessages.Should().Satisfy(e => e!=null);
         }
         [Fact]
         public void ShouldBeExecuteTrueWhenCallSingUpAndAllFieldIsValid()

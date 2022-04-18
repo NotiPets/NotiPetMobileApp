@@ -8,7 +8,9 @@ using NotiPet.Mocks.Services;
 using NotiPetApp.Helpers;
 using NotiPetApp.Services;
 using NotiPetApp.ViewModels;
+using NotiPetApp.ViewModels.Activity;
 using NotiPetApp.Views;
+using NotiPetApp.Views.Activity;
 using NotiPetApp.Views.Authentication;
 using NotiPetApp.Views.MenuPages;
 using NotiPetApp.Views.Vets;
@@ -17,6 +19,7 @@ using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Services;
 using ReactiveUI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -34,9 +37,11 @@ namespace NotiPetApp
 
         protected override void OnInitialized()
         {
-            RxApp.DefaultExceptionHandler = new RxExceptionHandler();
+         
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTg0NDIxQDMxMzkyZTM0MmUzMFNLQ3ZJWkRQZkwyc2pYTXkzZCtyTStaOG5DeHpBaWg5djNaQ0RmK2R1QzQ9");
-            InitializeComponent();
+            InitializeComponent();  
+            var dialog = ContainerProvider.Resolve<IPageDialogService>();
+            RxApp.DefaultExceptionHandler = new RxExceptionHandler(dialog);
             NavigationService.NavigateAsync(ConstantUri.Start);
             
             
@@ -64,7 +69,7 @@ namespace NotiPetApp
             containerRegistry.Register<ProfileViewModel>();
             containerRegistry.Register<SpecialistView>();
             containerRegistry.Register<VeterinaryView>();
-            containerRegistry.RegisterForNavigation<CreatePetPage,CreatePetViewModel>();
+            containerRegistry.RegisterSingleton<IDeviceUtils,DeviceUtils>();
             containerRegistry.RegisterForNavigation<SocialNetworkAuthenticationPage,SocialNetworkAuthenticationViewModel>();
             containerRegistry.RegisterForNavigation<LogInPage,LoginViewModel>();
             containerRegistry.RegisterForNavigation<StartPage,StartViewModel>();
@@ -75,13 +80,23 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<OnBoardingPage,OnBoardingViewModel>();
             containerRegistry.RegisterForNavigation<RegisterOrEditPetPage, RegisterOrEditPetViewModel>();
             containerRegistry.RegisterForNavigation<EditProfilePage, EditProfileViewModel>();
+            containerRegistry.RegisterForNavigation<SelectSpecialityPopUp,SelectSpecialityViewModel >();
+            containerRegistry.RegisterForNavigation<RegisterPage,RegisterViewModel >();
+            containerRegistry.RegisterForNavigation<ConfirmAppointmentPage, ConfirmAppointmentViewModel>();
+
             containerRegistry.RegisterForNavigation<SpecialistDetailView, SpecialistDetailViewModel>();
             containerRegistry.RegisterForNavigation<VeterinaryDetailView,VeterinaryDetailViewModel>();
+
             containerRegistry.RegisterForNavigation<OptionsParametersPage,OptionsParametersViewModel>(ConstantUri.OptionParameters);
+            containerRegistry.RegisterForNavigation<SpecialistDetailPage, SpecialistDetailViewModel>(); 
+            containerRegistry.RegisterForNavigation<VeterinaryPickerPage, VeterinaryPickerViewModel>();  
+            containerRegistry.RegisterForNavigation<AppointmentCompletePage, AppointmentCompleteViewModel>();  
             ContainerProvider = Container;
 
 
         }
+        
+      
 
     }
 }
