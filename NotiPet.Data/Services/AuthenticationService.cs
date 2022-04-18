@@ -53,27 +53,27 @@ namespace NotiPet.Data.Services
                 }
             }).Do(_sourceList.AddRange);
         }
-        public IObservable<string> Authentication(IAuthenticationRequestViewModel viewModel)
+        public IObservable<Authentication> Authentication(IAuthenticationRequestViewModel viewModel)
         {
             return _userServiceApi.LogIn(_mapper.Map<RequestAuthenticationDto>(viewModel))
-                .Select(e=>e?.Token);
+                .Select(e=>_mapper.Map<Authentication>(e));
 
         }
 
-        public IObservable<string> SignUp(IRegisterRequestViewModel register)
+        public IObservable<Authentication> SignUp(IRegisterRequestViewModel register)
         {
-            var user = new User(Guid.NewGuid().ToString(),1,register.BusinessId,null,register.Username,register.Password,register.Email,register.DocumentType,register.Document,register.Name,register.LastName,register.Phone,register.Address1,register.Address2,register.City,register.Province,null,true,DateTime.Today,DateTime.Today);
+            var user = new User(Guid.NewGuid().ToString(),1,register.BusinessId,null,register.Username,register.Password,register.Email,register.DocumentType,register.Document,register.Name,register.LastName,register.Phone,register.Address1,register.Address2,register.City,register.Province,register.PicturePhoto,true,DateTime.Today,DateTime.Today);
 
              return  _userServiceApi.SingUp(_mapper.Map<UserDto>(user))
-                 .Select(x=>x?.Jwt);
+               .Select(e=>_mapper.Map<Authentication>(e));;
         }
 
         public IObservable<List<PersonalDocument>> GetDocumentTypes()
         {
             return Observable.Return(new List<PersonalDocument>()
             {
-                new PersonalDocument(1,"Id Card"),
-                new PersonalDocument(2,"Passport"),
+                new PersonalDocument(0,$"{DocumentTypeId.Cedula}"),
+                new PersonalDocument(1,$"{DocumentTypeId.Passport}"),
             });
         }
         public void Dispose()

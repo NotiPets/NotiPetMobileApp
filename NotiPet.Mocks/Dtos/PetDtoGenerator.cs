@@ -35,14 +35,13 @@ namespace NotiPet.Mocks.Services
         public PetDtoGenerator()
         {
             var pet = new Faker<PetDto>()
-                .RuleFor(e => e.UserId, x => 1)
+                .RuleFor(e => e.UserId, x => "a")
                 .RuleFor(e => e.PictureUrl, x => x.Image.LoremFlickrUrl(keywords: "dog"))
                 .RuleFor(e => e.Description, x => x.Commerce.ProductDescription())
-                .RuleFor(e => e.BirthDate, x => x.Date.Past())
+                .RuleFor(e => e.Birthdate, x => x.Date.Past())
                 .RuleFor(e => e.Name, x => x.Person.FirstName)
                 .RuleFor(e => e.PetTypeId, x => petType[x.Random.Int(0,3)].Id)
-                .RuleFor(e => e.PetType, x => petType[x.Random.Int(0,3)])
-                .RuleFor(e => e.Create, x => x.Date.Past());
+                .RuleFor(e => e.Created, x => x.Date.Past());
             Veterinaries = pet.Generate(10);
             
         }

@@ -24,7 +24,7 @@ namespace NotiPetApp.Styles.Fonts
         public const string Settings = "\ue8b8";
         public const string LogOut = "\ue9ba";
         public const string Add = "\ue145";
-
+        public const string AddPhoto = "\ue439";
         public const string Back = "\ue5c4";
 
         public const string ArrowForward = "\ue5e1";

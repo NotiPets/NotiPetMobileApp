@@ -92,7 +92,11 @@
                         <Span Text="Don't you have a NotiPed account  yet?"/>
                         <Span Text=" " CharacterSpacing="5"/>
                         <Span Text="Sign Up" Style="{StaticResource LabelTitleBold}"
-                              TextColor="{DynamicResource PrimaryDark}"/>
+                              TextColor="{DynamicResource PrimaryDark}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToSignUpCommand}"/>
+                            </Span.GestureRecognizers>
+                        </Span>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

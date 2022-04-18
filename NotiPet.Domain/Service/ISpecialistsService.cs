@@ -13,5 +13,6 @@ namespace NotiPet.Domain.Service
         public SourceCache<ParameterOption,int> ParametersOptions { get;  }
         public SourceCache<Speciality,int> SpecialitySource { get;  }
         public  IObservable<IEnumerable<ParameterOption>> ParameterOptions();
+        IObservable<Specialist> GetSpecialistById(string id);
     }
 }

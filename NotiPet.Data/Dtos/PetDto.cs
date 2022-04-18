@@ -1,18 +1,27 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace NotiPet.Data.Dtos
 {
     public class PetDto
     {
-        public DateTime Create { get; set; }
-        public DateTime Update { get; set; }
-        public bool Active { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
-        public string PictureUrl { get; set; }
-        public DateTime BirthDate { get; set; }
-        public string Description { get; set; }
-        public int UserId { get; set; }
+        [JsonPropertyName("petType")]
         public int PetTypeId { get; set; }
-        public PetTypeDto PetType{ get; set; }
+        public string PetTypeName { get; set; }
+        public string UserId { get; set; }
+        public UserDto User { get; set; }
+        public int Size { get; set; }
+        public bool Active { get; set; }
+        public string PictureUrl { get; set; }
+        public string Description { get; set; }
+        public bool Gender { get; set; }
+        public bool Vaccinated { get; set; }
+        public bool Castrated { get; set; }
+        public bool HasTracker { get; set; }
+        public DateTime Birthdate { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Updated { get; set; }
     }
 }

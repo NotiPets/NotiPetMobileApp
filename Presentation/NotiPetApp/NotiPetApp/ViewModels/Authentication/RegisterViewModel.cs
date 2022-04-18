@@ -29,6 +29,7 @@ namespace NotiPetApp.ViewModels
     public class RegisterViewModel : BaseViewModel,IRegisterRequestViewModel,IValidatableViewModel
     {
         private readonly RegisterValidator _validator;
+        private readonly IDeviceUtils _deviceUtils;
         private readonly IAuthenticationService _authenticationService;
         private PersonalDocument _personalDocument;
         [Reactive]  public string Email { get; set; }
@@ -47,11 +48,13 @@ namespace NotiPetApp.ViewModels
         [Reactive]   public string Province { get; set; }
         [Reactive]   public int DocumentType  { get; set; }
         [Reactive]   public string  Document { get; set; }
-        [Reactive] public string BusinessId { get; set; }
+        [Reactive] public int BusinessId { get; set; } = 1;
 
-        public List<PersonalDocument> DocumentTypes { get; private set; }
+        [Reactive]   public string PicturePhoto { get; set; }
 
-        public PersonalDocument PersonalDocument
+        public List<PersonalDocument> DocumentTypes => _documentTypes?.Value;
+       private ObservableAsPropertyHelper<List<PersonalDocument>> _documentTypes;
+       [Reactive] public PersonalDocument PersonalDocument
         {
             get => _personalDocument;
             set
@@ -65,53 +68,58 @@ namespace NotiPetApp.ViewModels
         }
 
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
-        public ReactiveCommand<string,Unit> NavigateToTabMenuCommand { get; set; }
-        public ReactiveCommand<Unit,string> AuthenticationCommand { get; set; }
+        public ReactiveCommand<Authentication,Unit> NavigateToTabMenuCommand { get; set; }
+        public ReactiveCommand<Unit,Authentication> AuthenticationCommand { get; set; }
 
 
         public RegisterViewModel(INavigationService navigationService, IPageDialogService dialogPage,
-            IAuthenticationService authenticationService,RegisterValidator validator) : base(navigationService, dialogPage)
+            IAuthenticationService authenticationService,RegisterValidator validator,IDeviceUtils deviceUtils) : base(navigationService, dialogPage)
         {
             _authenticationService = authenticationService;
             _validator = validator;
+            _deviceUtils = deviceUtils;
             ValidationContext = new ValidationContext();
            
-            AuthenticationCommand = ReactiveCommand.CreateFromObservable<string>(Register,ValidationContext.Valid);
+            AuthenticationCommand = ReactiveCommand.CreateFromObservable<Authentication>(Register,ValidationContext.Valid);
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
-            AuthenticationCommand.ThrownExceptions.Subscribe((next) =>
+            GoToTermAndConditionsCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.NavigateAsync(ConstantUri.TermsAndConditionsPage));
+            GetPhotoCommand = ReactiveCommand.CreateFromTask(TakePhoto);
+            var canExecuteNavigate = AuthenticationCommand.Select(e => e != null&&!string.IsNullOrEmpty(e.Jwt));
+            NavigateToTabMenuCommand = ReactiveCommand.CreateFromTask<Authentication>(((b, token) =>
             {
-                Device.InvokeOnMainThreadAsync(() =>
-                {
-                    dialogPage.DisplayAlertAsync("Error", next.Message, "ok");
-                });
-            });
-            NavigateToTabMenuCommand = ReactiveCommand.CreateFromTask<string>(((b, token) =>
-            {
-                Settings.SetToken(b);
+                Settings.SetToken(b.Jwt);
+                Settings.Username = b.User.Username;
+                Settings.UserId = b.User.Id;
                 return NavigationService.NavigateAsync(ConstantUri.TabMenu);
-            }));
+            }),canExecuteNavigate);
             AuthenticationCommand
                 .InvokeCommand(NavigateToTabMenuCommand);
            ActiveValidation();
         }
 
+        public ReactiveCommand<Unit, Unit> GetPhotoCommand { get; set; }
+
+        async Task TakePhoto()
+        {
+            PicturePhoto = await _deviceUtils.TakePhotoAsync();
+        }
         protected override IObservable<Unit> ExecuteInitialize()
         {
             return Observable.Create<Unit>(observer =>
             {
-                DocumentTypes = new List<PersonalDocument>();
                 var compositeDisposable = new CompositeDisposable();
-                 _authenticationService.GetDocumentTypes()
-                     .Do(DocumentTypes.AddRange)
-                     .Subscribe()
+               var getDocuments =   _authenticationService.GetDocumentTypes();
+               _documentTypes = getDocuments.ToProperty(this,x=>x.DocumentTypes);
+               getDocuments
+                     .Select(e=>Unit.Default)
+                     .Subscribe(observer)
                      .DisposeWith(compositeDisposable);
                  return compositeDisposable;
             });
         }
-        
-        IObservable<string> Register()
+        IObservable<Authentication> Register()
         {
-            return _authenticationService.SignUp(this);
+            return _authenticationService.SignUp(this).Select(x=>x);
         }
         void ActiveValidation()
         {
@@ -195,5 +203,7 @@ namespace NotiPetApp.ViewModels
             
         }
         public ValidationContext ValidationContext { get; }
+
+        public ReactiveCommand<Unit,Unit> GoToTermAndConditionsCommand { get; set; }
     }
 }

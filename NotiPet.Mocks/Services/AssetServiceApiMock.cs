@@ -22,6 +22,11 @@ namespace NotiPet.Mocks.Services
         public IObservable<IEnumerable<AssetServiceDto>> GetAllProducts()
             => Observable.Return(_assetsServices).Delay(TimeSpan.FromSeconds(1));
 
+        public IObservable<IEnumerable<AssetServiceDto>> GetServicesByBusinessId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IObservable<AssetServiceDto> GetProduct(string productName)
             => Observable.Return(_assetsServices.FirstOrDefault(e=>e.Name == productName))
                 .Delay(TimeSpan.FromSeconds(5));

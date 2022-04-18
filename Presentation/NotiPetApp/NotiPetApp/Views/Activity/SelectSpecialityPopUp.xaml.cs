@@ -7,6 +7,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
+using ReactiveUI.Validation.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,9 +23,9 @@ namespace NotiPetApp.Views.Activity
 
         protected override CompositeDisposable ManageDisposables(CompositeDisposable disposables)
         {
-            this.WhenAnyValue(x => x.ViewModel)
+            disposables.Add(this.WhenAnyValue(x => x.ViewModel)
                 .Select(e=>Unit.Default)
-                .InvokeCommand(ViewModel?.InitializeCommand);
+                .InvokeCommand(ViewModel?.InitializeCommand));
             return base.ManageDisposables(disposables);
         }
     }

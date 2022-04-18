@@ -24,10 +24,19 @@ namespace NotiPetApp.Helpers
         public const string RegisterOrEditPet = "RegisterOrEditPetPage";
         public const string EditProfile = "EditProfilePage";
         public const string SelectSpeciality = "SelectSpecialityPopUp";
-        public const string ShowSpecialists = "";
+        public const string ShowSpecialists = "SpecialistDetailPage";
+        public const string TermsAndConditionsPage = "TermsAndConditionsPage";
+        public const string ConfirmAppointmentPage = "ConfirmAppointmentPage";
+        public const string VeterinaryPickerPage = "VeterinaryPickerPage";
+        public const string AppointmentComplete = "AppointmentCompletePage";
     }
     public static class ParameterConstant
     {
         public const string OptionsParameter = "OptionsParameter";
+        public const string SpecialistId = "SpecialistId";
+        public const string OnlyShowSpecialist = "OnlyShowSpecialist";
+        public const string VeterinaryId = "VeterinaryId";
+        public static string VeterinaryPickerAppointment = "VeterinaryPickerAppointment";
+        public static string OrderComplete = "OrderComplete";
     }
 }

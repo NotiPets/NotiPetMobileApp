@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:SettingsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:renderers="clr-namespace:AiForms.Renderers;assembly=SettingsView"
+                x:Class="NotiPetApp.Views.SettingsPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*"
+              Padding="10,10,0,0">
+
+            <Label Text="Appointments" 
+                  VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource LabelLarge}"/>
+            <ImageButton BackgroundColor="Transparent"
+                         Command="{Binding NavigateGoBackCommand}"
+                         Grid.Column="0"
+                         
+                         HorizontalOptions="StartAndExpand"
+                         Margin="10,5"
+                         Grid.Row="0">
+                <ImageButton.Source>
+
+                    <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                     Color="{DynamicResource PrimaryDark}"
+                                     FontFamily="{StaticResource FontSolid}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <renderers:SettingsView Grid.Row="1"
+                                    >
+                <renderers:Section >
+                    <renderers:PickerCell Title="Language"/>
+                </renderers:Section>
+                <renderers:Section >
+                    <renderers:SwitchCell Title="Dark mode"/>         
+                </renderers:Section>    
+                <renderers:Section>
+                    <renderers:ButtonCell Title="Send FeedBack"/>
+                </renderers:Section>
+            </renderers:SettingsView>
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>

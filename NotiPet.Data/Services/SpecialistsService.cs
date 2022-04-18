@@ -54,5 +54,11 @@ namespace NotiPet.Data.Services
             };
             return Observable.Return(parameters).Do(_parametersOptions.AddOrUpdate);
         }
+
+        public IObservable<Specialist> GetSpecialistById(string id)
+        {
+            return _serviceApi.GetSpecialistById(id)
+                .Select(_mapper.Map<Specialist>);
+        }
     }
 }

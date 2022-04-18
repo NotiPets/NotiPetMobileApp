@@ -10,10 +10,10 @@
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
-
                 x:Class="NotiPetApp.Views.Vets.VetTabPage"
                 >
     <views:BasePage.Resources>
+        <views1:InvertedBoolConverter x:Key="InvertedBoolConverter" />
         <DataTemplate x:Key="TabItemControlTemplate">
             <pancakeView:PancakeView CornerRadius="20"
                                      Margin="5,5,5,10">
@@ -76,6 +76,7 @@
                                     IsSwipeEnabled="False"
                                     TabContentDataTemplate="{StaticResource EmptyTemplate}"
                                     IsTabTransitionEnabled="False"
+                                    IsEnabled="{Binding OnlyShowSpecialist,Converter={StaticResource InvertedBoolConverter}}"
                                     TabViewItemDataTemplate="{StaticResource TabItemControlTemplate}"
                                    >
                         <views1:TabView.TabStripBackgroundView>

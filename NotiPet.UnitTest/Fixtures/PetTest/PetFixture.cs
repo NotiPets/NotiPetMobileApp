@@ -13,29 +13,40 @@ namespace NotiPet.UnitTest.Fixtures
         private PetDto BuildDto() => JsonConvert.DeserializeObject<PetDto>("");
 
 
-        private Pet Build()=>new Pet(_create,_update,_active,_name,_pictureUrl,_birthDate,_description,_userId,_petTypeId,_petType);
+        private Pet Build()=>
+            new Pet(_id,_name,_petType,_petTypeName,
+                _userId,_user,_size,_active,_pictureUrl,_description,_gender,_vaccinated,_castrated,_hasTracker,_birthdate,_created,_updated);
 
-        public PetFixture WithCreate(DateTime create) => this.With(ref _create, create);
-        public PetFixture WithUpdate(DateTime update) => this.With(ref _update, update);
-        public PetFixture WithBirthDate(DateTime birthDate) => this.With(ref _birthDate, birthDate);
+        public PetFixture WithCreate(DateTime create) => this.With(ref _created, create);
+        public PetFixture WithUpdate(DateTime update) => this.With(ref _updated, update);
+        public PetFixture WithBirthDate(DateTime birthDate) => this.With(ref _birthdate, birthDate);
         public PetFixture WithActive(bool active) => this.With(ref _active, active);
         public PetFixture WithName(string name) => this.With(ref _name,name);
         public PetFixture WithPictureUrl(string pictureUrl) => this.With(ref _pictureUrl, pictureUrl);
         public PetFixture WithDescription(string description) => this.With(ref _description,description);
-        public PetFixture WithUserId(int userId) => this.With(ref _userId,userId);
-        public PetFixture WithPetTypeId(int petTypeId) => this.With(ref _petTypeId,petTypeId);
-        public PetFixture WithPetType(PetType petType) => this.With(ref _petType,petType);
+        public PetFixture WithUserId(string  userId) => this.With(ref _userId,userId);
+        public PetFixture WithPetTypeId(int petTypeId) => this.With(ref _petType,petTypeId);
+        public PetFixture WithPetType(string petType) => this.With(ref _petTypeName,petType);
         
 
-        private DateTime _create;
-        private DateTime _update ;
+        private string _id;
+        private string _name;
+        private int _petType;
+        private string _petTypeName;
+        private string _userId;
+        private Domain.Models.User _user;
+        private int _size;
         private bool _active;
-        private string _name ;
         private string _pictureUrl;
-        private DateTime _birthDate;
         private string _description;
-        private int _userId;
-        private int _petTypeId ;
-        private PetType _petType;
+        private bool _gender;
+        private bool _vaccinated;
+        private bool _castrated;
+        private bool _hasTracker;
+        private DateTime _birthdate;
+        private DateTime _created;
+        private DateTime _updated;
+
+
     }
 }

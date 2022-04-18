@@ -27,6 +27,7 @@ namespace NotiPetApp.ViewModels
         public ReadOnlyObservableCollection<Specialist> Specialists => _specialists;
         public ReadOnlyObservableCollection<ParameterOption> _parameterOptions;
         public ReadOnlyObservableCollection<ParameterOption> ParameterOptions=>_parameterOptions;
+        public ReactiveCommand<string,Unit> ShowDetailCommand  { get; set; }
         public SpecialistViewModel(INavigationService navigationService, IPageDialogService pageDialogService,
             ISpecialistsService specialistsService,
             ISchedulerProvider schedulerProvider) : base(navigationService,pageDialogService)
@@ -81,7 +82,16 @@ namespace NotiPetApp.ViewModels
                         .IsExecuting
                         .ToProperty(this, x => x.IsBusy);
             NavigateToFilterCommand = ReactiveCommand.CreateFromTask(NavigateToFilter);
+            ShowDetailCommand = ReactiveCommand.CreateFromTask<string>(ShowDetail);
 
+        }
+
+         Task ShowDetail(string id)
+        {
+          return  NavigationService.NavigateAsync(ConstantUri.ShowSpecialists,new NavigationParameters()
+          {
+              {ParameterConstant.SpecialistId,id}
+          } );
         }
         async   Task NavigateToFilter()
         {

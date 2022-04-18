@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <views:BasePage x:TypeArguments="viewModels:TabMenuViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                              xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
@@ -117,7 +116,9 @@
     />
     <views1:TabViewItem Text="Profile"
                         Style="{StaticResource TabViewStyle}"
-                        ControlTemplate="{StaticResource TabViewItemControlTemplate}">
+                        ControlTemplate="{StaticResource TabViewItemControlTemplate}"
+                        IsVisible="{Binding HasToken}"
+                       >
         <views1:TabViewItem.Icon>
             <FontImageSource Glyph="{x:Static fontIcon:FontIcon.UserIcon}"
                              FontFamily="{StaticResource FontSolid}"
@@ -128,7 +129,7 @@
                              FontFamily="{StaticResource FontSolid}"
                              Color="{DynamicResource PrimaryDark}"/>
         </views1:TabViewItem.IconSelected>
-        <menuPages:ProfilePage />
+        <menuPages:ProfilePage  />
     </views1:TabViewItem>
 </views1:TabView>
 </views:BasePage>

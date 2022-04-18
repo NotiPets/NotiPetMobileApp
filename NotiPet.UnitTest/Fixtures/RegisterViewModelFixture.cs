@@ -11,7 +11,7 @@ namespace NotiPet.UnitTest.Fixtures
     public static implicit operator RegisterViewModel(RegisterViewModelFixture registerViewModelFixture) =>
         registerViewModelFixture.Build();
 
-    private RegisterViewModel Build() => new RegisterViewModel(NavigationService,PageDialogService,_authenticationService, new RegisterValidator());
+    private RegisterViewModel Build() => new RegisterViewModel(NavigationService,PageDialogService,_authenticationService, new RegisterValidator(), new DeviceUtils());
 
     public RegisterViewModelFixture AuthenticationWith(IAuthenticationService authenticationService) =>
         this.With(ref _authenticationService, authenticationService);

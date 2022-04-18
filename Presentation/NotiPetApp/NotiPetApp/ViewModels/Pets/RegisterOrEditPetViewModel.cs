@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using Bogus.DataSets;
 using NotiPetApp.Controls;
@@ -36,7 +37,7 @@ namespace NotiPetApp.ViewModels
         public RegisterOrEditPetViewModel(INavigationService navigationService, IPageDialogService dialogPage) : base(navigationService, dialogPage)
         {
             InformationAditional= new List<PetInformation>();
-            
+            NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
             InformationAditional.Add(new PetInformation{Name = "Castrado", Status = true});
             InformationAditional.Add(new PetInformation{Name = "Vacunado", Status = true});
             InformationAditional.Add(new PetInformation{Name = "Amigable con perros", Status = true });
@@ -49,5 +50,7 @@ namespace NotiPetApp.ViewModels
                 "Macho" , "Hembra"
             };
         }
+
+        public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
     }
 }

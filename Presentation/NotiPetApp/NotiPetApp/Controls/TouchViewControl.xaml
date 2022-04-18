@@ -10,14 +10,13 @@
              effects:TouchEffect.PressedOpacity="0.6"
              effects:TouchEffect.AnimationDuration="5"
              effects:TouchEffect.PressedScale="0.8"
-             effects:TouchEffect.Command="{Binding Command,Source={x:Reference ButtonPv}}"
         
 >
     <pancakeView:PancakeView.ControlTemplate>
         <ControlTemplate>
             <Label    Text="{TemplateBinding CommandText}"
                       TextColor="{TemplateBinding TextColor}"
-                      Margin="5"
+                      Margin="4"
                       Style="{StaticResource LabelTitleBold}"
                       HorizontalOptions="CenterAndExpand"
                       VerticalTextAlignment="Center"

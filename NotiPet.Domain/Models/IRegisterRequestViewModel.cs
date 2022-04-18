@@ -16,6 +16,7 @@ namespace NotiPet.Domain.Models
         public string Province { get; set; }
         public int  DocumentType { get; set; }
         public string Document { get; set; }
-        public string BusinessId { get; set; }
+        public int BusinessId { get; set; }
+        public string PicturePhoto { get; set; }
     }
 }

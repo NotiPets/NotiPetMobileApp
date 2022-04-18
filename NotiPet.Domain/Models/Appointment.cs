@@ -30,13 +30,20 @@ namespace NotiPet.Domain.Models
     }
     public class CreateAppointment
     {
+        public CreateAppointment(DateTime date, string petId, string userId)
+        {
+            Date = date;
+            PetId = petId;
+            UserId = userId;
+        }
 
         public DateTime Date { get; set; }
         public bool IsEmergency { get; set; }
-        public int PetId { get; set; }
+        public string PetId { get; set; }
         public int AppointmentStatusId { get; set; }
         public int AssetServiceId { get; set; }
-
+        public string UserId { get; set; }
+        public int BusinessId { get; set; }
     }
 
    public enum EAppointmentStatus

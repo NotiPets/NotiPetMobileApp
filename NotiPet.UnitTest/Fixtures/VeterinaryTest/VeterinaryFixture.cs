@@ -13,8 +13,8 @@ namespace NotiPet.UnitTest.Fixtures.VeterinaryTest
 
         private BusinessDto BuildDto() => JsonConvert.DeserializeObject<BusinessDto>("");
 
-        private Veterinary Build() => new Veterinary(_id,_name,_rnc,_phone,_email,_address1,_address2,_city,_province,_latitude,_longitude);
-        public VeterinaryFixture IdWith(string id) => this.With(ref _id, id);
+        private Veterinary Build() => new Veterinary(_id,_name,_rnc,_phone,_email,_address1,_address2,_pictureUrl,_city,_province,_latitude,_longitude);
+        public VeterinaryFixture IdWith(int id) => this.With(ref _id, id);
         public VeterinaryFixture RncWith(string rnc) => this.With(ref _rnc, rnc);
         public VeterinaryFixture NameWith(string name) => this.With(ref _name, name);
         public VeterinaryFixture PhoneWith(string phone) => this.With(ref _phone, phone);
@@ -26,7 +26,7 @@ namespace NotiPet.UnitTest.Fixtures.VeterinaryTest
         public VeterinaryFixture LatitudeWith(double latitude) => this.With(ref _latitude, latitude);
         public VeterinaryFixture LongitudeWith(double longitude) => this.With(ref _longitude, longitude);
         
-        private string _id;
+        private int _id;
         private string _rnc;
         private string _name;
         private string _phone ;
@@ -37,6 +37,7 @@ namespace NotiPet.UnitTest.Fixtures.VeterinaryTest
         private string _province ;
         private double _latitude;
         private double _longitude;
+        private string _pictureUrl;
 
     }
 }

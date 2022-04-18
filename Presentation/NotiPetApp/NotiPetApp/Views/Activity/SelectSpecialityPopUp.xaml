@@ -8,6 +8,7 @@
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:vets="clr-namespace:NotiPetApp.Views.Vets;assembly=NotiPetApp"
                 x:Class="NotiPetApp.Views.Activity.SelectSpecialityPopUp"
                 BackgroundColor="Transparent"
                 x:DataType="activity:SelectSpecialityViewModel">
@@ -41,33 +42,69 @@
                 HorizontalOptions="CenterAndExpand"
                 Format="ddd dd/MMM/yyyy"
                 Date="{Binding Date}"/>
-    <Label Text="Selection speciality"
+    <Label Text="Selection Pets"
            HorizontalTextAlignment="Center"
            Style="{StaticResource LabelLarge}"
            Grid.Row="2"
            />
     
-    <ListView ItemsSource="{Binding Specialities}"
-              HasUnevenRows="True" 
-              Grid.Row="3"
-              SelectedItem="{Binding SelectSepSpeciality}"
-              VerticalOptions="FillAndExpand">
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:Speciality">
-              <ViewCell >
-                  <Label Text="{Binding Name}"
-                         Margin="20"
-                         Style="{StaticResource LabelTitleBold}"/>
-              </ViewCell>
+        <CollectionView ItemsSource="{Binding Pets}"
+                    Grid.Row="3"
+                    x:Name="Pets"
+                    SelectedItem="{Binding SelectedItem}"
+                    SelectionMode="Single"
+    >
+                 <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Pet">
+                <StackLayout Margin="10">
+                     <pancakeView:PancakeView  Shadow="{StaticResource ShadowMarkupStyle}" Padding="20" Margin="20"   CornerRadius="20" HeightRequest="200"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
+                      <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                      ColumnDefinitions="110,Auto,*">
+                          <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
+                                                    Padding="0" Grid.Row="0" Grid.RowSpan="2"
+                                                    CornerRadius="60"
+                                                    Margin="5,10,10,0" >
+                       <Image  Source="{Binding PictureUrl}"
+                                          Aspect="AspectFill" 
+                                          HeightRequest="120"
+                                          WidthRequest="120"/>
+                      </pancakeView:PancakeView>
+                
+                   <Label Text="{Binding Name}"
+                            FontSize="20"
+                             Grid.Row="3"
+                            HorizontalOptions="CenterAndExpand"            
+                            Style="{StaticResource LabelTitleBold}"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"/>
+                   
+                          <Label Text="{Binding PetTypeName}"
+                                 Grid.Row="4"
+                                 FontSize="16"
+                                 MaxLines="1"
+                                 HorizontalOptions="CenterAndExpand"            
+                                 TextColor="{DynamicResource PrimaryLetterLightColor}"
+                                 Style="{StaticResource LabelSubtitleBold}"
+                                 LineBreakMode="TailTruncation"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="3"/>
+
+                </Grid>
+             
+                </pancakeView:PancakeView>
+              
+                </StackLayout>
+               
             </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+        </CollectionView.ItemTemplate>
+            </CollectionView>
     <controls:TouchViewControl       
                                      Command="{Binding ContinueCommand}"
                                      CornerRadius="25"
                                      Margin="20"
                                      Padding="14"
                                      CommandText="Continue"
+                                     IsVisible="{Binding CanContinue}"
                                      Grid.Row="4"
                                      BackgroundColor="{DynamicResource PrimaryDark }"/> 
 </Grid>

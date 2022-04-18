@@ -13,7 +13,14 @@ namespace NotiPet.Data
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IApiProvider>(provider => new ApiProvider("https://notipet-wr-dev.herokuapp.com/api"));
+            containerRegistry.RegisterSingleton<IApiProvider>(provider => new ApiProvider("https://notipet-stage-api.herokuapp.com/api"));
+            
+            containerRegistry.RegisterSingleton<IAssetServiceApi, AssetServiceApi>();
+            containerRegistry.RegisterSingleton<IUserServiceApi,UserServiceApi>(); 
+            containerRegistry.RegisterSingleton<IPetServiceApi,PetServiceApi>();
+            containerRegistry.RegisterSingleton<IBusinessServiceApi,BusinessServiceApi>();
+            containerRegistry.RegisterSingleton<ISpecialistServiceApi,SpecialistsServiceApi>();
+            containerRegistry.RegisterSingleton<ISalesServiceApi,SalesServiceApi>();
             containerRegistry.RegisterSingleton(typeof(IApiClient<>), typeof(ApiClient<>));
             containerRegistry.RegisterSingleton<IStoreService, StoreService>();
             containerRegistry.RegisterSingleton<IAuthenticationService, AuthenticationService>();
@@ -22,6 +29,7 @@ namespace NotiPet.Data
             containerRegistry.RegisterSingleton<IUserService,UserService>();  
             containerRegistry.RegisterSingleton<IVeterinaryService, VeterinaryService>();
             containerRegistry.RegisterSingleton<ISpecialistsService,SpecialistsService>();
+            containerRegistry.RegisterSingleton<ISalesService,SalesService>();
             containerRegistry.RegisterSingleton<IDataBaseProvider<Realm>, RealmDatabaseProvider>(); 
             containerRegistry.RegisterSingleton(typeof(IDataSource<>), typeof(Repository<>));
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
-
+using Plugin.GoogleClient;
 using Prism;
 using Prism.Ioc;
 using Syncfusion.ListView.XForms.iOS;
@@ -31,6 +31,7 @@ namespace NotiPetApp.iOS
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             SfListViewRenderer.Init();
             SfEffectsViewRenderer.Init();
+            GoogleClientManager.Initialize();
             LoadApplication(new App(new IosInitializer()));
 
             return base.FinishedLaunching(app, options);

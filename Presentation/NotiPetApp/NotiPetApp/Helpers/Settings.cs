@@ -20,6 +20,11 @@ namespace NotiPetApp.Helpers
             set=>Preferences.Set(nameof(Username),value);
         }
         public static IObservable<string> Token => Observable.FromAsync(token => GetSecureStorage(nameof(Token)));
+        public static string UserId       
+        {
+            get=>DeviceInfo.Platform != DevicePlatform.Unknown? Preferences.Get(nameof(UserId),string.Empty):string.Empty; 
+            set=>Preferences.Set(nameof(UserId),value);
+        }
 
         public static  Task SetToken(string token)
         {
@@ -31,7 +36,7 @@ namespace NotiPetApp.Helpers
       static  Task SetSecureStorage(string key,string value)
             => DeviceInfo.Platform != DevicePlatform.Unknown ? SecureStorage.SetAsync(key,value):Task.CompletedTask;
 
-     static void ClearStorage()
+    public static void ClearStorage()
       {
           SecureStorage.RemoveAll();
           Preferences.Clear();

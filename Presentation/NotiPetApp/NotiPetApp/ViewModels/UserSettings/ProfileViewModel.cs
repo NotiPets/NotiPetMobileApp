@@ -63,7 +63,8 @@ namespace NotiPetApp.ViewModels
            return _userService.GetUserById(Settings.Username);
        }
        Task LogOut()
-        {
+       {
+           Settings.ClearStorage();
              return   NavigationService.NavigateAsync(ConstantUri.SocialNetworkAuthentication);
         }
     }

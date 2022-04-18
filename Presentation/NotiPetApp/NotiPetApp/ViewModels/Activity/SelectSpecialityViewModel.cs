@@ -9,6 +9,7 @@ using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
 using NotiPetApp.Helpers;
 using NotiPetApp.Services;
+using Prism.Ioc;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
@@ -19,43 +20,53 @@ namespace NotiPetApp.ViewModels.Activity
     public class SelectSpecialityViewModel:BaseViewModel
     {
         [Reactive] public DateTime Date { get; set; }
-        [Reactive]  public Speciality SelectSepSpeciality { get; set; }
-        private readonly ISpecialistsService _specialistsService;
-        private ReadOnlyObservableCollection<Speciality> _specialities;
         public CreateAppointment Appointment { get; set; }
         public ReactiveCommand<Unit,Unit> ContinueCommand { get; }
-        public SelectSpecialityViewModel(INavigationService navigationService, IPageDialogService dialogPage,
-            ISpecialistsService specialistsService, ISchedulerProvider schedulerProvider) : base(navigationService, dialogPage)
+
+        private readonly IPetsService _petsService;
+        private Pet _selectedItem;
+
+        [Reactive] public Pet SelectedItem
         {
-            Appointment = new CreateAppointment();
-            _specialistsService = specialistsService;
-            specialistsService.SpecialitySource.Connect()
-                .ObserveOn(schedulerProvider.MainThread)
-                .Bind(out _specialities)
+            get => _selectedItem;
+            set => _selectedItem = value;
+        }
+        private readonly  ReadOnlyObservableCollection<Pet> _pets;
+        public ReadOnlyObservableCollection<Pet> Pets => _pets;
+        private ObservableAsPropertyHelper<bool> _canContinue;
+        public bool CanContinue => _canContinue.Value;
+        public SelectSpecialityViewModel(INavigationService navigationService, IPageDialogService dialogPage,
+            ISchedulerProvider schedulerProvider,IPetsService petsService) : base(navigationService, dialogPage)
+        {
+           
+            Date= DateTime.Now;
+            ContinueCommand = ReactiveCommand.CreateFromTask(Continue);
+            _petsService = petsService;
+            _petsService.Pets.Connect()
+                .ObserveOn(schedulerProvider.CurrentThread)
+                .Bind(out _pets)
                 .DisposeMany()
                 .Subscribe()
                 .DisposeWith(Subscriptions);
-            ContinueCommand = ReactiveCommand.CreateFromTask(Continue);
+            _isBusy =  ContinueCommand.IsExecuting.ToProperty(this,x=>x.IsBusy);
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
-
+            _canContinue  =  this.WhenAnyValue(x => x.SelectedItem)
+                .Select(x => x != null).ToProperty(this, x => x.CanContinue);
         }
-
+        
         public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get; set; }
 
         Task Continue()
         {
-            return NavigationService.NavigateAsync(ConstantUri.ShowSpecialists,parameters:new NavigationParameters()
+            //VetTabViewModel
+            Appointment = new CreateAppointment(Date,SelectedItem?.Id,Settings.UserId);
+            return NavigationService.NavigateAsync(ConstantUri.VeterinaryPickerPage,parameters:new NavigationParameters()
             {
-                {nameof(CreateAppointment),Appointment}
+                {ParameterConstant.VeterinaryPickerAppointment,Appointment}
             });
         }
 
         protected override IObservable<Unit> ExecuteInitialize()
-        {
-            return Observable.Create<Unit>(_ => _specialistsService.GetSpecialities()
-                .Subscribe());
-        }
-
-        public ReadOnlyObservableCollection<Speciality> Specialities => _specialities;
+            => _petsService.GetPets(Settings.UserId).Select(e => Unit.Default);
     }
 }

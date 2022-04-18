@@ -28,7 +28,7 @@ namespace NotiPet.Mocks.Dtos
         public BusinnessDtoGenerator()
         {
             var business = new Faker<BusinessDto>()
-                .RuleFor(e=>e.Id,x=>x.IndexFaker.ToString())
+                .RuleFor(e=>e.Id,x=>x.IndexFaker)
                 .RuleFor(e => e.Name, x => x.Company.CompanyName())
                 .RuleFor(e => e.City, x => x.Company.Locale)
                 .RuleFor(e => e.Email, x => x.Person.Email)
@@ -43,7 +43,7 @@ namespace NotiPet.Mocks.Dtos
         public static BusinessDto Generate()
         {
            return  new Faker<BusinessDto>()
-                .RuleFor(e=>e.Id,x=>x.IndexFaker.ToString())
+                .RuleFor(e=>e.Id,x=>x.IndexFaker)
                 .RuleFor(e => e.Name, x => x.Company.CompanyName())
                 .RuleFor(e => e.City, x => x.Company.Locale)
                 .RuleFor(e => e.Email, x => x.Person.Email)

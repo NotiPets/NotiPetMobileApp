@@ -7,11 +7,12 @@ namespace NotiPet.Domain.Service
 {
     public interface IStoreService
     {
-        public SourceCache<AssetServiceModel,Guid> AssetsServices { get;  }
+        public SourceCache<AssetServiceModel,int> AssetsServices { get;  }
         public SourceCache<ParameterOption,int> ParametersOptions { get;  }
         public IObservable<IEnumerable<AssetServiceModel>>  GetAllProducts();
 
         public  IObservable<IEnumerable<ParameterOption>> ParameterOptions();
+        IObservable<IEnumerable<AssetServiceModel>> GetServicesByBusinessId(int id);
 
     }
 }

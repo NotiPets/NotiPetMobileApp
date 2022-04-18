@@ -5,18 +5,16 @@ namespace NotiPet.Domain.Models
 {
     public class Authentication
     {
-        public Authentication(string token, bool isRegister, string email, string password)
+        public Authentication(string jwt, User user)
         {
-            Token = token;
-            IsRegister = isRegister;
-            Email = email;
-            Password = password;
+            Jwt = jwt;
+            User = user;
         }
 
-        public string Token { get; }
-        public bool IsRegister { get;  }
-        public string Email { get; }
-        public string Password { get; }
+
+        public string Jwt { get; set; }
+
+        public User User { get; set; }
     }
     public interface IAuthenticationRequestViewModel
     {

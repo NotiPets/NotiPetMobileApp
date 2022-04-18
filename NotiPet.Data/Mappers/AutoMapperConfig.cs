@@ -17,10 +17,9 @@ namespace NotiPet.Data.Mappers
 
                     .ReverseMap();
                 cfg.CreateMap<AssetServiceDto, AssetServiceModel>()
-                    .ForMember(e => e.Guid, x => x.Ignore());
+                    .ForMember(e => e.PictureUrl, x => x.Ignore());
                 cfg.CreateMap<PetTypeDto, PetType>().ReverseMap();
                 cfg.CreateMap<PetDto, Pet>()
-                    .ForMember(e=>e.Guid,x=>x.Ignore()) 
                     .ReverseMap();
                 
                 cfg.CreateMap<BusinessDto, Veterinary>();
@@ -31,6 +30,8 @@ namespace NotiPet.Data.Mappers
                 cfg.CreateMap<SaleDto, Sales>();
                 cfg.CreateMap<RequestOrder, RequestOrderDto>();
                 cfg.CreateMap<Order, OrderDto>()
+                    .ReverseMap();
+                cfg.CreateMap<SpecialityDto, Speciality>()
                     .ReverseMap();
                 cfg.CreateMap<AppointmentDto, Appointment>()
                     .ReverseMap();

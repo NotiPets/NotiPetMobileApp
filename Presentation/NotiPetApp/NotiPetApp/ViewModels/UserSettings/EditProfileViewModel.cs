@@ -16,18 +16,18 @@ namespace NotiPetApp.ViewModels
     {
         private readonly IUserService _userService;
         public User User { get;  private set; }
-        public List<string> Gender { get; set; }
+
         public ReactiveCommand<Unit,User> UpdateCommand { get; set; }
 
         public EditProfileViewModel(INavigationService navigationService, IPageDialogService dialogPage,
             IUserService userService) : base(navigationService, dialogPage)
         {
             _userService = userService;
-            Gender = new List<string>(){
-                "Macho" , "Hembra"
-            };
             UpdateCommand = ReactiveCommand.CreateFromObservable(UpdateUser);
+            NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
         }
+
+        public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get; }
 
         protected override IObservable<Unit> ExecuteInitialize()
         {

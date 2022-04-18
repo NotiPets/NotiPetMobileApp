@@ -22,7 +22,7 @@ using Xamarin.Forms;
 
 namespace NotiPetApp.ViewModels
 {
-    public class VetTabViewModel:BaseViewModel
+    public class VetTabViewModel:BaseViewModel,IInitialize
     {
         private readonly IVeterinaryService _veterinaryService;
         private readonly ISchedulerProvider _schedulerProvider;
@@ -42,6 +42,8 @@ namespace NotiPetApp.ViewModels
 
       public ObservableCollection<object> TabItemCollections { get;  }
 
+      public bool OnlyShowSpecialist { get; set; }
+      
 
       public VetTabViewModel(INavigationService navigationService, IPageDialogService dialogPage,
           IVeterinaryService veterinaryService, ISchedulerProvider schedulerProvider,
@@ -68,10 +70,15 @@ namespace NotiPetApp.ViewModels
               .ToProperty(this, x => x.TabItem);
 
       }
-
       public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
 
 
-
+      public void Initialize(INavigationParameters parameters)
+      {
+          if (parameters.ContainsKey(ParameterConstant.OnlyShowSpecialist))
+          {
+              OnlyShowSpecialist = (bool)parameters[ParameterConstant.OnlyShowSpecialist];
+          }
+      }
     }
 }
