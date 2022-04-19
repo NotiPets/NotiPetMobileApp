@@ -149,6 +149,8 @@
       <BundleResource Include="Resources\location.png" />
       <BundleResource Include="Resources\logOut.png" />
       <BundleResource Include="Resources\notImage.png" />
+      <BundleResource Include="Resources\NotiPetIsoTipo.png" />
+      <BundleResource Include="Resources\NotiPetLogotipo.png" />
       <BundleResource Include="Resources\OnBoarding1.png" />
       <BundleResource Include="Resources\OnBoarding2.png" />
       <BundleResource Include="Resources\OnBoarding3.png" />

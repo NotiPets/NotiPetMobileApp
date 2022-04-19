@@ -93,6 +93,8 @@
     <AndroidResource Include="Resources\drawable\location.png" />
     <AndroidResource Include="Resources\drawable\logOut.png" />
     <AndroidResource Include="Resources\drawable\notImage.png" />
+    <AndroidResource Include="Resources\drawable\NotiPetIsoTipo.png" />
+    <AndroidResource Include="Resources\drawable\NotiPetLogotipo.png" />
     <AndroidResource Include="Resources\drawable\OnBoarding1.png" />
     <AndroidResource Include="Resources\drawable\OnBoarding2.png" />
     <AndroidResource Include="Resources\drawable\OnBoarding3.png" />
