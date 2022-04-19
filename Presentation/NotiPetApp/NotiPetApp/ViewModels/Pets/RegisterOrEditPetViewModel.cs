@@ -99,6 +99,7 @@ namespace NotiPetApp.ViewModels
                 Pet =  new CreatePetModel(parameters[ParameterConstant.Pet] as Pet);
                 SelectedPetSize = PetSizes.FirstOrDefault(x => x.Id == Pet.Size);
                 SelectedPetType = PetsTypes.FirstOrDefault(x=>x.Id==Pet.PetType);
+                PictureUrl = Pet.PictureUrl;
             }
         }
     }

@@ -11,7 +11,7 @@
         <Grid RowDefinitions="Auto,*"
               Padding="10,10,0,0">
 
-            <Label Text="Appointments" 
+            <Label Text="Settings" 
                   VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    Style="{StaticResource LabelLarge}"/>
