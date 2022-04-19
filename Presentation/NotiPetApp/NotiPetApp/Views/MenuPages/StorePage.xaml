@@ -111,7 +111,7 @@
                                           FontFamily="{StaticResource FontSolid}"
                                          />
                                     <Span Text=" " CharacterSpacing="10"/>
-                                    <Span Text="Filtro"
+                                    <Span Text="Filter"
                                           />
                                 </FormattedString>
                             </Label.FormattedText>
@@ -120,7 +120,7 @@
                 </Grid>
             </pancakeView:PancakeView>
 
-            <ListView 
+            <ListView  SelectionMode="None"
                 Grid.Row="1"
                 ItemsSource="{Binding Products}"
                  x:Name="Products"
