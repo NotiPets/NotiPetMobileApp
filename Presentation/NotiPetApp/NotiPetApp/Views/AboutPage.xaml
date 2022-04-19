@@ -23,6 +23,21 @@
                                      FontFamily="{StaticResource FontSolid}"/>
                 </ImageButton.Source>
             </ImageButton>
+            <Label Text="V. 1.0"
+                   Grid.Row="2"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource  PrimaryColor}"
+                   Style="{StaticResource  LabelLarge}" 
+            />
+            <Label BackgroundColor="Transparent"
+                   Grid.Column="0"
+                   Text="AboutPage"    
+                   TextColor="{StaticResource  PrimaryDark}"
+                   Style="{StaticResource  LabelLarge}" 
+                   HorizontalOptions="Center"
+                   Margin="10,5"
+                   Grid.Row="0">
+            </Label>
             <Image BackgroundColor="Transparent"
                          Grid.Column="0"
                          Source="NotiPetLogotipo"
