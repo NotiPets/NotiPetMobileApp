@@ -11,6 +11,6 @@ namespace NotiPet.Data.Services
         IObservable<PetDto> SavePets(PetDto petDto);
 
         IObservable<object> RemovePets(string id);
-        IObservable<Pet> EditPet(PetDto map);
+        IObservable<PetDto> EditPet(PetDto map);
     }
 }

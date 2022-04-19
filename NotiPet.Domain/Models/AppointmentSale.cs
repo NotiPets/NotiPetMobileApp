@@ -22,5 +22,6 @@ namespace NotiPet.Domain.Models
         public Pet Pet { get; set; }
         public AssetServiceModel AssetService { get; set; }
         public Appointment Appointment { get; set; }
+        public bool CanCancel => Appointment!=null&&Appointment.AppointmentStatus < EAppointmentStatus.Cancelled;
     }
 }

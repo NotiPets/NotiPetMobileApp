@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace NotiPet.Data.Dtos
 {
@@ -7,7 +8,7 @@ namespace NotiPet.Data.Dtos
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        [JsonPropertyName("petType")]
+        [JsonProperty("petType")]
         public int PetTypeId { get; set; }
         public string PetTypeName { get; set; }
         public string UserId { get; set; }
@@ -20,8 +21,11 @@ namespace NotiPet.Data.Dtos
         public bool Vaccinated { get; set; }
         public bool Castrated { get; set; }
         public bool HasTracker { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter), "yyyy-MM-ddThh:mm:ss.000Z")]
         public DateTime Birthdate { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter), "yyyy-MM-ddThh:mm:ss.000Z")]
         public DateTime Created { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter), "yyyy-MM-ddThh:mm:ss.000Z")]
         public DateTime Updated { get; set; }
     }
 }

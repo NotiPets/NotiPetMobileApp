@@ -186,6 +186,7 @@
                                                 views1:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
                                                 views1:TouchEffect.PressedOpacity="0.6"
                                                 views1:TouchEffect.AnimationDuration="5"
+                                                IsVisible="{Binding CanCancel}"
                                                 views1:TouchEffect.PressedScale="0.8"
                                                 views1:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AppointmentViewModel}},Path=CanCancelCommand}"
                                                 views1:TouchEffect.CommandParameter="{Binding OrderId}"

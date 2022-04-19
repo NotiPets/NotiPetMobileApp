@@ -32,10 +32,10 @@ namespace NotiPet.Data.Services
                 .Select(e=>e.Result);
         }
 
-        public IObservable<Pet> EditPet(PetDto map)
+        public IObservable<PetDto> EditPet(PetDto map)
         {
-            return RemoteRequestObservableAsync<Pet>(_apiClient.Client.EditPet(map.Id,map))
-                .Select(e=>e.Result);
+            return RemoteRequestObservableAsync<Pet>(_apiClient.Client.EditPet(map.Id,map),false)
+                .Select(e=>new PetDto());
         }
     }
 }
