@@ -30,7 +30,9 @@
         <Picker Title="{Binding Text}"  
                HorizontalTextAlignment="{Binding TextAlignment}"
                FontSize="{Binding FontSize}"
+               ItemsSource="{Binding ItemSources}"
                x:Name="PickerSelect"
+               SelectedItem="{Binding SelectedItem}"
                Margin="{OnPlatform Android=2,iOS=10}"
                TextColor="{Binding TextColor}"
                Grid.Row="1"/>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Disposables;
@@ -96,6 +97,20 @@ namespace NotiPetApp.Controls
         {
             get { return (double)GetValue(FontSizeProperty); }
             set { SetValue(FontSizeProperty, value); }
+        }
+        public static readonly BindableProperty ItemSourcesProperty 
+            = BindableProperty.Create(nameof(ItemSources), typeof(IEnumerable), typeof(EntryCustom));
+        public IEnumerable ItemSources
+        {
+            get { return (IEnumerable)GetValue(ItemSourcesProperty); }
+            set { SetValue(ItemSourcesProperty, value); }
+        }
+        public static readonly BindableProperty SelectedItemProperty 
+            = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(EntryCustom));
+        public object SelectedItem
+        {
+            get { return (object)GetValue(SelectedItemProperty); }
+            set { SetValue(SelectedItemProperty, value); }
         }
 
         #endregion

@@ -21,11 +21,11 @@ namespace NotiPet.Mocks.Services
            return Observable.Return(petDtos);
         }
 
-
-
         public IObservable<PetDto> SavePets(PetDto petDto)
         {
-            return Observable.Return(petDto);
+            throw new NotImplementedException();
         }
+
+        
     }
 }

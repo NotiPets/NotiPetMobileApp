@@ -10,5 +10,6 @@ namespace NotiPet.Data.Services
     {
         public IObservable<IEnumerable<SaleDto>> GetSaleByUserId(string userId);
         public IObservable<SaleDto> PostSale([Body]RequestOrderDto requestOrderDto);
+        public IObservable<IEnumerable<AppointmentDto>> GetAppointmentByUserId(string userId);
     }
 }

@@ -6,6 +6,7 @@
              xmlns:renderers="clr-namespace:AiForms.Renderers;assembly=SettingsView"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+             xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
              x:Class="NotiPetApp.Styles.GlobalStyle">
 
     <ResourceDictionary.MergedDictionaries>

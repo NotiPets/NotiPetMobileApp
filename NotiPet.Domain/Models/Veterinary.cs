@@ -34,5 +34,9 @@ namespace NotiPet.Domain.Models
         public string Province { get;  }
         public double Latitude { get;  }
         public double Longitude { get; }
+
+        public string FullAddress => $"{Address1}, {Province},{City}";
+
+        public string Description { get; set; }
     }
 }

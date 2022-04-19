@@ -37,7 +37,7 @@
                                              FontFamily="{StaticResource FontSolid}"/>
                         </ImageButton.Source>
                     </ImageButton>
-                    <views1:TabView Grid.Row="1">
+                    <views1:TabView Grid.Row="1" SelectedIndex="{Binding SelectedIndex}">
                         <views1:TabView.TabStripBackgroundView>
                             <pancakeView:PancakeView 
                                                      CornerRadius="20"
@@ -48,18 +48,28 @@
                         <views1:TabViewItem Text="UpComming"
                                             ControlTemplate="{StaticResource TabItemControlTemplate}"
                                             >
-                            <ContentView BackgroundColor="Red"/>
                         </views1:TabViewItem>
                         <views1:TabViewItem  Text="Last"
 
                                              ControlTemplate="{StaticResource TabItemControlTemplate}"
                                             >
-                            <ContentView BackgroundColor="Yellow" />
                         </views1:TabViewItem>
                     </views1:TabView>
                 </Grid>
             </pancakeView:PancakeView>
-            <CollectionView Grid.Row="1"/>
+            <ListView Grid.Row="1"
+                            ItemsSource="{Binding Appointments}"
+                            HasUnevenRows="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Label Text="{Binding .}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
 
 </views:BasePage>

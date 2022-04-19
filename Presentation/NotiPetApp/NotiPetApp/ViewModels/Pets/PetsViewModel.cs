@@ -19,7 +19,6 @@ namespace NotiPetApp.ViewModels
     public class PetsViewModel:BaseViewModel
     {
         private readonly IPetsService _petsService;
-        public ReactiveCommand<Unit,Unit> InitializingCommand { get; set; }
         private readonly  ReadOnlyObservableCollection<Pet> _pets;
         public ReadOnlyObservableCollection<Pet> Pets => _pets;
        public ReactiveCommand<Unit,Unit> NavigateToRegisterPetCommand{ get; set; }
@@ -37,14 +36,15 @@ namespace NotiPetApp.ViewModels
                 .DisposeWith(Subscriptions);
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
             NavigateToRegisterPetCommand = ReactiveCommand.CreateFromTask<Unit>((param) => NavigationService.NavigateAsync(ConstantUri.RegisterOrEditPet));
-            InitializingCommand = ReactiveCommand.CreateFromObservable(Initialize);
-            
+
 
         }
 
         public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get; set; }
-
-        IObservable<Unit> Initialize()
+        protected override IObservable<Unit> ExecuteInitialize()
             => _petsService.GetPets(Settings.UserId).Select(e => Unit.Default);
+
+
+
     }
 }

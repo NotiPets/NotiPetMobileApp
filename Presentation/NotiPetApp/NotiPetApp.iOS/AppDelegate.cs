@@ -31,6 +31,7 @@ namespace NotiPetApp.iOS
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             SfListViewRenderer.Init();
             SfEffectsViewRenderer.Init();
+            Xamarin.FormsMaps.Init();
             GoogleClientManager.Initialize();
             LoadApplication(new App(new IosInitializer()));
 

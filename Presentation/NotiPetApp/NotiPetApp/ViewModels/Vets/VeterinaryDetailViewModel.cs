@@ -1,19 +1,49 @@
-﻿using Prism.Navigation;
+﻿using System;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using NotiPet.Domain.Models;
+using NotiPet.Domain.Service;
+using NotiPetApp.Helpers;
+using Prism.Navigation;
 using Prism.Services;
+using ReactiveUI;
 
 namespace NotiPetApp.ViewModels
 {
-    public class VeterinaryDetailViewModel : BaseViewModel
+    public class VeterinaryDetailViewModel : BaseViewModel,IInitialize
     {
-        public string Image { get; set; }
-        public string ImageMap { get; set; }
-        public VeterinaryDetailViewModel(INavigationService navigationService, IPageDialogService dialogPage) : base(navigationService, dialogPage)
+        private readonly IVeterinaryService _veterinaryService;
+        public Veterinary Veterinary => _veterinary?.Value;
+        private ObservableAsPropertyHelper<Veterinary> _veterinary;
+        private int _id;
+        public VeterinaryDetailViewModel(INavigationService navigationService, IPageDialogService dialogPage,IVeterinaryService veterinaryService) : base(navigationService, dialogPage)
         {
-            Image =
-                "https://cdn.techtitute.com/techtitute-blog/2021/03/Peritaje-veterinario-1-scaled.jpg";
-            ImageMap =
-                "https://androidbip.com/wp-content/uploads/2021/04/Como-ver-el-trafico-en-tiempo-real-Google-Maps-Android.jpg";
+            _veterinaryService = veterinaryService;
+            NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
+        }
 
+        public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get;  }
+
+
+        protected override IObservable<Unit> ExecuteInitialize()
+        {
+            return Observable.Create<Unit>((observer) =>
+            {
+                var disposable = new CompositeDisposable();
+                var getData = _veterinaryService.GetVeterinary(_id);
+                _veterinary = getData.ToProperty(this, x => x.Veterinary);
+                getData
+                    .Select(x => Unit.Default)
+                    .Subscribe(observer)
+                    .DisposeWith(disposable);
+                return disposable;
+            });
+        }
+
+        public void Initialize(INavigationParameters parameters)
+        {
+            _id = (int)parameters[ParameterConstant.VeterinaryId];
         }
     }
 }

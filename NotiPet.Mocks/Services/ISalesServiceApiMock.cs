@@ -20,5 +20,10 @@ namespace NotiPet.Mocks.Services
         {
             return Observable.Return(new SaleDtoGenerator().SalesDto.FirstOrDefault());
         }
+
+        public IObservable<IEnumerable<AppointmentDto>> GetAppointmentByUserId(string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

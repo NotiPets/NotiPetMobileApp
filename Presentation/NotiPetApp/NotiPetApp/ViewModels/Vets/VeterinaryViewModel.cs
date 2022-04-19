@@ -89,7 +89,7 @@ namespace NotiPetApp.ViewModels
         }
         async   Task NavigateToDetail(int id)
         {
-            await NavigationService.NavigateAsync(ConstantUri.ConfirmAppointmentPage,new NavigationParameters()
+            await NavigationService.NavigateAsync(ConstantUri.VeterinaryDetail,new NavigationParameters()
             {
                 {ParameterConstant.VeterinaryId,id}
             },true);

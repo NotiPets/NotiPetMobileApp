@@ -29,7 +29,7 @@ namespace NotiPetApp.Views
             if (ViewModel != null)
             {
                 WhenAppearing
-                    .InvokeCommand(ViewModel?.InitializingCommand);
+                    .InvokeCommand(ViewModel?.InitializeCommand);
             }
         }
     }

@@ -10,8 +10,27 @@
                 xmlns:views1="http://xamarin.com/schemas/2020/toolkit"
                 xmlns:generic="clr-namespace:System.Collections.Generic;assembly=netstandard"
                 xmlns:sf="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+                xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                 x:Class="NotiPetApp.Views.RegisterOrEditPetPage"
+                x:DataType="viewModels:RegisterOrEditPetViewModel"
                 >
+    <views:BasePage.Resources>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+        <converters:SizeListToHeightRequest x:Key="SizeListToHeightRequest"/>
+        <Style TargetType="controls:EntryCustom"
+        >
+            <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}"/>
+            <Setter  Property="ActiveLineColor" Value="{DynamicResource PrimaryDark}"/>
+            <Setter  Property="LineColor" Value="{DynamicResource PrimaryBackgroundDark}"/>
+            <Setter  Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+            <Setter Property="PlaceHolderSize" Value="16"/>
+            <Setter Property="FontSize"  Value="16"/>
+
+        </Style>
+    </views:BasePage.Resources>
     <Grid RowDefinitions="Auto,Auto,Auto"
           RowSpacing="20">
     <Grid RowDefinitions="Auto,Auto,Auto" Padding="5,20,5,0"
@@ -29,8 +48,7 @@
         </ImageButton>
         <Label Text="Add Pets"  Grid.Column="1"
                Style="{StaticResource LabelLarge}"/>
-        <Label Text="Guardar" HorizontalOptions="End" FontSize="18" VerticalOptions="Center" Grid.Column="2" TextColor="{StaticResource PrimaryDark}"
-               Style="{StaticResource LabelTitleBold}"/>
+
 
     </Grid>
     
@@ -38,19 +56,24 @@
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Padding="5,20,5,0"
               ColumnDefinitions="*,Auto,*">
 
-            <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
-                                      Padding="0" Grid.Row="0" Grid.RowSpan="2"
-                                      CornerRadius="80"
-                                      Margin="5,10,10,0" >
-                
-
-                    <Image  Source="{Binding }"
-                            Aspect="AspectFill" 
-                            HeightRequest="160"
-                            WidthRequest="160"/>
-
-
-            </pancakeView:PancakeView>
+            
+            <forms:CachedImage   Source="{Binding  PictureUrl,Converter={StaticResource Base64StringToImageSource},FallbackValue=patita,TargetNullValue=patita}"
+                                 CacheType="Memory"
+                                 Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
+                                  Grid.Row="0" Grid.RowSpan="2"
+                                 Aspect="AspectFill" 
+                               
+                                 views1:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                 views1:TouchEffect.PressedOpacity="0.6"
+                                 views1:TouchEffect.AnimationDuration="5"
+                                 views1:TouchEffect.PressedScale="0.8"
+                                 views1:TouchEffect.Command="{Binding GetPhotoCommand }"
+                                 HeightRequest="120"
+                                 WidthRequest="120" >
+                <forms:CachedImage.Transformations>
+                    <transformations:CircleTransformation />
+                </forms:CachedImage.Transformations>
+            </forms:CachedImage>
             
             <pancakeView:PancakeView  HorizontalOptions="Start" HeightRequest="40" WidthRequest="40" Margin="20,0,0,0"
                                       Padding="0" BackgroundColor="{StaticResource PrimaryColor}" Grid.Column="2"
@@ -59,7 +82,7 @@
                        HorizontalOptions="Center">
                     <Image.Source>
                         <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.EditIcon}"
-                                          Color="{StaticResource SecondBackgroundColor}"
+                                          Color="{StaticResource PrimaryLetterLightColor}"
                                           FontFamily="{StaticResource FontSolid}"/>
                     </Image.Source>
                 </Image>
@@ -72,72 +95,90 @@
             
             <controls:EntryCustom Grid.ColumnSpan="3"
                                   Grid.Row="3"
-                                  x:Name="PetNameEntryCustom"
+
                                   ValidationColor="{DynamicResource ErrorColor}"
                                   PlaceHolder="Pet's name"
+                                  Text="{Binding Pet.Name}"
                                      
             /> 
 
                         
             <controls:EntryCustom Grid.ColumnSpan="3"
                                   Grid.Row="4"
-                                  Text="Perro"
                                   ValidationColor="{DynamicResource ErrorColor}"
-                                  PlaceHolder="Pet speciality "
+                                  PlaceHolder="Description"
+                                  Text="{Binding Pet.Description}"
                                      
             /> 
-            <controls:EntryCustom Grid.ColumnSpan="3"
-                                  Grid.Row="5"
-                                  Text="Chihuahua"
-                                  ValidationColor="{DynamicResource ErrorColor}"
-                                  PlaceHolder="Raza"  /> 
-
             <controls:PickerCustom Grid.ColumnSpan="3"
-                                   Grid.Row="6"
-                                   x:Name="PetSize"
-                                   Text="Seleccionar"
-                                   PlaceHolder="Size (opcional)" /> 
-            <Label Text="Genero"
-                   Grid.Row="7"  Margin="5"
+                                  Grid.Row="5"
+                                  ItemSources="{Binding PetSizes}"
+                                  SelectedItem="{Binding SelectedPetSize}"
+                                  ValidationColor="{DynamicResource ErrorColor}"
+                                  PlaceHolder="Size" /> 
+
+            <Label    Style="{StaticResource  LabelTitleBold}"
+                      Text="BirthDate"
+                      Grid.ColumnSpan="2"
+                      Margin="5"
+                      Padding="12,8"
+                      Grid.Row="6"/>
+            <DatePicker Grid.Column="2"
+                        Margin="5"
+                        Grid.Row="6"
+                        Date="{Binding Pet.Birthdate}"
+            /> 
+            <Label    Style="{StaticResource  LabelTitleBold}"
+                      Text="PetType"
+                      Grid.ColumnSpan="2"
+                      Margin="5"
+                      Padding="12,8"
+                      Grid.Row="7"/>
+            <Picker Grid.Column="2"
+                        Margin="5"
+                        Grid.Row="7"
+                        ItemsSource="{Binding PetsTypes}"
+                        SelectedItem="{Binding SelectedPetType}"
+            /> 
+            <Label Text="Gender"
+                   Grid.Row="8"  Margin="5"
                    Padding="12,8"
                    VerticalTextAlignment="End"
                    FontAttributes="Bold"
-                   Style="{StaticResource  LabelSubtitleBold}"
-                   FontSize="12"
+                   Style="{StaticResource  LabelTitleBold}"
                    TextColor="{DynamicResource PrimaryLetterLightColor}"
                    Grid.Column="0"
          
             />
             
-            <sf:SfSegmentedControl Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" 
-                                        BorderColor="Transparent" DisabledTextColor="{DynamicResource PrimaryColor}"
+            <sf:SfSegmentedControl Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" 
+                                        BorderColor="{DynamicResource PrimaryDark}" DisabledTextColor="{DynamicResource PrimaryColor}"
                                         HeightRequest="60" FontColor="{DynamicResource PrimaryLetterColor}"
                                         HorizontalOptions="Center"
                                         x:Name="segmentView"
+                                         CornerRadius="25"
                                         DisplayMode="Text"
                                         VisibleSegmentsCount="2"
                                         SegmentCornerRadius="30"
                                         ItemsSource="{Binding Gender}"
-                                        SegmentPadding="30">
+                                        SelectedIndex="{Binding Pet.Gender}"
+                                       >
                 <sf:SfSegmentedControl.SelectionIndicatorSettings>
-
-                <sf:SelectionIndicatorSettings 
-                    Color="{DynamicResource PrimaryColor}" CornerRadius="20">
+                    <sf:SelectionIndicatorSettings 
+                    Color="{DynamicResource PrimaryDark}"
+                    CornerRadius="20">
                 </sf:SelectionIndicatorSettings>
                     </sf:SfSegmentedControl.SelectionIndicatorSettings>
             </sf:SfSegmentedControl>
-            
-            <controls:PickerCustom Grid.ColumnSpan="3"
-                                   Grid.Row="9"
-                                   x:Name="FechaNac"
-                                   Text="Seleccionar"
-                                   PlaceHolder="Fecha de nacimiento"/> 
+
             <Label Text="Additional Information" Grid.Row="10"  Grid.Column="0" Grid.ColumnSpan="3"
                    Margin="10"
                    Style="{StaticResource LabelLarge}"/>
-            <ListView ItemsSource="{Binding InformationAditional}" HeightRequest="360" Margin="12" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3"  >
+            <ListView ItemsSource="{Binding InformationAditional}"
+                      SelectionMode="None"
+                      HeightRequest="{Binding InformationAditional.Count,Converter={StaticResource SizeListToHeightRequest}}" Margin="12" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3"  >
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="models:PetInformation">
                         <ViewCell>
                             <Grid ColumnDefinitions="*,*">
                                 <Label Text="{Binding Name}"
@@ -146,6 +187,7 @@
                             
                                 <Switch  OnColor="{DynamicResource PrimaryColor}" ThumbColor="{DynamicResource SecondBackgroundColor}"
                                          HeightRequest="60" Grid.Column="1"
+                                         IsToggled="{Binding Status}"
                                          HorizontalOptions="End" 
                                          x:Name="SfSwitch" >
                 
@@ -156,14 +198,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
-            <!--<Label Text="Recordatorios" Grid.Row="12"  Grid.Column="0" Grid.ColumnSpan="3"
-                   Margin="10"
-                   Style="{StaticResource LabelLarge}"/>
-            <Label Text="Agrega vacunas,corte de pelo, pastillas, estro, etc. Recibiras notificaciones para el proximo evento." Grid.Row="13"  Grid.Column="0" Grid.ColumnSpan="3"
-                   Margin="10,0,20,0" 
-                   Style="{StaticResource   LabelSubtitleBold}"/>-->
-            
+            <controls:TouchViewControl       Grid.ColumnSpan="3"
+                                             Command="{Binding SaveCommand}"
+                                             CornerRadius="25"
+                                             Margin="10"
+                                             Padding="10"
+                                             CommandText="Guardar"
+                                             
+                                             Grid.Row="12"
+                                             BackgroundColor="{DynamicResource PrimaryDark }"/> 
             
         </Grid>
     </ScrollView>

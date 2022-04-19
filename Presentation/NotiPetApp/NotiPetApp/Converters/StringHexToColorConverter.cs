@@ -19,13 +19,27 @@ namespace NotiPetApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var base64 = value.ToString();
-            if (base64 == null)
+           
+            if (value == null)
                 return "patita";
+            var base64 = value.ToString();
             var arrayByte = System.Convert.FromBase64String(base64);
             Stream stream = new MemoryStream(arrayByte);
             var imageSource = ImageSource.FromStream(()=>stream);
             return imageSource;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class SizeListToHeightRequest:IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var count = (int) value;
+            return count * 40;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
