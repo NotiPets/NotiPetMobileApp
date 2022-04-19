@@ -95,7 +95,7 @@
             
             <controls:EntryCustom Grid.ColumnSpan="3"
                                   Grid.Row="3"
-
+                                  IsEnabled="{Binding IsNew}"
                                   ValidationColor="{DynamicResource ErrorColor}"
                                   PlaceHolder="Pet's name"
                                   Text="{Binding Pet.Name}"
@@ -105,17 +105,26 @@
                         
             <controls:EntryCustom Grid.ColumnSpan="3"
                                   Grid.Row="4"
+                                 
                                   ValidationColor="{DynamicResource ErrorColor}"
                                   PlaceHolder="Description"
                                   Text="{Binding Pet.Description}"
                                      
             /> 
-            <controls:PickerCustom Grid.ColumnSpan="3"
-                                  Grid.Row="5"
-                                  ItemSources="{Binding PetSizes}"
-                                  SelectedItem="{Binding SelectedPetSize}"
-                                  ValidationColor="{DynamicResource ErrorColor}"
-                                  PlaceHolder="Size" /> 
+
+            <Label    Style="{StaticResource  LabelTitleBold}"
+                      Text="Size"
+                      Grid.ColumnSpan="2"
+                      Margin="5"
+                      Padding="12,8"
+                      Grid.Row="5"/>
+            <Picker Grid.Column="2"
+                    Margin="5"
+                    Grid.Row="5"
+                    ItemsSource="{Binding PetSizes}"
+                    IsEnabled="{Binding IsNew}"
+                    SelectedItem="{Binding SelectedPetSize,Mode=TwoWay}"
+            /> 
 
             <Label    Style="{StaticResource  LabelTitleBold}"
                       Text="BirthDate"
@@ -126,6 +135,7 @@
             <DatePicker Grid.Column="2"
                         Margin="5"
                         Grid.Row="6"
+                        
                         Date="{Binding Pet.Birthdate}"
             /> 
             <Label    Style="{StaticResource  LabelTitleBold}"
@@ -133,11 +143,13 @@
                       Grid.ColumnSpan="2"
                       Margin="5"
                       Padding="12,8"
+                      
                       Grid.Row="7"/>
             <Picker Grid.Column="2"
                         Margin="5"
                         Grid.Row="7"
                         ItemsSource="{Binding PetsTypes}"
+                        IsEnabled="{Binding IsNew}"
                         SelectedItem="{Binding SelectedPetType}"
             /> 
             <Label Text="Gender"
@@ -145,6 +157,7 @@
                    Padding="12,8"
                    VerticalTextAlignment="End"
                    FontAttributes="Bold"
+               
                    Style="{StaticResource  LabelTitleBold}"
                    TextColor="{DynamicResource PrimaryLetterLightColor}"
                    Grid.Column="0"
@@ -158,6 +171,7 @@
                                         x:Name="segmentView"
                                          CornerRadius="25"
                                         DisplayMode="Text"
+                                        IsEnabled="{Binding IsNew}"
                                         VisibleSegmentsCount="2"
                                         SegmentCornerRadius="30"
                                         ItemsSource="{Binding Gender}"

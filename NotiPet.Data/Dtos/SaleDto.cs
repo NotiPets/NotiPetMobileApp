@@ -9,6 +9,8 @@ namespace NotiPet.Data.Dtos
         public double Total { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
+        public int BusinessId { get; set; }
+        public BusinessDto Business { get; set; }
         public List<OrderDto> Orders { get; set; }
     }
 }

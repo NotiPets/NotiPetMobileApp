@@ -76,69 +76,11 @@
                        <Label 
                            Style="{StaticResource LabelSubtitleBold}" 
                            HorizontalTextAlignment="Start" 
-                       >
-                           <Label.FormattedText>
-                               <FormattedString>
-                                   <Span Text="10" FontSize="16"></Span>
-                                   <Span Text=" " ></Span>
-                                   <Span Text="años de experiencia"  ></Span>
+                           MaxLines="1"
+                           Text="{Binding User.Description}"
+                       />
+                       
 
-                               </FormattedString>
-                           </Label.FormattedText>
-                       </Label>
-                       
-                       <pancakeView:PancakeView WidthRequest="25"
-                                                CornerRadius="25" Margin="20,0,5,0"
-                                                BackgroundColor="#dae9ed"
-                                                Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
-                                                HeightRequest="25">
-           
-                           <Image Source="location.png"
-                                  VerticalOptions="CenterAndExpand"
-                                  Margin="5"
-                              
-                           />
-                       </pancakeView:PancakeView>
-                       
-                       <Label 
-                           Style="{StaticResource LabelSubtitleBold}" 
-                           HorizontalTextAlignment="Start" 
-                       >
-                           <Label.FormattedText>
-                               <FormattedString>
-                                   <Span Text="1.5" ></Span>
-                                   <Span Text=" " ></Span>
-                                   <Span Text="km"  ></Span>
-
-                               </FormattedString>
-                           </Label.FormattedText>
-                       </Label>
-                       
-                       <pancakeView:PancakeView WidthRequest="25"
-                                                CornerRadius="25" Margin="20,0,5,0"
-                                                BackgroundColor="#dae9ed"
-                                                HeightRequest="25">
-           
-                           <Image Source="cartera.png"
-                                  VerticalOptions="CenterAndExpand"
-                                  Margin="5"
-                              
-                           />
-                       </pancakeView:PancakeView>
-                       
-                       <Label 
-                           Style="{StaticResource LabelSubtitleBold}" 
-                           HorizontalTextAlignment="Start" 
-                       >
-                           <Label.FormattedText>
-                               <FormattedString>
-                                   <Span Text="$" ></Span>
-                                   <Span Text=" " ></Span>
-                                   <Span Text="20"  ></Span>
-
-                               </FormattedString>
-                           </Label.FormattedText>
-                       </Label>
                    </StackLayout>
                    
 

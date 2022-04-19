@@ -17,6 +17,8 @@ namespace NotiPet.Data.Dtos
 
         [JsonProperty("quantity")]
         public int Quantity { get; set; }
+        
+        public AssetServiceDto AssetService { get; set; }
 
         [JsonProperty("petId")]
         public string PetId { get; set; }

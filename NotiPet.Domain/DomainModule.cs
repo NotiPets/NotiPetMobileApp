@@ -12,6 +12,8 @@ namespace NotiPet.Domain
 
             containerRegistry.Register<AuthenticationValidator>();
             containerRegistry.Register<RegisterValidator>();
+            containerRegistry.Register<CreatePetModelValidate>();
+            containerRegistry.Register<CreateAppointmentValidate>();
 
         }
     }

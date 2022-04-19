@@ -13,8 +13,8 @@ namespace NotiPet.Data.Services
     {
         private readonly IMapper _mapper;
         private readonly ISpecialistServiceApi _serviceApi;
-        public SourceCache<Specialist, int> SpecialistSource => _specialistSource;
-        private readonly SourceCache<Specialist, int> _specialistSource = new(x => x.Id);
+        public SourceCache<Specialist, string> SpecialistSource => _specialistSource;
+        private readonly SourceCache<Specialist, string> _specialistSource = new(x => x.Id);
         private readonly SourceCache<Speciality, int> _specialitySource = new(x => x.Id);
 
         public SpecialistsService(IMapper mapper,ISpecialistServiceApi serviceApi)

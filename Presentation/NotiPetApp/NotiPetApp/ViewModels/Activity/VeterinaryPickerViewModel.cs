@@ -1,5 +1,6 @@
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using DynamicData.Binding;
 using MvvmHelpers.Commands;
 using NotiPet.Domain.Models;
@@ -20,6 +21,7 @@ namespace NotiPetApp.ViewModels.Activity
         {
 
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
+
         }
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
         public void Initialize(INavigationParameters parameters)
@@ -27,9 +29,19 @@ namespace NotiPetApp.ViewModels.Activity
             if (parameters.GetNavigationMode()==NavigationMode.New&&parameters.ContainsKey(ParameterConstant.VeterinaryPickerAppointment))
             {
                 _createAppointment = parameters[ParameterConstant.VeterinaryPickerAppointment] as CreateAppointment;
+                DisableNavigateToDetail = true;
             }
     
         }
+
+       async  Task NavigateToDetail(int id)
+        {
+            await NavigationService.NavigateAsync(ConstantUri.ConfirmAppointmentPage,new NavigationParameters()
+            {
+                {ParameterConstant.VeterinaryId,id}
+            },true);
+        }
+
 
         public bool CanNavigate(INavigationParameters parameters)
         {

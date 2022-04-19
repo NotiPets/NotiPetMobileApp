@@ -1,10 +1,11 @@
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace NotiPet.Data.Dtos
 {
     public class BusinessDto
     {
-        [JsonPropertyName("businessName")]
+        [JsonProperty("businessName")]
         public string Name { get; set; }
         public int Id { get; set; }
         public string Rnc { get; set; }
@@ -17,7 +18,8 @@ namespace NotiPet.Data.Dtos
         public string PictureUrl { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        [JsonPropertyName("comment")]
+ 
+        [JsonProperty("comment")]
         public string Description { get; set; }
         
     }

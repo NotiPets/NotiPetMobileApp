@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Linq;
 using AutoMapper;
 using DynamicData;
@@ -13,18 +14,21 @@ namespace NotiPet.Data.Services
     {
         private readonly IMapper _mapper;
         private readonly ISalesServiceApi _salesServiceApi;
-        public SourceCache<Sales, string> DataSource => _dataSource;
+        public SourceCache<AppointmentSale, string> DataSource => _dataSource;
         public SourceCache<Appointment, string> AppointmentDatasource => _appointmentDatasource;
-        private SourceCache<Sales, string> _dataSource = new SourceCache<Sales, string>(x=>x.Id);
+        private SourceCache<AppointmentSale, string> _dataSource = new SourceCache<AppointmentSale, string>(x=>x.OrderId);
         private SourceCache<Appointment, string> _appointmentDatasource = new SourceCache<Appointment, string>(x=>x.Id);
         public SalesService(IMapper mapper,ISalesServiceApi salesServiceApi)
         {
             _mapper = mapper;
             _salesServiceApi = salesServiceApi;
         }
-        public IObservable<IEnumerable<Sales>> GetSaleByUserId(string userId)
+        public IObservable<IEnumerable<AppointmentSale>> GetSaleByUserId(string userId)
         {
-            return _salesServiceApi.GetSaleByUserId(userId).Select(_mapper.Map<IEnumerable<Sales>>)
+            
+            return _salesServiceApi.GetSaleByUserId(userId)
+                .Select(_mapper.Map<IEnumerable<Sales>>)
+                .Select(e=>e.Select(x=>new AppointmentSale(x)))
                 .Do(_dataSource.AddOrUpdate);
         }
 
@@ -40,7 +44,7 @@ namespace NotiPet.Data.Services
                 true, requestOrderDto.Date.ToUniversalTime(), DateTime.Now);
             var order = new List<Order>()
             {
-                new(requestOrderDto.UserId,requestOrderDto.AssetServiceId,appointment,1,requestOrderDto.PetId)
+                new(requestOrderDto.UserId,requestOrderDto.AssetServiceId.GetValueOrDefault(),appointment,1,requestOrderDto.PetId,null)
             };
             return _salesServiceApi.PostSale(_mapper.Map<RequestOrderDto>(new RequestOrder(order,requestOrderDto.BusinessId)))
                 .Select(_mapper.Map<Sales>);

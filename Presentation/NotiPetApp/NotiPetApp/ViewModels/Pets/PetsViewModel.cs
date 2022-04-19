@@ -22,6 +22,7 @@ namespace NotiPetApp.ViewModels
         private readonly  ReadOnlyObservableCollection<Pet> _pets;
         public ReadOnlyObservableCollection<Pet> Pets => _pets;
        public ReactiveCommand<Unit,Unit> NavigateToRegisterPetCommand{ get; set; }
+       [Reactive]public Pet SelectedItem { get; set; }
 
 
         public PetsViewModel(INavigationService navigationService, IPageDialogService dialogPage,
@@ -36,11 +37,23 @@ namespace NotiPetApp.ViewModels
                 .DisposeWith(Subscriptions);
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
             NavigateToRegisterPetCommand = ReactiveCommand.CreateFromTask<Unit>((param) => NavigationService.NavigateAsync(ConstantUri.RegisterOrEditPet));
-
+            EditPetCommand = ReactiveCommand.CreateFromTask<Pet>((param) => NavigationService.NavigateAsync(ConstantUri.RegisterOrEditPet,new NavigationParameters()
+            {
+                {ParameterConstant.Pet,param}
+            }));
+            DeletePetCommand = ReactiveCommand.CreateFromObservable<string,Unit>(RemovePet);
 
         }
 
+        public ReactiveCommand<Pet, Unit> EditPetCommand { get; set; }
+
+        public ReactiveCommand<string, Unit> DeletePetCommand { get; set; }
+
         public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get; set; }
+
+
+        IObservable<Unit> RemovePet(string id)
+            => _petsService.RemovePet(id).Select(e => Unit.Default);
         protected override IObservable<Unit> ExecuteInitialize()
             => _petsService.GetPets(Settings.UserId).Select(e => Unit.Default);
 

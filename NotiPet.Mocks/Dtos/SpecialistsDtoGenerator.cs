@@ -13,7 +13,7 @@ namespace NotiPet.Mocks.Dtos
         {
             var specialist = new Faker<SpecialistDto>()
                 .RuleFor(x=>x.User,UserDtoGenerator.GenerateUser)
-                .RuleFor(x=>x.Id,x=>x.IndexFaker)
+                .RuleFor(x=>x.Id,x=>x.IndexFaker.ToString())
                 .RuleFor(x=>x.Speciality,SpecialityDtoGenerator.GenerateDto);
             
             Specialists = specialist.GenerateLazy(300);
@@ -23,7 +23,7 @@ namespace NotiPet.Mocks.Dtos
         {
             return new Faker<SpecialistDto>()
                 .RuleFor(x=>x.User,UserDtoGenerator.GenerateUser)
-                .RuleFor(x=>x.Id,x=>x.IndexFaker)
+                .RuleFor(x=>x.Id,x=>x.IndexFaker.ToString())
                 .RuleFor(x=>x.Speciality,SpecialityDtoGenerator.GenerateDto);
         }
         

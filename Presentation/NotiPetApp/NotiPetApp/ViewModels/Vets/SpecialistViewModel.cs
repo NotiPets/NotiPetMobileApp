@@ -69,7 +69,7 @@ namespace NotiPetApp.ViewModels
 
             _specialistsService.SpecialistSource
                 .Connect()
-                .Filter(filterPredicate)
+    
                 .Filter(searchPredicate)
                 .Sort(sortPredicate)
                 .ObserveOn(schedulerProvider.MainThread)

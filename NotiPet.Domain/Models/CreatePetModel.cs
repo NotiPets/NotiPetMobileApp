@@ -14,6 +14,27 @@ namespace NotiPet.Domain.Models
     }
     public class CreatePetModel:INotifyPropertyChanged
     {
+        public CreatePetModel (Pet pet)
+        {
+            Id = pet.Id;
+            Name = pet.Name;
+            PetType = pet.PetTypeId;
+            User = pet.UserId;
+            Size = pet.Size;
+            PictureUrl = pet.PictureUrl;
+            Description = pet.Description;
+            Vaccinated = pet.Vaccinated;
+            Castrated = pet.Castrated;
+            HasTracker = pet.HasTracker;
+            Birthdate = pet.Birthdate;
+        }
+
+        public CreatePetModel()
+        {
+            
+        }
+
+        public string Id { get; set; }
         public string Name { get; set; }
         public int? PetType { get; set; }
         public string User { get; set; }

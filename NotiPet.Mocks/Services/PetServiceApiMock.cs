@@ -26,6 +26,14 @@ namespace NotiPet.Mocks.Services
             throw new NotImplementedException();
         }
 
-        
+        public IObservable<object> RemovePets(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IObservable<Pet> EditPet(PetDto map)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

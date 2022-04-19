@@ -7,7 +7,7 @@ namespace NotiPet.Domain.Service
 {
     public interface ISpecialistsService
     {
-        public SourceCache<Specialist,int> SpecialistSource { get; }
+        public SourceCache<Specialist,string> SpecialistSource { get; }
         IObservable<IEnumerable<Specialist>> GetSpecialists();
         IObservable<IEnumerable<Speciality>> GetSpecialities();
         public SourceCache<ParameterOption,int> ParametersOptions { get;  }

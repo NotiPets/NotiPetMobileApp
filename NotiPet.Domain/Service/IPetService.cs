@@ -14,5 +14,7 @@ namespace NotiPet.Domain.Service
         public List<PetInformation> PetInformations { get;  }
         public List<PetType> PetTypes { get;  }
         public List<PetSize> PetSizes { get;  }
+        public IObservable<object> RemovePet(string id);
+        IObservable<Pet> EditPet(CreatePetModel pet);
     }
 }

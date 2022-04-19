@@ -114,7 +114,24 @@
                     </pancakeView:PancakeView>
                 </Grid>
             </pancakeView:PancakeView>
-
-        <vets:VeterinaryView  Grid.Row="1" />
+        <ListView ItemsSource="{Binding Veterinaries}"  Margin="10,5,10,5" 
+                  HasUnevenRows="True"
+                  Grid.Row="1"
+                  x:Name="VetList"
+                  SelectionMode="Single"
+        >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <vets:VeterinaryContentView>
+                            <vets:VeterinaryContentView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type activity:VeterinaryPickerViewModel}},Path=ShowDetailCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </vets:VeterinaryContentView.GestureRecognizers>
+                        </vets:VeterinaryContentView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </views:BasePage>

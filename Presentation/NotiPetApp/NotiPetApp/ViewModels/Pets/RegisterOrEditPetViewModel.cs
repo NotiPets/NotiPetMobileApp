@@ -6,13 +6,16 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Bogus.DataSets;
+using FluentValidation;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
+using NotiPet.Domain.Validator;
 using NotiPetApp.Controls;
 using NotiPetApp.Helpers;
 using NotiPetApp.Models;
 using NotiPetApp.Services;
 using NotiPetApp.Views.Vets;
+using Prism.Common;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
@@ -23,10 +26,11 @@ using Xamarin.CommunityToolkit.Effects;
 namespace NotiPetApp.ViewModels
 {
 
-    public class RegisterOrEditPetViewModel : BaseViewModel
+    public class RegisterOrEditPetViewModel : BaseViewModel,IInitialize
     {
         private readonly IPetsService _petsService;
         private readonly IDeviceUtils _deviceUtils;
+        private readonly CreatePetModelValidate _validate;
         private int _selectedIndex;
         public List<string> Gender { get; set; }
         
@@ -37,13 +41,15 @@ namespace NotiPetApp.ViewModels
         [Reactive]public PetType SelectedPetType { get; set; }
 
        [Reactive] public CreatePetModel Pet { get; set; }
-       [Reactive]public PetType SelectedPetSize { get; set; }
+       [Reactive]public PetSize SelectedPetSize { get; set; }
        [Reactive] public string PictureUrl { get; set; }
+       public bool IsNew { get; set; } = true;
         
-        public RegisterOrEditPetViewModel(INavigationService navigationService, IPageDialogService dialogPage,IPetsService petsService,IDeviceUtils deviceUtils) : base(navigationService, dialogPage)
+        public RegisterOrEditPetViewModel(INavigationService navigationService, IPageDialogService dialogPage,IPetsService petsService,IDeviceUtils deviceUtils,CreatePetModelValidate validate) : base(navigationService, dialogPage)
         {
             _petsService = petsService;
             _deviceUtils = deviceUtils;
+            _validate = validate;
             Pet = new CreatePetModel();
             InformationAditional = _petsService.PetInformations;
             PetsTypes = _petsService.PetTypes;
@@ -75,9 +81,25 @@ namespace NotiPetApp.ViewModels
             Pet.PictureUrl = PictureUrl;
             Pet.PetType = SelectedPetType?.Id;
             Pet.Size = SelectedPetSize?.Id;
-            return _petsService.SavePet(Pet);
+            var validate = _validate.Validate(Pet);
+            if (!validate.IsValid)
+            {
+                ShowErrorMessage(validate.Errors.Select(e => e.ErrorMessage));
+                return Observable.Return<Pet>(null);
+            }
+            return IsNew? _petsService.SavePet(Pet):_petsService.EditPet(Pet);
         }
 
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
+        public void Initialize(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey (ParameterConstant.Pet))
+            {
+                IsNew = false;
+                Pet =  new CreatePetModel(parameters[ParameterConstant.Pet] as Pet);
+                SelectedPetSize = PetSizes.FirstOrDefault(x => x.Id == Pet.Size);
+                SelectedPetType = PetsTypes.FirstOrDefault(x=>x.Id==Pet.PetType);
+            }
+        }
     }
 }

@@ -28,7 +28,7 @@
                              <Label Text="{Binding Veterinary.Name}"
                                     Grid.Row="1"
                                     HorizontalTextAlignment="Center"
-                                    Style="{StaticResource LabelTitleBold}"
+                                    Style="{StaticResource LabelLarge}"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"/>
                              <Label Text="{Binding Veterinary.FullAddress}"
@@ -84,7 +84,7 @@
                        >
                            <Label.FormattedText>
                                <FormattedString>
-                                   <Span Text="1.5" ></Span>
+                                   <Span Text="{Binding Distance}" ></Span>
                                    <Span Text=" " ></Span>
                                    <Span Text="km"  ></Span>
 
@@ -101,7 +101,18 @@
 
                 <pancakeView:PancakeView Grid.Row="2"   Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}" HeightRequest="250" CornerRadius="20"  BackgroundColor="White" Margin="20">
                     <maps:Map Grid.Row="0"
-                              HorizontalOptions="FillAndExpand"/>
+                              x:Name="Map"
+                              ItemsSource="{Binding Pins}"
+                              HorizontalOptions="FillAndExpand">
+                        <maps:Map.ItemTemplate>
+                            <DataTemplate x:DataType="maps:Pin">
+                                <maps:Pin 
+                                    Address="{Binding Address}"
+                                    Label="{Binding Label}"
+                                    Position="{Binding Position}" />
+                            </DataTemplate>
+                        </maps:Map.ItemTemplate>
+                    </maps:Map>
                 </pancakeView:PancakeView>               
                 <Label Text="Reviews" 
                        Grid.Row="3"

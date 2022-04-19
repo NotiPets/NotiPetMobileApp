@@ -16,10 +16,10 @@ namespace NotiPet.UnitTest.Fixtures.VeterinaryTest
             veterinaryFixture.BuildDto();
 
         private SpecialistDto BuildDto() => JsonConvert.DeserializeObject<SpecialistDto>("");
-        public SpecialistFixture IdWith(int id) => this.With(ref _id,id);
+        public SpecialistFixture IdWith(string id) => this.With(ref _id,id);
         public SpecialistFixture UserWith(Domain.Models.User user) => this.With(ref _user,user);
         public SpecialistFixture SpecialistWith(Speciality speciality) => this.With(ref _speciality,speciality);
-        private int _id;
+        private string _id;
 
         private Domain.Models.User _user;
 

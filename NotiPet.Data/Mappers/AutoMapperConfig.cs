@@ -27,7 +27,8 @@ namespace NotiPet.Data.Mappers
 
                     .ReverseMap();
                 cfg.CreateMap<AssetServiceDto, AssetServiceModel>()
-                    .ForMember(e => e.PictureUrl, x => x.Ignore());
+                    .ForMember(e => e.PictureUrl, x => x.Ignore())
+                    .ReverseMap();
                 cfg.CreateMap<PetTypeDto, PetType>().ReverseMap();
                 cfg.CreateMap<PetDto, Pet>()
                     .ReverseMap();
@@ -39,7 +40,8 @@ namespace NotiPet.Data.Mappers
                 cfg.CreateMap<IAuthenticationRequestViewModel,RequestAuthenticationDto>(); 
                 cfg.CreateMap<SpecialistDto,Specialist>()
                     .ReverseMap();
-                cfg.CreateMap<SaleDto, Sales>();
+                cfg.CreateMap<SaleDto, Sales>()
+                    .ForMember(x=>x.Veterinary,x=>x.MapFrom(x=>x.Business));
                 cfg.CreateMap<RequestOrder, RequestOrderDto>();
                 cfg.CreateMap<Order, OrderDto>()
                     .ReverseMap();
@@ -49,6 +51,7 @@ namespace NotiPet.Data.Mappers
                     .ReverseMap();
                 cfg.CreateMap<ReviewDto,Review >()
                     .ReverseMap();
+                
                 cfg.ShouldUseConstructor = x =>! x.IsPrivate;
             }); 
             automapper.AssertConfigurationIsValid();

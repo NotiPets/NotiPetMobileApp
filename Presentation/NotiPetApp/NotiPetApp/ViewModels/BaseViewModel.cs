@@ -1,11 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Prism.Navigation;
 using Prism.Services;
+using Prism.Services.Dialogs;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Realms.Logging;
 
 namespace NotiPetApp.ViewModels
 {
@@ -32,7 +36,13 @@ namespace NotiPetApp.ViewModels
                 Subscriptions.Dispose();
             }
         }
+        public async Task ShowErrorMessage(IEnumerable<string> messages, bool canContinue = false)
+        {
+            var message = string.Join("\n", messages);
+            await DialogPage.DisplayAlertAsync("Error", message,
+                "Ok");
 
+        }
         public void Dispose()
         {
             Dispose(true);

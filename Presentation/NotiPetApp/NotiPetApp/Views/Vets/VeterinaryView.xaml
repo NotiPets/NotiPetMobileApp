@@ -11,6 +11,7 @@
                           xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                           xmlns:vets="clr-namespace:NotiPetApp.Views.Vets;assembly=NotiPetApp"
                           x:Class="NotiPetApp.Views.Vets.VeterinaryView"
+                          x:Name="VetView"
                           Title="Veterinaries"
 >
     <controls:TabItemReactive.Resources>
@@ -18,13 +19,19 @@
     </controls:TabItemReactive.Resources>
         <ListView ItemsSource="{Binding Veterinaries}"  Margin="10,5,10,5" 
                   HasUnevenRows="True"
-                  SelectedItem="{Binding SelectedVeterinary,Mode=TwoWay}"
+
+                  x:Name="VetList"
                   SelectionMode="Single"
                   >
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <vets:VeterinaryContentView/>
+                    <vets:VeterinaryContentView>
+                        <vets:VeterinaryContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:VeterinaryViewModel}},Path=ShowDetailCommand}"
+                                                  CommandParameter="{Binding .}"/>
+                        </vets:VeterinaryContentView.GestureRecognizers>
+                        </vets:VeterinaryContentView>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>

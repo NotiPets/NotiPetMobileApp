@@ -41,7 +41,7 @@ namespace NotiPet.Domain.Models
         public bool IsEmergency { get; set; }
         public string PetId { get; set; }
         public int AppointmentStatusId { get; set; }
-        public int AssetServiceId { get; set; }
+        public int? AssetServiceId { get; set; }
         public string UserId { get; set; }
         public int BusinessId { get; set; }
     }

@@ -9,10 +9,13 @@
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                 xmlns:vets="clr-namespace:NotiPetApp.Views.Vets;assembly=NotiPetApp"
+                xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                 x:Class="NotiPetApp.Views.Activity.SelectSpecialityPopUp"
                 BackgroundColor="Transparent"
                 x:DataType="activity:SelectSpecialityViewModel">
-
+    <views:BasePage.Resources >
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+    </views:BasePage.Resources>
     <pancakeView:PancakeView Margin="0,40,0,0"
                              BackgroundColor="{DynamicResource BackgroundColor}"
                              Shadow="{StaticResource ShadowMarkupStyle}"
@@ -54,17 +57,20 @@
                     SelectedItem="{Binding SelectedItem}"
                     SelectionMode="Single"
     >
-                 <CollectionView.ItemTemplate>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="2"></GridItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:Pet">
                 <StackLayout Margin="10">
-                     <pancakeView:PancakeView  Shadow="{StaticResource ShadowMarkupStyle}" Padding="20" Margin="20"   CornerRadius="20" HeightRequest="200"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
-                      <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+               <Grid RowDefinitions="Auto,Auto,Auto,Auto"
                       ColumnDefinitions="110,Auto,*">
                           <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
                                                     Padding="0" Grid.Row="0" Grid.RowSpan="2"
                                                     CornerRadius="60"
                                                     Margin="5,10,10,0" >
-                       <Image  Source="{Binding PictureUrl}"
+                       <Image  Source="{Binding PictureUrl,Converter={StaticResource Base64StringToImageSource}}"
                                           Aspect="AspectFill" 
                                           HeightRequest="120"
                                           WidthRequest="120"/>
@@ -90,8 +96,6 @@
                                  Grid.ColumnSpan="3"/>
 
                 </Grid>
-             
-                </pancakeView:PancakeView>
               
                 </StackLayout>
                

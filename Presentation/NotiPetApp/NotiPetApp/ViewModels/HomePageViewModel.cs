@@ -3,17 +3,20 @@ using System.Threading.Tasks;
 using DynamicData;
 using NotiPetApp.Helpers;
 using NotiPetApp.Models;
+using NotiPetApp.Services;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
 
 namespace NotiPetApp.ViewModels
 {
-    public class HomeViewModel:BaseViewModel
+    public class HomeViewModel:BaseViewModel,IInitializeAsync
     {
+        private readonly IDeviceUtils _deviceUtils;
         public ObservableCollection<AppMenuItem> AppMenuItems { get; set; }
-        public HomeViewModel(INavigationService navigationService, IPageDialogService dialogPage) : base(navigationService, dialogPage)
+        public HomeViewModel(INavigationService navigationService, IPageDialogService dialogPage,IDeviceUtils deviceUtils) : base(navigationService, dialogPage)
         {
+            _deviceUtils = deviceUtils;
             AppMenuItems = new ObservableCollection<AppMenuItem>()
             {
                 new(ConstantDictionary.Veterinary,"Veterinary",1,ReactiveCommand.CreateFromTask(NavigateToLastVisitVeterinary),SizeItem.Small),
@@ -42,5 +45,10 @@ namespace NotiPetApp.ViewModels
             return Task.CompletedTask;
 
         }
+
+         public async Task InitializeAsync(INavigationParameters parameters)
+         {
+             await _deviceUtils.GetCurrentLocation();
+         }
     }
 }

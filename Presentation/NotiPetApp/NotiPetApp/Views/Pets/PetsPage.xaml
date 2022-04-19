@@ -9,6 +9,7 @@
                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                x:Name="PetPage"
                 x:Class="NotiPetApp.Views.PetsPage">
         <Grid RowDefinitions="Auto,*"
               RowSpacing="20">
@@ -46,64 +47,74 @@
                     </Image>
                 </Grid>
 
-            <CollectionView ItemsSource="{Binding Pets}"
+            <ListView ItemsSource="{Binding Pets}"
                             Grid.Row="1"
                             x:Name="Pets"
+                            HasUnevenRows="True"
+                            SelectionMode="None"
             >
-                 <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <StackLayout Margin="10">
-                     <pancakeView:PancakeView  Shadow="{StaticResource ShadowMarkupStyle}" Padding="20" Margin="20"   CornerRadius="20" HeightRequest="200"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
-                      <Grid RowDefinitions="Auto,Auto,Auto,Auto"
-                      ColumnDefinitions="110,Auto,*">
-                          
-                          <Image BackgroundColor="Transparent"
-                                 HorizontalOptions="EndAndExpand"
-                                 Grid.ColumnSpan="3"
-                                 Grid.Column="0">
-                              <Image.Source>
-                                  <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.EditIcon}"
-                                                    Color="{StaticResource PrimaryDark}"
-                                                    FontFamily="{StaticResource FontSolid}"/>
-                              </Image.Source>
-                          </Image>
-                    <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
-                                              Padding="0" Grid.Row="0" Grid.RowSpan="2"
-                                              CornerRadius="60"
-                                              Margin="5,10,10,0" >
-                       <Image  Source="{Binding PictureUrl}"
-                                          Aspect="AspectFill" 
-                                          HeightRequest="120"
-                                          WidthRequest="120"/>
-                      </pancakeView:PancakeView>
-                
-                   <Label Text="{Binding Name}"
-                            FontSize="20"
-                             Grid.Row="3"
-                            HorizontalOptions="CenterAndExpand"            
-                            Style="{StaticResource LabelTitleBold}"
-                             Grid.Column="0"
-                             Grid.ColumnSpan="3"/>
-                   
-                          <Label Text="{Binding PetType.Name}"
-                                 Grid.Row="4"
-                                 FontSize="16"
-                                 MaxLines="1"
-                                 HorizontalOptions="CenterAndExpand"            
-                                 TextColor="{DynamicResource PrimaryLetterLightColor}"
-                                 Style="{StaticResource LabelSubtitleBold}"
-                                 LineBreakMode="TailTruncation"
+         <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Pet">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem Command="{Binding Source={x:Reference PetPage},Path=ViewModel.DeletePetCommand}"
+                                  CommandParameter="{Binding Id}"
+                                  Text="Delete"/>
+                    </ViewCell.ContextActions>
+                    <StackLayout Margin="10">
+                         <pancakeView:PancakeView  Shadow="{StaticResource ShadowMarkupStyle}" Padding="20" Margin="20"   CornerRadius="20" HeightRequest="200"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
+                          <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                          ColumnDefinitions="110,Auto,*">
+                              
+     
+                        <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
+                                                  Padding="0" Grid.Row="0" Grid.RowSpan="2"
+                                                  CornerRadius="60"
+                                                  Margin="5,10,10,0" >
+                           <Image  Source="{Binding PictureUrl}"
+                                              Aspect="AspectFill" 
+                                              HeightRequest="120"
+                                              WidthRequest="120"/>
+                          </pancakeView:PancakeView>
+                    
+                       <Label Text="{Binding Name}"
+                                FontSize="20"
+                                 Grid.Row="3"
+                                HorizontalOptions="CenterAndExpand"            
+                                Style="{StaticResource LabelTitleBold}"
                                  Grid.Column="0"
                                  Grid.ColumnSpan="3"/>
-
-                </Grid>
-             
-                </pancakeView:PancakeView>
-              
-                </StackLayout>
-               
+                       
+                              <Label Text="{Binding  PetTypeName}"
+                                     Grid.Row="4"
+                                     FontSize="16"
+                                     MaxLines="1"
+                                     HorizontalOptions="CenterAndExpand"            
+                                     TextColor="{DynamicResource PrimaryLetterLightColor}"
+                                     Style="{StaticResource LabelSubtitleBold}"
+                                     LineBreakMode="TailTruncation"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="3"/>
+                       <ImageButton BackgroundColor="Transparent"
+                                    HorizontalOptions="EndAndExpand"
+                                    Grid.ColumnSpan="3"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PetsViewModel}},Path=EditPetCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Grid.Column="0">
+                           <ImageButton.Source>
+                               <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.EditIcon}"
+                                                 Color="{StaticResource PrimaryDark}"
+                                                 FontFamily="{StaticResource FontSolid}"/>
+                           </ImageButton.Source>
+                       </ImageButton>
+                    </Grid>
+                 
+                    </pancakeView:PancakeView>
+                  
+                    </StackLayout>
+                    </ViewCell>
             </DataTemplate>
-        </CollectionView.ItemTemplate>
-            </CollectionView>
+        </ListView.ItemTemplate>
+            </ListView>
             </Grid>
 </views:BasePage>

@@ -1,3 +1,4 @@
+using System;
 using FluentValidation;
 using NotiPet.Domain.Models;
 
@@ -18,6 +19,35 @@ namespace NotiPet.Domain.Validator
                     !string.IsNullOrEmpty(e.Password) &&
                     !string.IsNullOrEmpty(e.Username))
                 .WithMessage("has fields empty!");;
+        }
+    }
+    public class CreateAppointmentValidate:AbstractValidator<CreateAppointment>
+    {
+        public CreateAppointmentValidate()
+        {
+            this.RuleFor(e => e.BusinessId)
+                .Must(e=>e>-1)
+                .WithMessage("BusinessId not valid");
+            this.RuleFor(e => e.Date)
+                .GreaterThanOrEqualTo(DateTime.Today);
+            this.RuleFor(x => x.AssetServiceId)
+                .Must(e=>e!=null&&e>0)
+                .WithMessage("you must select a service");;
+        }
+    }
+    public class CreatePetModelValidate:AbstractValidator<CreatePetModel>
+    {
+        public CreatePetModelValidate()
+        {
+            this.RuleFor(e => e.Name)
+                .Must(e=>!string.IsNullOrWhiteSpace(e))
+                .WithMessage("Name not valid");
+            this.RuleFor(e => e.PetType)
+                .Must(e=>e!=null)
+                .WithMessage("PetType not valid");
+            this.RuleFor(e => e.Size)
+                .Must(e=>e!=null)
+                .WithMessage("Size not valid");
         }
     }
     public class RegisterValidator:AbstractValidator<IRegisterRequestViewModel>

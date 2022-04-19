@@ -41,5 +41,7 @@ namespace NotiPetApp.Helpers
         public const string VeterinaryId = "VeterinaryId";
         public static string VeterinaryPickerAppointment = "VeterinaryPickerAppointment";
         public static string OrderComplete = "OrderComplete";
+        public static string Pet = "Pet";
+
     }
 }

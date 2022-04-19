@@ -22,11 +22,13 @@ namespace NotiPetApp.ViewModels
 {
     public class VeterinaryViewModel:BaseViewModel
     {
+        protected bool DisableNavigateToDetail { get; set; }
         private readonly IVeterinaryService _veterinaryService;
         private readonly ReadOnlyObservableCollection<Veterinary> _veterinaries;
         public ReadOnlyObservableCollection<ParameterOption> _parameterOptions;
         public ReadOnlyObservableCollection<ParameterOption> ParameterOptions=>_parameterOptions;
-        public ReactiveCommand<int,Unit> ShowDetailCommand  { get; set; }
+        public ReactiveCommand<Veterinary,Unit> ShowDetailCommand  { get; set; }
+   
         public VeterinaryViewModel(INavigationService navigationService, IPageDialogService pageDialogService,
             IVeterinaryService veterinaryService, ISchedulerProvider schedulerProvider) : base(navigationService,pageDialogService)
         {
@@ -59,6 +61,7 @@ namespace NotiPetApp.ViewModels
                 .DistinctUntilChanged()
                 .Select(SearchFunc);
             notificationParameters
+      
                 .Filter(e=>e.IsActive)
                 .Bind(out _parameterOptions)
                 .DisposeMany()
@@ -75,7 +78,7 @@ namespace NotiPetApp.ViewModels
                 .Subscribe()
                 .DisposeWith(Subscriptions);
             NavigateToFilterCommand = ReactiveCommand.CreateFromTask(NavigateToFilter);
-            ShowDetailCommand = ReactiveCommand.CreateFromTask<int>(NavigateToDetail);
+            ShowDetailCommand = ReactiveCommand.CreateFromTask<Veterinary>(NavigateToDetail);
         }
         Func<Veterinary, bool> SearchFunc(string text) =>
             model => string.IsNullOrEmpty(text) || model.Name.ToLower().Contains(text.ToLower());
@@ -83,16 +86,17 @@ namespace NotiPetApp.ViewModels
 
         async   Task NavigateToFilter()
         {
-            await NavigationService.NavigateAsync(ConstantUri.OptionParameters,new NavigationParameters()
+            await NavigationService.NavigateAsync( ConstantUri.OptionParameters,new NavigationParameters()
             {
                 {ParameterConstant.OptionsParameter,_veterinaryService.ParametersOptions}
             },true);
         }
-        async   Task NavigateToDetail(int id)
+           async   Task NavigateToDetail(Veterinary veterinary)
         {
-            await NavigationService.NavigateAsync(ConstantUri.VeterinaryDetail,new NavigationParameters()
+            await NavigationService.NavigateAsync(DisableNavigateToDetail?ConstantUri.ConfirmAppointmentPage:ConstantUri.VeterinaryDetail,new NavigationParameters()
             {
-                {ParameterConstant.VeterinaryId,id}
+                {ParameterConstant.VeterinaryId,veterinary.Id},
+                {nameof(Veterinary),veterinary}
             },true);
         }
         public ReactiveCommand<Unit, Unit> NavigateToFilterCommand { get; set; }

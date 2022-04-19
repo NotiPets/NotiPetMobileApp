@@ -5,8 +5,10 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using FluentValidation;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
+using NotiPet.Domain.Validator;
 using NotiPetApp.Helpers;
 using Prism.Navigation;
 using Prism.Services;
@@ -20,6 +22,7 @@ namespace NotiPetApp.ViewModels.Activity
         private readonly ISalesService _salesService;
         private readonly IVeterinaryService _veterinaryService;
         private readonly IStoreService _storeService;
+        private readonly CreateAppointmentValidate _validator;
         private CreateAppointment _createAppointment;
         public ReactiveCommand<Unit,Sales> CreateAppointmentCommand  { get; set; }
         public DateTime Date { get; set; }
@@ -32,12 +35,13 @@ namespace NotiPetApp.ViewModels.Activity
        [Reactive] public  AssetServiceModel SelectedService { get; set; }
 
         public ConfirmAppointmentViewModel(INavigationService navigationService, IPageDialogService dialogPage,
-            ISalesService salesService,IVeterinaryService veterinaryService,IStoreService storeService) : base(navigationService, dialogPage)
+            ISalesService salesService,IVeterinaryService veterinaryService,IStoreService storeService,CreateAppointmentValidate validator) : base(navigationService, dialogPage)
         {
 
             _salesService = salesService;
             _veterinaryService = veterinaryService;
             _storeService = storeService;
+            _validator = validator;
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
             CreateAppointmentCommand = ReactiveCommand.CreateFromObservable<Sales>(CreateAppointment);
             var canExecuteAppointment = CreateAppointmentCommand.Select(e => e is {Orders: { }} && e.Orders.Any());//
@@ -53,8 +57,14 @@ namespace NotiPetApp.ViewModels.Activity
         private IObservable<Sales> CreateAppointment()
         {
             _createAppointment.Date = _createAppointment.Date.Add(Time);
-            _createAppointment.AssetServiceId = SelectedService.AssetsServiceType;
-           return _salesService.CreateAppointment(_createAppointment);
+            _createAppointment.AssetServiceId = SelectedService?.AssetsServiceType;
+            var validate = _validator.Validate(_createAppointment);
+            if (!validate.IsValid)
+            {
+                ShowErrorMessage(validate.Errors.Select(e => e.ErrorMessage));
+                return Observable.Return<Sales>(null);
+            }
+            return _salesService.CreateAppointment(_createAppointment);
         }
 
         protected override IObservable<Unit> ExecuteInitialize()

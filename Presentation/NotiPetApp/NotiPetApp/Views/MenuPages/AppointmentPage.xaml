@@ -64,85 +64,46 @@
                             ItemsSource="{Binding Appointments}"
                             HasUnevenRows="True">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Appointment">
+                    <DataTemplate x:DataType="models:AppointmentSale">
                         <ViewCell>
-                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Margin="10" ColumnDefinitions="110,Auto,*">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:SpecialistViewModel}},Path=ShowDetailCommand}"
-                                                      CommandParameter="{Binding Id}"/>
-                            </Grid.GestureRecognizers>
+                            <Grid>
+                            <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                                     Shadow="{StaticResource ShadowMarkupStyle}"
+                                               
+                                                     Margin="10"
+                                                     CornerRadius="30">
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"  ColumnDefinitions="Auto,Auto,*"
+                            >
+
                     
                     <pancakeView:PancakeView  Grid.Column="0" 
                                               Padding="0" Grid.RowSpan="4"
                                               CornerRadius="20"
-                                              Margin="5,10,10,0" >
-                       <forms:CachedImage   Source="{Binding  Specialist.User.PictureUrl}"
+                                              WidthRequest="100"
+                                              Margin="40,10,10,0" >
+                       <forms:CachedImage   Source="{Binding  Veterinary.PictureUrl,TargetNullValue='notImage',FallbackValue='notImage'}"
+                                            LoadingPlaceholder="notImage"
+                                            ErrorPlaceholder="notImage"
                                             Aspect="AspectFill"
-                                            HeightRequest="80"
+                                            HeightRequest="85"
                                             WidthRequest="50"/>
                       </pancakeView:PancakeView>
                 
-                   <Label Text="{Binding Specialist.User.FullName}"
+                   <Label Text="{Binding Veterinary.Name}"
                             FontSize="20"
                              Grid.Row="1"
                              Style="{StaticResource LabelTitleBold}"
                              Grid.Column="1"
                              Grid.ColumnSpan="2"/>
-                          <Label Text="{Binding Specialist.Speciality.Description}"
+                          <Label Text="{Binding Veterinary.Description}"
                                  Grid.Row="2"
                                  FontSize="16"
-                                 MaxLines="1"
+                                 MaxLines="2"
                                  Style="{StaticResource LabelSubtitleBold}"
                                  LineBreakMode="TailTruncation"
                                  Grid.Column="1"
                                  Grid.ColumnSpan="2"/>
-                      <xForms:SfRating Precision="Half" 
-                                        ItemCount="5" 
-                                        IsEnabled="False" 
-                                       Margin="0,0,10,0" 
-                                        ItemSize="15" 
-                                        Value="4" 
-                                        HeightRequest="25" 
-                                         Grid.Row="3" 
-                                        Grid.Column="1"> 
-                           <xForms:SfRating.RatingSettings> 
-                               <xForms:SfRatingSettings RatedFill="{DynamicResource RatingColor}" UnRatedFill="Transparent" RatedStroke="LightGray" RatedStrokeWidth="1" UnRatedStrokeWidth="1" />
-                           </xForms:SfRating.RatingSettings> 
-                           </xForms:SfRating> 
-                          <Label Text="125 Reviews"
-                                 Grid.Row="3"
-                                 Grid.Column="2"
-                                 Style="{StaticResource LabelSmall}"
-                                 />
-                   <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="10,0,5,5" Padding="5,10,10,5">
-                     
-                       <pancakeView:PancakeView WidthRequest="25"
-                                                CornerRadius="25" Margin="20,0,5,0"
-                                                BackgroundColor="#dae9ed"
-                                                Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
-                                                HeightRequest="25">
-           
-                           <Image Source="location.png"
-                                  VerticalOptions="CenterAndExpand"
-                                  Margin="5"
-                              
-                           />
-                       </pancakeView:PancakeView>
-                       
-                       <Label 
-                           Style="{StaticResource LabelSubtitleBold}" 
-                           HorizontalTextAlignment="Start" 
-                       >
-                           <Label.FormattedText>
-                               <FormattedString>
-                                   <Span Text="1.5" ></Span>
-                                   <Span Text=" " ></Span>
-                                   <Span Text="km"  ></Span>
-
-                               </FormattedString>
-                           </Label.FormattedText>
-                       </Label>
-                       
+                   <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="End" Orientation="Horizontal" Margin="10,0,5,5" Padding="5,10,10,5">
                        <pancakeView:PancakeView WidthRequest="25"
                                                 CornerRadius="25" Margin="20,0,5,0"
                                                 BackgroundColor="#dae9ed"
@@ -158,16 +119,8 @@
                        <Label 
                            Style="{StaticResource LabelSubtitleBold}" 
                            HorizontalTextAlignment="Start" 
-                       >
-                           <Label.FormattedText>
-                               <FormattedString>
-                                   <Span Text="$" ></Span>
-                                   <Span Text=" " ></Span>
-                                   <Span Text="20"  ></Span>
-
-                               </FormattedString>
-                           </Label.FormattedText>
-                       </Label>
+                           Text="{Binding Total,StringFormat='{0:C2}'}" 
+                       />
                    </StackLayout>
                    
                    <pancakeView:PancakeView Grid.Row="5" BackgroundColor="#dae9ed"
@@ -185,14 +138,9 @@
                            </pancakeView:PancakeView>
                            <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" 
                                   Style="{StaticResource LabelSubtitleBold}" 
+                                  Text="{Binding Veterinary.FullAddress}"
                                   HorizontalTextAlignment="Start" 
-                           >
-                               <Label.FormattedText>
-                                   <FormattedString>
-                                       <Span Text="Veterinaria Pet Love" ></Span>
-                                   </FormattedString>
-                               </Label.FormattedText>
-                           </Label>
+                           />
                            <pancakeView:PancakeView WidthRequest="25" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start"
                                                     CornerRadius="25" Margin="20,0,5,0"
                                                     BackgroundColor="White"
@@ -207,41 +155,32 @@
                            >
                                <Label.FormattedText>
                                    <FormattedString>
-                                       <Span Text="{Binding Date, StringFormat='{0:dd-MMMM -- hh:mm\}'}" ></Span>
+                                       <Span Text="{Binding Appointment.Date, StringFormat='{0:dd-MMMM -- hh:mm\}'}" ></Span>
                                    </FormattedString>
                                </Label.FormattedText>
                            </Label>
                        </Grid>
                    </pancakeView:PancakeView>
                    <StackLayout Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" >
-                       <pancakeView:PancakeView  BackgroundColor="{DynamicResource  PrimaryDark}" 
+
+                       <Label Grid.Row="0"  HorizontalOptions="Center" 
+                              Margin="30,0,30,5" Padding="30,10,30,10"
+                              Style="{StaticResource LabelSubtitleBold}" 
+                              TextColor="{DynamicResource  PrimaryLetterLightColor}"
+                              HorizontalTextAlignment="Center" 
+                              Text="{Binding Appointment.AppointmentStatus}">
+      
+                       </Label>
+                       <pancakeView:PancakeView  BackgroundColor="IndianRed"
                                                 CornerRadius="16"
                                                 Margin="30,0,30,5" Padding="30,10,30,10">
                            <Grid Grid.RowDefinitions="Auto" >
                                <Label Grid.Row="0"  HorizontalOptions="Center" 
-                                      Style="{StaticResource LabelSubtitleBold}" 
-                                      TextColor="{DynamicResource  SecondaryLetterLight}"
+                                      Style="{StaticResource LabelSubtitleBold}"
+                                      Text="Cancel"
+                                      TextColor="{DynamicResource SecondaryLetterLight}"
                                       HorizontalTextAlignment="Center" >
-                                   <Label.FormattedText>
-                                       <FormattedString>
-                                           <Span Text="{Binding AppointmentStatus}" ></Span>
-                                       </FormattedString>
-                                   </Label.FormattedText>
-                               </Label>
-                           </Grid>
-                       </pancakeView:PancakeView>
-                       <pancakeView:PancakeView  BackgroundColor="#dae9ed"
-                                                CornerRadius="16"
-                                                Margin="30,0,30,5" Padding="30,10,30,10">
-                           <Grid Grid.RowDefinitions="Auto" >
-                               <Label Grid.Row="0"  HorizontalOptions="Center" 
-                                      Style="{StaticResource LabelSubtitleBold}" 
-                                      HorizontalTextAlignment="Center" >
-                                   <Label.FormattedText>
-                                       <FormattedString>
-                                           <Span Text="Cancelar" ></Span>
-                                       </FormattedString>
-                                   </Label.FormattedText>
+
                                </Label>
                            </Grid>
                        </pancakeView:PancakeView>
@@ -251,6 +190,8 @@
                    
 
                 </Grid>
+                                </pancakeView:PancakeView>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

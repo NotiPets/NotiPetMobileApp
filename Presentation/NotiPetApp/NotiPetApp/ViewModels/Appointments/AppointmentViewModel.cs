@@ -5,6 +5,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using DynamicData;
 using DynamicData.Binding;
+using DynamicData.PLinq;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
 using NotiPetApp.Helpers;
@@ -18,8 +19,8 @@ namespace NotiPetApp.ViewModels
     public class AppointmentViewModel:BaseViewModel
     {
         private readonly ISalesService _salesService;
-        private ReadOnlyObservableCollection<Appointment> _appointments;
-        public ReadOnlyObservableCollection<Appointment> Appointments => _appointments;
+        private ReadOnlyObservableCollection<AppointmentSale> _appointments;
+        public ReadOnlyObservableCollection<AppointmentSale> Appointments => _appointments;
         [Reactive]public int SelectedIndex { get; set; }
         public AppointmentViewModel(INavigationService navigationService, IPageDialogService dialogPage,ISalesService salesService) : base(navigationService, dialogPage)
         {
@@ -28,11 +29,12 @@ namespace NotiPetApp.ViewModels
                 .Throttle(TimeSpan.FromMilliseconds(100), RxApp.TaskpoolScheduler)
                 .DistinctUntilChanged()
                 .Select(FilterBy);
-            salesService.AppointmentDatasource
+            salesService.DataSource
                 .Connect()
                 .ObserveOn(RxApp.MainThreadScheduler)
+                .Filter(x=>x.Appointment!=null)
                 .Filter(filterPredicate)
-                .Sort(SortExpressionComparer<Appointment>.Descending(e=>e.Date))
+                .Sort(SortExpressionComparer<AppointmentSale>.Descending(e=>e.Appointment.Date))
                 .Bind(out _appointments)
                 .DisposeMany()
                 .Subscribe()
@@ -41,14 +43,14 @@ namespace NotiPetApp.ViewModels
             
         }
 
-        Func<Appointment, bool> FilterBy(int index) => index switch
+        Func<AppointmentSale, bool> FilterBy(int index) => index switch
         {
-            0 => new Func<Appointment, bool>(x => x.AppointmentStatus <= EAppointmentStatus.Accepted),
-            _ => new Func<Appointment, bool>(x => x.AppointmentStatus >= EAppointmentStatus.Cancelled),
+            0 => new Func<AppointmentSale, bool>(x => x.Appointment.AppointmentStatus <= EAppointmentStatus.Accepted),
+            _ => new Func<AppointmentSale, bool>(x => x.Appointment.AppointmentStatus >= EAppointmentStatus.Cancelled),
         };
 
         protected override IObservable<Unit> ExecuteInitialize()
-            => _salesService.GetAppointmentByUserId(Settings.UserId)
+            => _salesService.GetSaleByUserId(Settings.UserId)
                 .Select(e=>Unit.Default);
 
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }

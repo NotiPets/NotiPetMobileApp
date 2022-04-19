@@ -25,6 +25,7 @@ namespace NotiPetApp.Views.Vets
                 .Select(e => Unit.Default)
                 .InvokeCommand(ViewModel?.InitializeCommand)
                 .DisposeWith(ViewDisposables);
+      
         }
     }
 }

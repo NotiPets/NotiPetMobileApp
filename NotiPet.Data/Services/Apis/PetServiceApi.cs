@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
 using NotiPet.Data.Dtos;
+using NotiPet.Domain.Models;
 
 namespace NotiPet.Data.Services
 {
@@ -22,6 +23,18 @@ namespace NotiPet.Data.Services
         public IObservable<PetDto> SavePets(PetDto petDto)
         {
             return RemoteRequestObservableAsync<PetDto>(_apiClient.Client.PostPets(petDto))
+                .Select(e=>e.Result);
+        }
+
+        public IObservable<object> RemovePets(string id)
+        {
+            return RemoteRequestObservableAsync<object>(_apiClient.Client.RemovePets(id),useRequestModel:false)
+                .Select(e=>e.Result);
+        }
+
+        public IObservable<Pet> EditPet(PetDto map)
+        {
+            return RemoteRequestObservableAsync<Pet>(_apiClient.Client.EditPet(map.Id,map))
                 .Select(e=>e.Result);
         }
     }

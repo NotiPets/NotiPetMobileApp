@@ -5,7 +5,7 @@ namespace NotiPet.Data.Dtos
     public class SpecialistDto
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("user")]
         public UserDto User { get; set; }

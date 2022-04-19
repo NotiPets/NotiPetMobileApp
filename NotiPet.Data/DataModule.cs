@@ -13,7 +13,7 @@ namespace NotiPet.Data
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IApiProvider>(provider => new ApiProvider("https://notipet-stage-api.herokuapp.com/api"));
+            containerRegistry.RegisterSingleton<IApiProvider>(provider => new ApiProvider("https://notipet-api.herokuapp.com/api"));
             
             containerRegistry.RegisterSingleton<IAssetServiceApi, AssetServiceApi>();
             containerRegistry.RegisterSingleton<IUserServiceApi,UserServiceApi>(); 

@@ -14,14 +14,10 @@
     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
           Margin="10"
           ColumnDefinitions="110,Auto,*">
-                  <Grid.GestureRecognizers>
-                      <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:VeterinaryViewModel}},Path=ShowDetailCommand}"
-                                            CommandParameter="{Binding Id}"/>
-                  </Grid.GestureRecognizers>
-                    <pancakeView:PancakeView  Grid.Column="0" 
-                                              Padding="0" Grid.RowSpan="4"
-                                              CornerRadius="20"
-                                              Margin="5,10,10,0" >
+        <pancakeView:PancakeView  Grid.Column="0" 
+                                  Padding="0" Grid.RowSpan="4"
+                                  CornerRadius="20"
+                                  Margin="5,10,10,0" >
                        <forms:CachedImage   Source="{Binding PictureUrl,TargetNullValue='notImage',FallbackValue='notImage'}"
                                             Aspect="AspectFill"
                                             ErrorPlaceholder="notImage"
@@ -84,38 +80,13 @@
                                <FormattedString>
                                    <Span Text="8 AM" ></Span>
                                    <Span Text=" - " ></Span>
-                                   <Span Text="6 PM"  ></Span>
+                                   <Span Text="12 PM"  ></Span>
 
                                </FormattedString>
                            </Label.FormattedText>
                        </Label>
-                       
-                       <pancakeView:PancakeView WidthRequest="25"
-                                                CornerRadius="25" Margin="20,0,5,0"
-                                                BackgroundColor="#dae9ed"
-                                                Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
-                                                HeightRequest="25">
-           
-                           <Image Source="location.png"
-                                  VerticalOptions="CenterAndExpand"
-                                  Margin="5"
-                              
-                           />
-                       </pancakeView:PancakeView>
-                       
-                       <Label 
-                           Style="{StaticResource LabelSubtitleBold}" 
-                           HorizontalTextAlignment="Start" 
-                       >
-                           <Label.FormattedText>
-                               <FormattedString>
-                                   <Span Text="1.5" ></Span>
-                                   <Span Text=" " ></Span>
-                                   <Span Text="km"  ></Span>
 
-                               </FormattedString>
-                           </Label.FormattedText>
-                       </Label>
+                       
                        
                    </StackLayout>
                    

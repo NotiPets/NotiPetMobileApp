@@ -2,13 +2,17 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using NotiPetApp.Helpers;
 using Xamarin.Essentials;
+using Xamarin.Forms.Maps;
 
 namespace NotiPetApp.Services
 {
     public interface IDeviceUtils
     {
         Task<string> TakePhotoAsync();
+        Task<Location> GetCurrentLocation();
+        double CalculateDistance(Position position);
     }
     public class DeviceUtils:IDeviceUtils
     {
@@ -65,6 +69,41 @@ namespace NotiPetApp.Services
             await using FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
             await fileStream.CopyToAsync(ms);
             return Convert.ToBase64String(ms.ToArray());
+        }
+        public async Task<Location> GetCurrentLocation()
+        {
+            try
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                var location = await Geolocation.GetLocationAsync(request);
+        
+                if (location != null)
+                {
+                    Console.WriteLine($@"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                    return location;
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                
+            }
+            catch (PermissionException pEx)
+            {
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return null;
+        }
+
+        public double CalculateDistance(Position position)
+        {
+
+          return  Location.CalculateDistance(Settings.Position.Latitude, Settings.Position.Longitude,position.Latitude,position.Longitude,DistanceUnits.Kilometers);
         }
     }
 }

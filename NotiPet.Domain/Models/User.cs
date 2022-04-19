@@ -51,5 +51,7 @@ namespace NotiPet.Domain.Models
 
         public string FullName => $"{Names} {Lastnames}";
         public string FullAddress => $"{City}, {Province}, {Address1}, {Address2}";
+
+        public string Description { get; set; }
     }
 }
