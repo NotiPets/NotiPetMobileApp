@@ -31,7 +31,7 @@
                     FontAttributes="Bold"
                     BackgroundColor="Transparent"
                     TextColor="{StaticResource PrimaryDark}"
-                    Text="Iniciar sesión"
+                    Text="Sign In"
                     Command="{Binding ExitCommand}"/>
             <CarouselView x:Name="onBoardingCarousel" 
                           Grid.Row="1"
