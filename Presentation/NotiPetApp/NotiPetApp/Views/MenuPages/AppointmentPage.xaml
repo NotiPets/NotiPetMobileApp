@@ -96,9 +96,10 @@
                              Style="{StaticResource LabelTitleBold}"
                              Grid.Column="1"
                              Grid.ColumnSpan="2"/>
-                          <Label Text="{Binding Veterinary.Description}"
+                          <Label Text="{Binding Veterinary.Email}"
                                  Grid.Row="2"
                                  FontSize="16"
+                                 TextType="Html"
                                  MaxLines="2"
                                  Style="{StaticResource LabelSubtitleBold}"
                                  LineBreakMode="TailTruncation"
