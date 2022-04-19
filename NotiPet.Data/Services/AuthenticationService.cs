@@ -45,7 +45,7 @@ namespace NotiPet.Data.Services
                 },
                 new SocialNetwork()
                 {
-                    Name = "NotiPed",
+                    Name = "NotiPet",
                     Icon = "NT",
                     Id = 3,
                     Code = "NT",

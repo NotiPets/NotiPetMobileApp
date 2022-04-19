@@ -69,7 +69,7 @@
                                   ValidationColor="{DynamicResource ErrorColor}"
                                   LineColor="{DynamicResource PrimaryLetterColor}"
                                   Text="{Binding Password}"
-                                  PlaceHolder="Nombre"
+                                  PlaceHolder="Name"
                                      
             /> 
             <controls:EntryCustom Grid.ColumnSpan="3"
@@ -78,7 +78,7 @@
                                   ValidationColor="{DynamicResource ErrorColor}"
                                   LineColor="{DynamicResource PrimaryLetterColor}"
                                   Text="{Binding Password}"
-                                  PlaceHolder="Apellido"
+                                  PlaceHolder="Last Name"
                                      
             /> 
             <controls:EntryCustom Grid.ColumnSpan="3"
@@ -87,7 +87,7 @@
                                   ValidationColor="{DynamicResource ErrorColor}"
                                   LineColor="{DynamicResource PrimaryLetterColor}"
                                   Text="{Binding Password}"
-                                  PlaceHolder="Correo Electronico"
+                                  PlaceHolder="Email"
                                      
             /> 
             

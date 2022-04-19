@@ -54,7 +54,7 @@
                     <FormattedString>
                         <Span Text="Welcome to "/>
                         <Span Text=" " CharacterSpacing="10"/>
-                        <Span Text="Notiped" TextColor="{DynamicResource PrimaryDark}"/>
+                        <Span Text="NotiPet" TextColor="{DynamicResource PrimaryDark}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -89,7 +89,7 @@
                 
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Don't you have a NotiPed account  yet?"/>
+                        <Span Text="Don’t have a Notipet account yet?"/>
                         <Span Text=" " CharacterSpacing="5"/>
                         <Span Text="Sign Up" Style="{StaticResource LabelTitleBold}"
                               TextColor="{DynamicResource PrimaryDark}">
