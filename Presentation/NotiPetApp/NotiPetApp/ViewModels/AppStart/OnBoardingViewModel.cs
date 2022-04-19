@@ -20,7 +20,7 @@ namespace NotiPetApp.ViewModels
                 => SkipButtonText = skipButtonText;
         public OnBoardingViewModel(INavigationService navigationService, IPageDialogService dialogPage) : base(navigationService, dialogPage)
         {
-            SetSkipButtonText("Siguiente");
+            SetSkipButtonText("Next");
             InitializeOnBoarding();
             InitializeSkipCommand();
             ExitCommand = ReactiveCommand.CreateFromTask(ExitOnBoarding);
@@ -95,11 +95,11 @@ namespace NotiPetApp.ViewModels
         {
             if (LastPositionReached())
             {
-                SetSkipButtonText("Empezemos");
+                SetSkipButtonText("Start");
             }
             else
             {
-                SetSkipButtonText("Siguiente");
+                SetSkipButtonText("Next");
             }
         }
 
