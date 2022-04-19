@@ -50,7 +50,9 @@ namespace NotiPet.Domain.Models
     {
         Requested = 0,
         Accepted = 1,
-        Cancelled = 2
+        Cancelled = 2,
+        Completed = 3,
+        Denied = 4
         
     }
     
