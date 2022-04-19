@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using DynamicData;
 using DynamicData.Binding;
 using DynamicData.PLinq;
@@ -40,7 +41,27 @@ namespace NotiPetApp.ViewModels
                 .Subscribe()
                 .DisposeWith(Subscriptions);
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
-            
+            var cancelAppointmentCommand = ReactiveCommand.CreateFromObservable<string,bool>(CancelAppointment);
+            CanCancelCommand = ReactiveCommand.CreateFromTask<string,string>(CanCancelOrder);
+            CanCancelCommand
+                .Where(e=>!string.IsNullOrEmpty(e))
+                .InvokeCommand(cancelAppointmentCommand);
+            cancelAppointmentCommand
+                .Select(e=>Unit.Default)
+                .InvokeCommand(InitializeCommand);
+    
+        }
+
+        IObservable<bool> CancelAppointment(string id)
+        {
+            return _salesService.CancelOrder(id);
+        }
+        public ReactiveCommand<string,string> CanCancelCommand { get; set; }
+
+        public async Task<string> CanCancelOrder(string id)
+        {
+             var can = await DialogPage.DisplayAlertAsync("Alert", "Are you sure want to cancel order?", "YES", "NO");
+             return can ? id : string.Empty;
         }
 
         Func<AppointmentSale, bool> FilterBy(int index) => index switch

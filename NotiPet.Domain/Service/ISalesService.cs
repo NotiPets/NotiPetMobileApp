@@ -13,5 +13,6 @@ namespace NotiPet.Domain.Service
         public IObservable<Sales> PostSale(RequestOrder requestOrderDto);
         public IObservable<Sales> CreateAppointment(CreateAppointment requestOrderDto);
         IObservable<IEnumerable<Appointment>> GetAppointmentByUserId(string userId);
+        IObservable<bool> CancelOrder(string id);
     }
 }

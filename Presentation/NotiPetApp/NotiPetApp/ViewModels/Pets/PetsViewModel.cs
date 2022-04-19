@@ -16,13 +16,14 @@ using ReactiveUI.Fody.Helpers;
 
 namespace NotiPetApp.ViewModels
 {
-    public class PetsViewModel:BaseViewModel
+    public class PetsViewModel:BaseViewModel,INavigatedAware
     {
         private readonly IPetsService _petsService;
         private readonly  ReadOnlyObservableCollection<Pet> _pets;
         public ReadOnlyObservableCollection<Pet> Pets => _pets;
        public ReactiveCommand<Unit,Unit> NavigateToRegisterPetCommand{ get; set; }
        [Reactive]public Pet SelectedItem { get; set; }
+       
 
 
         public PetsViewModel(INavigationService navigationService, IPageDialogService dialogPage,
@@ -58,6 +59,20 @@ namespace NotiPetApp.ViewModels
             => _petsService.GetPets(Settings.UserId).Select(e => Unit.Default);
 
 
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+     
+        }
 
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.GetNavigationMode()== NavigationMode.Back)
+            {
+                InitializeCommand
+                    .Execute()
+                    .Subscribe()
+                    .DisposeWith(Subscriptions);
+            }
+        }
     }
 }

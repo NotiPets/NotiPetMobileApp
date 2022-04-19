@@ -25,5 +25,10 @@ namespace NotiPet.Mocks.Services
         {
             throw new NotImplementedException();
         }
+
+        public IObservable<bool> CancelOrder(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

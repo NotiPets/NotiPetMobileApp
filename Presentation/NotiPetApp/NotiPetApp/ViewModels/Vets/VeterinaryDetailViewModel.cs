@@ -47,7 +47,8 @@ namespace NotiPetApp.ViewModels
             {
                 {ParameterConstant.VeterinaryId,_id}
             }));
-            InitializeCommand
+            this.WhenAnyValue(x => x.Veterinary)
+                .WhereNotNull()
                 .InvokeCommand(new Command(LoadPins));
         }
 
@@ -78,6 +79,8 @@ namespace NotiPetApp.ViewModels
 
         void LoadPins()
         {
+            if(Veterinary==null)
+                return;
             var position = new Position(Veterinary.Latitude, Veterinary.Longitude);
             Pins = new List<Pin>
             {

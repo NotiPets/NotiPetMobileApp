@@ -40,7 +40,8 @@ namespace NotiPet.Data.Services
 
                             }
                             var result = await Task.Run(() => JsonConvert.DeserializeObject<Error>(jsonResult));
-                            throw new Exception($"{result.Message}");
+                            var message = result?.Message ?? responseMessage.ReasonPhrase;
+                            throw new Exception($"{message}");
                             return Response<TData>.Error(result);
                         });
                     })

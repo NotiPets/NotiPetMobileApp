@@ -5,6 +5,7 @@ namespace NotiPet.Domain.Models
 {
     public class Order
     {
+        public string Id { get; set; }
         public string UserId { get; set; }
         public int AssetsServicesId { get; set; }
         public Appointment Appointment { get; set; }
@@ -46,6 +47,7 @@ namespace NotiPet.Domain.Models
             BusinessId = businessId;
             Veterinary = business;
         }
+
 
         public string Id { get;  }
         public int Total { get;  }

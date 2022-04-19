@@ -173,6 +173,12 @@
                        </Label>
                        <pancakeView:PancakeView  BackgroundColor="IndianRed"
                                                 CornerRadius="16"
+                                                views1:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                                views1:TouchEffect.PressedOpacity="0.6"
+                                                views1:TouchEffect.AnimationDuration="5"
+                                                views1:TouchEffect.PressedScale="0.8"
+                                                views1:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AppointmentViewModel}},Path=CanCancelCommand}"
+                                                views1:TouchEffect.CommandParameter="{Binding OrderId}"
                                                 Margin="30,0,30,5" Padding="30,10,30,10">
                            <Grid Grid.RowDefinitions="Auto" >
                                <Label Grid.Row="0"  HorizontalOptions="Center" 
@@ -183,6 +189,7 @@
 
                                </Label>
                            </Grid>
+                           
                        </pancakeView:PancakeView>
                    </StackLayout>
                    

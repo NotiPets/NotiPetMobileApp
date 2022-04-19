@@ -6,6 +6,7 @@ namespace NotiPet.Data.Dtos
 {
     public class OrderDto
     {
+        public string Id { get; set; }
         [JsonProperty("userId")]
         public string UserId { get; set; }
 

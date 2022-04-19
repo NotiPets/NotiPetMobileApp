@@ -26,19 +26,7 @@
                       ColumnDefinitions="*,Auto,*">
                     <Label Text="Profile"  Grid.Column="1"
                            Style="{StaticResource LabelLarge}"/>
-                    <Image BackgroundColor="Transparent"
-                                                    HorizontalOptions="EndAndExpand"
-                                                    Margin="10,0"
-                                                    Grid.Column="2">
-                        <Image.Source>
-                            <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.EditIcon}"
-                                             Color="{StaticResource PrimaryDark}"
-                                             FontFamily="{StaticResource FontSolid}"/>
-                        </Image.Source>
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding NavigateToEditProfileCommand}" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
+
                     <forms:CachedImage   Source="{Binding User.PictureUrl}"
                                          Grid.Row="1"
                                          CacheType="Memory"

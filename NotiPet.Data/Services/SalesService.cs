@@ -55,5 +55,10 @@ namespace NotiPet.Data.Services
             return _salesServiceApi.GetAppointmentByUserId(userId).Select(_mapper.Map<IEnumerable<Appointment>>)
                 .Do(_appointmentDatasource.AddOrUpdate);
         }
+
+        public IObservable<bool> CancelOrder(string id)
+        {
+            return _salesServiceApi.CancelOrder(id);
+        }
     }
 }
