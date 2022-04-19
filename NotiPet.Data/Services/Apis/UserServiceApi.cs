@@ -23,9 +23,9 @@ namespace NotiPet.Data.Services
                 .Select(e=>e.Result);
         }
 
-        public IObservable<JwtDto> SingUp(UserDto userRole)
+        public IObservable<AuthenticationDto> SingUp(UserDto userRole)
         {
-            return RemoteRequestObservableAsync<JwtDto>(_apiClient.Client.SignUp(userRole))
+            return RemoteRequestObservableAsync<AuthenticationDto>(_apiClient.Client.SignUp(userRole))
                 .Select(e=>e.Result);
         }
 

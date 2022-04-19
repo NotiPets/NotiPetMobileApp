@@ -16,7 +16,7 @@
         <views1:InvertedBoolConverter x:Key="InvertedBoolConverter" />
         <DataTemplate x:Key="TabItemControlTemplate">
             <pancakeView:PancakeView CornerRadius="20"
-                                     Margin="5,5,5,10">
+                                     Margin="{OnPlatform iOS='5,5,5,10',Android='5,5,5,5'}">
                 <pancakeView:PancakeView.Triggers>
                     <DataTrigger TargetType="pancakeView:PancakeView"
                                  Value="True"

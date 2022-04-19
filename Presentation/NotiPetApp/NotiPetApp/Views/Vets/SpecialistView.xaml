@@ -10,10 +10,13 @@
                        xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                        xmlns:xForms1="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                        xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                       xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                        x:Class="NotiPetApp.Views.Vets.SpecialistView" 
                        x:DataType="viewModels:SpecialistViewModel"
                        Title="Specialist">
-
+    <controls:TabItemReactive.Resources>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+    </controls:TabItemReactive.Resources>
     <ListView ItemsSource="{Binding Specialists}"  Margin="10,5,10,5" 
               HasUnevenRows="True"
               SelectionMode="None"
@@ -34,10 +37,15 @@
                                               Padding="0" Grid.RowSpan="4"
                                               CornerRadius="20"
                                               Margin="5,10,10,0" >
-                       <forms:CachedImage   Source="{Binding User.PictureUrl}"
+
+                       <forms:CachedImage   Source="{Binding User.PictureUrl,Converter={StaticResource Base64StringToImageSource},TargetNullValue='notImage',FallbackValue='notImage'}"
                                             Aspect="AspectFill"
+                                            LoadingPlaceholder="notImage"
                                             HeightRequest="80"
-                                            WidthRequest="50"/>
+                                            WidthRequest="50"
+                                            ErrorPlaceholder="notImage"
+                                            />
+
                       </pancakeView:PancakeView>
                 
                    <Label Text="{Binding User.FullName}"
@@ -46,7 +54,7 @@
                              Style="{StaticResource LabelTitleBold}"
                              Grid.Column="1"
                              Grid.ColumnSpan="2"/>
-                          <Label Text="Dentista veterinaria"
+                          <Label Text="{Binding Speciality.Name} "
                                  Grid.Row="2"
                                  FontSize="16"
                                  MaxLines="1"

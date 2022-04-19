@@ -36,7 +36,8 @@ namespace NotiPet.Data.Mappers
                 cfg.CreateMap<BusinessDto, Veterinary>()
                     .ReverseMap();
               
-                cfg.CreateMap<AuthenticationDto,Authentication>(); 
+                cfg.CreateMap<AuthenticationDto,Authentication>();
+
                 cfg.CreateMap<IAuthenticationRequestViewModel,RequestAuthenticationDto>(); 
                 cfg.CreateMap<SpecialistDto,Specialist>()
                     .ReverseMap();
