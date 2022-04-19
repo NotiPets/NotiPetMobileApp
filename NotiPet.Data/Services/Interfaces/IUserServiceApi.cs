@@ -9,7 +9,7 @@ namespace NotiPet.Data.Services
     public interface IUserServiceApi
     {
         IObservable<AuthenticationDto> LogIn(RequestAuthenticationDto requestAuthenticationDto);
-         IObservable<JwtDto> SingUp(UserDto userRole);
+         IObservable<AuthenticationDto> SingUp(UserDto userRole);
 
 
          IObservable<UserDto> GetUserById(string username);

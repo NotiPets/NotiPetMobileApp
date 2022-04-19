@@ -120,7 +120,7 @@
                 </Grid>
             </pancakeView:PancakeView>
 
-            <ListView 
+            <ListView  SelectionMode="None"
                 Grid.Row="1"
                 ItemsSource="{Binding Products}"
                  x:Name="Products"
