@@ -62,6 +62,21 @@
         <Setter Property="TextColor" Value="{DynamicResource PrimaryLetterLightColor}"/>
         <Setter Property="FontFamily" Value="{StaticResource  Regular}"/>
     </Style>
+    <Style x:Key="SmallEditorRegular" TargetType="Editor">
+        <Setter Property="FontSize" Value="Small"/>
+        <Setter Property="FontFamily" Value="Regular"/> 
+        <Setter Property="PlaceholderColor" Value="{DynamicResource GrayColor}"/> 
+        <Setter Property="TextColor" Value="{DynamicResource GrayColor}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryNeutralColor}"/>
+    </Style>     
+    <Style TargetType="Editor">
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryNeutralColor}"/>
+    </Style>   
+    <OnPlatform x:TypeArguments="Thickness"
+                x:Key="MarginPopUp">
+        <On Platform="iOS" Value="{OnIdiom Tablet='80,0',Phone='20,0'}" />
+        <On Platform="Android" Value="{OnIdiom Tablet='80,0',Phone='20,0'}" />
+    </OnPlatform>
     <Style TargetType="renderers:SettingsView">
         <Setter Property="CellTitleFontFamily" Value="{StaticResource Regular}" /> 
         <Setter Property="CellTitleFontSize" Value="18"/>
