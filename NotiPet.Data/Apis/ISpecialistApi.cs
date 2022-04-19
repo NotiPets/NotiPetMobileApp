@@ -12,5 +12,7 @@ namespace NotiPet.Data
         IObservable<HttpResponseMessage> GetSpecialists();
         [Get("/Specialities")]
         IObservable<HttpResponseMessage> GetSpecialities();
+        [Get("/Specialists/{username}")]
+        IObservable<HttpResponseMessage> GetSpecialistById(string username);
     }
 }

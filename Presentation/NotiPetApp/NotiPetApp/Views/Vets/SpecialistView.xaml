@@ -27,7 +27,7 @@
                       ColumnDefinitions="110,Auto,*">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:SpecialistViewModel}},Path=ShowDetailCommand}"
-                                              CommandParameter="{Binding User.Id}"/>
+                                              CommandParameter="{Binding User.Username}"/>
                     </Grid.GestureRecognizers>
                     
                     <pancakeView:PancakeView  Grid.Column="0" 

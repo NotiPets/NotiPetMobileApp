@@ -27,7 +27,8 @@ namespace NotiPet.Data.Services
 
         public IObservable<SpecialistDto> GetSpecialistById(string id)
         {
-            throw new NotImplementedException();
+            return  RemoteRequestObservableAsync<SpecialistDto>(_apiClient.Client.GetSpecialistById(id))
+                .Select(e => e.Result);
         }
     }
 }

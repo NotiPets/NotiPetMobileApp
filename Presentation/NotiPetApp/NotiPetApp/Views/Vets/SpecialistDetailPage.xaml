@@ -9,14 +9,19 @@
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                 x:Class="NotiPetApp.Views.Vets.SpecialistDetailPage"
                 x:DataType="viewModels:SpecialistDetailViewModel">
+    <views:BasePage.Resources>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+    </views:BasePage.Resources>
     <Grid>
         
         <ScrollView>
     <Grid RowDefinitions="450,Auto,Auto,Auto,Auto,Auto">
-        <forms:CachedImage   Source="{Binding Specialist.User.PictureUrl,TargetNullValue='notImage'}"
+        <forms:CachedImage   Source="{Binding Specialist.User.PictureUrl,Converter={StaticResource Base64StringToImageSource},TargetNullValue='notImage',FallbackValue='notImage'}"
                              Aspect="AspectFill"
+                             LoadingPlaceholder="notImage"
                              Margin="0,0,0,28"
                              ErrorPlaceholder="notImage"
                              WidthRequest="50"/>
@@ -46,16 +51,8 @@
                     Style="{StaticResource LabelSubtitle}" 
                     HorizontalTextAlignment="Start" 
                     Grid.Row="3"
-                >
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="10"></Span>
-                            <Span Text=" " ></Span>
-                            <Span Text="años de experiencia"  ></Span>
-
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                    Text="{Binding  Specialist.User.Description}"
+                />
                 <pancakeView:PancakeView 
                        Grid.Column="1"
                        HorizontalOptions="CenterAndExpand"
@@ -73,14 +70,7 @@
                     />
              
                 </pancakeView:PancakeView >
-                <Label 
-                    Style="{StaticResource LabelSubtitleBold}" 
-                    HorizontalTextAlignment="Start" 
-                    Grid.Column="1"
-                    Grid.Row="4"
-                    Margin="0,5"
-                    Text="125 reviews" 
-                />
+
             </Grid>
         </pancakeView:PancakeView>
 
@@ -93,7 +83,7 @@
                 Margin="10"
                 Style="{StaticResource LabelTitleBold}"
                 Grid.Row="3"/>
-        <Label  Text="Reseñas"
+        <Label  Text="Reviews"
                 Margin="10"
                 Style="{StaticResource LabelTitleBold}"
                 Grid.Row="4"/>

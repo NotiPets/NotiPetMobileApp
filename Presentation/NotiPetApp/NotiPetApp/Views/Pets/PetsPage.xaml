@@ -9,10 +9,14 @@
                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                 x:Name="PetPage"
                 x:Class="NotiPetApp.Views.PetsPage">
-        <Grid RowDefinitions="Auto,*"
-              RowSpacing="20">
+    <views:BasePage.Resources>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+    </views:BasePage.Resources>
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="20">
 
                 
                 <Grid RowDefinitions="Auto,Auto,Auto" Padding="5,20,5,0"
@@ -71,10 +75,14 @@
                                                   Padding="0" Grid.Row="0" Grid.RowSpan="2"
                                                   CornerRadius="60"
                                                   Margin="5,10,10,0" >
-                           <Image  Source="{Binding PictureUrl}"
-                                              Aspect="AspectFill" 
-                                              HeightRequest="120"
-                                              WidthRequest="120"/>
+
+                           <forms:CachedImage   Source="{Binding PictureUrl,Converter={StaticResource Base64StringToImageSource},TargetNullValue='notImage',FallbackValue='notImage'}"
+                                                Aspect="AspectFill"
+                                                LoadingPlaceholder="notImage"
+                                                ErrorPlaceholder="notImage"
+                                                HeightRequest="120"
+                                                WidthRequest="120"
+                           />
                           </pancakeView:PancakeView>
                     
                        <Label Text="{Binding Name}"

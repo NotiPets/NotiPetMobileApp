@@ -103,6 +103,14 @@
                                  LineBreakMode="TailTruncation"
                                  Grid.Column="1"
                                  Grid.ColumnSpan="2"/>
+                   <Label Text="{Binding AssetService.Name}"
+                          Grid.Row="3"
+                          FontSize="16"
+                          MaxLines="2"
+                          Style="{StaticResource LabelSubtitleBold}"
+                          LineBreakMode="TailTruncation"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="2"/>
                    <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="End" Orientation="Horizontal" Margin="10,0,5,5" Padding="5,10,10,5">
                        <pancakeView:PancakeView WidthRequest="25"
                                                 CornerRadius="25" Margin="20,0,5,0"
