@@ -31,6 +31,7 @@ namespace NotiPetApp.Helpers
         public const string ConfirmAppointmentPage = "ConfirmAppointmentPage";
         public const string VeterinaryPickerPage = "VeterinaryPickerPage";
         public const string AppointmentComplete = "AppointmentCompletePage";
+        public const string CreateReviewsPage = "CreateReviewsPage";
     }
     public static class ParameterConstant
     {

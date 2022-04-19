@@ -8,6 +8,7 @@
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
 
                 x:DataType="viewModels:VeterinaryDetailViewModel"
                 x:Class="NotiPetApp.Views.Vets.VeterinaryDetailPage">
@@ -102,12 +103,44 @@
                     <maps:Map Grid.Row="0"
                               HorizontalOptions="FillAndExpand"/>
                 </pancakeView:PancakeView>               
-                <Label Text="Ver las 125 valoraciones" TextColor="{DynamicResource PrimaryColor}"  
+                <Label Text="Reviews" 
+                       Grid.Row="3"
+                       HorizontalOptions="Start"
+                       Padding="10"
+                       Style="{StaticResource  LabelLarge}"
+                />
+                <Label Text="{Binding Review.Count,StringFormat='{0} Reviews'}" TextColor="{DynamicResource PrimaryColor}"  
                        Grid.Row="3"
                        HorizontalOptions="End"
+                       VerticalTextAlignment="Center"
                        Padding="10"
                        Style="{StaticResource LabelTitle}"
                 />
+                <CarouselView ItemsSource="{Binding Review}"
+                              HeightRequest="250"
+                              Grid.Row="4"
+                              Loop="False"
+                              PeekAreaInsets="60">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <views:ReviewsContentView/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <controls:TouchViewControl   
+                    Grid.Row="5"
+                  
+                    CornerRadius="29"
+                    Margin="40,15"
+                  Command="{Binding CreateReviewsCommand}"
+                    Padding="14"
+                    Border="{pancakeView:BorderMarkup Color=White,Thickness=5}"
+                    CommandText="Write Reviews"
+                    TextColor="{DynamicResource  PrimaryLetterLightColor}"
+                    BackgroundColor="{DynamicResource  SecondBackgroundColor }"/> 
             </Grid>
         </ScrollView>
         <ImageButton BackgroundColor="{DynamicResource BackgroundColor}"
@@ -125,5 +158,7 @@
                                  FontFamily="{StaticResource FontSolid}"/>
             </ImageButton.Source>
         </ImageButton>
+
+        
     </Grid>
 </views:BasePage >

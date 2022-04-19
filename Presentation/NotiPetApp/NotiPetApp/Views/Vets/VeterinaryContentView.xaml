@@ -6,10 +6,14 @@
              xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+             xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
              x:Class="NotiPetApp.Views.Vets.VeterinaryContentView">
- <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                            Margin="10"
-                      ColumnDefinitions="110,Auto,*">
+    <ContentView.Resources >
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+          Margin="10"
+          ColumnDefinitions="110,Auto,*">
                   <Grid.GestureRecognizers>
                       <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:VeterinaryViewModel}},Path=ShowDetailCommand}"
                                             CommandParameter="{Binding Id}"/>

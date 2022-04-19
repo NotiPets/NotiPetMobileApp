@@ -9,10 +9,12 @@ using NotiPetApp.Helpers;
 using NotiPetApp.Services;
 using NotiPetApp.ViewModels;
 using NotiPetApp.ViewModels.Activity;
+using NotiPetApp.ViewModels.PopUp;
 using NotiPetApp.Views;
 using NotiPetApp.Views.Activity;
 using NotiPetApp.Views.Authentication;
 using NotiPetApp.Views.MenuPages;
+using NotiPetApp.Views.PopUp;
 using NotiPetApp.Views.Vets;
 using Plugin.SharedTransitions;
 using Prism;
@@ -91,6 +93,7 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<SpecialistDetailPage, SpecialistDetailViewModel>(); 
             containerRegistry.RegisterForNavigation<VeterinaryPickerPage, VeterinaryPickerViewModel>();  
             containerRegistry.RegisterForNavigation<AppointmentCompletePage, AppointmentCompleteViewModel>();  
+            containerRegistry.RegisterForNavigation<CreateReviewsPage, CreateReviewsViewModel>();  
             ContainerProvider = Container;
 
 

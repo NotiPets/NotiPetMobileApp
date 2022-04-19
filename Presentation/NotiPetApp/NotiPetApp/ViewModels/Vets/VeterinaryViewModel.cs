@@ -27,7 +27,8 @@ namespace NotiPetApp.ViewModels
         public ReadOnlyObservableCollection<ParameterOption> _parameterOptions;
         public ReadOnlyObservableCollection<ParameterOption> ParameterOptions=>_parameterOptions;
         public ReactiveCommand<int,Unit> ShowDetailCommand  { get; set; }
-        public VeterinaryViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IVeterinaryService veterinaryService, ISchedulerProvider schedulerProvider) : base(navigationService,pageDialogService)
+        public VeterinaryViewModel(INavigationService navigationService, IPageDialogService pageDialogService,
+            IVeterinaryService veterinaryService, ISchedulerProvider schedulerProvider) : base(navigationService,pageDialogService)
         {
             _veterinaryService = veterinaryService;
             var notificationParameters = _veterinaryService.ParametersOptions
@@ -107,6 +108,7 @@ namespace NotiPetApp.ViewModels
                  _veterinaryService.ParameterOptions().Select(e => Unit.Default)
                     .Subscribe(observer)
                     .DisposeWith(disposable);
+          
                 return disposable;
             });
         }

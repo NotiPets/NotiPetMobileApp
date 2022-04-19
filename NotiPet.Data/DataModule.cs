@@ -20,6 +20,8 @@ namespace NotiPet.Data
             containerRegistry.RegisterSingleton<IPetServiceApi,PetServiceApi>();
             containerRegistry.RegisterSingleton<IBusinessServiceApi,BusinessServiceApi>();
             containerRegistry.RegisterSingleton<ISpecialistServiceApi,SpecialistsServiceApi>();
+            containerRegistry.RegisterSingleton<IRatingsService,RatingsService>();
+            containerRegistry.RegisterSingleton<IRatingsApiService,RatingsApiService>();
             containerRegistry.RegisterSingleton<ISalesServiceApi,SalesServiceApi>();
             containerRegistry.RegisterSingleton(typeof(IApiClient<>), typeof(ApiClient<>));
             containerRegistry.RegisterSingleton<IStoreService, StoreService>();

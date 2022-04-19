@@ -33,7 +33,7 @@ namespace NotiPet.UnitTest.ViewModelTest
                 var viewModel =(PetsViewModel) viewModelFixture;
             
                 //Act
-                viewModel.InitializingCommand.Execute().Subscribe();
+                viewModel.InitializeCommand.Execute().Subscribe();
                 scheduler.AdvanceByMs(100);
                 //Asset
                 viewModel.Pets.Should().NotBeEmpty();
