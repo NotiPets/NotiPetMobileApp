@@ -14,9 +14,11 @@ namespace NotiPetApp.ViewModels
     {
         private readonly IDeviceUtils _deviceUtils;
         public ObservableCollection<AppMenuItem> AppMenuItems { get; set; }
+        public string Username { get; set; }
         public HomeViewModel(INavigationService navigationService, IPageDialogService dialogPage,IDeviceUtils deviceUtils) : base(navigationService, dialogPage)
         {
             _deviceUtils = deviceUtils;
+            Username = Settings.Username;
             AppMenuItems = new ObservableCollection<AppMenuItem>()
             {
                 new(ConstantDictionary.Veterinary,"Veterinary",1,ReactiveCommand.CreateFromTask(NavigateToLastVisitVeterinary),SizeItem.Small),

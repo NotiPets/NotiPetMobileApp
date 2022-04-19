@@ -20,6 +20,7 @@
             <Setter Property="Padding" Value="10,10"/>
             <Setter Property="CornerRadius" Value="30"/>
         </Style>
+        <effects:TextCaseConverter x:Key="TextCaseConverter" />
      
 
                 <ControlTemplate  x:Key="ImageViewControl">
@@ -103,7 +104,7 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <Span   Text="How can we help you,"/>
-                        <Span   Text=" Maria?" TextColor="{DynamicResource PrimaryDark}"/>
+                        <Span   Text="{Binding Username,Converter={StaticResource TextCaseConverter},StringFormat=' {0}?'}" TextColor="{DynamicResource PrimaryDark}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
