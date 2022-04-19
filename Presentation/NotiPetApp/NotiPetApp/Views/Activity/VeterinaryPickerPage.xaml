@@ -22,7 +22,7 @@
                       ColumnDefinitions="*,Auto"
                       Margin="2,4,5,10"
                       RowSpacing="30">
-                    <Label Text="Picker veterinary" 
+                    <Label Text="Veterinary Picker" 
                            Grid.ColumnSpan="2"
                            HorizontalTextAlignment="Center"
                            Style="{StaticResource LabelLarge}"/>
