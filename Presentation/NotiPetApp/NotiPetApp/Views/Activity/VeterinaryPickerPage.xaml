@@ -106,7 +106,7 @@
                                           FontFamily="{StaticResource FontSolid}"
                                          />
                                     <Span Text=" " CharacterSpacing="10"/>
-                                    <Span Text="Filtro"
+                                    <Span Text="Filter"
                                           />
                                 </FormattedString>
                             </Label.FormattedText>

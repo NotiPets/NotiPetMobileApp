@@ -45,23 +45,27 @@
                                         Grid.ColumnSpan="2"/>
             <Label    Grid.Row="3"
                       Grid.ColumnSpan="2"
+                      Margin="20,0"
                       Text="Services"/>
             <Picker Grid.Row="4"
+                    Margin="20,0"
                     ItemsSource="{Binding ServicesAvailable}"
                     SelectedItem="{Binding SelectedService}"
                     Grid.ColumnSpan="2"/>
             <Label    Grid.Row="5"
+                      Margin="20,0"
                       Grid.ColumnSpan="2"
                       Text="Date"/>
             <DatePicker Grid.Row="6"
+                        Margin="20,0"
                         Date="{Binding Date}"
                         Grid.ColumnSpan="2"/>
             <Label    Grid.Row="7"
+                      Margin="20,0"
                       Grid.ColumnSpan="2"
                       Text="Time"/>
             <TimePicker    Grid.Row="8"
-
-     
+                            Margin="20,0,0,0"
                            Time="{Binding Time}"
                        Grid.Column="0"
                       />
