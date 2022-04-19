@@ -5,7 +5,7 @@ namespace NotiPet.Domain.Models
 
 
         //TODO: FALTA LA FOTO
-        public Veterinary( int id, string name,string rnc, string phone, string email, string address1, string address2, string pictureUrl, string city, string province, double latitude, double longitude)
+        public Veterinary( int id, string name,string rnc, string phone, string email, string address1, string address2, string pictureUrl, string city, string province, double latitude, double longitude,string description)
         {
             Name = name;
             Id = id;
@@ -19,6 +19,7 @@ namespace NotiPet.Domain.Models
             Province = province;
             Latitude = latitude;
             Longitude = longitude;
+            Description = description;
         }
 
         public string Name { get; set; }
