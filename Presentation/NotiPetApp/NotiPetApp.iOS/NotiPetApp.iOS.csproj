@@ -1,185 +1,184 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-        <ProductVersion>8.0.30703</ProductVersion>
-        <SchemaVersion>2.0</SchemaVersion>
-        <ProjectGuid>{B069F9A1-E52B-4114-800F-CDF21B444CCA}</ProjectGuid>
-        <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-        <OutputType>Exe</OutputType>
-        <RootNamespace>NotiPetApp.iOS</RootNamespace>
-        <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-        <AssemblyName>NotiPetApp.iOS</AssemblyName>
-        <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-        <DefineConstants>DEBUG</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <ConsolePause>false</ConsolePause>
-        <MtouchArch>x86_64</MtouchArch>
-        <MtouchLink>None</MtouchLink>
-        <MtouchDebug>true</MtouchDebug>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
-        <DebugType>none</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <MtouchLink>None</MtouchLink>
-        <MtouchArch>x86_64</MtouchArch>
-        <ConsolePause>false</ConsolePause>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\iPhone\Debug</OutputPath>
-        <DefineConstants>DEBUG</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <ConsolePause>false</ConsolePause>
-        <MtouchArch>ARM64</MtouchArch>
-        <CodesignKey>iPhone Developer</CodesignKey>
-        <MtouchDebug>true</MtouchDebug>
-        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
-        <DebugType>none</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\iPhone\Release</OutputPath>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <MtouchArch>ARM64</MtouchArch>
-        <ConsolePause>false</ConsolePause>
-        <CodesignKey>iPhone Developer</CodesignKey>
-        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
-        <DebugType>none</DebugType>
-        <Optimize>True</Optimize>
-        <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <ConsolePause>False</ConsolePause>
-        <MtouchArch>ARM64</MtouchArch>
-        <BuildIpa>True</BuildIpa>
-        <CodesignProvision>Automatic:AdHoc</CodesignProvision>
-        <CodesignKey>iPhone Distribution</CodesignKey>
-        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
-        <DebugType>none</DebugType>
-        <Optimize>True</Optimize>
-        <OutputPath>bin\iPhone\AppStore</OutputPath>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <ConsolePause>False</ConsolePause>
-        <MtouchArch>ARM64</MtouchArch>
-        <CodesignProvision>Automatic:AppStore</CodesignProvision>
-        <CodesignKey>iPhone Distribution</CodesignKey>
-        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    </PropertyGroup>
-    <ItemGroup>
-        <Compile Include="Main.cs" />
-        <Compile Include="AppDelegate.cs" />
-        <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
-        <None Include="Entitlements.plist" />
-        <None Include="Info.plist" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-        <PictureUrlAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
-            <Visible>false</Visible>
-        </PictureUrlAsset>
-    </ItemGroup>
-    <ItemGroup>
-        <Reference Include="System" />
-        <Reference Include="System.Xml" />
-        <Reference Include="System.Core" />
-        <Reference Include="Xamarin.iOS" />
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="AiForms.SettingsView" Version="1.3.29" />
-        <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
-        <PackageReference Include="DynamicData" Version="7.5.4" />
-        <PackageReference Include="Plugin.GoogleClient" Version="2.1.12" />
-        <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
-        <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
-        <PackageReference Include="ReactiveUI" Version="17.1.50" />
-        <PackageReference Include="ReactiveUI.Fody" Version="17.1.50" />
-        <PackageReference Include="ReactiveUI.Validation" Version="2.2.1" />
-        <PackageReference Include="ReactiveUI.XamForms" Version="17.1.50" />
-        <PackageReference Include="Realm" Version="10.10.0" />
-        <PackageReference Include="Syncfusion.Licensing" Version="19.4.0.56" />
-        <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.4.0.56" />
-        <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.4.0.52" />
-        <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.4.0.52" />
-        <PackageReference Include="System.Reactive" Version="5.0.0" />
-        <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
-        <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
-        <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
-
-        <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2401" />
-        <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
-        <PackageReference Include="Xamarin.Plugin.SharedTransitions" Version="2.4.0" />
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\NotiPetApp\NotiPetApp.csproj">
-            <Project>{E0ABCD18-71A1-4BFD-B58E-7872FB597261}</Project>
-            <Name>NotiPetApp</Name>
-        </ProjectReference>
-    </ItemGroup>
-    <ItemGroup>
-      <BundleResource Include="Resources\Artboard.png" />
-      <BundleResource Include="Resources\cartera.png" />
-      <BundleResource Include="Resources\check.png" />
-      <BundleResource Include="Resources\DogIndividual.png" />
-      <BundleResource Include="Resources\equality.png" />
-      <BundleResource Include="Resources\location.png" />
-      <BundleResource Include="Resources\logOut.png" />
-      <BundleResource Include="Resources\notImage.png" />
-      <BundleResource Include="Resources\NotiPetIsoTipo.png" />
-      <BundleResource Include="Resources\NotiPetLogotipo.png" />
-      <BundleResource Include="Resources\OnBoarding1.png" />
-      <BundleResource Include="Resources\OnBoarding2.png" />
-      <BundleResource Include="Resources\OnBoarding3.png" />
-      <BundleResource Include="Resources\OnBoardingComplete1.png" />
-      <BundleResource Include="Resources\OnBoardingComplete2.png" />
-      <BundleResource Include="Resources\OnBoardingComplete3.png" />
-      <BundleResource Include="Resources\patas.png" />
-      <BundleResource Include="Resources\question.png" />
-      <BundleResource Include="Resources\settings.png" />
-      <BundleResource Include="Resources\Shop.png" />
-      <BundleResource Include="Resources\Shower.png" />
-      <BundleResource Include="Resources\StartAppAnimations.json" />
-      <BundleResource Include="Resources\Veterinary.png" />
-        <BundleResource Include="Resources\Emergency.png" />
-    </ItemGroup>
-    <ItemGroup>
-      <BundleResource Include="Resources\Calendar.png">
-        <SubType>Designer</SubType>
-      </BundleResource>
-    </ItemGroup>
-    <ItemGroup>
-      <BundleResource Include="Resources\patita.png">
-        <SubType>Designer</SubType>
-        <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      </BundleResource>
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="GoogleService-Info.plist" />
-    </ItemGroup>
-    
-    <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B069F9A1-E52B-4114-800F-CDF21B444CCA}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>NotiPetApp.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>NotiPetApp.iOS</AssemblyName>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <ProvisioningType>manual</ProvisioningType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <BuildIpa>True</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <PictureUrlAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </PictureUrlAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AiForms.SettingsView" Version="1.3.29" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
+    <PackageReference Include="DynamicData" Version="7.5.4" />
+    <PackageReference Include="Plugin.GoogleClient" Version="2.1.12" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+    <PackageReference Include="ReactiveUI" Version="17.1.50" />
+    <PackageReference Include="ReactiveUI.Fody" Version="17.1.50" />
+    <PackageReference Include="ReactiveUI.Validation" Version="2.2.1" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="17.1.50" />
+    <PackageReference Include="Realm" Version="10.10.0" />
+    <PackageReference Include="Syncfusion.Licensing" Version="19.4.0.56" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.4.0.56" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.4.0.52" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.4.0.52" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2401" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    <PackageReference Include="Xamarin.Plugin.SharedTransitions" Version="2.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NotiPetApp\NotiPetApp.csproj">
+      <Project>{E0ABCD18-71A1-4BFD-B58E-7872FB597261}</Project>
+      <Name>NotiPetApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Artboard.png" />
+    <BundleResource Include="Resources\cartera.png" />
+    <BundleResource Include="Resources\check.png" />
+    <BundleResource Include="Resources\DogIndividual.png" />
+    <BundleResource Include="Resources\equality.png" />
+    <BundleResource Include="Resources\location.png" />
+    <BundleResource Include="Resources\logOut.png" />
+    <BundleResource Include="Resources\notImage.png" />
+    <BundleResource Include="Resources\NotiPetIsoTipo.png" />
+    <BundleResource Include="Resources\NotiPetLogotipo.png" />
+    <BundleResource Include="Resources\OnBoarding1.png" />
+    <BundleResource Include="Resources\OnBoarding2.png" />
+    <BundleResource Include="Resources\OnBoarding3.png" />
+    <BundleResource Include="Resources\OnBoardingComplete1.png" />
+    <BundleResource Include="Resources\OnBoardingComplete2.png" />
+    <BundleResource Include="Resources\OnBoardingComplete3.png" />
+    <BundleResource Include="Resources\patas.png" />
+    <BundleResource Include="Resources\question.png" />
+    <BundleResource Include="Resources\settings.png" />
+    <BundleResource Include="Resources\Shop.png" />
+    <BundleResource Include="Resources\Shower.png" />
+    <BundleResource Include="Resources\StartAppAnimations.json" />
+    <BundleResource Include="Resources\Veterinary.png" />
+    <BundleResource Include="Resources\Emergency.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Calendar.png">
+      <SubType>Designer</SubType>
+    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\patita.png">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GoogleService-Info.plist" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
