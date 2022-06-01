@@ -13,7 +13,7 @@ namespace NotiPet.UnitTest.Fixtures.VeterinaryTest
 
         private BusinessDto BuildDto() => JsonConvert.DeserializeObject<BusinessDto>("");
 
-        private Veterinary Build() => new Veterinary(_id,_name,_rnc,_phone,_email,_address1,_address2,_pictureUrl,_city,_province,_latitude,_longitude);
+        private Veterinary Build() => new Veterinary(_id,_name,_rnc,_phone,_email,_address1,_address2,_pictureUrl,_city,_province,_latitude,_longitude,string.Empty);
         public VeterinaryFixture IdWith(int id) => this.With(ref _id, id);
         public VeterinaryFixture RncWith(string rnc) => this.With(ref _rnc, rnc);
         public VeterinaryFixture NameWith(string name) => this.With(ref _name, name);

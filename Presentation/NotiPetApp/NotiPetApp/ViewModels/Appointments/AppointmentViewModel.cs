@@ -71,9 +71,22 @@ namespace NotiPetApp.ViewModels
         };
 
         protected override IObservable<Unit> ExecuteInitialize()
-            => _salesService.GetSaleByUserId(Settings.UserId)
-                .Select(e=>Unit.Default);
+        {
+            _salesService.ReceiveMessage(GetMessage);
+            _salesService.Connect();
+            return _salesService.GetSaleByUserId(Settings.UserId)
+                .Select(e => Unit.Default);
+        }
 
+        private async  void GetMessage(string message)
+        {
+            if (message == "Muerte a Xamarin! atte. Amel")
+            {
+                await _salesService.GetSaleByUserId(Settings.UserId)
+                    .Select(e => Unit.Default);
+            }   
+
+        }
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.SignalR.Client;
 using NotiPet.Data.Mappers;
 using NotiPet.Data.Repositories;
 using NotiPet.Data.Services;
@@ -13,7 +14,8 @@ namespace NotiPet.Data
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IApiProvider>(provider => new ApiProvider("https://notipet-api.herokuapp.com/api"));
+            var api = "https://notipet-api.herokuapp.com/api";
+            containerRegistry.RegisterSingleton<IApiProvider>(provider => new ApiProvider(api));
             
             containerRegistry.RegisterSingleton<IAssetServiceApi, AssetServiceApi>();
             containerRegistry.RegisterSingleton<IUserServiceApi,UserServiceApi>(); 
@@ -34,6 +36,8 @@ namespace NotiPet.Data
             containerRegistry.RegisterSingleton<ISalesService,SalesService>();
             containerRegistry.RegisterSingleton<IDataBaseProvider<Realm>, RealmDatabaseProvider>(); 
             containerRegistry.RegisterSingleton(typeof(IDataSource<>), typeof(Repository<>));
+            containerRegistry.RegisterScoped<HubConnection>(x =>
+                new HubConnectionBuilder().WithUrl($"{api}/Appointments/Inform").Build());
         }
 
         public void OnInitialized(IContainerProvider containerProvider)

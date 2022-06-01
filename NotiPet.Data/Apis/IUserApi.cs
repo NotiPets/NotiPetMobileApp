@@ -8,7 +8,7 @@ namespace NotiPet.Data
 {
     public interface IUserApi
     {
-        [Post("/LogIn")]
+        [Post("/LogIn/Mobile")]
         IObservable<HttpResponseMessage> LogIn([Body]RequestAuthenticationDto requestAuthenticationDto);
         [Post("/SignUp")]
         IObservable<HttpResponseMessage> SignUp([Body]UserDto userRole);

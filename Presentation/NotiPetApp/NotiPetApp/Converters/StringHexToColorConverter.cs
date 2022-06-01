@@ -19,17 +19,24 @@ namespace NotiPetApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-           
-            if (value == null)
-                return "patita";
+            try
+            {
+                if (value == null)
+                    return "patita";
             
-            var base64 = value.ToString();
-            if (base64.StartsWith("http"))
-                return base64;
-            var arrayByte = System.Convert.FromBase64String(base64);
-            Stream stream = new MemoryStream(arrayByte);
-            var imageSource = ImageSource.FromStream(()=>stream);
-            return imageSource;
+                var base64 = value.ToString();
+                if (base64.StartsWith("http"))
+                    return base64;
+                var arrayByte = System.Convert.FromBase64String(base64);
+                Stream stream = new MemoryStream(arrayByte);
+                var imageSource = ImageSource.FromStream(()=>stream);
+                return imageSource;
+            }
+            catch (Exception e)
+            {
+                return value;
+            }
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
