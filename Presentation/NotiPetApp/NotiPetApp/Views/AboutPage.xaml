@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:AboutViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                x:Class="NotiPetApp.Views.AboutPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              Padding="10,15,0,0"> 
+            <ImageButton BackgroundColor="Transparent"
+                         Command="{Binding NavigateGoBackCommand}"
+                         Grid.Column="0"
+                         
+                         HorizontalOptions="StartAndExpand"
+                         Margin="10,5"
+                         Grid.Row="0">
+                <ImageButton.Source>
+
+                    <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                     Color="{DynamicResource PrimaryDark}"
+                                     FontFamily="{StaticResource FontSolid}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <Label Text="V. 1.0"
+                   Grid.Row="2"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource  PrimaryColor}"
+                   Style="{StaticResource  LabelLarge}" 
+            />
+            <Label BackgroundColor="Transparent"
+                   Grid.Column="0"
+                   Text="AboutPage"    
+                   TextColor="{StaticResource  PrimaryDark}"
+                   Style="{StaticResource  LabelLarge}" 
+                   HorizontalOptions="Center"
+                   Margin="10,5"
+                   Grid.Row="0">
+            </Label>
+            <Image BackgroundColor="Transparent"
+                         Grid.Column="0"
+                         Source="NotiPetLogotipo"
+                         HorizontalOptions="StartAndExpand"
+                         Margin="10,5"
+                         Grid.Row="1">
+            </Image>
+            
+            
+            <Label Text="V. 1.0"
+                   Grid.Row="2"
+                    HorizontalOptions="Center"
+                   TextColor="{StaticResource  PrimaryColor}"
+                   Style="{StaticResource  LabelLarge}" 
+            />
+            
+            <Label Text="V. 1.0"
+                   Grid.Row="2"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource  PrimaryColor}"
+                   Style="{StaticResource  LabelLarge}" 
+            />
+            
+            <Label Text="NotiPet es un proyecto cuyo propósito es el de conectar a los dueños de mascotas con las veterinarias con los cuales contratan servicios para sus mascotas permitiéndoles a estos estar al tanto de los servicios que le están siendo realizados a sus mascotas para de esta forma estar al tanto de éstos en todo momento. La idea surge en primer lugar porque actualmente no existe nada parecido en la República Dominicana y por otro lado, por el hecho de que a lo largo de los años han ocurrido un sin número de situaciones lamentables con animales en muchas ocasiones por un mal manejo de los animales en las veterinarias."
+                   Grid.Row="3" Grid.RowSpan="4" Margin="10,40,0,10" LineHeight="1.5"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource   PrimaryDark}"
+                   Style="{StaticResource  LabelSubtitle}" 
+            />
+            
+            <Label Text="©2022 NotiPet. All rights reserved" VerticalOptions="End"
+                   Grid.Row="6" Margin="10,40,0,10" LineHeight="1.5"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource   PrimaryDark}"
+                   Style="{StaticResource  LabelSubtitle}" 
+            />
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>

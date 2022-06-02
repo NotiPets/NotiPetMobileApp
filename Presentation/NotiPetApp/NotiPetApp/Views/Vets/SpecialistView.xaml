@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<controls:TabItemReactive x:TypeArguments="viewModels:SpecialistViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                       xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                       xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                       xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+                       xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                       xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                       xmlns:xForms1="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+                       xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                       xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                       x:Class="NotiPetApp.Views.Vets.SpecialistView" 
+                       x:DataType="viewModels:SpecialistViewModel"
+                       Title="Specialist">
+    <controls:TabItemReactive.Resources>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+    </controls:TabItemReactive.Resources>
+    <ListView ItemsSource="{Binding Specialists}"  Margin="10,5,10,5" 
+              HasUnevenRows="True"
+              SelectionMode="None"
+              SeparatorVisibility="None">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Specialist">
+                <ViewCell>
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                      Margin="10"
+
+                      ColumnDefinitions="110,Auto,*">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:SpecialistViewModel}},Path=ShowDetailCommand}"
+                                              CommandParameter="{Binding User.Username}"/>
+                    </Grid.GestureRecognizers>
+                    
+                    <pancakeView:PancakeView  Grid.Column="0" 
+                                              Padding="0" Grid.RowSpan="4"
+                                              CornerRadius="20"
+                                              Margin="5,10,10,0" >
+
+                       <forms:CachedImage   Source="{Binding User.PictureUrl,Converter={StaticResource Base64StringToImageSource},TargetNullValue='notImage',FallbackValue='notImage'}"
+                                            Aspect="AspectFill"
+                                            LoadingPlaceholder="notImage"
+                                            HeightRequest="80"
+                                            WidthRequest="50"
+                                            ErrorPlaceholder="notImage"
+                                            />
+
+                      </pancakeView:PancakeView>
+                
+                   <Label Text="{Binding User.FullName}"
+                            FontSize="20"
+                             Grid.Row="1"
+                             Style="{StaticResource LabelTitleBold}"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="2"/>
+                          <Label Text="{Binding Speciality.Name} "
+                                 Grid.Row="2"
+                                 FontSize="16"
+                                 MaxLines="1"
+                                 Style="{StaticResource LabelSubtitleBold}"
+                                 LineBreakMode="TailTruncation"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="2"/>
+                      <xForms1:SfRating Precision="Half" 
+                                        ItemCount="5" 
+                                        IsEnabled="False" 
+                                       Margin="0,0,10,0" 
+                                        ItemSize="15" 
+                                        Value="4" 
+                                        HeightRequest="25" 
+                                         Grid.Row="3" 
+                                        Grid.Column="1"> 
+                           <xForms1:SfRating.RatingSettings> 
+                               <xForms1:SfRatingSettings RatedFill="{DynamicResource RatingColor}" UnRatedFill="Transparent" RatedStroke="LightGray" RatedStrokeWidth="1" UnRatedStrokeWidth="1" />
+                           </xForms1:SfRating.RatingSettings> 
+                           </xForms1:SfRating> 
+                          <Label Text="125 Reviews"
+                                 Grid.Row="3"
+                                 Grid.Column="2"
+                                 Style="{StaticResource LabelSmall}"
+                                 />
+                   <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="10,0,5,5" Padding="5,10,10,5">
+                       <Label 
+                           Style="{StaticResource LabelSubtitleBold}" 
+                           HorizontalTextAlignment="Start" 
+                           MaxLines="1"
+                           Text="{Binding User.Description}"
+                       />
+                       
+
+                   </StackLayout>
+                   
+
+                </Grid>
+
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</controls:TabItemReactive>

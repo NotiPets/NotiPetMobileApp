@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:SocialNetworkAuthenticationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
+                xmlns:converters1="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                x:Class="NotiPetApp.Views.Authentication.SocialNetworkAuthenticationPage">
+    <views:BasePage.Resources>
+        <converters1:StringHexToColorConverter x:Key="StringHexToColorConverter"/>
+        <ControlTemplate  x:Key="ImageViewControl"
+        >
+
+                <Grid ColumnDefinitions ="Auto,*"
+                      ColumnSpacing="0">
+                    <Image Source="{TemplateBinding ImageSource}"
+                            
+                            HeightRequest="25"
+                              WidthRequest="25"
+                             Aspect="AspectFit"
+                            Margin="40,0,15,0"
+                           />
+                    <Label 
+                           Grid.Column="1"
+                         TextColor="{DynamicResource SecondaryLetterLight}"
+                           HorizontalTextAlignment="Start"
+                           Style="{StaticResource LabelTitleBold}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Enter With  " TextColor="{StaticResource SecondaryLetterLight}"  Style="{StaticResource LabelTitle}"/>
+                                <Span Text="{TemplateBinding Text}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+        </ControlTemplate>
+    </views:BasePage.Resources>
+<ScrollView>
+    <Grid 
+          Padding="30,20,30,5"
+          RowDefinitions="Auto,Auto,Auto,Auto"
+          >
+            <Label  FontSize="46"
+                    Margin="0,50"
+                    HorizontalTextAlignment="Center"
+                   Style="{StaticResource LabelHeader}"
+                   >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Welcome to "/>
+                        <Span Text=" " CharacterSpacing="10"/>
+                        <Span Text="NotiPet" TextColor="{DynamicResource PrimaryDark}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <controls:StackLayoutListView  Grid.Row="1"
+                                  x:Name="SocialNetworks">
+                <controls:StackLayoutListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:SocialNetwork">
+                        <controls:ImageViewControl ControlTemplate="{StaticResource ImageViewControl}"
+                                                   ImageSource="{Binding Icon}"
+                                                   Text="{Binding Name}" 
+                                                   BackgroundColor="{Binding Color,Converter={StaticResource StringHexToColorConverter}}"
+                                                   CornerRadius="25"
+                                                   Padding="5,13"
+                                                   converters:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:SocialNetworkAuthenticationViewModel}},Path=LogInCommand}"
+                                                   converters:TouchEffect.CommandParameter="{Binding Code}"
+                                                   converters:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                                   converters:TouchEffect.PressedOpacity="0.6"
+                                                   converters:TouchEffect.AnimationDuration="5"
+                                                   converters:TouchEffect.PressedScale="1"
+                                                   Margin="10"
+                                                   >
+                        </controls:ImageViewControl>
+                    </DataTemplate>
+                </controls:StackLayoutListView.ItemTemplate>
+            </controls:StackLayoutListView>
+            
+            <Label Grid.Row="2"
+                   HorizontalTextAlignment="Center"
+                   Margin="2,60,2,10"
+                   TextColor="{DynamicResource PrimaryDark}"
+                   Style="{StaticResource LabelTitle}">
+                
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Don’t have a Notipet account yet?"/>
+                        <Span Text=" " CharacterSpacing="5"/>
+                        <Span Text="Sign Up" Style="{StaticResource LabelTitleBold}"
+                              TextColor="{DynamicResource PrimaryDark}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToSignUpCommand}"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        <Label Text="Continue without register"
+               Grid.Row="3"
+               Margin="0,10"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"
+               converters:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:SocialNetworkAuthenticationViewModel}},Path=LogInCommand}"
+               converters:TouchEffect.CommandParameter="Skip"
+               converters:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+               converters:TouchEffect.PressedOpacity="0.6"
+               converters:TouchEffect.AnimationDuration="5"
+               converters:TouchEffect.PressedScale="1"
+               Style="{StaticResource LabelTitleBold}"
+               TextColor="{StaticResource PrimaryLetterLightColor}"
+               TextDecorations="Underline"/>
+    </Grid>
+    </ScrollView>
+</views:BasePage >

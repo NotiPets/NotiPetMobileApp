@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<pancakeView:PancakeView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
+             x:Name="ButtonPv"
+             x:Class="NotiPetApp.Controls.TouchViewControl"
+             effects:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+             effects:TouchEffect.PressedOpacity="0.6"
+             effects:TouchEffect.AnimationDuration="5"
+             effects:TouchEffect.PressedScale="0.8"
+        
+>
+    <pancakeView:PancakeView.ControlTemplate>
+        <ControlTemplate>
+            <Label    Text="{TemplateBinding CommandText}"
+                      TextColor="{TemplateBinding TextColor}"
+                      Margin="4"
+                      Style="{StaticResource LabelTitleBold}"
+                      HorizontalOptions="CenterAndExpand"
+                      VerticalTextAlignment="Center"
+                      HorizontalTextAlignment="Center"
+            
+            />
+        </ControlTemplate>
+    </pancakeView:PancakeView.ControlTemplate>
+    
+    <pancakeView:PancakeView.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnButtonTapped"/>
+    </pancakeView:PancakeView.GestureRecognizers>
+
+    </pancakeView:PancakeView >

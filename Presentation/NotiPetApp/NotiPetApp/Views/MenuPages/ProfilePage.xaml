@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentViewBase xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                 xmlns:renderers="clr-namespace:AiForms.Renderers;assembly=SettingsView"
+                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 xmlns:system="system"
+                 xmlns:system1="clr-namespace:System;assembly=netstandard"
+                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                 xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                 xmlns:models="clr-namespace:NotiPetApp.Models;assembly=NotiPetApp"
+                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                 x:TypeArguments="viewModels:ProfileViewModel"
+                 x:Class="NotiPetApp.Views.MenuPages.ProfilePage">
+    <views:ContentViewBase.Resources>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+    </views:ContentViewBase.Resources>
+        <Grid RowDefinitions="*,1.3*">
+
+            <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                     Padding="5"
+                                     Grid.Row="0"
+                                     Shadow="{StaticResource ShadowMarkupStyle}"
+                                     CornerRadius="0,0,30,30">
+                <Grid RowDefinitions="Auto,Auto,Auto"
+                      ColumnDefinitions="*,Auto,*">
+                    <Label Text="Profile"  Grid.Column="1"
+                           Style="{StaticResource LabelLarge}"/>
+
+                    <forms:CachedImage   Source="{Binding User.PictureUrl,Converter={StaticResource Base64StringToImageSource}}"
+                                         Grid.Row="1"
+                                         CacheType="Memory"
+                                         Grid.ColumnSpan="3"
+                                         HorizontalOptions="CenterAndExpand"
+                                       
+                                         Aspect="AspectFill"
+                                         WidthRequest="150"
+                                         HeightRequest="150">
+                        <forms:CachedImage.Transformations>
+                            <transformations:CircleTransformation />
+                        </forms:CachedImage.Transformations>
+                    </forms:CachedImage>
+                  <Label Grid.Row="2"
+                         Style="{StaticResource LabelLarge}"
+                         HorizontalTextAlignment="Center"
+                         Grid.ColumnSpan="3">
+                      <Label.FormattedText>
+                          <FormattedString>
+                              <Span Text="{Binding User.FullName}" />
+                              <Span Text="{x:Static system1:Environment.NewLine}"></Span>
+                              <Span Text="{Binding User.FullAddress}" Style="{StaticResource LabelSubtitle}"
+                                    TextColor="{DynamicResource PrimaryLetterLightColor}"/>
+                          </FormattedString>
+                      </Label.FormattedText>
+                  </Label>
+                </Grid>
+            </pancakeView:PancakeView>
+
+            <CollectionView Grid.Row="1"
+                            ItemsSource="{Binding AppMenuItems}">
+                <CollectionView.ItemTemplate> 
+                    <DataTemplate x:DataType="models:AppMenuItem">
+                        <Grid ColumnDefinitions="Auto,*,Auto"
+                              Padding="8"
+                              RowDefinitions="Auto,1">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ReactiveCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <pancakeView:PancakeView WidthRequest="45"
+                                                     CornerRadius="25"
+                                                     Padding="4"
+                                                     BackgroundColor="#dae9ed"
+                                                     HeightRequest="45">
+           
+                                <Image Source="{Binding Image}"
+                                       VerticalOptions="CenterAndExpand"
+                                      Margin="5"
+                              
+                                />
+                      
+                            </pancakeView:PancakeView>
+                                    <Label Text="{Binding Name}"
+                                           VerticalTextAlignment="Center"
+                                           Margin="10,0"
+                                           Style="{StaticResource LabelTitleBold}"
+                                           Grid.Column="1"/>
+                                <Image  Grid.Column="2"
+                                        Margin="5"
+                                        HeightRequest="20">
+                                    <Image.Source>
+                                        <FontImageSource Glyph="{x:Static fontIcon:FontIcon.ArrowForward}"
+                                                         Color="{DynamicResource PrimaryBackgroundDark}"
+                                                         FontFamily="{StaticResource FontSolid}"/>
+                                    </Image.Source>
+                                </Image>
+                                <Line Grid.Row="1"
+                                      BackgroundColor="#dae9ed"
+                                      Grid.ColumnSpan="3"/>
+                            </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+    
+        </Grid>
+</views:ContentViewBase>

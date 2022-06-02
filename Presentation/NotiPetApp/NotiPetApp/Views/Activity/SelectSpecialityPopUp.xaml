@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="activity:SelectSpecialityViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:activity="clr-namespace:NotiPetApp.ViewModels.Activity;assembly=NotiPetApp"
+                xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:vets="clr-namespace:NotiPetApp.Views.Vets;assembly=NotiPetApp"
+                xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                x:Class="NotiPetApp.Views.Activity.SelectSpecialityPopUp"
+                BackgroundColor="Transparent"
+                x:DataType="activity:SelectSpecialityViewModel">
+    <views:BasePage.Resources >
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+    </views:BasePage.Resources>
+    <pancakeView:PancakeView Margin="0,40,0,0"
+                             BackgroundColor="{DynamicResource BackgroundColor}"
+                             Shadow="{StaticResource ShadowMarkupStyle}"
+                             CornerRadius="30,30,0,0">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*,Auto"
+          Padding="10">
+    <Label Text="Date Selection"
+           Grid.Row="0"
+           Style="{StaticResource LabelLarge}"
+           HorizontalTextAlignment="Center"
+    />
+    <ImageButton BackgroundColor="Transparent"
+                 Command="{Binding NavigateGoBackCommand}"
+                 Grid.Column="0"
+                 HorizontalOptions="StartAndExpand"
+                 Margin="10,5"
+                 Grid.Row="0">
+        <ImageButton.Source>
+
+            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Close}"
+                             Color="{DynamicResource PrimaryDark}"
+                             FontFamily="{StaticResource FontSolid}"/>
+        </ImageButton.Source>
+    </ImageButton>
+    <DatePicker Grid.Row="1"
+                HorizontalOptions="CenterAndExpand"
+                Format="ddd dd/MMM/yyyy"
+                Date="{Binding Date}"/>
+    <Label Text="Selection Pets"
+           HorizontalTextAlignment="Center"
+           Style="{StaticResource LabelLarge}"
+           Grid.Row="2"
+           />
+    
+        <CollectionView ItemsSource="{Binding Pets}"
+                    Grid.Row="3"
+                    x:Name="Pets"
+                    SelectedItem="{Binding SelectedItem}"
+                    SelectionMode="Single"
+    >
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="2"></GridItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Pet">
+                <StackLayout Margin="10">
+               <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                      ColumnDefinitions="110,Auto,*">
+                          <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
+                                                    Padding="0" Grid.Row="0" Grid.RowSpan="2"
+                                                    CornerRadius="60"
+                                                    Margin="5,10,10,0" >
+                       <Image  Source="{Binding PictureUrl,Converter={StaticResource Base64StringToImageSource}}"
+                                          Aspect="AspectFill" 
+                                          HeightRequest="120"
+                                          WidthRequest="120"/>
+                      </pancakeView:PancakeView>
+                
+                   <Label Text="{Binding Name}"
+                            FontSize="20"
+                             Grid.Row="3"
+                            HorizontalOptions="CenterAndExpand"            
+                            Style="{StaticResource LabelTitleBold}"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"/>
+                   
+                          <Label Text="{Binding PetTypeName}"
+                                 Grid.Row="4"
+                                 FontSize="16"
+                                 MaxLines="1"
+                                 HorizontalOptions="CenterAndExpand"            
+                                 TextColor="{DynamicResource PrimaryLetterLightColor}"
+                                 Style="{StaticResource LabelSubtitleBold}"
+                                 LineBreakMode="TailTruncation"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="3"/>
+
+                </Grid>
+              
+                </StackLayout>
+               
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+            </CollectionView>
+    <controls:TouchViewControl       
+                                     Command="{Binding ContinueCommand}"
+                                     CornerRadius="25"
+                                     Margin="20"
+                                     Padding="14"
+                                     CommandText="Continue"
+                                     IsVisible="{Binding CanContinue}"
+                                     Grid.Row="4"
+                                     BackgroundColor="{DynamicResource PrimaryDark }"/> 
+</Grid>
+        </pancakeView:PancakeView>
+
+</views:BasePage>

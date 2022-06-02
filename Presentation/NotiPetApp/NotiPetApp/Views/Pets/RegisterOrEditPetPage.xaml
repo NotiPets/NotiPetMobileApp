@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:RegisterOrEditPetViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:views1="http://xamarin.com/schemas/2020/toolkit"
+                xmlns:generic="clr-namespace:System.Collections.Generic;assembly=netstandard"
+                xmlns:sf="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+                xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                x:Class="NotiPetApp.Views.RegisterOrEditPetPage"
+                x:DataType="viewModels:RegisterOrEditPetViewModel"
+                >
+    <views:BasePage.Resources>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+        <converters:SizeListToHeightRequest x:Key="SizeListToHeightRequest"/>
+        <Style TargetType="controls:EntryCustom"
+        >
+            <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}"/>
+            <Setter  Property="ActiveLineColor" Value="{DynamicResource PrimaryDark}"/>
+            <Setter  Property="LineColor" Value="{DynamicResource PrimaryBackgroundDark}"/>
+            <Setter  Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+            <Setter Property="PlaceHolderSize" Value="16"/>
+            <Setter Property="FontSize"  Value="16"/>
+
+        </Style>
+    </views:BasePage.Resources>
+    <Grid RowDefinitions="Auto,Auto,Auto"
+          RowSpacing="20">
+    <Grid RowDefinitions="Auto,Auto,Auto" Padding="5,20,5,0"
+          ColumnDefinitions="*,Auto,*">
+        <ImageButton BackgroundColor="Transparent"
+                     HorizontalOptions="Start"
+                     Margin="10,0"
+                     Command="{Binding NavigateGoBackCommand}"
+                     Grid.Column="0">
+            <ImageButton.Source>
+                <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                  Color="{StaticResource PrimaryDark}"
+                                  FontFamily="{StaticResource FontSolid}"/>
+            </ImageButton.Source>
+        </ImageButton>
+        <Label Text="Add Pets"  Grid.Column="1"
+               Style="{StaticResource LabelLarge}"/>
+
+
+    </Grid>
+    
+    <ScrollView Grid.Row="1">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Padding="5,20,5,0"
+              ColumnDefinitions="*,Auto,*">
+
+            
+            <forms:CachedImage   Source="{Binding  PictureUrl,Converter={StaticResource Base64StringToImageSource},FallbackValue=patita,TargetNullValue=patita}"
+                                 CacheType="Memory"
+                                 Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
+                                  Grid.Row="0" Grid.RowSpan="2"
+                                 Aspect="AspectFill" 
+                               
+                                 views1:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                 views1:TouchEffect.PressedOpacity="0.6"
+                                 views1:TouchEffect.AnimationDuration="5"
+                                 views1:TouchEffect.PressedScale="0.8"
+                                 views1:TouchEffect.Command="{Binding GetPhotoCommand }"
+                                 HeightRequest="120"
+                                 WidthRequest="120" >
+                <forms:CachedImage.Transformations>
+                    <transformations:CircleTransformation />
+                </forms:CachedImage.Transformations>
+            </forms:CachedImage>
+            
+            <pancakeView:PancakeView  HorizontalOptions="Start" HeightRequest="40" WidthRequest="40" Margin="20,0,0,0"
+                                      Padding="0" BackgroundColor="{StaticResource PrimaryColor}" Grid.Column="2"
+                                      CornerRadius="20">
+                <Image BackgroundColor="Transparent"
+                       HorizontalOptions="Center">
+                    <Image.Source>
+                        <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.EditIcon}"
+                                          Color="{StaticResource PrimaryLetterLightColor}"
+                                          FontFamily="{StaticResource FontSolid}"/>
+                    </Image.Source>
+                </Image>
+
+            </pancakeView:PancakeView>
+            
+            <Label Text="Personal Informatión" Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="3"
+                   Margin="10"
+                   Style="{StaticResource LabelLarge}"/>   
+            
+            <controls:EntryCustom Grid.ColumnSpan="3"
+                                  Grid.Row="3"
+                                  IsEnabled="{Binding IsNew}"
+                                  ValidationColor="{DynamicResource ErrorColor}"
+                                  PlaceHolder="Pet's name"
+                                  Text="{Binding Pet.Name}"
+                                     
+            /> 
+
+                        
+            <controls:EntryCustom Grid.ColumnSpan="3"
+                                  Grid.Row="4"
+                                 
+                                  ValidationColor="{DynamicResource ErrorColor}"
+                                  PlaceHolder="Description"
+                                  Text="{Binding Pet.Description}"
+                                     
+            /> 
+
+            <Label    Style="{StaticResource  LabelTitleBold}"
+                      Text="Size"
+                      Grid.ColumnSpan="2"
+                      Margin="5"
+                      Padding="12,8"
+                      Grid.Row="5"/>
+            <Picker Grid.Column="2"
+                    Margin="5"
+                    Grid.Row="5"
+                    ItemsSource="{Binding PetSizes}"
+                    IsEnabled="{Binding IsNew}"
+                    SelectedItem="{Binding SelectedPetSize,Mode=TwoWay}"
+            /> 
+
+            <Label    Style="{StaticResource  LabelTitleBold}"
+                      Text="BirthDate"
+                      Grid.ColumnSpan="2"
+                      Margin="5"
+                      Padding="12,8"
+                      Grid.Row="6"/>
+            <DatePicker Grid.Column="2"
+                        Margin="5"
+                        Grid.Row="6"
+                        
+                        Date="{Binding Pet.Birthdate}"
+            /> 
+            <Label    Style="{StaticResource  LabelTitleBold}"
+                      Text="PetType"
+                      Grid.ColumnSpan="2"
+                      Margin="5"
+                      Padding="12,8"
+                      
+                      Grid.Row="7"/>
+            <Picker Grid.Column="2"
+                        Margin="5"
+                        Grid.Row="7"
+                        ItemsSource="{Binding PetsTypes}"
+                        IsEnabled="{Binding IsNew}"
+                        SelectedItem="{Binding SelectedPetType}"
+            /> 
+            <Label Text="Gender"
+                   Grid.Row="8"  Margin="5"
+                   Padding="12,8"
+                   VerticalTextAlignment="End"
+                   FontAttributes="Bold"
+               
+                   Style="{StaticResource  LabelTitleBold}"
+                   TextColor="{DynamicResource PrimaryLetterLightColor}"
+                   Grid.Column="0"
+         
+            />
+            
+            <sf:SfSegmentedControl Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" 
+                                        BorderColor="{DynamicResource PrimaryDark}" DisabledTextColor="{DynamicResource PrimaryColor}"
+                                        HeightRequest="60" FontColor="{DynamicResource PrimaryLetterColor}"
+                                        HorizontalOptions="Center"
+                                        x:Name="segmentView"
+                                         CornerRadius="25"
+                                        DisplayMode="Text"
+                                        IsEnabled="{Binding IsNew}"
+                                        VisibleSegmentsCount="2"
+                                        SegmentCornerRadius="30"
+                                        ItemsSource="{Binding Gender}"
+                                        SelectedIndex="{Binding Pet.Gender}"
+                                       >
+                <sf:SfSegmentedControl.SelectionIndicatorSettings>
+                    <sf:SelectionIndicatorSettings 
+                    Color="{DynamicResource PrimaryDark}"
+                    CornerRadius="20">
+                </sf:SelectionIndicatorSettings>
+                    </sf:SfSegmentedControl.SelectionIndicatorSettings>
+            </sf:SfSegmentedControl>
+
+            <Label Text="Additional Information" Grid.Row="10"  Grid.Column="0" Grid.ColumnSpan="3"
+                   Margin="10"
+                   Style="{StaticResource LabelLarge}"/>
+            <ListView ItemsSource="{Binding InformationAditional}"
+                      SelectionMode="None"
+                      HeightRequest="{Binding InformationAditional.Count,Converter={StaticResource SizeListToHeightRequest}}" Margin="12" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3"  >
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:PetInformation">
+                        <ViewCell>
+                            <Grid ColumnDefinitions="*,*">
+                                <Label Text="{Binding Name}"
+                                       Margin="10" Grid.Column="0"
+                                       Style="{StaticResource LabelSubtitle}"/>        
+                            
+                                <Switch  OnColor="{DynamicResource PrimaryColor}" ThumbColor="{DynamicResource SecondBackgroundColor}"
+                                         HeightRequest="60" Grid.Column="1"
+                                         IsToggled="{Binding Status}"
+                                         HorizontalOptions="End" 
+                                         x:Name="SfSwitch" >
+                
+                                </Switch>
+                            </Grid>
+                        </ViewCell>
+                       
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <controls:TouchViewControl       Grid.ColumnSpan="3"
+                                             Command="{Binding SaveCommand}"
+                                             CornerRadius="25"
+                                             Margin="10"
+                                             Padding="10"
+                                             CommandText="Guardar"
+                                             
+                                             Grid.Row="12"
+                                             BackgroundColor="{DynamicResource PrimaryDark }"/> 
+            
+        </Grid>
+    </ScrollView>
+          
+
+            
+
+</Grid>
+</views:BasePage>

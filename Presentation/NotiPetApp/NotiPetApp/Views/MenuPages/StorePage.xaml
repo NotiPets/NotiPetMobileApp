@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:xForms1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+                x:Class="NotiPetApp.Views.MenuPages.StorePage"
+                x:TypeArguments="viewModels:StoreViewModel"
+                x:DataType="viewModels:StoreViewModel">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*"
+              RowSpacing="20">
+            <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                     Shadow="{StaticResource ShadowMarkupStyle}"
+                                     Padding="0,5,0,0"
+                                 
+                                     CornerRadius="0,0,30,30">
+                
+                <Grid RowDefinitions="Auto,Auto"
+                      Padding="5,20"
+                      ColumnDefinitions="*,Auto"
+                      Margin="2,4,5,10"
+                      RowSpacing="30">
+                    <Label Text="Store" 
+                           Grid.ColumnSpan="2"
+                           HorizontalTextAlignment="Center"
+                           Style="{StaticResource LabelLarge}"/>
+                    <ImageButton BackgroundColor="Transparent"
+                                 Command="{Binding NavigateGoBackCommand}"
+                                 Grid.Column="0"
+                                 HorizontalOptions="StartAndExpand"
+                                 Margin="10,2"
+                                 Grid.Row="0">
+                        <ImageButton.Source>
+
+                            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                             Color="{DynamicResource PrimaryDark}"
+                                             FontFamily="{StaticResource FontSolid}"/>
+                        </ImageButton.Source>
+                    </ImageButton>
+                    
+                    <controls:SearchBarControl Grid.ColumnSpan="2"
+                                               Grid.Row="1"
+                                               TextColor="{DynamicResource PrimaryLetterColor}"
+                                               BackgroundColor="{DynamicResource BackgroundColor}"
+                                               CornerRadius="10"
+                                               Margin="0,0,30,0"
+                                               Text="{Binding SearchText}">
+                        <controls:SearchBarControl.SearchPictureUrlSource>
+                            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Search}"
+                                             Color="{StaticResource PrimaryLetterColor}"
+                                             FontFamily="{StaticResource FontSolid}"/>
+                        </controls:SearchBarControl.SearchPictureUrlSource>
+                    </controls:SearchBarControl>
+                    <ScrollView Grid.Row="2"
+                               HorizontalScrollBarVisibility="Never"
+                                Orientation="Horizontal"   >
+                    <controls:StackLayoutListView   Orientation="Horizontal"
+                                                    x:Name="Parameters">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:ParameterOption">
+                                <pancakeView:PancakeView 
+                                                         BackgroundColor="{DynamicResource PrimaryDark}"
+                                                         Padding="15,5"
+                                                         CornerRadius="5"
+                                                         Margin="5,0"
+                                                         >
+                                    <Label
+                                        Style="{StaticResource  LabelSubtitleBold}"
+                                        HorizontalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{x:Static fontIcon:FontIcon.Filter}"
+                                                      TextColor="White"
+                                                      FontFamily="{StaticResource FontSolid}"
+                                                />
+                                                <Span Text=" " CharacterSpacing="10"/>
+                                                <Span Text="{Binding Title}"
+                                                      TextColor="White"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </pancakeView:PancakeView>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </controls:StackLayoutListView>
+                    </ScrollView>
+                    <pancakeView:PancakeView Grid.Row="2"
+                                             BackgroundColor="{DynamicResource BackgroundColor}"
+                                             Padding="15,5"
+                                             CornerRadius="5"
+         
+                                             Grid.Column="1">
+                        <pancakeView:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToFilterCommand}"
+                                                  />
+                        </pancakeView:PancakeView.GestureRecognizers>
+                        <Label
+                               Style="{StaticResource  LabelSubtitleBold}"
+                               HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fontIcon:FontIcon.FilterSettings}"
+                                          TextColor="{DynamicResource SecondaryDark}"
+                                          FontFamily="{StaticResource FontSolid}"
+                                         />
+                                    <Span Text=" " CharacterSpacing="10"/>
+                                    <Span Text="Filter"
+                                          />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </pancakeView:PancakeView>
+                </Grid>
+            </pancakeView:PancakeView>
+
+            <ListView  SelectionMode="None"
+                Grid.Row="1"
+                ItemsSource="{Binding Products}"
+                 x:Name="Products"
+                HasUnevenRows="True"
+            >
+                <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:AssetServiceModel">
+                    <ViewCell>
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                          ColumnDefinitions="110,Auto,*"
+                        
+                          Padding="10">
+                      <pancakeView:PancakeView    Grid.RowSpan="4"
+                                Grid.Column="0"
+                                Padding="0"
+                                CornerRadius="20"
+                                Margin="5,10,10,0">
+                      <forms:CachedImage  Source="{Binding PictureUrl}"
+                                        
+                                          
+                                          
+                                          CacheType="Memory"
+                                        
+                                          Aspect="AspectFill"
+                                          WidthRequest="50"/>
+                      </pancakeView:PancakeView>
+                      <Label Text="{Binding Name}"
+                             Grid.Row="1"
+                             Style="{StaticResource LabelTitleBold}"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="2"/>
+                          <Label Text="{Binding Description}"
+                                 Grid.Row="2"
+                                 MaxLines="1"
+                                 Style="{StaticResource LabelSubtitleBold}"
+                                 LineBreakMode="TailTruncation"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="2"/>
+                      <xForms:SfRating Precision="Half"
+                                       ItemCount="5"
+                                       IsEnabled="False"
+                                       Margin="0,0,10,0"
+                                       ItemSize="15"
+                                       Value="4"
+                                       HeightRequest="25"
+                                        Grid.Row="3"
+                                       Grid.Column="1">
+                          <xForms:SfRating.RatingSettings>
+                              <xForms:SfRatingSettings RatedFill="{DynamicResource RatingColor}" UnRatedFill="Transparent" RatedStroke="LightGray" RatedStrokeWidth="1" UnRatedStrokeWidth="1" />
+                          </xForms:SfRating.RatingSettings>
+                          </xForms:SfRating>
+                          <Label Text="125 Reviews"
+                                 Grid.Row="3"
+                                 Grid.Column="2"
+                                 Style="{StaticResource LabelSmall}"
+                                 />
+                          <Label Text="{Binding Price,StringFormat='{0:C2}'}"
+                                 Grid.Row="4"
+                                 Style="{StaticResource LabelSubtitle}"
+                                 Grid.Column="2"
+                                 HorizontalTextAlignment="Center"
+                                 />
+                  </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView >
+            </Grid>
+    </ContentPage.Content>
+</views:BasePage> 

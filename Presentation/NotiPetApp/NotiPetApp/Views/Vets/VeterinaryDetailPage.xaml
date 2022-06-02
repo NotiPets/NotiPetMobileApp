@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:VeterinaryDetailViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+
+                x:DataType="viewModels:VeterinaryDetailViewModel"
+                x:Class="NotiPetApp.Views.Vets.VeterinaryDetailPage">
+    <Grid>
+        
+        <ScrollView>
+            <Grid RowDefinitions="400,Auto,Auto,Auto,Auto,Auto" >
+            <forms:CachedImage   Source="{Binding  Veterinary.PictureUrl,TargetNullValue='notImage',FallbackValue='notImage'}"
+                             Aspect="AspectFill"
+                             LoadingPlaceholder="notImage"
+                             Margin="0,0,0,28"
+                             ErrorPlaceholder="notImage"
+                             WidthRequest="50"/>
+
+        <pancakeView:PancakeView  VerticalOptions="End"
+                                  Padding="15,10"
+                                  CornerRadius="10"
+                                  Margin="10,2"
+                                  HorizontalOptions="CenterAndExpand"
+                                 BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                 Shadow="{StaticResource ShadowMarkupStyle}"
+                                >
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                  ColumnSpacing="80"
+                  RowSpacing="5"
+                 >
+                             <Label Text="{Binding Veterinary.Name}"
+                                    Grid.Row="1"
+                                    Margin="10"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource LabelLarge}"
+                                    Grid.Column="0"
+                                    />
+                             <Label Text="{Binding Veterinary.FullAddress}"
+                                    Grid.Row="2"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource LabelSubtitleBold}"/>
+                   <StackLayout Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center"  Orientation="Horizontal" Margin="0,0,5,5" Padding="5,10,10,5">
+                       <pancakeView:PancakeView WidthRequest="30"
+                                                CornerRadius="15" Margin="20,0,5,0"
+                                                BackgroundColor="#dae9ed"
+                                                Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
+                                                HeightRequest="20">
+           
+                           <Image Source="calendar.png"
+                                  VerticalOptions="CenterAndExpand"
+                                  Margin="5"
+                              
+                           />
+                       </pancakeView:PancakeView>
+                       
+                       <Label FontSize="12"
+                              Style="{StaticResource LabelSubtitleBold}" 
+                              HorizontalTextAlignment="Center" 
+                              VerticalTextAlignment="Center"
+                       >
+                           <Label.FormattedText>
+                               <FormattedString>
+                                   <Span Text="8 AM" ></Span>
+                                   <Span Text=" - " ></Span>
+                                   <Span Text="6 PM"  ></Span>
+
+                               </FormattedString>
+                           </Label.FormattedText>
+                       </Label>
+
+                       <pancakeView:PancakeView WidthRequest="30"
+                                                CornerRadius="15" Margin="0,0,5,0"
+                                                BackgroundColor="#dae9ed"
+                                                Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
+                                                HeightRequest="30">
+           
+                           <Image Source="location.png"
+                                  VerticalOptions="CenterAndExpand"
+                                  Margin="5"
+                              
+                           />
+                       </pancakeView:PancakeView>
+                       
+                       <Label 
+                           Style="{StaticResource LabelSubtitleBold}" 
+                           HorizontalTextAlignment="Start" 
+                           VerticalTextAlignment="Center"
+                       >
+                           <Label.FormattedText>
+                               <FormattedString>
+                                   <Span Text="{Binding Distance}" ></Span>
+                                   <Span Text=" " ></Span>
+                                   <Span Text="km"  ></Span>
+
+                               </FormattedString>
+                           </Label.FormattedText>
+                       </Label>
+                       
+                   </StackLayout>
+
+            </Grid>
+        </pancakeView:PancakeView>
+                <Label Text="{Binding Veterinary.Description}"
+                       Padding="20"
+                       FontFamily="{StaticResource Regular}"
+                       LineHeight="1.5"
+                       Grid.Row="2" TextType="Html"/>
+                <pancakeView:PancakeView Grid.Row="3"   Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}" HeightRequest="250" CornerRadius="20"  BackgroundColor="White" Margin="20">
+                    <maps:Map Grid.Row="0"
+                              x:Name="Map"
+                              ItemsSource="{Binding Pins}"
+                              HorizontalOptions="FillAndExpand">
+                        <maps:Map.ItemTemplate>
+                            <DataTemplate x:DataType="maps:Pin">
+                                <maps:Pin 
+                                    Address="{Binding Address}"
+                                    Label="{Binding Label}"
+                                    Position="{Binding Position}" />
+                            </DataTemplate>
+                        </maps:Map.ItemTemplate>
+                    </maps:Map>
+                </pancakeView:PancakeView>               
+                <Label Text="Reviews" 
+                       Grid.Row="4"
+                       HorizontalOptions="Start"
+                       Padding="10"
+                       Style="{StaticResource  LabelLarge}"
+                />
+                <Label Text="{Binding Review.Count,StringFormat='{0} Reviews'}" TextColor="{DynamicResource PrimaryColor}"  
+                       Grid.Row="4"
+                       HorizontalOptions="End"
+                       VerticalTextAlignment="Center"
+                       Padding="10"
+                       Style="{StaticResource LabelTitle}"
+                />
+                <CarouselView ItemsSource="{Binding Review}"
+                              HeightRequest="250"
+                              Grid.Row="5"
+                              Loop="False"
+                              PeekAreaInsets="60">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <views:ReviewsContentView/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <controls:TouchViewControl   
+                    Grid.Row="6"
+                  
+                    CornerRadius="29"
+                    Margin="40,15"
+                  Command="{Binding CreateReviewsCommand}"
+                    Padding="14"
+                    Border="{pancakeView:BorderMarkup Color=White,Thickness=5}"
+                    CommandText="Write Reviews"
+                    TextColor="{DynamicResource  PrimaryLetterLightColor}"
+                    BackgroundColor="{DynamicResource  SecondBackgroundColor }"/> 
+            </Grid>
+        </ScrollView>
+        <ImageButton BackgroundColor="{DynamicResource BackgroundColor}"
+                     Command="{Binding NavigateGoBackCommand}"
+                     HorizontalOptions="StartAndExpand"
+                     VerticalOptions="Start"
+                     CornerRadius="20"
+                     Margin="10,28"
+                     Padding="4"
+        >
+            <ImageButton.Source>
+
+                <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                 Color="{DynamicResource PrimaryDark}"
+                                 FontFamily="{StaticResource FontSolid}"/>
+            </ImageButton.Source>
+        </ImageButton>
+
+        
+    </Grid>
+</views:BasePage >

@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
+using Plugin.GoogleClient;
+using Prism;
+using Prism.Ioc;
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.XForms.iOS.EffectsView;
 using UIKit;
 
 namespace NotiPetApp.iOS
@@ -22,9 +27,22 @@ namespace NotiPetApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            Syncfusion.SfRating.XForms.iOS.SfRatingRenderer.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            SfListViewRenderer.Init();
+            SfEffectsViewRenderer.Init();
+            Xamarin.FormsMaps.Init();
+            GoogleClientManager.Initialize();
+            LoadApplication(new App(new IosInitializer()));
 
             return base.FinishedLaunching(app, options);
+        }
+        public class IosInitializer:IPlatformInitializer
+        {
+            public void RegisterTypes(IContainerRegistry containerRegistry)
+            {
+          
+            }
         }
     }
 }

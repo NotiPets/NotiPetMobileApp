@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:RegisterViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="NotiPetApp.Views.Authentication.RegisterPage"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
+                xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                xmlns:converters1="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                x:DataType="viewModels:RegisterViewModel">
+     <views:BasePage.Resources>
+         <Style TargetType="controls:EntryCustom"
+         >
+            <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}"/>
+            <Setter  Property="ActiveLineColor" Value="{DynamicResource PrimaryDark}"/>
+            <Setter  Property="LineColor" Value="{DynamicResource PrimaryBackgroundDark}"/>
+            <Setter  Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+            <Setter Property="PlaceHolderSize" Value="16"/>
+            <Setter Property="FontSize"  Value="16"/>
+
+        </Style>
+         <converters1:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+        <Style TargetType="Button"
+        >
+            <Setter Property="BackgroundColor" Value="White"/>
+
+            <Setter  Property="TextColor" Value="White"/>
+
+            <Setter Property="FontSize"  Value="16"/>
+
+        </Style>
+    </views:BasePage.Resources>
+    <ContentPage.Content>
+            <Grid RowDefinitions="*,1*" x:Name="MainLayout">
+                <BoxView Grid.Row="0"
+                         Margin="0,0,0,50"
+                         Background="{StaticResource PrimaryColorBrushForBox}">
+                </BoxView>
+           <ScrollView    Grid.RowSpan="2">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+             
+                  >
+                
+                <ImageButton BackgroundColor="Transparent"
+                             Grid.Column="0"
+                             Command="{Binding NavigateGoBackCommand}"
+                             HorizontalOptions="StartAndExpand"
+                             Margin="20,10"
+                             Grid.Row="0">
+                    <ImageButton.Source>
+
+                        <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                         Color="{DynamicResource SecondaryLetterLight}"
+                                         FontFamily="{StaticResource FontSolid}"/>
+                    </ImageButton.Source>
+                </ImageButton>
+                <Label HorizontalTextAlignment="Start"
+                       Margin="10"
+                       Padding="5"
+                       Style="{StaticResource LabelHeader}"
+                       Text="SignUp "
+                       TextColor="{DynamicResource SecondaryLetterLight}"
+                       Grid.Row="1"
+                />
+                <pancakeView:PancakeView Grid.Row="3" 
+                                         CornerRadius="14" 
+                                         Padding="10"
+                                         Margin="15"
+                                        VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                         Shadow="{StaticResource ShadowMarkupStyle}"
+                                         
+                                        >
+                  
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                          ColumnDefinitions="Auto,*">
+                        <forms:CachedImage   Source="{Binding PicturePhoto,Converter={StaticResource Base64StringToImageSource},FallbackValue=patita,TargetNullValue=patita}"
+                                             Grid.Row="0"
+                                             CacheType="Memory"
+                                             Grid.ColumnSpan="2"
+                                             HorizontalOptions="CenterAndExpand"
+                                             Aspect="AspectFill"
+                                             WidthRequest="100"
+                                             Margin="10,30"
+                                             converters:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                             converters:TouchEffect.PressedOpacity="0.6"
+                                             converters:TouchEffect.AnimationDuration="5"
+                                             converters:TouchEffect.PressedScale="0.8"
+                                             converters:TouchEffect.Command="{Binding GetPhotoCommand }"
+                                             HeightRequest="100" >
+                            <forms:CachedImage.Transformations>
+                                <transformations:CircleTransformation />
+                            </forms:CachedImage.Transformations>
+                        </forms:CachedImage>
+                        <Image 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Start"
+                               Margin="10,28"
+                               TranslationX="10"
+                               TranslationY="-20"
+                               Grid.ColumnSpan="2"
+                          
+                        >
+                            <Image.Source>
+
+                                <FontImageSource Glyph="{x:Static fontIcon:FontIcon.AddPhoto}"
+                                                 Color="{DynamicResource PrimaryDark}"
+                                                 FontFamily="{StaticResource FontSolid}"/>
+                            </Image.Source>
+                        </Image>
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="1"
+                                              PlaceHolder="Name"
+                                              x:Name="NameLB"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding  Name}"
+                                     
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="2"
+                                              x:Name="LastnameLB"
+                                              PlaceHolder="Lastname"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding  LastName}"
+                                     
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="3"
+                                              x:Name="UsernameLB"
+                                              PlaceHolder="Username"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding  Username}"
+                                     
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="4"
+                                              PlaceHolder="Email"
+                                              x:Name="EmailLB"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding  Email}"
+                                     
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="5"
+                                              PlaceHolder="Password"
+                                              x:Name="PasswordLB"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding  Password}"
+                                     
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="6"
+                                              x:Name="ConfirmPasswordB"
+                                              PlaceHolder="ConfirmPassword"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding ConfirmPassword}"
+                                     
+                        /> 
+                        <Label Text="Personal Information"
+                               Grid.ColumnSpan="2"
+                               Margin="10"
+                               Style="{StaticResource LabelLarge}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               
+                               Grid.Row="7"/>
+                        <Label Text="Selected document type:"
+                               Margin="10"
+                               Grid.ColumnSpan="2"
+                               Style="{StaticResource LabelSubtitleBold}"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Start"
+                               Grid.Row="8"/>
+                        <Picker ItemsSource="{Binding DocumentTypes}"
+                                Grid.ColumnSpan="2"
+                                SelectedItem="{Binding PersonalDocument}"
+                                Grid.Row="9"/>
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="10"
+                                              PlaceHolder="Document"
+                                              x:Name="DocumentIdLB"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding Document}"
+                                     
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="11"
+                                              PlaceHolder="Phone"
+                                              x:Name="PhoneLb"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding Phone}"
+                                     
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="12"
+                                              PlaceHolder="City"
+                                              x:Name="CityLb"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding City}"
+                                     
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="13"
+                                              x:Name="ProvinceLB"
+                                              PlaceHolder="Province"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding  Province}"
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="14"
+                                              x:Name="Address1LB"
+                                              PlaceHolder="Address"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding Address1}"/>
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="15"
+                                              PlaceHolder="Address (optional)"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding Address2}"/>
+                                     
+                        <CheckBox     Grid.Row="16"
+                                      Margin="0,10"
+                                      
+                        />
+                        <Label     Grid.Row="16" Grid.Column="1" Text="I agree to NotiPet  terms and conditions."
+                                   VerticalTextAlignment="Center"
+                                   >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToTermAndConditionsCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <controls:TouchViewControl       Grid.ColumnSpan="2"
+                                                         Command="{Binding AuthenticationCommand}"
+                                                         CornerRadius="25"
+                                                         Margin="10"
+                                                         Padding="16"
+                                                         CommandText="Sign Up"
+                                                         Grid.Row="17"
+                                                         BackgroundColor="{DynamicResource PrimaryDark }"/> 
+                        
+                    </Grid>
+                </pancakeView:PancakeView>
+
+        </Grid>
+               </ScrollView>
+            </Grid>
+    </ContentPage.Content>
+</views:BasePage>

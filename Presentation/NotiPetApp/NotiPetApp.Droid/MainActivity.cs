@@ -5,6 +5,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.GoogleClient;
+using Prism;
+using Prism.Ioc;
 
 namespace NotiPetApp.Droid
 {
@@ -18,8 +21,19 @@ namespace NotiPetApp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState); 
+            GoogleClientManager.Initialize(this, null, "662328821833-45lk4879kh045nif1havvcvvt5pp6d8h.apps.googleusercontent.com");
+            LoadApplication(new App(new AndroidInitializer()));
+        }
+    }
+
+    public class AndroidInitializer:IPlatformInitializer
+    {
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+          
         }
     }
 }

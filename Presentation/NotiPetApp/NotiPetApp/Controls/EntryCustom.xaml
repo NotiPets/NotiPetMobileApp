@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<pancakeView:PancakeView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+             x:Class="NotiPetApp.Controls.EntryCustom"
+
+             x:Name="CustomsEntry"
+           
+             CornerRadius="15">
+    <Grid RowDefinitions="Auto,Auto,1,Auto"
+          Margin="5"
+          Padding="12,8"
+          VerticalOptions="StartAndExpand"
+          BindingContext="{x:Reference CustomsEntry}"
+          RowSpacing="-6"
+          ColumnDefinitions="*,Auto"
+          x:DataType="controls:EntryCustom">
+        <Label Text="{Binding PlaceHolder}"
+               VerticalTextAlignment="End"
+               FontAttributes="Bold"
+               Style="{StaticResource  LabelSubtitleBold}"
+               x:Name="PlaceHolderLb"
+               HorizontalTextAlignment="{Binding PlaceHolderAlignment}"
+               FontSize="{Binding PlaceHolderSize}"
+               TextColor="{Binding LineColor}"
+               Grid.Column="0"
+         
+        />
+        <Entry Text="{Binding Text}"
+               HorizontalTextAlignment="{Binding TextAlignment}"
+               FontSize="{Binding FontSize}"
+               IsPassword="{Binding IsPassword}"
+               x:Name="EntryText"
+               Margin="{OnPlatform Android=2,iOS=10}"
+               TextColor="{Binding TextColor}"
+               Grid.Row="1"/>
+        <Image Source="{Binding Image}"
+               Grid.Row="1"
+               Grid.Column="1"/>
+           
+        <Line Grid.Row="2"
+              x:Name="Line"      
+              Grid.ColumnSpan="2"
+              Margin="4,0"
+              HeightRequest ="1"/>
+        <Label Text="{Binding ValidationMessage}"
+               Grid.Row="3"
+               Margin="5,5,5,1"
+               TextColor="{Binding ValidationColor}"
+               Style="{StaticResource  LabelSubtitleBold}"
+               Grid.Column="0"/>
+
+    </Grid>
+</pancakeView:PancakeView>

@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<views:BasePage x:TypeArguments="viewModels:TabMenuViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                             xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+                             xmlns:menuPages="clr-namespace:NotiPetApp.Views.MenuPages;assembly=NotiPetApp"
+                             xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                             xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                             xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                             xmlns:views1="http://xamarin.com/schemas/2020/toolkit"
+                             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+                             sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="SlideFromRight"
+                             x:Class="NotiPetApp.Views.TabMenuPage">
+    <views:BasePage.Resources>
+        <Style TargetType="views1:TabViewItem"
+               x:Key="TabViewStyle"
+               
+        >
+            <Setter Property="TextColorSelected" Value="{DynamicResource PrimaryDark}"/>
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryBackgroundDark}"/>
+        </Style>
+        <ControlTemplate x:Key="TabViewItemControlTemplate">
+            <Grid RowDefinitions="Auto,Auto"
+                 VerticalOptions="EndAndExpand"
+                 
+                  RowSpacing="0">
+                <Image Aspect="AspectFit"
+            
+                       Source="{TemplateBinding CurrentIcon}"/>
+                <Label Grid.Row="1"
+                       Text="{TemplateBinding Text}"
+                       HorizontalTextAlignment="Center"
+                       Style="{StaticResource LabelSubtitle}"
+                       TextColor="{TemplateBinding CurrentTextColor}"
+                       FontSize="{TemplateBinding CurrentFontSize}"/>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="FabItemControlTemplate">
+            <Grid RowDefinitions="Auto"
+
+                  HorizontalOptions="CenterAndExpand"
+                  ColumnDefinitions="Auto">
+                <Label VerticalTextAlignment="End"
+                       Text="{TemplateBinding Text}"
+                       HorizontalTextAlignment="Center"
+                       Style="{StaticResource LabelSubtitleBold}"
+                       TextColor="{TemplateBinding CurrentTextColor}"
+                       FontSize="{TemplateBinding CurrentFontSize}"/>
+                <pancakeView:PancakeView HeightRequest="70"
+                                         WidthRequest="70"
+                                         views1:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                         views1:TouchEffect.PressedOpacity="0.6"
+                                         views1:TouchEffect.AnimationDuration="5"
+                                         views1:TouchEffect.PressedScale="0.8"
+                                         views1:TouchEffect.Command="{TemplateBinding  TapCommand}"
+                                         HorizontalOptions="CenterAndExpand"
+                                         CornerRadius="35"
+                                         Margin="23"
+                                         VerticalOptions="StartAndExpand"
+                                         InputTransparent="True"
+                                         BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                         Shadow="{StaticResource ShadowMarkupStyle}"
+                >
+                   <pancakeView:PancakeView.Border> 
+                   <pancakeView:Border Thickness="5"
+                                       GradientStops="{StaticResource SecondaryColorBrushForFrame}"
+                                             >
+                       </pancakeView:Border>
+                   </pancakeView:PancakeView.Border>
+                   
+                   <Image Aspect="AspectFit"
+                         Margin="15"
+       
+                          Source="{TemplateBinding CurrentIcon}"/>
+               </pancakeView:PancakeView>
+
+            </Grid>
+        </ControlTemplate>
+    </views:BasePage.Resources>
+    <views1:TabView TabStripPlacement="Bottom"
+                    x:Name="TabMenu"
+                    TabStripHeight="65"
+                    IsTabTransitionEnabled="True"
+                     >
+        <views1:TabView.TabStripBackgroundView>
+            <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                     Shadow="{StaticResource ShadowMarkupStyle}"
+                                     CornerRadius="20,20,0,0"
+                                     Margin="0,10,0,0"
+                                    />
+        </views1:TabView.TabStripBackgroundView>
+        <views1:TabViewItem Text="Home"
+                        
+                            ControlTemplate="{StaticResource TabViewItemControlTemplate}"
+                            Style="{StaticResource TabViewStyle}"
+        >
+        <views1:TabViewItem.Icon>
+            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Home}"
+                             FontFamily="{StaticResource FontSolid}"
+                             Color="{DynamicResource PrimaryBackgroundDark}"/>
+        </views1:TabViewItem.Icon>
+        <views1:TabViewItem.IconSelected>
+            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Home}"
+                             FontFamily="{StaticResource FontSolid}"
+                             Color="{DynamicResource PrimaryDark}"/>
+        </views1:TabViewItem.IconSelected>
+        <menuPages:HomePage />
+    </views1:TabViewItem>
+    <views1:TabViewItem ControlTemplate="{StaticResource FabItemControlTemplate}"
+                        Icon="patita"
+                        TapCommand="{Binding SelectSpecialityCommand}"
+                        Text="Services"
+                  
+    />
+    <views1:TabViewItem Text="Profile"
+                        Style="{StaticResource TabViewStyle}"
+                        ControlTemplate="{StaticResource TabViewItemControlTemplate}"
+                        IsVisible="{Binding HasToken}"
+                       >
+        <views1:TabViewItem.Icon>
+            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.UserIcon}"
+                             FontFamily="{StaticResource FontSolid}"
+                             Color="{DynamicResource PrimaryBackgroundDark}"/>
+        </views1:TabViewItem.Icon>
+        <views1:TabViewItem.IconSelected>
+            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.UserIcon}"
+                             FontFamily="{StaticResource FontSolid}"
+                             Color="{DynamicResource PrimaryDark}"/>
+        </views1:TabViewItem.IconSelected>
+        <menuPages:ProfilePage  />
+    </views1:TabViewItem>
+</views1:TabView>
+</views:BasePage>

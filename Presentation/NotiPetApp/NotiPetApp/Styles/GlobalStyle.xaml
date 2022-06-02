@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:styles="clr-namespace:NotiPetApp.Styles;assembly=NotiPetApp"
+             xmlns:renderers="clr-namespace:AiForms.Renderers;assembly=SettingsView"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+             xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+             x:Class="NotiPetApp.Styles.GlobalStyle">
+
+    <ResourceDictionary.MergedDictionaries>
+        <styles:LightTheme/>
+    </ResourceDictionary.MergedDictionaries>
+    <x:String x:Key="FontSolid">FontSolid</x:String>
+    <x:String x:Key="Regular">Regular</x:String>
+    <x:String x:Key="Bold">Bold</x:String>
+    <x:String x:Key="SemiBold">SemiBold</x:String>
+
+    <Style x:Key="GalleryStyle" TargetType="FlexLayout">
+        <Setter Property="Direction" Value="Row"/>
+        <Setter Property="Wrap" Value="Wrap"/>
+        <Setter Property="AlignItems" Value="Stretch"/>
+        <Setter Property="AlignContent" Value="Start"/>
+    </Style>
+    <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelHeader">
+        <Setter Property="FontSize" Value="35"/>
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Bold}"/>
+    </Style>
+    <Style TargetType="Label" x:Key="LabelLarge">
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Bold}"/>
+    </Style>
+        <Style TargetType="Label" x:Key="LabelSubtitleBold">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+            <Setter Property="FontFamily" Value="{StaticResource SemiBold}"/>
+        </Style>
+    <Style TargetType="Label" x:Key="LabelTitleBold">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource SemiBold}"/>
+    </Style>
+    <Style TargetType="Label" x:Key="LabelTitle">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Regular}"/>
+    </Style>
+    <Style TargetType="Label" x:Key="LabelSubtitle">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Regular}"/>
+    </Style>
+    <Style TargetType="Label" x:Key="LabelSmall">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryLetterLightColor}"/>
+        <Setter Property="FontFamily" Value="{StaticResource  Regular}"/>
+    </Style>
+    <Style x:Key="SmallEditorRegular" TargetType="Editor">
+        <Setter Property="FontSize" Value="Small"/>
+        <Setter Property="FontFamily" Value="Regular"/> 
+        <Setter Property="PlaceholderColor" Value="{DynamicResource GrayColor}"/> 
+        <Setter Property="TextColor" Value="{DynamicResource GrayColor}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryNeutralColor}"/>
+    </Style>     
+    <Style TargetType="Editor">
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryNeutralColor}"/>
+    </Style>   
+    <OnPlatform x:TypeArguments="Thickness"
+                x:Key="MarginPopUp">
+        <On Platform="iOS" Value="{OnIdiom Tablet='80,0',Phone='20,0'}" />
+        <On Platform="Android" Value="{OnIdiom Tablet='80,0',Phone='20,0'}" />
+    </OnPlatform>
+    <Style TargetType="renderers:SettingsView">
+        <Setter Property="CellTitleFontFamily" Value="{StaticResource Regular}" /> 
+        <Setter Property="CellTitleFontSize" Value="18"/>
+        <Setter Property="CellTitleColor" Value="{DynamicResource PrimaryLetterColor}"/>
+    </Style>
+    <ControlTemplate x:Key="TabItemControlTemplate">
+        <pancakeView:PancakeView CornerRadius="20"
+                                 Margin="5"
+                                 Shadow="{pancakeView:ShadowMarkup Offset='0,0',Color=Transparent,BlurRadius=0}"
+                                 BackgroundColor="Transparent">
+            <pancakeView:PancakeView.Triggers>
+                <DataTrigger TargetType="pancakeView:PancakeView"
+                             Value="True"
+                             Binding="{TemplateBinding IsSelected}">
+                    <Setter Property="Shadow" Value="{StaticResource ShadowMarkupStyle}"/>
+                    <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}"/>
+                </DataTrigger>
+            </pancakeView:PancakeView.Triggers>
+            <Label Text="{TemplateBinding Text}"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   FontSize="16"
+                   TextColor="{DynamicResource PrimaryLetterColor }"
+                   Style="{StaticResource LabelLarge}">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                 Value="True"
+                                 Binding="{TemplateBinding IsSelected}">
+                        <Setter Property="TextColor" Value="{DynamicResource SecondaryLetterLight }"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </pancakeView:PancakeView>
+    </ControlTemplate>
+    <LinearGradientBrush StartPoint="0,0"
+                         EndPoint="1,1"
+                         x:Key="PrimaryColorBrushForBox">
+        <GradientStop Color="#4596EA "
+                      Offset="0.1" />
+
+        <GradientStop Color="#00CBCC"
+                      Offset="0.3" />
+
+    </LinearGradientBrush>
+    <LinearGradientBrush StartPoint="0,0"
+                         EndPoint="1,1"
+                         x:Key="PrimaryColorBrushForFrame">
+        <GradientStop Color="#4596EA "
+                      Offset="0.1" />
+
+        <GradientStop Color="#00CBCC"
+                      Offset="0.6" />
+
+    </LinearGradientBrush>
+    
+    <pancakeView:GradientStopCollection x:Key="SecondaryColorBrushForFrame">
+        <pancakeView:GradientStop Color="#4596EA"/>
+        <pancakeView:GradientStop Color="#00CBCC" Offset="0.6"/>
+    </pancakeView:GradientStopCollection>
+    
+    <pancakeView:DropShadow Offset='2,5'
+                              x:Key="ShadowMarkupStyle"
+                              BlurRadius="5"
+                              Color="LightGray"/>
+</ResourceDictionary>

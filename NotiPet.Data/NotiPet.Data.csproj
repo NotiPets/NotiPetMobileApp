@@ -1,10 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <LangVersion>9</LangVersion>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\NotiPet.Domain\NotiPet.Domain.csproj" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+      <PackageReference Include="AutoMapper" Version="11.0.1" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="DynamicData" Version="7.5.4" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.5" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      <PackageReference Include="Polly" Version="7.2.3" />
+      <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+      <PackageReference Include="Realm" Version="10.10.0" />
+      <PackageReference Include="Refit" Version="6.3.2" />
+      <PackageReference Include="System.Reactive" Version="5.0.0" />
     </ItemGroup>
 
 </Project>
