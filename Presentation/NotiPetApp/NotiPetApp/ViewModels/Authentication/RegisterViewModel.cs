@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Reactive;
 using System.Reactive.Disposables;
@@ -30,30 +31,28 @@ namespace NotiPetApp.ViewModels
     {
         private readonly RegisterValidator _validator;
         private readonly IDeviceUtils _deviceUtils;
+        private readonly IVeterinaryService _veterinaryService;
         private readonly IAuthenticationService _authenticationService;
         private PersonalDocument _personalDocument;
+        private Veterinary _veterinary;
         [Reactive]  public string Email { get; set; }
-        
-
         [Reactive]    public string Password { get; set; }
-        [Reactive]    public string ConfirmPassword { get; set; }
-
         [Reactive]   public string Username { get; set; }
         [Reactive]   public string Name { get; set; }
         [Reactive]   public string LastName { get; set; }
         [Reactive]   public string Phone { get; set; }
-        [Reactive]  public string Address1 { get; set; }
-        [Reactive]  public string Address2 { get; set; }
-        [Reactive]   public string City { get; set; }
-        [Reactive]   public string Province { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
         [Reactive]   public int DocumentType  { get; set; }
         [Reactive]   public string  Document { get; set; }
         [Reactive] public int BusinessId { get; set; } = 1;
 
-        [Reactive]   public string PicturePhoto { get; set; }
-
         public List<PersonalDocument> DocumentTypes => _documentTypes?.Value;
        private ObservableAsPropertyHelper<List<PersonalDocument>> _documentTypes;
+       private  ObservableAsPropertyHelper<IEnumerable<Veterinary>> _veterinaries;
+       public IEnumerable<Veterinary>  Veterinaries => _veterinaries?.Value;
        [Reactive] public PersonalDocument PersonalDocument
         {
             get => _personalDocument;
@@ -66,24 +65,35 @@ namespace NotiPetApp.ViewModels
                 }   
             }
         }
-
+       [Reactive] public Veterinary Veterinary
+       {
+           get => _veterinary;
+           set
+           {
+               _veterinary = value;
+               if (_veterinary!=null)
+               {
+                   BusinessId= _veterinary.Id;
+               }   
+           }
+       }
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
         public ReactiveCommand<Authentication,Unit> NavigateToTabMenuCommand { get; set; }
         public ReactiveCommand<Unit,Authentication> AuthenticationCommand { get; set; }
 
 
         public RegisterViewModel(INavigationService navigationService, IPageDialogService dialogPage,
-            IAuthenticationService authenticationService,RegisterValidator validator,IDeviceUtils deviceUtils) : base(navigationService, dialogPage)
+            IAuthenticationService authenticationService,RegisterValidator validator,IDeviceUtils deviceUtils,IVeterinaryService veterinaryService) : base(navigationService, dialogPage)
         {
             _authenticationService = authenticationService;
             _validator = validator;
             _deviceUtils = deviceUtils;
+            _veterinaryService = veterinaryService;
             ValidationContext = new ValidationContext();
            
             AuthenticationCommand = ReactiveCommand.CreateFromObservable<Authentication>(Register,ValidationContext.Valid);
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
             GoToTermAndConditionsCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.NavigateAsync(ConstantUri.TermsAndConditionsPage));
-            GetPhotoCommand = ReactiveCommand.CreateFromTask(TakePhoto);
             var canExecuteNavigate = AuthenticationCommand.Select(e => e != null&&!string.IsNullOrEmpty(e.Jwt));
             NavigateToTabMenuCommand = ReactiveCommand.CreateFromTask<Authentication>(((b, token) =>
             {
@@ -92,17 +102,15 @@ namespace NotiPetApp.ViewModels
                 Settings.UserId = b.User.Id;
                 return NavigationService.NavigateAsync(ConstantUri.TabMenu);
             }),canExecuteNavigate);
+            InitializeCommand.InvokeCommand(ReactiveCommand.CreateFromTask(SetCurrentLocation));
             AuthenticationCommand
                 .InvokeCommand(NavigateToTabMenuCommand);
            ActiveValidation();
         }
 
-        public ReactiveCommand<Unit, Unit> GetPhotoCommand { get; set; }
+        
+        
 
-        async Task TakePhoto()
-        {
-            PicturePhoto = await _deviceUtils.TakePhotoAsync();
-        }
         protected override IObservable<Unit> ExecuteInitialize()
         {
             return Observable.Create<Unit>(observer =>
@@ -114,12 +122,26 @@ namespace NotiPetApp.ViewModels
                      .Select(e=>Unit.Default)
                      .Subscribe(observer)
                      .DisposeWith(compositeDisposable);
+              var getVeterinary =  _veterinaryService.GetVeterinary();
+              _veterinaries = getVeterinary.ToProperty(this, x => x.Veterinaries);
+              getVeterinary.Select(x => Unit.Default)
+                  .Subscribe(observer)
+                  .DisposeWith(compositeDisposable);
                  return compositeDisposable;
             });
         }
         IObservable<Authentication> Register()
         {
             return _authenticationService.SignUp(this).Select(x=>x);
+        }
+        
+        async Task SetCurrentLocation()
+        {
+     
+           var placeMark = await _deviceUtils.GetGeoCodeAddress();
+           City = $"{placeMark?.CountryName},{placeMark?.AdminArea}";
+           Province = $"{placeMark?.Locality}";
+           Address1 = $"{placeMark?.SubAdminArea},{placeMark?.SubLocality},{placeMark?.SubThoroughfare}";
         }
         void ActiveValidation()
         {
@@ -154,13 +176,7 @@ namespace NotiPetApp.ViewModels
                 .Select(_validator.Validate)
                 .Select(e=> !e.IsValid&&e.Errors.HasMessageForProperty(nameof(Password))? new ValidationState(false,e.Errors.GetMessageForProperty(nameof(Password))):ValidationState.Valid);
         
-            IObservable<IValidationState> confirmPasswordValidation = this.WhenAnyValue(e => e.ConfirmPassword)
-                .StartWith()
-                .Skip(1)
-                .Select(_ => this)
-                .Select(_validator.Validate)
-                .Select(e=> !e.IsValid&&e.Errors.HasMessageForProperty(nameof(ConfirmPassword))? new ValidationState(false,e.Errors.GetMessageForProperty(nameof(ConfirmPassword))):ValidationState.Valid);
-            
+        
             IObservable<IValidationState> userNameValidation = this.WhenAnyValue(e => e.Username)
                 .StartWith()
                 .Skip(1)
@@ -168,19 +184,6 @@ namespace NotiPetApp.ViewModels
                 .Select(_validator.Validate)
                 .Select(e=> !e.IsValid&&e.Errors.HasMessageForProperty(nameof(Username))? new ValidationState(false,e.Errors.GetMessageForProperty(nameof(Username))):ValidationState.Valid);
             
-            IObservable<IValidationState> cityValidation = this.WhenAnyValue(e => e.City)
-                .StartWith()
-                .Skip(1)
-                .Select(_ => this)
-                .Select(_validator.Validate)
-                .Select(e=> !e.IsValid&&e.Errors.HasMessageForProperty(nameof(City))? new ValidationState(false,e.Errors.GetMessageForProperty(nameof(City))):ValidationState.Valid);
-
-            IObservable<IValidationState> provinceValidation = this.WhenAnyValue(e => e.Province)
-                .StartWith()
-                .Skip(1)
-                .Select(_ => this)
-                .Select(_validator.Validate)
-                .Select(e=> !e.IsValid&&e.Errors.HasMessageForProperty(nameof(Province))? new ValidationState(false,e.Errors.GetMessageForProperty(nameof(Province))):ValidationState.Valid);
 
             
             IObservable<IValidationState> phoneValidation = this.WhenAnyValue(e => e.Phone)
@@ -195,10 +198,7 @@ namespace NotiPetApp.ViewModels
             this.ValidationRule(e => e.LastName, lastNameValidation);
             this.ValidationRule(e => e.Email, emailValidation);
             this.ValidationRule(e => e.Password, passwordValidation);
-            this.ValidationRule(e => e.ConfirmPassword,confirmPasswordValidation);
             this.ValidationRule(e => e.Document, personalDocument);
-            this.ValidationRule(e => e.City, cityValidation);
-            this.ValidationRule(e => e.Province, provinceValidation);
             this.ValidationRule(e => e.Phone, phoneValidation);
             
         }

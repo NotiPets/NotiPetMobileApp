@@ -86,5 +86,10 @@
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
+    <ItemGroup>
+      <Reference Include="Xamarin.CommunityToolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\..\..\.nuget\packages\xamarin.communitytoolkit\2.0.0\lib\monoandroid10.0\Xamarin.CommunityToolkit.dll</HintPath>
+      </Reference>
+    </ItemGroup>
 
 </Project>

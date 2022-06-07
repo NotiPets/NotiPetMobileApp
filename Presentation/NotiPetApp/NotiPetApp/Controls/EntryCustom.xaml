@@ -11,7 +11,7 @@
              CornerRadius="15">
     <Grid RowDefinitions="Auto,Auto,1,Auto"
           Margin="5"
-          Padding="12,8"
+          Padding="0"
           VerticalOptions="StartAndExpand"
           BindingContext="{x:Reference CustomsEntry}"
           RowSpacing="-6"
@@ -33,6 +33,7 @@
                FontSize="{Binding FontSize}"
                IsPassword="{Binding IsPassword}"
                x:Name="EntryText"
+               Keyboard="{Binding Keyboard}"
                Margin="{OnPlatform Android=2,iOS=10}"
                TextColor="{Binding TextColor}"
                Grid.Row="1"/>

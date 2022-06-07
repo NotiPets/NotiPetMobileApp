@@ -10,21 +10,19 @@
              effects:TouchEffect.PressedOpacity="0.6"
              effects:TouchEffect.AnimationDuration="5"
              effects:TouchEffect.PressedScale="0.8"
+           
         
 >
-    <pancakeView:PancakeView.ControlTemplate>
-        <ControlTemplate>
-            <Label    Text="{TemplateBinding CommandText}"
-                      TextColor="{TemplateBinding TextColor}"
-                      Margin="4"
-                      Style="{StaticResource LabelTitleBold}"
-                      HorizontalOptions="CenterAndExpand"
-                      VerticalTextAlignment="Center"
-                      HorizontalTextAlignment="Center"
+    <Label    Text="{Binding CommandText,Source={x:Reference ButtonPv}}"
+              TextColor="{Binding TextColor,Source={x:Reference ButtonPv}}"
+              Margin="4"
+              FontSize="{Binding FontSize,Source={x:Reference ButtonPv}}"
+              Style="{StaticResource LabelTitleBold}"
+              HorizontalOptions="CenterAndExpand"
+              VerticalTextAlignment="Center"
+              HorizontalTextAlignment="Center"
             
-            />
-        </ControlTemplate>
-    </pancakeView:PancakeView.ControlTemplate>
+    />
     
     <pancakeView:PancakeView.GestureRecognizers>
         <TapGestureRecognizer Tapped="OnButtonTapped"/>

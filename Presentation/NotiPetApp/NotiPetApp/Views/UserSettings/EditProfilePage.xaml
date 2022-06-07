@@ -8,100 +8,136 @@
                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:sf="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-                x:Class="NotiPetApp.Views.EditProfilePage">
-    <Grid RowDefinitions="Auto,Auto,Auto"
-          RowSpacing="20">
-    <Grid RowDefinitions="Auto,Auto,Auto" Padding="5,20,5,0"
-          ColumnDefinitions="*,Auto,*">
-        <ImageButton BackgroundColor="Transparent"
-               HorizontalOptions="Start"
-               Command="{Binding NavigateGoBackCommand}"
-               Margin="10,0"
-               Grid.Column="0">
-            <Image.Source>
-                <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.Back}"
-                                  Color="{StaticResource PrimaryDark}"
-                                  FontFamily="{StaticResource FontSolid}"/>
-            </Image.Source>
-        </ImageButton>
-        <Label Text="My Profile"  Grid.Column="1"
-               Style="{StaticResource LabelLarge}"/>
-        <Label Text="Guardar" HorizontalOptions="End" FontSize="18" VerticalOptions="Center" Grid.Column="2" TextColor="{StaticResource PrimaryDark}"
-               Style="{StaticResource LabelTitleBold}"/>
+                xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
+                x:Class="NotiPetApp.Views.EditProfilePage"
+                x:DataType="viewModels:EditProfileViewModel">
+    <views:BasePage.Resources>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"
+                                              DefaultImage="user.png"/>
+        <Style TargetType="controls:EntryCustom"
+        >
+            <Setter  Property="ActiveLineColor" Value="{DynamicResource PrimaryDark}"/>
+            <Setter  Property="LineColor" Value="{DynamicResource PrimaryBackgroundDark}"/>
+            <Setter  Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+            <Setter Property="PlaceHolderSize" Value="16"/>
+            <Setter Property="FontSize"  Value="16"/>
 
-    </Grid>
-        <ScrollView Grid.Row="1" >
-              <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Padding="5,20,5,0"
-              ColumnDefinitions="*,Auto,*">
+        </Style>
+    </views:BasePage.Resources>
 
-            <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
-                                      Padding="0" Grid.Row="0" Grid.RowSpan="2"
-                                      CornerRadius="80"
-                                      Margin="5,10,10,0" >
-                
+    <Grid RowDefinitions="Auto,Auto">
+               <Grid RowDefinitions="Auto,Auto" Padding="5,20,5,0"
+                      ColumnDefinitions="*,Auto,*">
+                    <ImageButton BackgroundColor="Transparent"
+                           HorizontalOptions="Start"
+                           Command="{Binding NavigateGoBackCommand}"
+                           Margin="10,0"
+                           Grid.Column="0">
+                        <Image.Source>
+                            <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                              Color="{StaticResource PrimaryDark}"
+                                              FontFamily="{StaticResource FontSolid}"/>
+                        </Image.Source>
+                    </ImageButton>
+                    <Label Text="My Profile"  Grid.Column="1"
+                           Style="{StaticResource LabelLarge}"/>
+                    <controls:TouchViewControl CommandText ="Save" HorizontalOptions="End" 
+                                      Grid.Column="2"
+                             Command="{Binding UpdateCommand}"
+                                      TextColor="{StaticResource PrimaryDark}"
+                                      FontSize="20"/>
 
-                    <Image  Source="https://i.pinimg.com/originals/63/31/18/633118d76f56a929855799e84bfd723e.jpg"
-                            Aspect="AspectFill" 
-                            HeightRequest="160"
-                            WidthRequest="160"/>
-
-
-            </pancakeView:PancakeView>
+                </Grid>
+        <ScrollView Grid.Row="2" >
             
-            <pancakeView:PancakeView  HorizontalOptions="Start" HeightRequest="40" WidthRequest="40" Margin="20,0,0,0"
-                                      Padding="0" BackgroundColor="{StaticResource PrimaryColor}" Grid.Column="2"
-                                      CornerRadius="20">
-                <Image BackgroundColor="Transparent"
-                       HorizontalOptions="Center">
-                    <Image.Source>
-                        <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.EditIcon}"
-                                          Color="{StaticResource SecondBackgroundColor}"
-                                          FontFamily="{StaticResource FontSolid}"/>
-                    </Image.Source>
-                </Image>
 
-            </pancakeView:PancakeView>
-            
-            
-            <controls:EntryCustom Grid.ColumnSpan="3"
-                                  Grid.Row="2"
-                                  x:Name="UserNameEntryCustom"
-                                  ValidationColor="{DynamicResource ErrorColor}"
-                                  LineColor="{DynamicResource PrimaryLetterColor}"
-                                  Text="{Binding Password}"
-                                  PlaceHolder="Name"
+        <pancakeView:PancakeView 
+                                 CornerRadius="14" 
+                                 Padding="10"
+                                 Margin="10"
+                     
+                                 BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                 Shadow="{StaticResource ShadowMarkupStyle}"
+                                         
+        >
+              <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                          ColumnDefinitions="*,*">
+                  <forms:CachedImage   Source="user"
+                                       Grid.ColumnSpan="2"
+                                       CacheType="Memory"
+                                       HorizontalOptions="CenterAndExpand"
+                                       Margin="10"
+                                       Aspect="AspectFill"
+                                       effects:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                       effects:TouchEffect.PressedOpacity="0.6"
+                                       effects:TouchEffect.AnimationDuration="5"
+                                       effects:TouchEffect.PressedScale="0.8"
+                                       effects:TouchEffect.Command="{Binding TakePhotoCommand }"
+                                       WidthRequest="150"
+                                       Grid.Row="0"
+                                       HeightRequest="150">
+                      <forms:CachedImage.Transformations>
+                          <transformations:CircleTransformation />
+                      </forms:CachedImage.Transformations>
+                  </forms:CachedImage>
+                  <controls:EntryCustom Grid.Column="0"
+                                        Grid.Row="1"
+                                        PlaceHolder="Name"
+                                        x:Name="NameLB"
+                                        ValidationColor="{DynamicResource ErrorColor}"
+                                        Text="{Binding  Names}"
                                      
-            /> 
-            <controls:EntryCustom Grid.ColumnSpan="3"
-                                  Grid.Row="3"
-                                  x:Name="UserLastNameEntryCustom"
-                                  ValidationColor="{DynamicResource ErrorColor}"
-                                  LineColor="{DynamicResource PrimaryLetterColor}"
-                                  Text="{Binding Password}"
-                                  PlaceHolder="Last Name"
+                  /> 
+                        <controls:EntryCustom Grid.Column="1"
+                                              Grid.Row="1"
+                                              PlaceHolder="LastName"
+                                              x:Name="LastName"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding Lastnames}"
                                      
-            /> 
-            <controls:EntryCustom Grid.ColumnSpan="3"
-                                  Grid.Row="4"
-                                  x:Name="EmailEntryCustom"
-                                  ValidationColor="{DynamicResource ErrorColor}"
-                                  LineColor="{DynamicResource PrimaryLetterColor}"
-                                  Text="{Binding Password}"
-                                  PlaceHolder="Email"
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="3"
+                                              x:Name="UsernameLB"
+                                              PlaceHolder="Username"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding Username}"
                                      
-            /> 
-            
-            <controls:EntryCustom Grid.ColumnSpan="3"
-                                  Grid.Row="5"
-                                  x:Name="PhoneEntryCustom"
-                                  ValidationColor="{DynamicResource ErrorColor}"
-                                  LineColor="{DynamicResource PrimaryLetterColor}"
-                                  Text="{Binding Password}"
-                                  PlaceHolder="Phone"
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="4"
+                                              PlaceHolder="Email"
+                                              x:Name="EmailLB"
+                                              Keyboard="Email"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding  Email}"
                                      
-            /> 
-              </Grid>
+                        /> 
+                        <controls:EntryCustom Grid.ColumnSpan="2"
+                                              Grid.Row="5"
+                                              PlaceHolder="Phone"
+                                              Keyboard="Telephone"
+                                              x:Name="PhoneLb"
+                                              ValidationColor="{DynamicResource ErrorColor}"
+                                              Text="{Binding Phone}"
+                                     
+                        /> 
+                        <Label Text=" Veterinary: "
+                               Margin="5"
+                               Grid.ColumnSpan="2"
+                               Style="{StaticResource LabelSubtitleBold}"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Start"
+                               Grid.Row="6"/>
+                        <Picker ItemsSource="{Binding Veterinaries}"
+                                Grid.ColumnSpan="2"
+                                SelectedItem="{Binding Veterinary}"
+                                Grid.Row="7"/>
+                    </Grid>
+                </pancakeView:PancakeView>
         </ScrollView>
-      
 </Grid>
 </views:BasePage>

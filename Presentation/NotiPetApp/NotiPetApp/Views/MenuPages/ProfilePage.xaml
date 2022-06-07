@@ -14,9 +14,11 @@
                  xmlns:models="clr-namespace:NotiPetApp.Models;assembly=NotiPetApp"
                  xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                  x:TypeArguments="viewModels:ProfileViewModel"
+                 x:DataType="viewModels:ProfileViewModel"
                  x:Class="NotiPetApp.Views.MenuPages.ProfilePage">
     <views:ContentViewBase.Resources>
-        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"
+                                              DefaultImage="user.png"/>
     </views:ContentViewBase.Resources>
         <Grid RowDefinitions="*,1.3*">
 
@@ -29,7 +31,17 @@
                       ColumnDefinitions="*,Auto,*">
                     <Label Text="Profile"  Grid.Column="1"
                            Style="{StaticResource LabelLarge}"/>
-
+                    <ImageButton  Grid.Column="2"
+                            HorizontalOptions="End"
+                            Margin="5"
+                            Command="{Binding NavigateToEditUserCommand}"
+                            BackgroundColor="Transparent">
+                        <ImageButton.Source>
+                            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.EditIcon}"
+                                             Color="{DynamicResource SecondaryColor}"
+                                             FontFamily="{StaticResource FontSolid}"/>
+                        </ImageButton.Source>
+                    </ImageButton>
                     <forms:CachedImage   Source="{Binding User.PictureUrl,Converter={StaticResource Base64StringToImageSource}}"
                                          Grid.Row="1"
                                          CacheType="Memory"
@@ -43,6 +55,7 @@
                             <transformations:CircleTransformation />
                         </forms:CachedImage.Transformations>
                     </forms:CachedImage>
+                    
                   <Label Grid.Row="2"
                          Style="{StaticResource LabelLarge}"
                          HorizontalTextAlignment="Center"

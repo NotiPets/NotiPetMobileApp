@@ -17,12 +17,13 @@ namespace NotiPetApp.Converters
     }
     public class Base64StringToImageSource:IValueConverter
     {
+        public string DefaultImage { get; set; } = "patita";
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                if (value == null)
-                    return "patita";
+                if ( string.IsNullOrEmpty($"{value}"))
+                    return DefaultImage;
             
                 var base64 = value.ToString();
                 if (base64.StartsWith("http"))
@@ -34,14 +35,14 @@ namespace NotiPetApp.Converters
             }
             catch (Exception e)
             {
-                return value;
+                return DefaultImage;
             }
 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return value;
         }
     }
     

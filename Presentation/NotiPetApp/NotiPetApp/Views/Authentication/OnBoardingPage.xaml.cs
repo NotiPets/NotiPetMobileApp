@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace NotiPetApp.Views.Authentication
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OnBoardingPage : ContentPage
+    public partial class OnBoardingPage 
     {
         public OnBoardingPage()
         {

@@ -42,7 +42,13 @@ namespace NotiPetApp.ViewModels
             _user = GetUserCommand.Execute().ToProperty(this, e => e.User);
             InitializeCommand
                 .InvokeCommand(GetUserCommand);
+            NavigateToEditUserCommand = ReactiveCommand.CreateFromTask<Unit>((b,token)=> NavigationService.NavigateAsync(ConstantUri.UserEdit,parameters:new NavigationParameters()
+            {
+                {ParameterConstant.User,User}
+            }));
         }
+
+        public ReactiveCommand<Unit, Unit> NavigateToEditUserCommand { get; set; }
 
         Task NavigateToMyPets()
         {

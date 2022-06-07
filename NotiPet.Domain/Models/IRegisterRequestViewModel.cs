@@ -5,7 +5,6 @@ namespace NotiPet.Domain.Models
 
         public string Email { get; set; }
         public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
         public string Username { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -17,6 +16,5 @@ namespace NotiPet.Domain.Models
         public int  DocumentType { get; set; }
         public string Document { get; set; }
         public int BusinessId { get; set; }
-        public string PicturePhoto { get; set; }
     }
 }

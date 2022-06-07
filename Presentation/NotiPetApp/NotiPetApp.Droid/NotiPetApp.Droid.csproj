@@ -126,6 +126,7 @@
     <AndroidResource Include="Resources\drawable\settings.png" />
     <AndroidResource Include="Resources\drawable\Shop.png" />
     <AndroidResource Include="Resources\drawable\Shower.png" />
+    <AndroidResource Include="Resources\drawable\user.png" />
     <AndroidResource Include="Resources\drawable\Veterinary.png" />
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />

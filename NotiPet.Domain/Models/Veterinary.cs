@@ -39,5 +39,9 @@ namespace NotiPet.Domain.Models
         public string FullAddress => $"{Address1}, {Province},{City}";
 
         public string Description { get; set; }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

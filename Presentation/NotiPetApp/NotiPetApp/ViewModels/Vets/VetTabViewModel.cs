@@ -57,7 +57,7 @@ namespace NotiPetApp.ViewModels
                new SpecialistView() ,
                new VeterinaryView()
           };
-
+         
           NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
           _tabItem = this.WhenAnyValue(x => x.SelectedIndex)
               .Select(e => TabItemCollections[e])

@@ -27,6 +27,7 @@ namespace NotiPetApp.Helpers
 
             }
         }
+
         public  static  class CreateHelper 
         {
             public  static TViewModel CreateViewModel<TViewModel>()

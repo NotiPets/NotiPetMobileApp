@@ -1,3 +1,4 @@
+using System;
 using System.Reactive;
 using System.Reactive.Linq;
 using NotiPetApp.Helpers;
@@ -19,6 +20,11 @@ namespace NotiPetApp.ViewModels
             var existAnyTokenCommand = ReactiveCommand.CreateFromObservable<bool>(()=>Settings.Token.Select(e=>!string.IsNullOrEmpty(e)));
             _hasToken = existAnyTokenCommand.Execute().ToProperty(this, x => x.HasToken);
             InitializeCommand.InvokeCommand(existAnyTokenCommand);
+        }
+
+        protected override IObservable<Unit> ExecuteInitialize()
+        {
+            return base.ExecuteInitialize();
         }
     }
 }

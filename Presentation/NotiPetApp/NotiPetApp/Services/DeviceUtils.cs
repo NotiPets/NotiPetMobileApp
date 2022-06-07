@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NotiPetApp.Helpers;
@@ -13,6 +14,7 @@ namespace NotiPetApp.Services
         Task<string> TakePhotoAsync();
         Task<Location> GetCurrentLocation();
         double CalculateDistance(Position position);
+        Task<Placemark> GetGeoCodeAddress(double? lat = null, double? lon = null);
     }
     public class DeviceUtils:IDeviceUtils
     {
@@ -69,6 +71,49 @@ namespace NotiPetApp.Services
             await using FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
             await fileStream.CopyToAsync(ms);
             return Convert.ToBase64String(ms.ToArray());
+        }
+        public async Task<Placemark> GetGeoCodeAddress(double? lat,double? lon)
+        {
+            try
+            {
+                if (lat is null || lon is null)
+                {
+                    var location = await GetCurrentLocation();
+                    lat = location.Latitude;
+                    lon = location.Longitude;
+                }
+
+                var placemarks = await Geocoding.GetPlacemarksAsync(lat.GetValueOrDefault(), lon.GetValueOrDefault());
+                var placemark = placemarks?.FirstOrDefault();
+                if (placemark != null)
+                {
+                    var geocodeAddress =
+                        $"AdminArea:       {placemark.AdminArea}\n" +
+                        $"CountryCode:     {placemark.CountryCode}\n" +
+                        $"CountryName:     {placemark.CountryName}\n" +
+                        $"FeatureName:     {placemark.FeatureName}\n" +
+                        $"Locality:        {placemark.Locality}\n" +
+                        $"PostalCode:      {placemark.PostalCode}\n" +
+                        $"SubAdminArea:    {placemark.SubAdminArea}\n" +
+                        $"SubLocality:     {placemark.SubLocality}\n" +
+                        $"SubThoroughfare: {placemark.SubThoroughfare}\n" +
+                        $"Thoroughfare:    {placemark.Thoroughfare}\n";
+
+                    Console.WriteLine(geocodeAddress);
+
+                }
+
+                return placemark;
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+            }
+            return null;
+
         }
         public async Task<Location> GetCurrentLocation()
         {

@@ -2,8 +2,32 @@ using System;
 
 namespace NotiPet.Domain.Models
 {
+    
     public class User
     {
+       public void ConvertToEditUserRequest(IEditUserRequest editUserRequest)
+       {
+           editUserRequest.Names = Names;
+           editUserRequest.Lastnames = Lastnames;
+           editUserRequest.Phone = Phone;
+           editUserRequest.PictureUrl = PictureUrl;
+           editUserRequest.BusinessId =BusinessId;
+           editUserRequest.Username = Username;
+           editUserRequest.Email = Email;
+        
+       }
+       public void SetToEditUserRequest(IEditUserRequest editUserRequest)
+       {
+           Names = editUserRequest.Names;
+           Lastnames = editUserRequest.Lastnames;
+           Phone =editUserRequest. Phone;
+           PictureUrl =editUserRequest. PictureUrl;
+           BusinessId =editUserRequest.BusinessId;
+           Username = editUserRequest.Username;
+           
+           Email = Email;
+           
+       }
         public User(string id, int role, int businessId, Veterinary business, string username, string password, string email, int documentType, string document, string names, string lastnames, string phone, string address1, string address2, string city, string province, string pictureUrl, bool active, DateTime created, DateTime updated)
         {
             Id = id;
@@ -53,5 +77,7 @@ namespace NotiPet.Domain.Models
         public string FullAddress => $"{City}, {Province}, {Address1}, {Address2}";
 
         public string Description { get; set; }
+
+
     }
 }

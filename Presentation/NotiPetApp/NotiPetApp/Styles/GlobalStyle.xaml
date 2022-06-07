@@ -141,4 +141,8 @@
                               x:Key="ShadowMarkupStyle"
                               BlurRadius="5"
                               Color="LightGray"/>
+    <Style TargetType="CheckBox">
+        <Setter Property="Color" Value="{DynamicResource PrimaryColor}"/>
+        
+    </Style>
 </ResourceDictionary>
