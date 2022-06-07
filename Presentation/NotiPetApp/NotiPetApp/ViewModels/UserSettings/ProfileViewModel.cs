@@ -2,6 +2,8 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
@@ -10,6 +12,7 @@ using NotiPetApp.Models;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace NotiPetApp.ViewModels
 {
@@ -17,8 +20,7 @@ namespace NotiPetApp.ViewModels
     {
         private readonly IUserService _userService;
         private ObservableAsPropertyHelper<User> _user;
-        public User User => _user.Value;
-        public ReactiveCommand<Unit,User> GetUserCommand { get; set; }
+        public User User => _user?.Value;
         public ReactiveCommand<Unit,Unit> NavigateToEditProfileCommand{ get; set; }
 
         //NavigateToEditProfileCommand
@@ -38,15 +40,22 @@ namespace NotiPetApp.ViewModels
             {
                 return NavigationService.NavigateAsync(ConstantUri.EditProfile);
             });
-            GetUserCommand = ReactiveCommand.CreateFromObservable(GetUserById);
-            _user = GetUserCommand.Execute().ToProperty(this, e => e.User);
-            InitializeCommand
-                .InvokeCommand(GetUserCommand);
             NavigateToEditUserCommand = ReactiveCommand.CreateFromTask<Unit>((b,token)=> NavigationService.NavigateAsync(ConstantUri.UserEdit,parameters:new NavigationParameters()
             {
                 {ParameterConstant.User,User}
             }));
         }
+
+        protected override IObservable<Unit> ExecuteInitialize() => Observable.Create<Unit>(observable =>
+        {
+            var disposable = new CompositeDisposable();
+            var getUser =  GetUserById();
+            _user = getUser.ToProperty(this, e => e.User);
+            getUser.Select(e => Unit.Default)
+                .Subscribe(observable)
+                .DisposeWith(disposable);
+                return disposable;
+        });
 
         public ReactiveCommand<Unit, Unit> NavigateToEditUserCommand { get; set; }
 

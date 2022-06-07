@@ -16,7 +16,7 @@
     <Label    Text="{Binding CommandText,Source={x:Reference ButtonPv}}"
               TextColor="{Binding TextColor,Source={x:Reference ButtonPv}}"
               Margin="4"
-              FontSize="{Binding FontSize,Source={x:Reference ButtonPv}}"
+              FontSize="{Binding FontSize,Source={x:Reference ButtonPv},FallbackValue=16,TargetNullValue=16}"
               Style="{StaticResource LabelTitleBold}"
               HorizontalOptions="CenterAndExpand"
               VerticalTextAlignment="Center"

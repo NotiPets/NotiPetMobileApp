@@ -22,14 +22,15 @@
     >
         <Grid RowDefinitions ="Auto,Auto,Auto,Auto"
               ColumnDefinitions="Auto,*">
-            <Frame Padding="0"
-                   Grid.RowSpan="2"
-                   CornerRadius="10">
+            <pancakeView:PancakeView Padding="0"
+                                    
+                                     Grid.RowSpan="2"
+                                     CornerRadius="10">
             <forms:CachedImage   Source="{Binding  User.PictureUrl,Converter={StaticResource Base64StringToImageSource},FallbackValue=patita,TargetNullValue=patita}"
                                  Aspect="AspectFill"
                                  HeightRequest="80"
                                  WidthRequest="80"/>
-            </Frame>
+            </pancakeView:PancakeView>
             <Label  Text="{Binding FullName}"
                     Style="{StaticResource LabelTitleBold}"
                     Grid.Column="1"/>

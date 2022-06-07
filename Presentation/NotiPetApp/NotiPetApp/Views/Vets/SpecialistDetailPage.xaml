@@ -53,23 +53,7 @@
                     Grid.Row="3"
                     Text="{Binding  Specialist.User.Description}"
                 />
-                <pancakeView:PancakeView 
-                       Grid.Column="1"
-                       HorizontalOptions="CenterAndExpand"
-                       VerticalOptions="CenterAndExpand"
-                       CornerRadius="25"
-                       BackgroundGradientStops="{StaticResource SecondaryColorBrushForFrame}"
-                     
-                       Grid.RowSpan="4">
-               
-                    <Label Text="4.9"
-                           Margin="20,10,20,25"
-                           VerticalTextAlignment="Start"
-                           TextColor="{StaticResource SecondaryLetterLight}"
-                           Style="{StaticResource LabelHeader}" 
-                    />
-             
-                </pancakeView:PancakeView >
+
 
             </Grid>
         </pancakeView:PancakeView>

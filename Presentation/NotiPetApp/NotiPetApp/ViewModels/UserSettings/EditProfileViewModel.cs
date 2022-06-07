@@ -36,9 +36,9 @@ namespace NotiPetApp.ViewModels
             UpdateCommand = ReactiveCommand.CreateFromObservable(UpdateUser);
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
             TakePhotoCommand =  ReactiveCommand.CreateFromTask(TakePhoto);
-            UpdateCommand.WhereNotNull().InvokeCommand(NavigateGoBackCommand);
+            UpdateCommand.WhereNotNull().Select(x=>Unit.Default).InvokeCommand(NavigateGoBackCommand);
             this.WhenAnyValue(x => x.Veterinaries)
-                .WhereNotNull()
+                .WhereNotNull() 
                 .Subscribe((next) =>
                 {
                     Veterinary = next.FirstOrDefault(x => x.Id == BusinessId);

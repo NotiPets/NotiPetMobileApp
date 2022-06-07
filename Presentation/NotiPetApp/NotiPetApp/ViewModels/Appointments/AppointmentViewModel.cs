@@ -22,12 +22,15 @@ namespace NotiPetApp.ViewModels
         private readonly ISalesService _salesService;
         private ReadOnlyObservableCollection<AppointmentSale> _appointments;
         public ReadOnlyObservableCollection<AppointmentSale> Appointments => _appointments;
+        
+        
         [Reactive]public int SelectedIndex { get; set; }
+
+        public ReactiveCommand<AppointmentSale,Unit> EditAppointmentCommand { get; set; }
         public AppointmentViewModel(INavigationService navigationService, IPageDialogService dialogPage,ISalesService salesService) : base(navigationService, dialogPage)
         {
             _salesService = salesService;
             var filterPredicate = this.WhenAnyValue(x => x.SelectedIndex)
-                .Throttle(TimeSpan.FromMilliseconds(100), RxApp.TaskpoolScheduler)
                 .DistinctUntilChanged()
                 .Select(FilterBy);
             salesService.DataSource
@@ -43,6 +46,7 @@ namespace NotiPetApp.ViewModels
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
             var cancelAppointmentCommand = ReactiveCommand.CreateFromObservable<string,bool>(CancelAppointment);
             CanCancelCommand = ReactiveCommand.CreateFromTask<string,string>(CanCancelOrder);
+            EditAppointmentCommand = ReactiveCommand.CreateFromTask<AppointmentSale>(EditAppointment);
             CanCancelCommand
                 .Where(e=>!string.IsNullOrEmpty(e))
                 .InvokeCommand(cancelAppointmentCommand);
@@ -50,6 +54,16 @@ namespace NotiPetApp.ViewModels
                 .Select(e=>Unit.Default)
                 .InvokeCommand(InitializeCommand);
     
+        }
+
+        async Task EditAppointment(AppointmentSale appointmentSale)
+        {
+            if (appointmentSale.Appointment.CantEdit)
+            {
+                await NavigationService.NavigateAsync(ConstantUri.EditAppointment,
+                    new NavigationParameters() {{ParameterConstant.Appointment, appointmentSale}}, true);
+
+            }
         }
 
         IObservable<bool> CancelAppointment(string id)

@@ -1,9 +1,12 @@
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using NotiPet.Domain.Annotations;
 
 namespace NotiPet.Domain.Models
 {
     
-    public class User
+    public class User:INotifyPropertyChanged
     {
        public void ConvertToEditUserRequest(IEditUserRequest editUserRequest)
        {
@@ -79,5 +82,12 @@ namespace NotiPet.Domain.Models
         public string Description { get; set; }
 
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

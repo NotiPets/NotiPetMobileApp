@@ -32,6 +32,7 @@ namespace NotiPetApp.iOS
             SfListViewRenderer.Init();
             SfEffectsViewRenderer.Init();
             Xamarin.FormsMaps.Init();
+            Syncfusion.XForms.iOS.Buttons.SfSegmentedControlRenderer.Init();
             GoogleClientManager.Initialize();
             LoadApplication(new App(new IosInitializer()));
 

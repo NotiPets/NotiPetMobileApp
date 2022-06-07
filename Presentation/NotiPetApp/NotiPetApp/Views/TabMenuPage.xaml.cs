@@ -25,6 +25,16 @@ namespace NotiPetApp.Views
 
         }
 
+        protected override void OnAppearing()
+        {
+            var tab = TabMenu.TabItems[TabMenu.SelectedIndex] ;
+            if (tab.CurrentContent?.BindingContext is ProfileViewModel profileViewModel)
+            {
+                profileViewModel.InitializeCommand
+                    .Execute().Subscribe();
 
+            }
+            base.OnAppearing();
+        }
     }
 }

@@ -66,12 +66,13 @@
                       Text="Time"/>
             <TimePicker    Grid.Row="8"
                             Margin="20,0,0,0"
-                           Time="{Binding Time}"
+                            Time="{Binding Time}"
                        Grid.Column="0"
                       />
 
             <controls:TouchViewControl       
                 Command="{Binding CreateAppointmentCommand}"
+                VerticalOptions="CenterAndExpand"
                 CornerRadius="25"
                 Margin="20"
                 Padding="14"

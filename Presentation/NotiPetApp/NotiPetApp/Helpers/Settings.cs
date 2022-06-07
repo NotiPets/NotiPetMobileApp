@@ -20,18 +20,18 @@ namespace NotiPetApp.Helpers
             get=>DeviceInfo.Platform != DevicePlatform.Unknown? Preferences.Get(nameof(Username),string.Empty):string.Empty; 
             set=>Preferences.Set(nameof(Username),value);
         }
-        public static IObservable<string> Token => Observable.FromAsync(token => GetSecureStorage(nameof(Token)));
+        public static IObservable<string> Token => Observable.FromAsync(token => GetSecureStorage(TokenKey));
         public static string UserId       
         {
             get=>DeviceInfo.Platform != DevicePlatform.Unknown? Preferences.Get(nameof(UserId),string.Empty):string.Empty; 
             set=>Preferences.Set(nameof(UserId),value);
         }
-
+        private const string TokenKey="token_auth_keyPRD";
         public static Position Position { get; set; }
 
         public static  Task SetToken(string token)
         {
-           return SetSecureStorage(nameof(Token),token);
+           return SetSecureStorage(TokenKey,token);
         }
         static Task<string> GetSecureStorage(string key)
            => DeviceInfo.Platform != DevicePlatform.Unknown ? SecureStorage.GetAsync(key):Task.FromResult(string.Empty);

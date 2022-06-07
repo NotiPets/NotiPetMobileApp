@@ -47,7 +47,8 @@
                                          CacheType="Memory"
                                          Grid.ColumnSpan="3"
                                          HorizontalOptions="CenterAndExpand"
-                                       
+                                         ErrorPlaceholder="notImage"
+                                         LoadingPlaceholder="notImage"
                                          Aspect="AspectFill"
                                          WidthRequest="150"
                                          HeightRequest="150">
@@ -72,10 +73,13 @@
                 </Grid>
             </pancakeView:PancakeView>
 
-            <CollectionView Grid.Row="1"
+            <ListView Grid.Row="1"
+                      HasUnevenRows="True"
                             ItemsSource="{Binding AppMenuItems}">
-                <CollectionView.ItemTemplate> 
+                <ListView.ItemTemplate>
+                 
                     <DataTemplate x:DataType="models:AppMenuItem">
+                        <ViewCell>
                         <Grid ColumnDefinitions="Auto,*,Auto"
                               Padding="8"
                               RowDefinitions="Auto,1">
@@ -109,13 +113,12 @@
                                                          FontFamily="{StaticResource FontSolid}"/>
                                     </Image.Source>
                                 </Image>
-                                <Line Grid.Row="1"
-                                      BackgroundColor="#dae9ed"
-                                      Grid.ColumnSpan="3"/>
+                      
                             </Grid>
+                    </ViewCell> 
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
     
         </Grid>
 </views:ContentViewBase>

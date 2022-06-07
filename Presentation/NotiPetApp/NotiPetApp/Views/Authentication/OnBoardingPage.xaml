@@ -75,7 +75,7 @@
                                              TextColor="White"
                 
                                              Command="{Binding SkipCommand}"
-                                             CornerRadius="25"
+                                             CornerRadius="20"
                                              Margin="40,30"
                                              Padding="16"
                                              CommandText="{Binding SkipButtonText}"

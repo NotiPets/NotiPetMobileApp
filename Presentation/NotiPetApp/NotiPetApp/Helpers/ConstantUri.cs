@@ -33,6 +33,7 @@ namespace NotiPetApp.Helpers
         public const string AppointmentComplete = "AppointmentCompletePage";
         public const string CreateReviewsPage = "CreateReviewsPage";
         public const string UserEdit = "EditProfilePage";
+        public const string EditAppointment = "EditAppointmentPage";
     }
     public static class ParameterConstant
     {
@@ -45,5 +46,7 @@ namespace NotiPetApp.Helpers
         public const string Pet = "Pet";
 
         public const string User = "User";
+        public const string Appointment = "Appointment";
+        
     }
 }
