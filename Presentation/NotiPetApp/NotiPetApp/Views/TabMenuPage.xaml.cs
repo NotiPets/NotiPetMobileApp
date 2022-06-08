@@ -27,6 +27,8 @@ namespace NotiPetApp.Views
 
         protected override void OnAppearing()
         {
+            if(TabMenu.SelectedIndex == -1) return;
+            
             var tab = TabMenu.TabItems[TabMenu.SelectedIndex] ;
             if (tab.CurrentContent?.BindingContext is ProfileViewModel profileViewModel)
             {
