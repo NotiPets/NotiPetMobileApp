@@ -64,7 +64,12 @@ namespace NotiPet.Data.Services
         {
             await _hubConnection.StartAsync();
         }
-        
+
+        public IObservable<Appointment> UpdateAppointment(Appointment appointmentSaleAppointment)
+        {
+            return _salesServiceApi.UpdateAppointment(_mapper.Map<AppointmentDto>(appointmentSaleAppointment)).Select(_mapper.Map<Appointment>);
+        }
+
 
         public async Task Disconnect()
         {

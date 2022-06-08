@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reactive;
 using System.Threading.Tasks;
 using DynamicData;
 using NotiPet.Domain.Models;
@@ -18,5 +19,6 @@ namespace NotiPet.Domain.Service
         void ReceiveMessage(Action<string> GetMessageAndUser);
          Task Disconnect();
          Task Connect();
+         IObservable<Appointment> UpdateAppointment(Appointment appointmentSaleAppointment);
     }
 }

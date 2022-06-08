@@ -45,7 +45,7 @@
                 <Label VerticalTextAlignment="End"
                        Text="{TemplateBinding Text}"
                        HorizontalTextAlignment="Center"
-                       Style="{StaticResource LabelSubtitleBold}"
+                       Style="{StaticResource LabelSubtitle}"
                        TextColor="{TemplateBinding CurrentTextColor}"
                        FontSize="{TemplateBinding CurrentFontSize}"/>
                 <pancakeView:PancakeView HeightRequest="70"

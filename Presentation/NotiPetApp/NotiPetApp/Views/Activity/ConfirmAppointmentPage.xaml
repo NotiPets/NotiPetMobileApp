@@ -8,9 +8,11 @@
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:vets="clr-namespace:NotiPetApp.Views.Vets;assembly=NotiPetApp"
+                xmlns:iOsSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                 x:Class="NotiPetApp.Views.Activity.ConfirmAppointmentPage"              
                 x:DataType="activity:ConfirmAppointmentViewModel"
                 BackgroundColor="Transparent"
+                iOsSpecific:Page.ModalPresentationStyle="OverFullScreen"
                 >
 
     <pancakeView:PancakeView Margin="0,40,0,0"

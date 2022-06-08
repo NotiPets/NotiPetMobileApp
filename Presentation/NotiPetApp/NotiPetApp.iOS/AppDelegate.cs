@@ -30,6 +30,8 @@ namespace NotiPetApp.iOS
             Syncfusion.SfRating.XForms.iOS.SfRatingRenderer.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             SfListViewRenderer.Init();
+            Syncfusion.SfPdfViewer.XForms.iOS.SfPdfDocumentViewRenderer.Init();
+            Syncfusion.SfRangeSlider.XForms.iOS.SfRangeSliderRenderer.Init();   
             SfEffectsViewRenderer.Init();
             Xamarin.FormsMaps.Init();
             Syncfusion.XForms.iOS.Buttons.SfSegmentedControlRenderer.Init();

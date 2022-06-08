@@ -37,5 +37,11 @@ namespace NotiPet.Data.Services
             return RemoteRequestObservableAsync<Pet>(_apiClient.Client.EditPet(map.Id,map),false)
                 .Select(e=>new PetDto());
         }
+
+        public IObservable<IEnumerable<VaccinateDto>> GetVaccinesByPet(string petId)
+        {
+            return RemoteRequestObservableAsync<IEnumerable<VaccinateDto>>(_apiClient.Client.GetVaccinesByPet(petId),true)
+                .Select(e=>e.Result);
+        }
     }
 }

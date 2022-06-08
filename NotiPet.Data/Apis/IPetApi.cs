@@ -16,5 +16,7 @@ namespace NotiPet.Data
         IObservable<HttpResponseMessage> RemovePets(string id);
         [Put ("/Pets/{id}")]
         IObservable<HttpResponseMessage> EditPet(string id, [Body]PetDto map);
+        [Put ("/DigitalVaccine/ByPetId/{petId}")]
+        IObservable<HttpResponseMessage> GetVaccinesByPet(string petId);
     }
 }

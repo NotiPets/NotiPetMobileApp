@@ -33,5 +33,11 @@ namespace NotiPet.Data.Services
             return RemoteRequestObservableAsync<object>(_apiClient.Client.CancelOrder(id),false)
                 .Select(e=>e.Result!=null);
         }
+
+        public IObservable<AppointmentDto> UpdateAppointment(AppointmentDto appointmentSaleAppointment)
+        {
+            return RemoteRequestObservableAsync<AppointmentDto>(_apiClient.Client.UpdateAppointment(appointmentSaleAppointment.Id,appointmentSaleAppointment),true)
+                .Select(e=>e.Result);
+        }
     }
 }

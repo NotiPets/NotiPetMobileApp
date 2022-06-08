@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:VaccinesViewModel"  xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:xForms="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms"
+                x:Class="NotiPetApp.Views.Pets.VaccinesPage">
+ <CarouselView>
+     <CarouselView.ItemTemplate>
+         <DataTemplate>
+             <xForms:SfPdfViewer />
+         </DataTemplate>
+     </CarouselView.ItemTemplate>
+ </CarouselView>
+</views:BasePage>

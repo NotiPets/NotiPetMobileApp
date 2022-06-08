@@ -17,7 +17,7 @@ using ReactiveUI.Fody.Helpers;
 
 namespace NotiPetApp.ViewModels
 {
-    public class AppointmentViewModel:BaseViewModel
+    public class AppointmentViewModel:BaseViewModel,INavigationAware
     {
         private readonly ISalesService _salesService;
         private ReadOnlyObservableCollection<AppointmentSale> _appointments;
@@ -91,6 +91,7 @@ namespace NotiPetApp.ViewModels
             return _salesService.GetSaleByUserId(Settings.UserId)
                 .Select(e => Unit.Default);
         }
+        
 
         private async  void GetMessage(string message)
         {
@@ -102,5 +103,25 @@ namespace NotiPetApp.ViewModels
 
         }
         public ReactiveCommand<Unit,Unit> NavigateGoBackCommand { get; set; }
+        public void Initialize(INavigationParameters parameters)
+        {
+
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.GetNavigationMode() == NavigationMode.Back)
+            {
+                InitializeCommand
+                    .Execute()
+                    .Subscribe()
+                    .DisposeWith(Subscriptions);
+            }
+        }
     }
 }

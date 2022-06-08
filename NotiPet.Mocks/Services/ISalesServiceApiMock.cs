@@ -30,5 +30,10 @@ namespace NotiPet.Mocks.Services
         {
             throw new NotImplementedException();
         }
+
+        public IObservable<AppointmentDto> UpdateAppointment(AppointmentDto appointmentSaleAppointment)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

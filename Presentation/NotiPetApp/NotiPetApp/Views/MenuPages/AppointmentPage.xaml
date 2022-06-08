@@ -63,16 +63,21 @@
             </pancakeView:PancakeView>
             <ListView Grid.Row="1"
                             ItemsSource="{Binding Appointments}"
-                            HasUnevenRows="True">
+                            HasUnevenRows="True"
+                            SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="models:AppointmentSale">
                         <ViewCell>
                             <Grid>
-                            <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
-                                                     Shadow="{StaticResource ShadowMarkupStyle}"
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AppointmentViewModel}}, Path=EditAppointmentCommand}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+                                <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                                         Shadow="{StaticResource ShadowMarkupStyle}"
                                                
-                                                     Margin="10"
-                                                     CornerRadius="30">
+                                                         Margin="10"
+                                                         CornerRadius="30">
                             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"  ColumnDefinitions="Auto,Auto,*"
                             >
 

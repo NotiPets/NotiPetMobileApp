@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reactive;
 using DynamicData;
 using NotiPet.Domain.Models;
 
@@ -16,5 +17,7 @@ namespace NotiPet.Domain.Service
         public List<PetSize> PetSizes { get;  }
         public IObservable<object> RemovePet(string id);
         IObservable<Pet> EditPet(CreatePetModel pet);
+        IObservable<IEnumerable<Vaccinate>> GetVaccinesByPet(string petId);
+        SourceList<Vaccinate> Vaccinate { get; }
     }
 }
