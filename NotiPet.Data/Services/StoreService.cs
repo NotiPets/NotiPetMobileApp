@@ -18,6 +18,7 @@ namespace NotiPet.Data.Services
     {
         private readonly IAssetServiceApi _assetServiceApi;
         private readonly IMapper _mapper;
+        private readonly IVeterinaryService _veterinaryService;
 
         private readonly SourceCache<AssetServiceModel, int> _assetSourceCache =
             new SourceCache<AssetServiceModel, int>(e => e.Id);
@@ -27,10 +28,11 @@ namespace NotiPet.Data.Services
 
 
 
-        public StoreService(IAssetServiceApi assetServiceApi,IMapper mapper)
+        public StoreService(IAssetServiceApi assetServiceApi,IMapper mapper,IVeterinaryService veterinaryService)
         {
             _assetServiceApi = assetServiceApi;
             _mapper = mapper;
+            _veterinaryService = veterinaryService;
         }
 
         public SourceCache<AssetServiceModel, int> AssetsServices => _assetSourceCache;
@@ -50,7 +52,7 @@ namespace NotiPet.Data.Services
         {
             var parameters = new List<ParameterOption>()
             {
-                new ParameterOption($"{AssetsServiceTypeId.Product}",false,false,1,"Filter")
+                new ParameterOption($"{AssetsServiceTypeId.Product}",true,false,1,"Filter")
                     .SetFilterExpression<AssetServiceModel>(e => e.AssetServiceType == AssetsServiceTypeId.Product),
                 
                 new ParameterOption($"{AssetsServiceTypeId.Service}",false,false,2,"Filter")
@@ -61,7 +63,8 @@ namespace NotiPet.Data.Services
                 
                 new ParameterOption("Added Recently",false,true,4,"Sort")
                     .SetSortExpression<AssetServiceModel>(SortExpressionComparer<AssetServiceModel>.Ascending(e=>e.Created)),
-            };
+            }; 
+            
             return Observable.Return(parameters).Do(_parametersOptions.AddOrUpdate);
         }
 

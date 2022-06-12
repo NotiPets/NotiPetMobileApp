@@ -16,36 +16,30 @@ namespace NotiPetApp.ViewModels
     public class VaccinesViewModel:BaseViewModel,IInitialize
     {
         private readonly IPetsService _petsService;
-        public Pet Pet { get; set; }
-        public Vaccinate CurrentVaccine { get; set; }
+        public Vaccinate Vaccinate { get; set; }
 
-        private readonly  ReadOnlyObservableCollection<Vaccinate> _vaccinates;
-        public ObservableCollection<Vaccinate> Vaccinates { get; set; }
-        
-        
+        public VaccinatePdf Pdf => _pdf?.Value;
+        private ObservableAsPropertyHelper<VaccinatePdf> _pdf;
+        //NavigateGoBackCommand
+        public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get; set; }
         public VaccinesViewModel(INavigationService navigationService, IPageDialogService dialogPage,IPetsService petsService) : base(navigationService, dialogPage)
         {
             _petsService = petsService;
+            NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
         }
 
-        Task ShowPdf()
-        {
-           return NavigationService.NavigateAsync(ConstantUri.Pdf,new NavigationParameters()
-           {
-               {ParameterConstant.Vacinnes,CurrentVaccine}
-           });
-        }
         protected override IObservable<Unit> ExecuteInitialize()
         {
-            return _petsService.GetVaccinesByPet(Pet.Id)
-                .Select(x=>Unit.Default);
+            var pdfGenerated = _petsService.GetVaccinePdf(Vaccinate.Id);
+             _pdf = pdfGenerated.ToProperty(this, x => x.Pdf);
+             return  pdfGenerated.Select(x=>Unit.Default);
         }
 
         public void Initialize(INavigationParameters parameters)
         {
             if (parameters.ContainsKey(ParameterConstant.Vacinnes))
             {
-                Pet = parameters[ParameterConstant.Vacinnes] as Pet;
+                Vaccinate = parameters[ParameterConstant.Vacinnes] as Vaccinate;
             }
         }
     }

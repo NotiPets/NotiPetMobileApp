@@ -68,6 +68,12 @@ namespace NotiPet.Data.Services
         
         public SourceCache<Pet, string> Pets => _petSource;
         public SourceList<Vaccinate> Vaccinate => _vaccinateSource;
+        public IObservable<VaccinatePdf> GetVaccinePdf(string vaccinateId)
+        {
+            return _petService.GetVaccinePdf(vaccinateId)
+                .Select(_mapper.Map<VaccinatePdf>);
+        }
+
         public Func<Pet, bool> SearchPredicate(string text) =>
             pet => string.IsNullOrEmpty(text)|| (pet.Name.Contains(text));
 

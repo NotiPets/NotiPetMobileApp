@@ -42,5 +42,13 @@ namespace NotiPet.Domain.Models
         public DateTime Birthdate { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
+        public string SizeName => $"{(EPetSize)Size}";
+    }
+
+    public enum EPetSize
+    {
+                Small,
+                Medium,
+                Large
     }
 }

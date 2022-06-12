@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:PetDetailViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                x:Class="NotiPetApp.Views.Pets.PetDetailPage"
+                x:DataType="viewModels:PetDetailViewModel">
+    <views:BasePage.Resources>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"
+                                              />
+    </views:BasePage.Resources>
+    <Grid>
+        
+        <ScrollView>
+            <Grid RowDefinitions="400,Auto,Auto,Auto,Auto,Auto,Auto" >
+            <forms:CachedImage   Source="{Binding Pet.PictureUrl,Converter={StaticResource Base64StringToImageSource}}"
+                             Aspect="AspectFill"
+                             LoadingPlaceholder="notImage"
+                             Margin="0,0,0,28"
+                             ErrorPlaceholder="notImage"
+                             WidthRequest="50"/>
+
+        <pancakeView:PancakeView  VerticalOptions="End"
+                                  Padding="15,10"
+                                  CornerRadius="10"
+                                  Margin="10,2"
+                                  HorizontalOptions="CenterAndExpand"
+                                 BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                 Shadow="{StaticResource ShadowMarkupStyle}"
+                                >
+            <Grid RowDefinitions="Auto,Auto"
+                 >
+                             <Label Text="{Binding Pet.Name}"
+                                    Grid.Row="0"
+                                    Margin="5"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource LabelLarge}"
+                                    Grid.Column="0"
+                                    />
+                             <Label Text="{Binding Pet.PetTypeName}"
+                                    Grid.Row="1"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource LabelSubtitleBold}"/>
+
+            </Grid>
+        </pancakeView:PancakeView>
+            <Label  Text="Biography:"
+                    Margin="10"
+                    Style="{StaticResource LabelTitleBold}"
+                    Grid.Row="2"/>
+            <Label 
+                Padding="20,5"
+                   Style= "{StaticResource LabelSubtitleBold}"
+                   Grid.Row="3" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Birthdate: "/>
+                        <Span Text=" "/>
+                        <Span Text="{Binding Pet.Birthdate,StringFormat='{0:dd/MM/yyyy}'}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label 
+                Padding="20,5"
+                Style= "{StaticResource LabelSubtitleBold}"
+                Grid.Row="4" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Size:"/>
+                        <Span Text=" "/>
+                        <Span Text="{Binding Pet.SizeName}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Text="{Binding Pet.Description}"
+                   Margin="20,10"
+                   FontFamily="{StaticResource Regular}"
+                   Grid.Row="5" />
+            <Label Text="Vaccinates" 
+                   Grid.Row="6"
+                   Padding="10,5"
+                   Style="{StaticResource LabelTitleBold}"/>
+            <CollectionView ItemsSource="{Binding Vaccinates}"
+                            Grid.Row="7" >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"
+                                       ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Vaccinate">
+                        <pancakeView:PancakeView>
+                            <Grid RowDefinitions="Auto,Auto">
+                                <Label Text="{Binding VaccineName}"
+                                       Padding="20"
+                                       FontFamily="{StaticResource Regular}"/>
+                                <Label Text="{Binding Date,StringFormat='{0:dd.MM.yyyy} - {0:HH:mm}'}"
+                                       Grid.Row="1"
+                                       HorizontalTextAlignment="End"
+                                       FontFamily="{StaticResource Regular}"/>
+                                
+                            </Grid>
+                            <pancakeView:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PetDetailViewModel}}, Path=ShowVaccinatePdfCommand}"/>
+                            </pancakeView:PancakeView.GestureRecognizers>
+                        </pancakeView:PancakeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            </Grid>
+        </ScrollView>
+        <pancakeView:PancakeView  VerticalOptions="End"
+                                  Padding="15,5"
+                                  CornerRadius="10"
+                                  BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                  Shadow="{StaticResource ShadowMarkupStyle}"
+        >
+            <Grid ColumnDefinitions="*,*"
+                  >
+                <controls:TouchViewControl       Grid.Column="1"
+                                               
+                                                 CornerRadius="22"
+                                                 Margin="5"
+                                                 Padding="10"
+                                                 CommandText="Crear Cita"
+                                                 
+                                                 BackgroundColor="{DynamicResource PrimaryDark }"/> 
+            </Grid>
+        </pancakeView:PancakeView>
+        <ImageButton BackgroundColor="{DynamicResource BackgroundColor}"
+                     Command="{Binding NavigateGoBackCommand}"
+                     HorizontalOptions="StartAndExpand"
+                     VerticalOptions="Start"
+                     CornerRadius="20"
+                     Margin="10,28"
+                     Padding="4"
+        >
+            <ImageButton.Source>
+
+                <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                 Color="{DynamicResource PrimaryDark}"
+                                 FontFamily="{StaticResource FontSolid}"/>
+            </ImageButton.Source>
+        </ImageButton>
+
+        
+    </Grid>
+</views:BasePage>

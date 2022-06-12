@@ -13,7 +13,8 @@
                 x:Class="NotiPetApp.Views.Vets.SpecialistDetailPage"
                 x:DataType="viewModels:SpecialistDetailViewModel">
     <views:BasePage.Resources>
-        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"
+                                              DefaultImage="notImage"/>
     </views:BasePage.Resources>
     <Grid>
         
@@ -33,45 +34,33 @@
                                  BackgroundColor="{DynamicResource SecondBackgroundColor}"
                                  Shadow="{StaticResource ShadowMarkupStyle}"
                                 >
-            <Grid RowDefinitions="Auto,Auto"
-                  ColumnSpacing="80"
-                  RowSpacing="0"
-                  ColumnDefinitions="Auto,Auto">
-                <Label Text="{Binding Specialist.User.FullName}"
-                       FontSize="20"
-                       Grid.Row="1"
-                       Style="{StaticResource LabelTitleBold}"/>
-                <Label Text="{Binding Specialist.Speciality.Description}"
-                       Grid.Row="2"
-                       FontSize="16"
-                       MaxLines="1"
-                       Style="{StaticResource LabelSubtitle}"
-                       LineBreakMode="TailTruncation"/>
-                <Label 
-                    Style="{StaticResource LabelSubtitle}" 
-                    HorizontalTextAlignment="Start" 
-                    Grid.Row="3"
-                    Text="{Binding  Specialist.User.Description}"
-                />
-
-
+            <Grid RowDefinitions="Auto,Auto">
+            <Label Text="{Binding Specialist.User.FullName}"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource LabelTitleBold}"/>
             </Grid>
         </pancakeView:PancakeView>
-
-        <Label  Text="Biography"
-                Margin="10"
-                Style="{StaticResource LabelTitleBold}"
-                Grid.Row="2"/>
-        <Label  Text=""
-                TextType="Html"
+        <Label Text="Speciality Name: "
+               Grid.Row="2"
+               Margin="10"
+               HorizontalTextAlignment="Start"
+               Style="{StaticResource LabelTitleBold}">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span  Text="Specialist name: "/>
+                    <Span Text="{Binding Specialist.Speciality.Name}"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Label  Text="Biography:"
                 Margin="10"
                 Style="{StaticResource LabelTitleBold}"
                 Grid.Row="3"/>
-        <Label  Text="Reviews"
-                Margin="10"
-                Style="{StaticResource LabelTitleBold}"
+        <Label  Text="{Binding Specialist.User.Description}"
+                Margin="10,2"
+                Style="{StaticResource LabelTitle}"
                 Grid.Row="4"/>
-        <CarouselView  Grid.Row="5"/>
     </Grid>
     </ScrollView>
         <ImageButton BackgroundColor="{DynamicResource BackgroundColor}"

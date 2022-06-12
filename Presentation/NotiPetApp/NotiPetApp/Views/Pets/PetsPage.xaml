@@ -63,62 +63,56 @@
                     <ViewCell.ContextActions>
                         <MenuItem Command="{Binding Source={x:Reference PetPage},Path=ViewModel.DeletePetCommand}"
                                   CommandParameter="{Binding Id}"
-                                  Text="Delete"/>
+                                  Text="Delete"
+                                  IsDestructive="True"/>
+                        <MenuItem Command="{Binding Source={x:Reference PetPage},Path=ViewModel.EditPetCommand}"
+                                  CommandParameter="{Binding Id}"
+                                  Text="Edit"/>
                     </ViewCell.ContextActions>
-                    <StackLayout Margin="10">
+                    <StackLayout>
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PetsViewModel}},Path=ActionsCommand}"
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PetsViewModel}},Path= NavigateToDetailCommand}"
                                                   CommandParameter="{Binding .}"/>
                         </StackLayout.GestureRecognizers>
-                        <pancakeView:PancakeView  Shadow="{StaticResource ShadowMarkupStyle}" Padding="20" Margin="20"   CornerRadius="20" HeightRequest="200"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
-                          <Grid RowDefinitions="Auto,Auto,Auto,Auto"
-                          ColumnDefinitions="110,Auto,*">
+                        <pancakeView:PancakeView  Shadow="{StaticResource ShadowMarkupStyle}" Margin="20" Padding="10" CornerRadius="20"  BackgroundColor="{DynamicResource SecondBackgroundColor}"  >
+                          <Grid RowDefinitions="Auto,*"
+                                ColumnSpan="20"
+                          ColumnDefinitions="Auto,Auto">
                               
      
-                        <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
-                                                  Padding="0" Grid.Row="0" Grid.RowSpan="2"
-                                                  CornerRadius="60"
-                                                  Margin="5,10,10,0" >
-
-                           <forms:CachedImage   Source="{Binding PictureUrl,Converter={StaticResource Base64StringToImageSource},TargetNullValue='notImage',FallbackValue='notImage'}"
-                                                Aspect="AspectFill"
-                                                LoadingPlaceholder="notImage"
-                                                ErrorPlaceholder="notImage"
-                                                HeightRequest="120"
-                                                WidthRequest="120"
-                           />
-                          </pancakeView:PancakeView>
-                    
+                              <forms:CachedImage   Source="{Binding PictureUrl,Converter={StaticResource Base64StringToImageSource},TargetNullValue='notImage',FallbackValue='notImage'}"
+                                                   Aspect="AspectFill"
+                                                   LoadingPlaceholder="notImage"
+                                                   ErrorPlaceholder="notImage"
+                                                   HeightRequest="60"
+                                                   WidthRequest="60"
+                                                   Grid.RowSpan="2"
+                                                   Margin="20,0"
+                              />
                        <Label Text="{Binding Name}"
                                 FontSize="20"
-                                 Grid.Row="3"
-                                HorizontalOptions="CenterAndExpand"            
+                                 Grid.Row="0"
+                                HorizontalTextAlignment="Center"
                                 Style="{StaticResource LabelTitleBold}"
-                                 Grid.Column="0"
-                                 Grid.ColumnSpan="3"/>
+                                 Grid.Column="1"
+                                 />
                        
                               <Label Text="{Binding  PetTypeName}"
-                                     Grid.Row="4"
+                                     Grid.Row="1"
                                      FontSize="16"
-                                     MaxLines="1"
-                                     HorizontalOptions="CenterAndExpand"            
                                      TextColor="{DynamicResource PrimaryLetterLightColor}"
                                      Style="{StaticResource LabelSubtitleBold}"
-                                     LineBreakMode="TailTruncation"
-                                     Grid.Column="0"
-                                     Grid.ColumnSpan="3"/>
-                       <ImageButton BackgroundColor="Transparent"
-                                    HorizontalOptions="EndAndExpand"
-                                    Grid.ColumnSpan="3"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PetsViewModel}},Path=EditPetCommand}"
-                                    CommandParameter="{Binding .}"
-                                    Grid.Column="0">
-                           <ImageButton.Source>
-                               <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.EditIcon}"
-                                                 Color="{StaticResource PrimaryDark}"
-                                                 FontFamily="{StaticResource FontSolid}"/>
-                           </ImageButton.Source>
-                       </ImageButton>
+                                     Grid.Column="1"
+                                     />
+                              <Label Text="{Binding  SizeName}"
+                                     Grid.Row="1"
+                                     FontSize="16"
+                                     TextColor="{DynamicResource PrimaryLetterLightColor}"
+                                     Style="{StaticResource LabelSubtitleBold}"
+                                     Grid.Column="2"
+                                     HorizontalTextAlignment="End"
+                              />
+                       
                     </Grid>
                  
                     </pancakeView:PancakeView>

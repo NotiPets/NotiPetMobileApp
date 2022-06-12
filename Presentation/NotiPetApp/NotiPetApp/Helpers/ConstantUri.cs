@@ -35,7 +35,8 @@ namespace NotiPetApp.Helpers
         public const string UserEdit = "EditProfilePage";
         public const string EditAppointment = "EditAppointmentPage";
         public const string ShowVaccines = "VacinnesPage";
-        public static string Pdf = "PdfPage";
+        public const string Pdf = "PdfPage";
+        public const string PetDetail = "PetDetailPage";
     }
     public static class ParameterConstant
     {

@@ -19,5 +19,6 @@ namespace NotiPet.Domain.Service
         IObservable<Pet> EditPet(CreatePetModel pet);
         IObservable<IEnumerable<Vaccinate>> GetVaccinesByPet(string petId);
         SourceList<Vaccinate> Vaccinate { get; }
+        IObservable<VaccinatePdf> GetVaccinePdf(string vaccinateId);
     }
 }

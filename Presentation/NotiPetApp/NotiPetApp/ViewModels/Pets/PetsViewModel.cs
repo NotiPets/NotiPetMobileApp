@@ -44,27 +44,19 @@ namespace NotiPetApp.ViewModels
                 {ParameterConstant.Pet,param}
             }));
             DeletePetCommand = ReactiveCommand.CreateFromObservable<string,Unit>(RemovePet);
-            ActionsCommand = ReactiveCommand.CreateFromTask<Pet>(ActionsToDo);
+            NavigateToDetailCommand = ReactiveCommand.CreateFromTask<Pet>(NavigateToDetail);
 
         }
 
-        private async Task ActionsToDo(Pet pet)
+        private  Task NavigateToDetail(Pet pet)
         {
-            var options = await DialogPage.DisplayActionSheetAsync("Choose",null,null,new []
+            return NavigationService.NavigateAsync(ConstantUri.PetDetail, new NavigationParameters()
             {
-                "Show Vacinnes",
-                "Cancel"
+                {ParameterConstant.Pet,pet}
             });
-            switch (@options)
-            {
-                case  "Show Vacinnes":
-                    await ShowVaccines(pet);
-                    break;
-            }
-           
         }
 
-        public ReactiveCommand<Pet, Unit> ActionsCommand { get; set; }
+        public ReactiveCommand<Pet, Unit> NavigateToDetailCommand { get; set; }
 
      
 
@@ -79,14 +71,6 @@ namespace NotiPetApp.ViewModels
             => _petsService.RemovePet(id).Select(e => Unit.Default);
         protected override IObservable<Unit> ExecuteInitialize()
             => _petsService.GetPets(Settings.UserId).Select(e => Unit.Default);
-
-        Task ShowVaccines(Pet pet)
-        {
-            return NavigationService.NavigateAsync(ConstantUri.ShowVaccines, new NavigationParameters()
-            {
-                {ParameterConstant.Vacinnes,pet}
-            });   
-        }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
      

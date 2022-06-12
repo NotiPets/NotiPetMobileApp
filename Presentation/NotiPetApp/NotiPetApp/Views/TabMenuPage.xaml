@@ -87,7 +87,7 @@
                      >
         <views1:TabView.TabStripBackgroundView>
             <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
-                                     Shadow="{StaticResource ShadowMarkupStyle}"
+                                     Shadow="{OnPlatform Android={StaticResource ShadowMarkupStyle}}"
                                      CornerRadius="20,20,0,0"
                                      Margin="0,10,0,0"
                                     />
