@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+             xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+             xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+             xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+             x:Class="NotiPetApp.Views.UserSettings.HelpPage"
+             BackgroundColor="Transparent">
+
+        <ContentPage.Resources>
+            <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"
+                                                  DefaultImage="user.png"/>
+            <Style TargetType="controls:EntryCustom"
+            >
+                <Setter  Property="ActiveLineColor" Value="{DynamicResource PrimaryDark}"/>
+                <Setter  Property="LineColor" Value="{DynamicResource PrimaryBackgroundDark}"/>
+                <Setter  Property="TextColor" Value="{DynamicResource PrimaryLetterColor}"/>
+                <Setter Property="PlaceHolderSize" Value="16"/>
+                <Setter Property="FontSize"  Value="16"/>
+
+            </Style>
+        </ContentPage.Resources>
+    <Grid RowDefinitions="Auto">
+         <pancakeView:PancakeView    BackgroundColor="White"
+                                     CornerRadius="20"
+                                     Margin="{StaticResource MarginPopUp}"
+                                     Grid.Row="1"
+                                     HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="CenterAndExpand">
+        
+        <pancakeView:PancakeView.Shadow>
+                <pancakeView:DropShadow Offset="10,10"/>
+            </pancakeView:PancakeView.Shadow>
+            <ScrollView>
+
+            <Grid ColumnDefinitions="*,Auto,Auto" 
+                  Padding="5"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" >
+                
+                <Label Text="Ask for help"
+                       TextColor="{DynamicResource   PrimaryDark}"
+                       Grid.Row="0"
+                       Style="{StaticResource LabelTitleBold}"
+                       Grid.ColumnSpan="3"
+                       FontSize="20"
+                       Padding="10"
+  
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"/>
+                
+                <ImageButton BackgroundColor="{DynamicResource BackgroundColor}"
+                             HorizontalOptions="StartAndExpand"
+                             Command="{Binding NavigateGoBackCommand}"
+                             Grid.Row="0"
+                             Grid.Column="0"
+                             VerticalOptions="Start"
+                             CornerRadius="20"
+                             Padding="4"
+                >
+                    <ImageButton.Source>
+
+                        <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
+                                         Color="{DynamicResource PrimaryDark}"
+                                         FontFamily="{StaticResource FontSolid}"/>
+                    </ImageButton.Source>
+                </ImageButton>
+
+                <controls:EntryCustom        Grid.ColumnSpan="3"
+                                             Grid.Row="1"
+                                             PlaceHolder="Title"
+                                             x:Name="LastName"
+                                             ValidationColor="{DynamicResource ErrorColor}"
+                                             Text="{Binding Title}"
+                                     
+                /> 
+                <Label 
+                                           VerticalOptions="CenterAndExpand"
+                                           TextColor="{DynamicResource PrimaryDark}"
+                                           Text="Describe your case"
+                                           Grid.Row="2"
+                                           Margin="10"
+                                           Style="{StaticResource LabelTitleBold}"
+                                           Grid.ColumnSpan="3"/>
+                               
+                <Editor Text="{Binding Comment }" 
+                        Grid.Row="3"
+                        Margin="10,0"
+                        Grid.ColumnSpan="3"
+                        AutoSize="TextChanges"
+                        Placeholder="Write"
+                        Style="{StaticResource  SmallEditorRegular}"/>
+
+                <controls:TouchViewControl       Grid.ColumnSpan="2"
+                                                 Command="{Binding SendCommand}"
+                                                 CornerRadius="25"
+                                                 Margin="20"
+                                                 Padding="10"
+                                                 CommandText="Send"
+                                                 Grid.Row="4"
+                                                 BackgroundColor="{DynamicResource PrimaryDark }"/> 
+                
+
+                
+                </Grid>
+            </ScrollView>
+            </pancakeView:PancakeView>
+    </Grid>
+</ContentPage>

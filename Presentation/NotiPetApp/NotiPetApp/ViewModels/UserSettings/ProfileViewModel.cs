@@ -20,6 +20,7 @@ namespace NotiPetApp.ViewModels
         public User User => _user.Value;
         public ReactiveCommand<Unit,User> GetUserCommand { get; set; }
         public ReactiveCommand<Unit,Unit> NavigateToEditProfileCommand{ get; set; }
+        public ReactiveCommand<Unit,Unit> NavigateToHelpPageCommand{ get; set; }
 
         //NavigateToEditProfileCommand
         public ProfileViewModel(INavigationService navigationService, IPageDialogService dialogPage,
@@ -33,7 +34,10 @@ namespace NotiPetApp.ViewModels
                 new(ConstantDictionary.Settings,"settings",3,ReactiveCommand.CreateFromTask(NavigateToSettings),SizeItem.Small),
                 new(ConstantDictionary.Logout,"logOut",4,ReactiveCommand.CreateFromTask(LogOut),SizeItem.Small),
             };
-            
+            NavigateToHelpPageCommand= ReactiveCommand.CreateFromTask<Unit>((b,token)=> NavigationService.NavigateAsync("HelpPage",parameters:new NavigationParameters()
+            {
+                {ParameterConstant.User,User}
+            },true)); 
             NavigateToEditProfileCommand = ReactiveCommand.CreateFromTask<Unit>((param) =>
             {
                 return NavigationService.NavigateAsync(ConstantUri.EditProfile);

@@ -29,6 +29,19 @@
                                      CornerRadius="0,0,30,30">
                 <Grid RowDefinitions="Auto,Auto,Auto"
                       ColumnDefinitions="*,Auto,*">
+                    <ImageButton  Grid.Column="0"
+                                  HorizontalOptions="StartAndExpand"
+                                  
+                                  Margin="5"
+                                  HeightRequest="40"
+                                  Command="{Binding NavigateToHelpPageCommand}"
+                                  BackgroundColor="Transparent">
+                        <ImageButton.Source>
+                            <FontImageSource Glyph="&#xe94c;"
+                                             Color="{DynamicResource SecondaryColor}"
+                                             FontFamily="{StaticResource FontSolid}"/>
+                        </ImageButton.Source>
+                    </ImageButton>
                     <Label Text="Profile"  Grid.Column="1"
                            Style="{StaticResource LabelLarge}"/>
                     <ImageButton  Grid.Column="2"

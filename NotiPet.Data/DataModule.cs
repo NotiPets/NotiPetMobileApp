@@ -20,6 +20,7 @@ namespace NotiPet.Data
             containerRegistry.RegisterSingleton<IAssetServiceApi, AssetServiceApi>();
             containerRegistry.RegisterSingleton<IUserServiceApi,UserServiceApi>(); 
             containerRegistry.RegisterSingleton<IPetServiceApi,PetServiceApi>();
+            containerRegistry.RegisterSingleton<ITicketServiceApi,TicketServiceApi>();
             containerRegistry.RegisterSingleton<IBusinessServiceApi,BusinessServiceApi>();
             containerRegistry.RegisterSingleton<ISpecialistServiceApi,SpecialistsServiceApi>();
             containerRegistry.RegisterSingleton<IRatingsService,RatingsService>();
@@ -36,6 +37,7 @@ namespace NotiPet.Data
             containerRegistry.RegisterSingleton<ISalesService,SalesService>();
             containerRegistry.RegisterSingleton<IDataBaseProvider<Realm>, RealmDatabaseProvider>(); 
             containerRegistry.RegisterSingleton(typeof(IDataSource<>), typeof(Repository<>));
+            containerRegistry.RegisterSingleton<ITicketService,TicketService>();
             containerRegistry.RegisterScoped<HubConnection>(x =>
                 new HubConnectionBuilder().WithUrl($"{api}/Appointments/Inform").Build());
         }

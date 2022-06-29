@@ -52,7 +52,8 @@ namespace NotiPet.Data.Mappers
                     .ReverseMap();
                 cfg.CreateMap<ReviewDto,Review >()
                     .ReverseMap();
-                
+                cfg.CreateMap<TicketDto,Ticket >()
+                    .ReverseMap();
                 cfg.ShouldUseConstructor = x =>! x.IsPrivate;
             }); 
             automapper.AssertConfigurationIsValid();
