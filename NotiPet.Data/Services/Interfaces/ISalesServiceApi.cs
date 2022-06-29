@@ -12,5 +12,6 @@ namespace NotiPet.Data.Services
         public IObservable<SaleDto> PostSale([Body]RequestOrderDto requestOrderDto);
         public IObservable<IEnumerable<AppointmentDto>> GetAppointmentByUserId(string userId);
         IObservable<bool> CancelOrder(string id);
+        IObservable<AppointmentDto>  UpdateAppointment(AppointmentDto appointmentSaleAppointment);
     }
 }

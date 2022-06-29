@@ -26,6 +26,7 @@ namespace NotiPet.Domain.Models
         public DateTime Date { get;  }
         public DateTime Created { get;}
         public DateTime Updated { get; }
+        public bool CantEdit =>   DateTime.Now.Subtract(Date).TotalHours < 24;
 
     }
     public class CreateAppointment

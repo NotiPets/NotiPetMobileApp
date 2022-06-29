@@ -4,6 +4,7 @@ using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using DynamicData;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
@@ -43,8 +44,21 @@ namespace NotiPetApp.ViewModels
                 {ParameterConstant.Pet,param}
             }));
             DeletePetCommand = ReactiveCommand.CreateFromObservable<string,Unit>(RemovePet);
+            NavigateToDetailCommand = ReactiveCommand.CreateFromTask<Pet>(NavigateToDetail);
 
         }
+
+        private  Task NavigateToDetail(Pet pet)
+        {
+            return NavigationService.NavigateAsync(ConstantUri.PetDetail, new NavigationParameters()
+            {
+                {ParameterConstant.Pet,pet}
+            });
+        }
+
+        public ReactiveCommand<Pet, Unit> NavigateToDetailCommand { get; set; }
+
+     
 
         public ReactiveCommand<Pet, Unit> EditPetCommand { get; set; }
 
@@ -57,8 +71,6 @@ namespace NotiPetApp.ViewModels
             => _petsService.RemovePet(id).Select(e => Unit.Default);
         protected override IObservable<Unit> ExecuteInitialize()
             => _petsService.GetPets(Settings.UserId).Select(e => Unit.Default);
-
-
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
      

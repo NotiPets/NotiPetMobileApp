@@ -45,7 +45,7 @@
                 <Label VerticalTextAlignment="End"
                        Text="{TemplateBinding Text}"
                        HorizontalTextAlignment="Center"
-                       Style="{StaticResource LabelSubtitleBold}"
+                       Style="{StaticResource LabelSubtitle}"
                        TextColor="{TemplateBinding CurrentTextColor}"
                        FontSize="{TemplateBinding CurrentFontSize}"/>
                 <pancakeView:PancakeView HeightRequest="70"
@@ -83,10 +83,11 @@
                     x:Name="TabMenu"
                     TabStripHeight="65"
                     IsTabTransitionEnabled="True"
+                    
                      >
         <views1:TabView.TabStripBackgroundView>
             <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
-                                     Shadow="{StaticResource ShadowMarkupStyle}"
+                                     Shadow="{OnPlatform Android={StaticResource ShadowMarkupStyle}}"
                                      CornerRadius="20,20,0,0"
                                      Margin="0,10,0,0"
                                     />

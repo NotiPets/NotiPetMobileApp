@@ -143,7 +143,7 @@
                                           
                                           
                                           CacheType="Memory"
-                                        
+                                        HeightRequest="80"
                                           Aspect="AspectFill"
                                           WidthRequest="50"/>
                       </pancakeView:PancakeView>
@@ -159,30 +159,12 @@
                                  LineBreakMode="TailTruncation"
                                  Grid.Column="1"
                                  Grid.ColumnSpan="2"/>
-                      <xForms:SfRating Precision="Half"
-                                       ItemCount="5"
-                                       IsEnabled="False"
-                                       Margin="0,0,10,0"
-                                       ItemSize="15"
-                                       Value="4"
-                                       HeightRequest="25"
-                                        Grid.Row="3"
-                                       Grid.Column="1">
-                          <xForms:SfRating.RatingSettings>
-                              <xForms:SfRatingSettings RatedFill="{DynamicResource RatingColor}" UnRatedFill="Transparent" RatedStroke="LightGray" RatedStrokeWidth="1" UnRatedStrokeWidth="1" />
-                          </xForms:SfRating.RatingSettings>
-                          </xForms:SfRating>
-                          <Label Text="125 Reviews"
-                                 Grid.Row="3"
-                                 Grid.Column="2"
-                                 Style="{StaticResource LabelSmall}"
-                                 />
-                          <Label Text="{Binding Price,StringFormat='{0:C2}'}"
-                                 Grid.Row="4"
-                                 Style="{StaticResource LabelSubtitle}"
-                                 Grid.Column="2"
-                                 HorizontalTextAlignment="Center"
-                                 />
+                      <Label Text="{Binding Price,StringFormat='{0:C2}'}"
+                             Grid.Row="3"
+                             Style="{StaticResource LabelSubtitle}"
+                             Grid.Column="2"
+                             HorizontalTextAlignment="Center"
+                      />
                   </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -30,6 +30,9 @@ namespace NotiPet.Domain.Validator
                 .WithMessage("BusinessId not valid");
             this.RuleFor(e => e.Date)
                 .GreaterThanOrEqualTo(DateTime.Today);
+            this.RuleFor(e => e.Date.TimeOfDay)
+                .Must(x=>x.Hours>8 && x.Hours<18)
+                .WithMessage("Should be between 8 am to 6 pm");;
             this.RuleFor(x => x.AssetServiceId)
                 .Must(e=>e!=null&&e>0)
                 .WithMessage("you must select a service");;

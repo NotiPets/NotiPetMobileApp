@@ -16,5 +16,7 @@ namespace NotiPet.Data
         public IObservable<HttpResponseMessage> GetAppointmentByUser(string userId);
         [Put("/Orders/CancelOrder/{id}")]
         IObservable<HttpResponseMessage> CancelOrder(string id);
+        [Put("/Appointments/{id}")]
+        IObservable<HttpResponseMessage> UpdateAppointment(string id, [Body]AppointmentDto appointmentSaleAppointment);
     }
 }

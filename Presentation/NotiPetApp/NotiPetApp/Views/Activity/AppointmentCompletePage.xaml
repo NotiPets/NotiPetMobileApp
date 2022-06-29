@@ -29,14 +29,14 @@
             </ImageButton>
             <pancakeView:PancakeView   HorizontalOptions="CenterAndExpand"
                                       Padding="15" Grid.Row="1"
-                                      CornerRadius="80"
+                                      CornerRadius="75"
                                       HeightRequest="120"
                                       WidthRequest="120"
                                       BackgroundColor="White"
                                       Margin="5,10,10,0" >
                 
 
-                <Image  Source="Check"
+                <Image  Source="check.png"
                         Aspect="AspectFit" 
                         Margin="20"
                         />
@@ -65,7 +65,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    BackgroundColor="{DynamicResource PrimaryDark }"
-                   CornerRadius="20"
+                   CornerRadius="18"
                    HasShadow="False"
                    Padding="20,8">
                 <Label Text="{Binding Date,StringFormat='{0:MMMM} {0:dd} at {0:hh:mm tt}'}"
@@ -75,7 +75,7 @@
             <controls:TouchViewControl   
                 Grid.Row="5"
                 Command="{Binding GoToAppointments}"
-                CornerRadius="29"
+                CornerRadius="28"
                 Margin="40,15"
               
                 Padding="14"

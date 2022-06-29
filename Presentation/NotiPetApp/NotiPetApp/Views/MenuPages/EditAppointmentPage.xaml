@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:BasePage x:TypeArguments="viewModels:EditAppointmentViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
+                xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
+                xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:vets="clr-namespace:NotiPetApp.Views.Vets;assembly=NotiPetApp"
+                xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:iOsSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                x:Class="NotiPetApp.Views.MenuPages.EditAppointmentPage"
+                BackgroundColor="Transparent"
+                iOsSpecific:Page.ModalPresentationStyle="OverFullScreen"
+                x:DataType="viewModels:EditAppointmentViewModel">
+    <Grid>
+     <BoxView Color="Black"
+              Opacity="0.7"/>
+    <pancakeView:PancakeView Margin="0,20,0,0"
+                             VerticalOptions="End"
+                             BackgroundColor="{DynamicResource BackgroundColor}"
+                             Shadow="{StaticResource ShadowMarkupStyle}"
+                             CornerRadius="30,30,0,0"
+                             Padding="10">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+              ColumnDefinitions="*,*">
+            <Label Text="Edit Appointment"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Style="{StaticResource LabelLarge}"
+                   HorizontalTextAlignment="Center"
+            />
+            <ImageButton BackgroundColor="Transparent"
+                         Command="{Binding NavigateGoBackCommand}"
+                         Grid.ColumnSpan="2"
+                         HorizontalOptions="StartAndExpand"
+                         Margin="10,5"
+                         Grid.Row="0">
+                <ImageButton.Source>
+
+                    <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Close}"
+                                     Color="{DynamicResource PrimaryDark}"
+                                     FontFamily="{StaticResource FontSolid}"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <vets:VeterinaryContentView Grid.Row="2"
+                                        BindingContext="{Binding AppointmentSale.Veterinary}"
+                                        x:Name="VeterinaryContentView"
+                                        Grid.ColumnSpan="2"/>
+            <Label    Grid.Row="3"
+                      Grid.ColumnSpan="2"
+                      Margin="20,0"
+                      Text="Services"/>
+            <Label    Grid.Row="4"
+                      Grid.ColumnSpan="2"
+                      Margin="20,0"
+                      Text="{Binding AppointmentSale.AssetService.Name}"/>
+            <Label    Grid.Row="5"
+                      Margin="20,0"
+                      Grid.ColumnSpan="2"
+                      Text="Date"/>
+            <DatePicker Grid.Row="6"
+                        Margin="20,0"
+                        Date="{Binding AppointmentSale.Appointment.Date}"
+                        Grid.ColumnSpan="2"/>
+            <Label    Grid.Row="7"
+                      Margin="20,0"
+                      Grid.ColumnSpan="2"
+                      Text="Time"/>
+            <TimePicker    Grid.Row="8"
+                            Margin="20,0,0,0"
+                            Time="{Binding AppointmentSale.Appointment.Date.TimeOfDay}"
+                       Grid.Column="0"
+                      />
+
+            <controls:TouchViewControl       
+                Command="{Binding CanCancelCommand}"
+                VerticalOptions="CenterAndExpand"
+                CornerRadius="25"
+                Margin="20"
+                Padding="14"
+                Grid.Column="0"
+                CommandText="Cancel"
+                TextColor="IndianRed"
+                Grid.Row="9"
+                BackgroundColor="Transparent"/> 
+            <controls:TouchViewControl       
+                Command="{Binding UpdateAppointmentCommand}"
+                VerticalOptions="CenterAndExpand"
+                CornerRadius="25"
+                Margin="20"
+                Padding="14"
+                Grid.Column="1"
+                CommandText="Update"
+                Grid.Row="9"
+                BackgroundColor="{DynamicResource PrimaryDark }"/> 
+        </Grid>
+   </pancakeView:PancakeView>
+    </Grid>
+</views:BasePage>

@@ -63,16 +63,21 @@
             </pancakeView:PancakeView>
             <ListView Grid.Row="1"
                             ItemsSource="{Binding Appointments}"
-                            HasUnevenRows="True">
+                            HasUnevenRows="True"
+                            SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="models:AppointmentSale">
                         <ViewCell>
                             <Grid>
-                            <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
-                                                     Shadow="{StaticResource ShadowMarkupStyle}"
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AppointmentViewModel}}, Path=EditAppointmentCommand}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+                                <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
+                                                         Shadow="{StaticResource ShadowMarkupStyle}"
                                                
-                                                     Margin="10"
-                                                     CornerRadius="30">
+                                                         Margin="10"
+                                                         CornerRadius="30">
                             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"  ColumnDefinitions="Auto,Auto,*"
                             >
 
@@ -115,7 +120,7 @@
                           Grid.ColumnSpan="2"/>
                    <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="End" Orientation="Horizontal" Margin="10,0,5,5" Padding="5,10,10,5">
                        <pancakeView:PancakeView WidthRequest="25"
-                                                CornerRadius="25" Margin="20,0,5,0"
+                                                CornerRadius="10" Margin="20,0,5,0"
                                                 BackgroundColor="#dae9ed"
                                                 HeightRequest="25">
            

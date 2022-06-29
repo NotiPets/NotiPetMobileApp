@@ -35,5 +35,15 @@ namespace NotiPet.Mocks.Services
         {
             throw new NotImplementedException();
         }
+
+        public IObservable<IEnumerable<VaccinateDto>> GetVaccinesByPet(string petId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IObservable<VaccinatePdfDto> GetVaccinePdf(string vaccinateId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

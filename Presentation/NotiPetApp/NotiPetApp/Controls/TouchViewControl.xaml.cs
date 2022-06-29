@@ -29,7 +29,7 @@ namespace NotiPetApp.Controls
         public static readonly BindableProperty FontFamilyProperty =
             BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TouchViewControl),default);
         public static readonly BindableProperty FontSizeProperty =
-            BindableProperty.Create(nameof(FontSize), typeof(double), typeof(TouchViewControl),default);   
+            BindableProperty.Create(nameof(FontSize), typeof(double), typeof(TouchViewControl),16d);   
         
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(TouchViewControl), null);
         public object CommandParameter

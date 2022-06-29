@@ -56,7 +56,7 @@ namespace NotiPetApp.ViewModels.Activity
 
         private IObservable<Sales> CreateAppointment()
         {
-            _createAppointment.Date = _createAppointment.Date.Add(Time);
+            _createAppointment.Date = _createAppointment.Date.Date.Add(Time);
             _createAppointment.AssetServiceId = SelectedService?.AssetsServiceType;
             var validate = _validator.Validate(_createAppointment);
             if (!validate.IsValid)
@@ -89,7 +89,7 @@ namespace NotiPetApp.ViewModels.Activity
             {
                 _createAppointment = parameters[ParameterConstant.VeterinaryPickerAppointment] as CreateAppointment;
                 Date= (_createAppointment?.Date).GetValueOrDefault();
-                Time = Date.TimeOfDay;
+                Time = DateTime.Now.TimeOfDay;
             }
             if (parameters.ContainsKey(nameof(Veterinary)))
             {

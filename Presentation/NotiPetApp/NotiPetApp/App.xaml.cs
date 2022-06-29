@@ -14,6 +14,7 @@ using NotiPetApp.Views;
 using NotiPetApp.Views.Activity;
 using NotiPetApp.Views.Authentication;
 using NotiPetApp.Views.MenuPages;
+using NotiPetApp.Views.Pets;
 using NotiPetApp.Views.PopUp;
 using NotiPetApp.Views.Vets;
 using Plugin.SharedTransitions;
@@ -58,6 +59,9 @@ namespace NotiPetApp
             
         }
 
+
+
+
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<ISchedulerProvider>(() => new SchedulerProvider(RxApp.MainThreadScheduler,RxApp.TaskpoolScheduler));
@@ -92,13 +96,13 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<SpecialistDetailPage, SpecialistDetailViewModel>(); 
             containerRegistry.RegisterForNavigation<VeterinaryPickerPage, VeterinaryPickerViewModel>();  
             containerRegistry.RegisterForNavigation<AppointmentCompletePage, AppointmentCompleteViewModel>();  
-            containerRegistry.RegisterForNavigation<CreateReviewsPage, CreateReviewsViewModel>();  
+            containerRegistry.RegisterForNavigation<CreateReviewsPage, CreateReviewsViewModel>();
+            containerRegistry.RegisterForNavigation<EditAppointmentPage,EditAppointmentViewModel>();
+            containerRegistry.RegisterForNavigation<VaccinesPage,VaccinesViewModel>();
+            containerRegistry.RegisterForNavigation<PetDetailPage,PetDetailViewModel>();
             ContainerProvider = Container;
 
 
         }
-        
-      
-
     }
 }

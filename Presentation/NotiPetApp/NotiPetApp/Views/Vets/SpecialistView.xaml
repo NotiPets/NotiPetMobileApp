@@ -15,7 +15,8 @@
                        x:DataType="viewModels:SpecialistViewModel"
                        Title="Specialist">
     <controls:TabItemReactive.Resources>
-        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"
+                                              DefaultImage="notImage"/>
     </controls:TabItemReactive.Resources>
     <ListView ItemsSource="{Binding Specialists}"  Margin="10,5,10,5" 
               HasUnevenRows="True"
@@ -58,40 +59,18 @@
                                  Grid.Row="2"
                                  FontSize="16"
                                  MaxLines="1"
-                                 Style="{StaticResource LabelSubtitleBold}"
+                                 Style="{StaticResource LabelSubtitle}" 
                                  LineBreakMode="TailTruncation"
                                  Grid.Column="1"
                                  Grid.ColumnSpan="2"/>
-                      <xForms1:SfRating Precision="Half" 
-                                        ItemCount="5" 
-                                        IsEnabled="False" 
-                                       Margin="0,0,10,0" 
-                                        ItemSize="15" 
-                                        Value="4" 
-                                        HeightRequest="25" 
-                                         Grid.Row="3" 
-                                        Grid.Column="1"> 
-                           <xForms1:SfRating.RatingSettings> 
-                               <xForms1:SfRatingSettings RatedFill="{DynamicResource RatingColor}" UnRatedFill="Transparent" RatedStroke="LightGray" RatedStrokeWidth="1" UnRatedStrokeWidth="1" />
-                           </xForms1:SfRating.RatingSettings> 
-                           </xForms1:SfRating> 
-                          <Label Text="125 Reviews"
-                                 Grid.Row="3"
-                                 Grid.Column="2"
-                                 Style="{StaticResource LabelSmall}"
-                                 />
-                   <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="10,0,5,5" Padding="5,10,10,5">
-                       <Label 
-                           Style="{StaticResource LabelSubtitleBold}" 
-                           HorizontalTextAlignment="Start" 
-                           MaxLines="1"
-                           Text="{Binding User.Description}"
-                       />
-                       
-
-                   </StackLayout>
-                   
-
+                   <Label  Grid.Row="3"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                       Style="{StaticResource LabelSubtitle}" 
+                       HorizontalTextAlignment="Start" 
+                       MaxLines="1"
+                       Text="{Binding User.Description}"
+                   />
                 </Grid>
 
                 </ViewCell>

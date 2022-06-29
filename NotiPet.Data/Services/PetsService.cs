@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using AutoMapper;
 using DynamicData;
@@ -15,6 +16,7 @@ namespace NotiPet.Data.Services
         private readonly IPetServiceApi _petService;
         private readonly IMapper _mapper;
         private SourceCache<Pet, string> _petSource = new SourceCache<Pet, string>(e => e.Id);
+        private SourceList<Vaccinate> _vaccinateSource = new SourceList<Vaccinate>();
         
         public PetsService(IPetServiceApi petService, IMapper mapper)
         {
@@ -65,6 +67,12 @@ namespace NotiPet.Data.Services
         }
         
         public SourceCache<Pet, string> Pets => _petSource;
+        public SourceList<Vaccinate> Vaccinate => _vaccinateSource;
+        public IObservable<VaccinatePdf> GetVaccinePdf(string vaccinateId)
+        {
+            return _petService.GetVaccinePdf(vaccinateId)
+                .Select(_mapper.Map<VaccinatePdf>);
+        }
 
         public Func<Pet, bool> SearchPredicate(string text) =>
             pet => string.IsNullOrEmpty(text)|| (pet.Name.Contains(text));
@@ -90,6 +98,14 @@ namespace NotiPet.Data.Services
                 createPetModel.HasTracker, createPetModel.Birthdate, DateTime.Now, DateTime.Now);
             return _petService.EditPet(_mapper.Map<PetDto>(pet))
                 .Select(_mapper.Map<Pet>);
+        }
+
+        public IObservable<IEnumerable<Vaccinate>> GetVaccinesByPet(string petId)
+        {
+            Vaccinate.Clear();
+            return _petService.GetVaccinesByPet(petId)
+                .Select(_mapper.Map<IEnumerable<Vaccinate>>)
+                .Do(_vaccinateSource.AddRange);
         }
     }
 }

@@ -45,8 +45,7 @@
                     <Label Text="My Profile"  Grid.Column="1"
                            Style="{StaticResource LabelLarge}"/>
                     <controls:TouchViewControl CommandText ="Save" HorizontalOptions="End" 
-                                      Grid.Column="2"
-                             Command="{Binding UpdateCommand}"
+                                      Grid.Column="2" Command="{Binding UpdateCommand}"
                                       TextColor="{StaticResource PrimaryDark}"
                                       FontSize="20"/>
 
@@ -65,20 +64,20 @@
         >
               <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
                           ColumnDefinitions="*,*">
-                  <forms:CachedImage   Source="user"
-                                       Grid.ColumnSpan="2"
-                                       CacheType="Memory"
-                                       HorizontalOptions="CenterAndExpand"
-                                       Margin="10"
-                                       Aspect="AspectFill"
-                                       effects:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
-                                       effects:TouchEffect.PressedOpacity="0.6"
-                                       effects:TouchEffect.AnimationDuration="5"
-                                       effects:TouchEffect.PressedScale="0.8"
-                                       effects:TouchEffect.Command="{Binding TakePhotoCommand }"
-                                       WidthRequest="150"
-                                       Grid.Row="0"
-                                       HeightRequest="150">
+                  <forms:CachedImage    Source="{Binding PictureUrl,Converter={StaticResource Base64StringToImageSource}}"
+                                        Grid.ColumnSpan="2"
+                                        CacheType="Memory"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Margin="10"
+                                        Aspect="AspectFill"
+                                        effects:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                                        effects:TouchEffect.PressedOpacity="0.6"
+                                        effects:TouchEffect.AnimationDuration="5"
+                                        effects:TouchEffect.PressedScale="0.8"
+                                        effects:TouchEffect.Command="{Binding TakePhotoCommand }"
+                                        WidthRequest="150"
+                                        Grid.Row="0"
+                                        HeightRequest="150">
                       <forms:CachedImage.Transformations>
                           <transformations:CircleTransformation />
                       </forms:CachedImage.Transformations>

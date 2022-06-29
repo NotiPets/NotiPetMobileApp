@@ -47,64 +47,6 @@
                                     Grid.Row="2"
                                     HorizontalTextAlignment="Center"
                                     Style="{StaticResource LabelSubtitleBold}"/>
-                   <StackLayout Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center"  Orientation="Horizontal" Margin="0,0,5,5" Padding="5,10,10,5">
-                       <pancakeView:PancakeView WidthRequest="30"
-                                                CornerRadius="15" Margin="20,0,5,0"
-                                                BackgroundColor="#dae9ed"
-                                                Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
-                                                HeightRequest="20">
-           
-                           <Image Source="calendar.png"
-                                  VerticalOptions="CenterAndExpand"
-                                  Margin="5"
-                              
-                           />
-                       </pancakeView:PancakeView>
-                       
-                       <Label FontSize="12"
-                              Style="{StaticResource LabelSubtitleBold}" 
-                              HorizontalTextAlignment="Center" 
-                              VerticalTextAlignment="Center"
-                       >
-                           <Label.FormattedText>
-                               <FormattedString>
-                                   <Span Text="8 AM" ></Span>
-                                   <Span Text=" - " ></Span>
-                                   <Span Text="6 PM"  ></Span>
-
-                               </FormattedString>
-                           </Label.FormattedText>
-                       </Label>
-
-                       <pancakeView:PancakeView WidthRequest="30"
-                                                CornerRadius="15" Margin="0,0,5,0"
-                                                BackgroundColor="#dae9ed"
-                                                Shadow="{pancakeView:ShadowMarkup Offset='2,5',Color=LightGray,BlurRadius=5}"
-                                                HeightRequest="30">
-           
-                           <Image Source="location.png"
-                                  VerticalOptions="CenterAndExpand"
-                                  Margin="5"
-                              
-                           />
-                       </pancakeView:PancakeView>
-                       
-                       <Label 
-                           Style="{StaticResource LabelSubtitleBold}" 
-                           HorizontalTextAlignment="Start" 
-                           VerticalTextAlignment="Center"
-                       >
-                           <Label.FormattedText>
-                               <FormattedString>
-                                   <Span Text="{Binding Distance}" ></Span>
-                                   <Span Text=" " ></Span>
-                                   <Span Text="km"  ></Span>
-
-                               </FormattedString>
-                           </Label.FormattedText>
-                       </Label>
-                       
-                   </StackLayout>
 
             </Grid>
         </pancakeView:PancakeView>

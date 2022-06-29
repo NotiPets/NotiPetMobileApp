@@ -18,6 +18,7 @@ namespace NotiPetApp.Views.MenuPages
         {
             InitializeComponent();
             BindingContext = App.Current.Container.Resolve(typeof(ProfileViewModel));
+            ViewModel?.InitializeCommand.Execute().Subscribe().Dispose();
         }
         
     }
