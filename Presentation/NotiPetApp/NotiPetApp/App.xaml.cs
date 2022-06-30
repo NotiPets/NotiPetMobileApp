@@ -16,6 +16,7 @@ using NotiPetApp.Views.Authentication;
 using NotiPetApp.Views.MenuPages;
 using NotiPetApp.Views.Pets;
 using NotiPetApp.Views.PopUp;
+using NotiPetApp.Views.UserSettings;
 using NotiPetApp.Views.Vets;
 using Plugin.SharedTransitions;
 using Prism;
@@ -100,6 +101,7 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<EditAppointmentPage,EditAppointmentViewModel>();
             containerRegistry.RegisterForNavigation<VaccinesPage,VaccinesViewModel>();
             containerRegistry.RegisterForNavigation<PetDetailPage,PetDetailViewModel>();
+            containerRegistry.RegisterForNavigation<HelpPage,HelpPageViewModel>();
             ContainerProvider = Container;
 
 
