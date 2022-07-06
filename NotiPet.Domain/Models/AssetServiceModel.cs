@@ -34,7 +34,7 @@ namespace NotiPet.Domain.Models
         public DateTime? Created { get; set; }
         public DateTime? Updated { get; set; }
         public AssetsServiceTypeId AssetServiceType => (AssetsServiceTypeId) AssetsServiceType;
-        public string PictureUrl { get; set; } = "notImage";
+        public string PictureUrl { get; set; } 
         public override string ToString()
         {
             return $"{Name} - {Price:C2}";

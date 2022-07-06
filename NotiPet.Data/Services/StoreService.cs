@@ -71,7 +71,7 @@ namespace NotiPet.Data.Services
         public IObservable<IEnumerable<AssetServiceModel>> GetServicesByBusinessId(int id)
         {
             return _assetServiceApi.GetServicesByBusinessId(id)
-                .Select(e => _mapper.Map<IEnumerable<AssetServiceModel>>(e));
+                .Select(e => _mapper.Map<IEnumerable<AssetServiceModel>>(e.Where(x=>x.AssetsServiceType == 1)));
         }
 
         public void Dispose()

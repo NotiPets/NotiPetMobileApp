@@ -10,9 +10,14 @@
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                 xmlns:xForms1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+                xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                 x:Class="NotiPetApp.Views.MenuPages.StorePage"
                 x:TypeArguments="viewModels:StoreViewModel"
                 x:DataType="viewModels:StoreViewModel">
+    <ContentPage.Resources>
+        <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"
+                                              DefaultImage="notImage.png"/>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,*"
               RowSpacing="20">
@@ -138,10 +143,7 @@
                                 Padding="0"
                                 CornerRadius="20"
                                 Margin="5,10,10,0">
-                      <forms:CachedImage  Source="{Binding PictureUrl}"
-                                        
-                                          
-                                          
+                      <forms:CachedImage  Source="{Binding PictureUrl,Converter={StaticResource Base64StringToImageSource}}"
                                           CacheType="Memory"
                                         HeightRequest="80"
                                           Aspect="AspectFill"

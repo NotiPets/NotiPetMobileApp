@@ -17,5 +17,6 @@ namespace NotiPet.Data.Dtos
         public BusinessDto Business { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
+        public string PictureUrl { get; set; }
     }
 }

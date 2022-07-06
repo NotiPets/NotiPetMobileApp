@@ -66,7 +66,7 @@
                                   Text="Delete"
                                   IsDestructive="True"/>
                         <MenuItem Command="{Binding Source={x:Reference PetPage},Path=ViewModel.EditPetCommand}"
-                                  CommandParameter="{Binding Id}"
+                                  CommandParameter="{Binding .}"
                                   Text="Edit"/>
                     </ViewCell.ContextActions>
                     <StackLayout>

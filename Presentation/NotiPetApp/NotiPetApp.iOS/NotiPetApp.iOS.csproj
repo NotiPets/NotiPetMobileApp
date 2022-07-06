@@ -188,5 +188,11 @@
   <ItemGroup>
     <Content Include="GoogleService-Info.plist" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\user.png">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </BundleResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

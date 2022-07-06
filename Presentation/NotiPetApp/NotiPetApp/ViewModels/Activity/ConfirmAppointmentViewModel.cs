@@ -74,8 +74,8 @@ namespace NotiPetApp.ViewModels.Activity
     
                 var disposable = new CompositeDisposable();
               var getData = _storeService.GetServicesByBusinessId(_createAppointment.BusinessId);
-              _servicesAvailable = getData.ToProperty(this, x => x.ServicesAvailable);
-              getData.Select(e => Unit.Default)
+              _servicesAvailable = getData.WhereNotNull().ToProperty(this, x => x.ServicesAvailable);
+              getData.Select(e =>  Unit.Default)
                     .Subscribe(observer);
 
                 return disposable;
