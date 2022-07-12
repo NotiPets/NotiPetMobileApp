@@ -5,6 +5,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DynamicData.Binding;
 using NotiPetApp.ViewModels;
 using ReactiveUI;
 using Xamarin.Forms;
@@ -22,9 +23,8 @@ namespace NotiPetApp.Views.MenuPages
 
         protected override CompositeDisposable ManageDisposables(CompositeDisposable disposables)
         {
-            disposables.Add(this.OneWayBind(ViewModel,vm=>vm.Products,vw=>vw.Products.ItemsSource));
             disposables.Add(this.OneWayBind(ViewModel,vm=>vm.ParameterOptions,vw=>vw.Parameters.ItemSource));
-             return base.ManageDisposables(disposables);
+            return base.ManageDisposables(disposables);
         }
 
         protected override void OnBindingContextChanged()

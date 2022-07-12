@@ -52,7 +52,9 @@ namespace NotiPet.Data.Services
         {
             var parameters = new List<ParameterOption>()
             {
-                new ParameterOption($"{AssetsServiceTypeId.Product}",true,false,1,"Filter")
+                new ParameterOption($"All",true,false,1,"Filter")
+                    .SetFilterExpression<AssetServiceModel>(e => true),
+                new ParameterOption($"{AssetsServiceTypeId.Product}",false,false,1,"Filter")
                     .SetFilterExpression<AssetServiceModel>(e => e.AssetServiceType == AssetsServiceTypeId.Product),
                 
                 new ParameterOption($"{AssetsServiceTypeId.Service}",false,false,2,"Filter")

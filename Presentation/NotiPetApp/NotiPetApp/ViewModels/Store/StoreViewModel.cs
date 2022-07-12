@@ -64,14 +64,14 @@ namespace NotiPetApp.ViewModels
           var filterPredicate = notificationParameters
               .WhenPropertyChanged(e => e.IsActive, false)
               .StartWith(defaultFilter)
-              .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
+              .Throttle(TimeSpan.FromMilliseconds(100), RxApp.TaskpoolScheduler)
               .DistinctUntilChanged()
               .Where(x=>!x.Sender.IsSort)
               .Select(e=> (e.Value)?e:defaultFilter)
               .Select(e => e.Sender.GetFilterExpression<Func<AssetServiceModel, bool>>());
           
           var searchPredicate = this.WhenAnyValue(x => x.SearchText)
-                .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
+                .Throttle(TimeSpan.FromMilliseconds(1000), RxApp.MainThreadScheduler)
                 .DistinctUntilChanged()
                 .Select(SearchFunc);
             
@@ -86,16 +86,16 @@ namespace NotiPetApp.ViewModels
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Filter(filterPredicate)
                 .Filter(searchPredicate)
-                .Sort(sortPredicate)
                 .Bind(out _assetService)
                 .DisposeMany()
-                .Subscribe()
+                .Subscribe((x) =>
+                {
+                    Console.WriteLine(x);
+                })
                 .DisposeWith(Subscriptions);
             InitializeDataCommand  = ReactiveCommand.CreateFromObservable(InitializeData);
                 NavigateToFilterCommand = ReactiveCommand.CreateFromTask(NavigateToFilter);
                 NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b,token) =>   NavigationService.GoBackAsync());
-            
-            
         }
 
         public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get;  }
