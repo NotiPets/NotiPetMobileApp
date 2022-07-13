@@ -25,16 +25,16 @@
         <value>Nombre de usuario</value>
     </data>
     <data name="Password" xml:space="preserve">
-        <value> Contraseña</value>
+        <value>Contraseña</value>
     </data>
     <data name="ForgotPassword" xml:space="preserve">
-        <value>¿Se te olvidó tu contraseña?</value>
+        <value>¿Olvidó tu contraseña?</value>
     </data>
     <data name="Login" xml:space="preserve">
         <value>Iniciar sesión</value>
     </data>
     <data name="DonthaveaNotipetaccountyet" xml:space="preserve">
-        <value>¿Todavía no tienes una cuenta en Notipet?</value>
+        <value>¿Todavía no tienes una cuenta en NotiPet?</value>
     </data>
     <data name="SignUp" xml:space="preserve">
         <value>Registrarse</value>
@@ -118,7 +118,7 @@
         <value>Emergencia</value>
     </data>
     <data name="Howcanwehelpyou" xml:space="preserve">
-        <value>¿Como podemos ayudarte </value>
+        <value>¿Cómo podemos ayudarte </value>
     </data>
     <data name="Home" xml:space="preserve">
         <value>Inicio</value>
@@ -166,7 +166,7 @@
         <value>Reseñas</value>
     </data>
     <data name="Ratetheservice" xml:space="preserve">
-        <value>Evalue el servicio</value>
+        <value>Evalúe el servicio</value>
     </data>
     <data name="Send" xml:space="preserve">
         <value>Enviar</value>
@@ -174,8 +174,8 @@
     <data name="AddPets" xml:space="preserve">
         <value>Agregar mascotas</value>
     </data>
-    <data name="PersonalInformatión" xml:space="preserve">
-        <value>Informacion personal</value>
+    <data name="PersonalInformation" xml:space="preserve">
+        <value>Información personal</value>
     </data>
     <data name="Petsname" xml:space="preserve">
         <value>Nombre de mascota</value>
@@ -190,13 +190,13 @@
         <value>Fecha de nacimiento</value>
     </data>
     <data name="PetType" xml:space="preserve">
-        <value>Tipo de Mascota</value>
+        <value>Tipo de mascota</value>
     </data>
     <data name="Gender" xml:space="preserve">
         <value>Género</value>
     </data>
-    <data name="Additiona Information" xml:space="preserve">
-        <value>Información Adicional</value>
+    <data name="AdditionalInformation" xml:space="preserve">
+        <value>Información adicional</value>
     </data>
     <data name="Save" xml:space="preserve">
         <value>Guardar</value>
@@ -238,7 +238,7 @@
         <value>Selección de fecha</value>
     </data>
     <data name="SelectionPets" xml:space="preserve">
-        <value>Selección Mascotas</value>
+        <value>Selección de mascota</value>
     </data>
     <data name="Continue" xml:space="preserve">
         <value>Continuar</value>
@@ -253,13 +253,13 @@
         <value>Esperándote a ti y a tu mascota</value>
     </data>
     <data name="Female" xml:space="preserve">
-        <value>Femenina</value>
+        <value>Femenino</value>
     </data>
     <data name="Male" xml:space="preserve">
         <value>Masculino</value>
     </data>
     <data name="Areyousurewanttocancelorder" xml:space="preserve">
-        <value>¿Estás seguro de que deseas cancelar el pedido?</value>
+        <value>¿Está seguro de que desea cancelar el pedido?</value>
     </data>
     <data name="Alert" xml:space="preserve">
         <value>Alerta</value>
@@ -289,7 +289,7 @@
         <value>Configuración</value>
     </data>
     <data name="English" xml:space="preserve">
-        <value>Ingles</value>
+        <value>Inglés</value>
     </data>
     <data name="Spanish" xml:space="preserve">
         <value>Español</value>

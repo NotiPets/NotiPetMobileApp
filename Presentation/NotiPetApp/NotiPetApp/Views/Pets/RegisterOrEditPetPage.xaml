@@ -90,7 +90,7 @@
 
             </pancakeView:PancakeView>
             
-            <Label Text="{views1:Translate PersonalInformatión}" Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="3"
+            <Label Text="{views1:Translate PersonalInformation}" Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="3"
                    Margin="10"
                    Style="{StaticResource LabelLarge}"/>   
             
@@ -186,7 +186,7 @@
                     </sf:SfSegmentedControl.SelectionIndicatorSettings>
             </sf:SfSegmentedControl>
 
-            <Label Text="{views1:Translate Additiona Information}" Grid.Row="10"  Grid.Column="0" Grid.ColumnSpan="3"
+            <Label Text="{views1:Translate AdditionalInformation}" Grid.Row="10"  Grid.Column="0" Grid.ColumnSpan="3"
                    Margin="10"
                    Style="{StaticResource LabelLarge}"/>
             <ListView ItemsSource="{Binding InformationAditional}"

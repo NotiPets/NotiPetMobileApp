@@ -14,8 +14,8 @@
     <data name="AboutPage" xml:space="preserve">
         <value>About us</value>
     </data>
-    <data name="Additiona Information" xml:space="preserve">
-        <value>Additional Information
+    <data name="AdditionalInformation" xml:space="preserve">
+        <value>Additional information
 </value>
     </data>
     <data name="AddPets" xml:space="preserve">
@@ -37,10 +37,10 @@
         <value>Biography</value>
     </data>
     <data name="BirthDate" xml:space="preserve">
-        <value>Date of Birth</value>
+        <value>Birth date</value>
     </data>
     <data name="BusinessIdnotvalid" xml:space="preserve">
-        <value>Wrong vet</value>
+        <value>Wrong veterinary</value>
     </data>
     <data name="Calendar" xml:space="preserve">
         <value>Calendar</value>
@@ -76,7 +76,7 @@
         <value>Document</value>
     </data>
     <data name="DonthaveaNotipetaccountyet" xml:space="preserve">
-        <value>Still don't have a Notipet account?</value>
+        <value>Still don't own a NotiPet account?</value>
     </data>
     <data name="Edit" xml:space="preserve">
         <value>Edit</value>
@@ -97,7 +97,7 @@
         <value>Filter</value>
     </data>
     <data name="ForgotPassword" xml:space="preserve">
-        <value>Forget your password?
+        <value>Forgot your password?
 </value>
     </data>
     <data name="Gender" xml:space="preserve">
@@ -114,16 +114,16 @@
         <value>Accept</value>
     </data>
     <data name="Language" xml:space="preserve">
-        <value>Lenguage</value>
+        <value>Language</value>
     </data>
     <data name="Last" xml:space="preserve">
         <value>Finished</value>
     </data>
     <data name="LastName" xml:space="preserve">
-        <value>Last Name</value>
+        <value>Last name</value>
     </data>
     <data name="Login" xml:space="preserve">
-        <value>Log in</value>
+        <value>Login</value>
     </data>
     <data name="Male" xml:space="preserve">
         <value>Male</value>
@@ -147,7 +147,7 @@
         <value>Where your pet will be safe!!</value>
     </data>
     <data name="OnBoarding2" xml:space="preserve">
-        <value>With real-time monitoring of the status of your pets.</value>
+        <value>With real-time tracking of the status of your pets.</value>
     </data>
     <data name="OnBoarding3" xml:space="preserve">
         <value>Emergency care services for your pets.</value>
@@ -156,16 +156,16 @@
         <value>Password</value>
     </data>
     <data name="Passwordnotvalid" xml:space="preserve">
-        <value>Wrong Password</value>
+        <value>Wrong password</value>
     </data>
-    <data name="PersonalInformatión" xml:space="preserve">
-        <value>Additional Information</value>
+    <data name="PersonalInformation" xml:space="preserve">
+        <value>Personal information</value>
     </data>
     <data name="Petsname" xml:space="preserve">
-        <value>The pet's name</value>
+        <value>Pet's name</value>
     </data>
     <data name="PetType" xml:space="preserve">
-        <value>Pet's type</value>
+        <value>Pet type</value>
     </data>
     <data name="PetTypenotvalid" xml:space="preserve">
         <value>Wrong pet type</value>
@@ -223,7 +223,7 @@
         <value>Store</value>
     </data>
     <data name="TermsandConditions" xml:space="preserve">
-        <value>Terms and Conditions
+        <value>Terms and conditions
 </value>
     </data>
     <data name="Time" xml:space="preserve">
@@ -242,7 +242,7 @@
         <value>Username</value>
     </data>
     <data name="Usernamenotvalid" xml:space="preserve">
-        <value>Wrong Username</value>
+        <value>Wrong username</value>
     </data>
     <data name="Vaccines" xml:space="preserve">
         <value>Vaccines</value>
@@ -251,7 +251,7 @@
         <value>Veterinary</value>
     </data>
     <data name="VeterinarySelected" xml:space="preserve">
-        <value>Selected veterinarian:</value>
+        <value>Selected veterinary:</value>
     </data>
     <data name="Waitingforyouandyoupet" xml:space="preserve">
         <value>Waiting for you and your pet</value>
@@ -263,13 +263,13 @@
         <value>Your appointment has been booked!</value>
     </data>
     <data name="CreateAppointment" xml:space="preserve">
-        <value>Create Appointment</value>
+        <value>Create appointment</value>
     </data>
     <data name="Logout" xml:space="preserve">
-        <value>Log out</value>
+        <value>Logout</value>
     </data>
     <data name="MyPets" xml:space="preserve">
-        <value>My Pets</value>
+        <value>My pets</value>
     </data>
     <data name="VeterinaryPicker" xml:space="preserve">
         <value>Veterinary picker</value>

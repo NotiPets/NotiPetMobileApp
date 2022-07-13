@@ -70,11 +70,11 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Información Adicional.
+        ///   Looks up a localized string similar to Información adicional.
         /// </summary>
-        internal static string Additiona_Information {
+        internal static string AdditionalInformation {
             get {
-                return ResourceManager.GetString("Additiona Information", resourceCulture);
+                return ResourceManager.GetString("AdditionalInformation", resourceCulture);
             }
         }
         
@@ -106,7 +106,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ¿Estás seguro de que deseas cancelar el pedido?.
+        ///   Looks up a localized string similar to ¿Está seguro de que desea cancelar el pedido?.
         /// </summary>
         internal static string Areyousurewanttocancelorder {
             get {
@@ -268,7 +268,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ¿Todavía no tienes una cuenta en Notipet?.
+        ///   Looks up a localized string similar to ¿Todavía no tienes una cuenta en NotiPet?.
         /// </summary>
         internal static string DonthaveaNotipetaccountyet {
             get {
@@ -304,7 +304,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ingles.
+        ///   Looks up a localized string similar to Inglés.
         /// </summary>
         internal static string English {
             get {
@@ -322,7 +322,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Femenina.
+        ///   Looks up a localized string similar to Femenino.
         /// </summary>
         internal static string Female {
             get {
@@ -340,7 +340,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ¿Se te olvidó tu contraseña?.
+        ///   Looks up a localized string similar to ¿Olvidó tu contraseña?.
         /// </summary>
         internal static string ForgotPassword {
             get {
@@ -367,7 +367,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ¿Como podemos ayudarte .
+        ///   Looks up a localized string similar to ¿Cómo podemos ayudarte .
         /// </summary>
         internal static string Howcanwehelpyou {
             get {
@@ -520,7 +520,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Contraseña.
+        ///   Looks up a localized string similar to Contraseña.
         /// </summary>
         internal static string Password {
             get {
@@ -538,11 +538,11 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Informacion personal.
+        ///   Looks up a localized string similar to Información personal.
         /// </summary>
-        internal static string PersonalInformatión {
+        internal static string PersonalInformation {
             get {
-                return ResourceManager.GetString("PersonalInformatión", resourceCulture);
+                return ResourceManager.GetString("PersonalInformation", resourceCulture);
             }
         }
         
@@ -556,7 +556,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tipo de Mascota.
+        ///   Looks up a localized string similar to Tipo de mascota.
         /// </summary>
         internal static string PetType {
             get {
@@ -592,7 +592,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Evalue el servicio.
+        ///   Looks up a localized string similar to Evalúe el servicio.
         /// </summary>
         internal static string Ratetheservice {
             get {
@@ -628,7 +628,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Selección Mascotas.
+        ///   Looks up a localized string similar to Selección de mascota.
         /// </summary>
         internal static string SelectionPets {
             get {
