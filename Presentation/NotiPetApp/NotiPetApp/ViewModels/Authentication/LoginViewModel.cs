@@ -77,6 +77,7 @@ namespace NotiPetApp.ViewModels
                 Settings.SetToken(param.Jwt);
                 Settings.Username = param.User.Username;
                 Settings.UserId = param.User.Id;
+                Settings.Veterinary = param.User.BusinessId;
                 return NavigationService.NavigateAsync(ConstantUri.TabMenu);
             },canExecuteMenu);
             AuthenticationCommand.ThrownExceptions.Subscribe((x =>

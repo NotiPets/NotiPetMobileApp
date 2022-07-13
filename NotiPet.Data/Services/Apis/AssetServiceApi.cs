@@ -13,9 +13,9 @@ namespace NotiPet.Data.Services
         {
             _apiClient = apiClient;
         }
-        public IObservable<IEnumerable<AssetServiceDto>> GetAllProducts()
+        public IObservable<IEnumerable<AssetServiceDto>> GetAllProducts(int veterinary)
         {
-           return RemoteRequestObservableAsync<IEnumerable<AssetServiceDto>>(_apiClient.Client.GetAssetService(),true)
+           return RemoteRequestObservableAsync<IEnumerable<AssetServiceDto>>(_apiClient.Client.GetAssetService(veterinary),true)
                 .Select(e => e.Result);
         }
         public IObservable<IEnumerable<AssetServiceDto>> GetServicesByBusinessId(int id)

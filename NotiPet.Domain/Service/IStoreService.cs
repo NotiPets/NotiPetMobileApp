@@ -9,7 +9,7 @@ namespace NotiPet.Domain.Service
     {
         public SourceCache<AssetServiceModel,int> AssetsServices { get;  }
         public SourceCache<ParameterOption,int> ParametersOptions { get;  }
-        public IObservable<IEnumerable<AssetServiceModel>>  GetAllProducts();
+        public IObservable<IEnumerable<AssetServiceModel>> GetAllProducts(int veterinary);
 
         public  IObservable<IEnumerable<ParameterOption>> ParameterOptions();
         IObservable<IEnumerable<AssetServiceModel>> GetServicesByBusinessId(int id);

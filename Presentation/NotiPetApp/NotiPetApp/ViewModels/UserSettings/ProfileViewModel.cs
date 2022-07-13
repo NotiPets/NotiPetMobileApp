@@ -56,9 +56,14 @@ namespace NotiPetApp.ViewModels
             var disposable = new CompositeDisposable();
             var getUser =  GetUserById();
             _user = getUser.ToProperty(this, e => e.User);
-            getUser.Select(e => Unit.Default)
-                .Subscribe(observable)
+            getUser
+                .Subscribe(x =>
+                {
+                    if(x!=null)
+                      Settings.Veterinary = x.BusinessId;
+                })
                 .DisposeWith(disposable);
+            
             AppMenuItems = new ObservableCollection<AppMenuItem>()
             {
                 new(AppResources.MyPets,"patas",1,ReactiveCommand.CreateFromTask(NavigateToMyPets),SizeItem.Small),

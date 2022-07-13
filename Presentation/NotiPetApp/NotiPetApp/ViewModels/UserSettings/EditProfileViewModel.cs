@@ -55,6 +55,8 @@ namespace NotiPetApp.ViewModels
 
          IObservable<User> UpdateUser()
          {
+             if(Veterinary!=null)
+                 BusinessId= Veterinary.Id;
              User.SetToEditUserRequest(this);
              return  _userService.UpdateUser(User.Id, User);
         }

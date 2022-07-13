@@ -26,6 +26,11 @@ namespace NotiPetApp.Helpers
             get=>DeviceInfo.Platform != DevicePlatform.Unknown? Preferences.Get(nameof(UserId),string.Empty):string.Empty; 
             set=>Preferences.Set(nameof(UserId),value);
         }
+        public static int Veterinary      
+        {
+            get=>DeviceInfo.Platform != DevicePlatform.Unknown? Preferences.Get(nameof(Veterinary),0):0; 
+            set=>Preferences.Set(nameof(Veterinary),value);
+        }
         private const string TokenKey="token_auth_keyPRD";
         public static Position Position { get; set; }
         public static string Language     

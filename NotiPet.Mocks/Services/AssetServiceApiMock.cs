@@ -19,7 +19,7 @@ namespace NotiPet.Mocks.Services
             _assetServiceTypes = assetServices.AssetServicesTypes.ToList();
         }
 
-        public IObservable<IEnumerable<AssetServiceDto>> GetAllProducts()
+        public IObservable<IEnumerable<AssetServiceDto>> GetAllProducts(int veterinary)
             => Observable.Return(_assetsServices).Delay(TimeSpan.FromSeconds(1));
 
         public IObservable<IEnumerable<AssetServiceDto>> GetServicesByBusinessId(int id)

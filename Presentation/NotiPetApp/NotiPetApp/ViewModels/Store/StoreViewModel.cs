@@ -105,7 +105,7 @@ namespace NotiPetApp.ViewModels
         IObservable<Unit> InitializeData() => Observable.Create<Unit>(observable =>
                 {
                     var disposable = new CompositeDisposable();
-                    _storeService.GetAllProducts()
+                    _storeService.GetAllProducts(Settings.Veterinary)
                         .Select(e => Unit.Default)
                         .Subscribe()
                         .DisposeWith(disposable);

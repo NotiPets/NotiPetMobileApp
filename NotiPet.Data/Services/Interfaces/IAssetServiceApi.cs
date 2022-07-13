@@ -6,7 +6,7 @@ namespace NotiPet.Data.Services
 {
     public interface IAssetServiceApi
     {
-        public IObservable<IEnumerable<AssetServiceDto>>  GetAllProducts();
+        public IObservable<IEnumerable<AssetServiceDto>> GetAllProducts(int veterinary);
         IObservable<IEnumerable<AssetServiceDto>> GetServicesByBusinessId(int id);
 
     }

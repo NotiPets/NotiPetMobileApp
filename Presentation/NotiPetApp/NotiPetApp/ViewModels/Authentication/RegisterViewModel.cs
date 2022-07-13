@@ -101,6 +101,7 @@ namespace NotiPetApp.ViewModels
                 Settings.SetToken(b.Jwt);
                 Settings.Username = b.User.Username;
                 Settings.UserId = b.User.Id;
+                Settings.Veterinary = b.User.BusinessId;
                 return NavigationService.NavigateAsync(ConstantUri.TabMenu);
             }),canExecuteNavigate);
             InitializeCommand.InvokeCommand(ReactiveCommand.CreateFromTask(SetCurrentLocation));

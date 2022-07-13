@@ -39,11 +39,11 @@ namespace NotiPet.Data.Services
         public SourceCache<ParameterOption, int> ParametersOptions => _parametersOptions;
 
 
-        public IObservable<IEnumerable<AssetServiceModel>> GetAllProducts()
+        public IObservable<IEnumerable<AssetServiceModel>> GetAllProducts(int veterinary)
 
         {
             _assetSourceCache.Clear();
-         return   _assetServiceApi.GetAllProducts()
+         return   _assetServiceApi.GetAllProducts(veterinary)
              .Select(e=>_mapper.Map<List<AssetServiceModel>>(e))
                 .Do(_assetSourceCache.AddOrUpdate);
         }
