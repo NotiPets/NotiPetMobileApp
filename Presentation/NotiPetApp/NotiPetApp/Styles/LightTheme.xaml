@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -15,7 +15,7 @@
     <Color x:Key="SecondaryColor">#006064</Color>
     <Color x:Key="SecondaryLight">#428E92</Color>
     <Color x:Key="SecondaryDark">#00363A</Color>
-    <Color x:Key="RatingColor">#FFCF6F</Color>0
+    <Color x:Key="RatingColor">#FFCF6F</Color>
     <Color x:Key="ErrorColor">#ED4337</Color>
     <Color x:Key="GreenColor">#1cd760</Color>
 
