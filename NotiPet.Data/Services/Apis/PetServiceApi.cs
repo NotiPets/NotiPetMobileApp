@@ -38,15 +38,16 @@ namespace NotiPet.Data.Services
                 .Select(e=>new PetDto());
         }
 
-        public IObservable<IEnumerable<VaccinateDto>> GetVaccinesByPet(string petId)
+        public IObservable<IEnumerable<DigitalVaccineDto>> GetVaccinesByPet(string petId)
         {
-            return RemoteRequestObservableAsync<IEnumerable<VaccinateDto>>(_apiClient.Client.GetVaccinesByPet(petId),true)
+            return RemoteRequestObservableAsync<IEnumerable<DigitalVaccineDto>>(_apiClient.Client.GetVaccinesByPet(petId),true)
                 .Select(e=>e.Result);
         }
 
         public IObservable<VaccinatePdfDto> GetVaccinePdf(string vaccinateId)
         {
-            return Observable.Empty<VaccinatePdfDto>();
+            return RemoteRequestObservableAsync<VaccinatePdfDto>(_apiClient.Client.GetVaccinePdf(vaccinateId),true)
+                .Select(e=>e.Result);
         }
     }
 }

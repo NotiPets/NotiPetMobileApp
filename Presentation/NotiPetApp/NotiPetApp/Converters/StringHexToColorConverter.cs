@@ -1,6 +1,8 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Net.Http;
+using System.Text;
 using Xamarin.Forms;
 
 namespace NotiPetApp.Converters
@@ -45,7 +47,32 @@ namespace NotiPetApp.Converters
             return value;
         }
     }
+    public class Base64StringToStreamConverter:IValueConverter
+    {
     
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                // convert string to stream
+                var myByteArray = value as byte[];
+                MemoryStream stream = new MemoryStream();
+                stream.Write(myByteArray, 0, myByteArray.Length);
+                return stream;
+            }
+            catch (Exception e)
+            {
+                return value;
+            }
+
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
     public class SizeListToHeightRequest:IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

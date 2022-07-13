@@ -2,6 +2,7 @@ using System;
 using AutoMapper;
 using NotiPet.Data.Dtos;
 using NotiPet.Domain.Models;
+using DigitalVaccine = NotiPet.Domain.Models.DigitalVaccine;
 
 namespace NotiPet.Data.Mappers
 {
@@ -51,6 +52,13 @@ namespace NotiPet.Data.Mappers
                 cfg.CreateMap<ReviewDto,Review >()
                     .ReverseMap();
                 cfg.CreateMap<TicketDto,Ticket >()
+                    .ReverseMap();
+                cfg.CreateMap<VaccinateDto,Vaccinate >()
+                    .ReverseMap();
+                cfg.CreateMap<DigitalVaccineDto,DigitalVaccine >()
+                    .ReverseMap();
+                cfg.CreateMap<VaccinatePdfDto,VaccinatePdf >()
+                    .ForMember(x=>x.FileByte,x=>x.Ignore())
                     .ReverseMap();
                 cfg.ShouldUseConstructor = x =>! x.IsPrivate;
             }); 

@@ -16,7 +16,7 @@ namespace NotiPetApp.ViewModels
     public class VaccinesViewModel:BaseViewModel,IInitialize
     {
         private readonly IPetsService _petsService;
-        public Vaccinate Vaccinate { get; set; }
+        public DigitalVaccine Vaccinate { get; set; }
 
         public VaccinatePdf Pdf => _pdf?.Value;
         private ObservableAsPropertyHelper<VaccinatePdf> _pdf;
@@ -39,7 +39,7 @@ namespace NotiPetApp.ViewModels
         {
             if (parameters.ContainsKey(ParameterConstant.Vacinnes))
             {
-                Vaccinate = parameters[ParameterConstant.Vacinnes] as Vaccinate;
+                Vaccinate = parameters[ParameterConstant.Vacinnes] as DigitalVaccine;
             }
         }
     }

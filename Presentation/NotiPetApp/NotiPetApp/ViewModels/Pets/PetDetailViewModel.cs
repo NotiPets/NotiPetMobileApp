@@ -1,8 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
+using Bogus.DataSets;
 using DynamicData;
+using DynamicData.PLinq;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
 using NotiPetApp.Helpers;
@@ -17,38 +22,67 @@ namespace NotiPetApp.ViewModels
     {
         private readonly IPetsService _petsService;
         private readonly ISchedulerProvider _schedulerProvider;
+        private readonly ISalesService _salesService;
         public Pet Pet { get; set; }
-        private ReadOnlyObservableCollection<Vaccinate> _vaccinates;
-        public ReadOnlyObservableCollection<Vaccinate> Vaccinates => _vaccinates;
+        public IEnumerable<DigitalVaccine> Vaccinates => _vaccinates?.Value;
+        private ReadOnlyObservableCollection<AppointmentSale> _sales;
+        public ReadOnlyObservableCollection<AppointmentSale> Sales => _sales;
+        private  ObservableAsPropertyHelper<IEnumerable<DigitalVaccine>> _vaccinates;
         public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get; set; }
-        public PetDetailViewModel(INavigationService navigationService, IPageDialogService dialogPage,IPetsService petsService,ISchedulerProvider schedulerProvider) : base(navigationService, dialogPage)
+        public ReactiveCommand<Unit, Unit> CreateAppointmentCommand { get; set; }
+        public ReactiveCommand<DigitalVaccine, Unit> ShowVaccinatePdfCommand { get; }
+        public PetDetailViewModel(INavigationService navigationService, IPageDialogService dialogPage,IPetsService petsService,ISchedulerProvider schedulerProvider,ISalesService salesService) : base(navigationService, dialogPage)
         {
             _petsService = petsService;
             _schedulerProvider = schedulerProvider;
-            _petsService.Vaccinate.Connect()
+            _salesService = salesService;
+            _salesService.DataSource.Connect()
                 .ObserveOn(_schedulerProvider.CurrentThread)
-                .Bind(out _vaccinates);
-
-            ShowVaccinatePdfCommand = ReactiveCommand.CreateFromTask<Pet>((param, token)
+                .Filter(x=>x.PetId== Pet?.Id)
+                .Bind(out _sales)
+                .DisposeMany()
+                .Subscribe()
+                .DisposeWith(Subscriptions);
+            ShowVaccinatePdfCommand = ReactiveCommand.CreateFromTask<DigitalVaccine>((param, token)
                 => NavigationService.NavigateAsync(ConstantUri.ShowVaccines, new NavigationParameters()
                 {
-                    {ParameterConstant.Vacinnes, _vaccinates}
-                }));
+                    {ParameterConstant.Vacinnes, param}
+                },true));
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
+            CreateAppointmentCommand = ReactiveCommand.CreateFromTask(CreateAppointment);
         }
-
-        public ReactiveCommand<Pet, Unit> ShowVaccinatePdfCommand { get; }
-
         protected override IObservable<Unit> ExecuteInitialize()
+            => Observable.Create<Unit>(observable =>
         {
-          return  _petsService.GetVaccinesByPet(Pet.Id).Select(x=>Unit.Default);
-        }
+            var disposable = new CompositeDisposable();
+            _salesService.GetSaleByUserId(Settings.UserId)
+                .Select(e => Unit.Default)
+                .Subscribe()
+                .DisposeWith(disposable);
 
+            var getVaccines = _petsService
+                .GetVaccinesByPet(Pet.Id);
+            _vaccinates =   getVaccines .ToProperty(this,x=>x.Vaccinates);
+            getVaccines .Select(x=>Unit.Default)
+                .Subscribe()
+                .DisposeWith(disposable);
+            return disposable;
+        });
+        Task CreateAppointment()
+        {
+            //VetTabViewModel
+            var appointment  = new CreateAppointment(DateTime.Now, Pet?.Id,Settings.UserId);
+            return NavigationService.NavigateAsync(ConstantUri.VeterinaryPickerPage,parameters:new NavigationParameters()
+            {
+                {ParameterConstant.VeterinaryPickerAppointment,appointment}
+            });
+        }
         public void Initialize(INavigationParameters parameters)
         {
             if (parameters.ContainsKey(ParameterConstant.Pet))
             {
                 Pet = parameters[ParameterConstant.Pet]  as Pet;
+
             }
         }
     }

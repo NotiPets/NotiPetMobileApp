@@ -14,9 +14,11 @@ using NotiPetApp.Views;
 using NotiPetApp.Views.Activity;
 using NotiPetApp.Views.Authentication;
 using NotiPetApp.Views.MenuPages;
+using NotiPetApp.Views.Pets;
 using NotiPetApp.Views.PopUp;
 using NotiPetApp.Views.UserSettings;
 using NotiPetApp.Views.Vets;
+using Plugin.GoogleClient;
 using Plugin.SharedTransitions;
 using Prism;
 using Prism.DryIoc;
@@ -96,6 +98,9 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<CreateReviewsPage, CreateReviewsViewModel>();  
             containerRegistry.RegisterForNavigation<EditAppointmentPage, EditAppointmentViewModel>();  
             containerRegistry.RegisterForNavigation<HelpPage,HelpPageViewModel>();
+            containerRegistry.RegisterForNavigation<PetDetailPage,PetDetailViewModel>();
+            containerRegistry.RegisterForNavigation<VaccinesPage,VaccinesViewModel>();
+            containerRegistry.RegisterInstance<IGoogleClientManager>(CrossGoogleClient.Current);
             ContainerProvider = Container;
 
 

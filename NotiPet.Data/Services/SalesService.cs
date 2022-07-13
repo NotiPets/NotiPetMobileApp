@@ -30,13 +30,11 @@ namespace NotiPet.Data.Services
         }
         public IObservable<IEnumerable<AppointmentSale>> GetSaleByUserId(string userId)
         {
-            
             return _salesServiceApi.GetSaleByUserId(userId)
                 .Select(_mapper.Map<IEnumerable<Sales>>)
                 .Select(e=>e.Select(x=>new AppointmentSale(x)))
                 .Do(_dataSource.AddOrUpdate);
         }
-
         public IObservable<Sales> PostSale(RequestOrder requestOrderDto)
         {
             return _salesServiceApi.PostSale(_mapper.Map<RequestOrderDto>(requestOrderDto))

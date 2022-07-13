@@ -65,7 +65,7 @@ namespace NotiPetApp.ViewModels
         private  Task ExitOnBoarding()
         {
             Settings.ShowOnBoarding = false;
-           return NavigationService.NavigateAsync(ConstantUri.SocialNetworkAuthentication);
+           return NavigationService.NavigateAsync(ConstantUri.Login);
         }
         private Task MoveToNextPosition()
         {

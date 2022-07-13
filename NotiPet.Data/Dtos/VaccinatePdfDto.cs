@@ -1,7 +1,10 @@
+using Newtonsoft.Json;
+
 namespace NotiPet.Data.Dtos
 {
     public class VaccinatePdfDto
     {
-        public byte[] File { get; set; }
+        [JsonProperty("response")]
+        public string File { get; set; }
     }
 }

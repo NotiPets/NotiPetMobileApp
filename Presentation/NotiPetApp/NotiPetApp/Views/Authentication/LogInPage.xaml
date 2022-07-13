@@ -49,19 +49,7 @@
                   Grid.RowSpan="2"
                   >
                 
-                <ImageButton BackgroundColor="Transparent"
-                             Command="{Binding NavigateGoBackCommand}"
-                             Grid.Column="0"
-                             HorizontalOptions="StartAndExpand"
-                             Margin="20"
-                             Grid.Row="0">
-                    <ImageButton.Source>
 
-                            <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
-                                             Color="{DynamicResource SecondaryLetterLight}"
-                                             FontFamily="{StaticResource FontSolid}"/>
-                    </ImageButton.Source>
-                </ImageButton>
                 <Label HorizontalTextAlignment="Start"
                        Margin="15"
                        Padding="10"

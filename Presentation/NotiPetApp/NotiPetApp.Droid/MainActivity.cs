@@ -8,6 +8,7 @@ using Android.OS;
 using Plugin.GoogleClient;
 using Prism;
 using Prism.Ioc;
+using FFImageLoading.Forms.Platform;
 
 namespace NotiPetApp.Droid
 {
@@ -23,9 +24,17 @@ namespace NotiPetApp.Droid
             base.OnCreate(savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState); 
-            GoogleClientManager.Initialize(this, null, "662328821833-45lk4879kh045nif1havvcvvt5pp6d8h.apps.googleusercontent.com");
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            CachedImageRenderer.Init(true);
+            CachedImageRenderer.InitImageViewHandler();
+            
+            GoogleClientManager.Initialize(this);
             LoadApplication(new App(new AndroidInitializer()));
+        }
+        protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            GoogleClientManager.OnAuthCompleted(requestCode, resultCode, data);
         }
     }
 

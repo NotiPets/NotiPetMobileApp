@@ -42,7 +42,7 @@ namespace NotiPetApp.ViewModels
                  {
                      return NavigationService.NavigateAsync(ConstantUri.OnBoarding);
                  }
-                 return NavigationService.NavigateAsync(ConstantUri.SocialNetworkAuthentication);
+                 return NavigationService.NavigateAsync(ConstantUri.Login);
              }
 
               return   NavigationService.NavigateAsync(ConstantUri.TabMenu);

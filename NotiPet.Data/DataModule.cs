@@ -29,12 +29,12 @@ namespace NotiPet.Data
             containerRegistry.RegisterSingleton(typeof(IApiClient<>), typeof(ApiClient<>));
             containerRegistry.RegisterSingleton<IStoreService, StoreService>();
             containerRegistry.RegisterSingleton<IAuthenticationService, AuthenticationService>();
-            containerRegistry.RegisterSingleton<IPetsService, PetsService>();
+            containerRegistry.Register<IPetsService, PetsService>();
             containerRegistry.RegisterSingleton<IMapper>(x=> new Mapper(AutoMapperConfig.GetConfig()));
             containerRegistry.RegisterSingleton<IUserService,UserService>();  
             containerRegistry.RegisterSingleton<IVeterinaryService, VeterinaryService>();
             containerRegistry.RegisterSingleton<ISpecialistsService,SpecialistsService>();
-            containerRegistry.RegisterSingleton<ISalesService,SalesService>();
+            containerRegistry.Register<ISalesService,SalesService>();
             containerRegistry.RegisterSingleton<IDataBaseProvider<Realm>, RealmDatabaseProvider>(); 
             containerRegistry.RegisterSingleton(typeof(IDataSource<>), typeof(Repository<>));
             containerRegistry.RegisterSingleton<ITicketService,TicketService>();

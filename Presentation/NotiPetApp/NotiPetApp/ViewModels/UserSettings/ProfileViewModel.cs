@@ -84,7 +84,7 @@ namespace NotiPetApp.ViewModels
        Task LogOut()
        {
            Settings.ClearStorage();
-             return   NavigationService.NavigateAsync(ConstantUri.SocialNetworkAuthentication);
+             return   NavigationService.NavigateAsync(ConstantUri.Login);
         }
     }
 }

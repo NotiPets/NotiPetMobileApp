@@ -29,14 +29,6 @@ namespace NotiPet.Data.Services
             {
                 new SocialNetwork()
                 {
-                    Name = "Facebook",
-                    Icon = "FbIcon",
-                    Id = 1,
-                    Code = "FB",
-                    Color = "#4267B2"
-                },
-                new SocialNetwork()
-                {
                     Name = "Google",
                     Icon = "GBIcon",
                     Id = 2,

@@ -16,7 +16,6 @@ namespace NotiPet.Data.Services
         private readonly IPetServiceApi _petService;
         private readonly IMapper _mapper;
         private SourceCache<Pet, string> _petSource = new SourceCache<Pet, string>(e => e.Id);
-        private SourceList<Vaccinate> _vaccinateSource = new SourceList<Vaccinate>();
         
         public PetsService(IPetServiceApi petService, IMapper mapper)
         {
@@ -67,7 +66,6 @@ namespace NotiPet.Data.Services
         }
         
         public SourceCache<Pet, string> Pets => _petSource;
-        public SourceList<Vaccinate> Vaccinate => _vaccinateSource;
         public IObservable<VaccinatePdf> GetVaccinePdf(string vaccinateId)
         {
             return _petService.GetVaccinePdf(vaccinateId)
@@ -100,12 +98,10 @@ namespace NotiPet.Data.Services
                 .Select(_mapper.Map<Pet>);
         }
 
-        public IObservable<IEnumerable<Vaccinate>> GetVaccinesByPet(string petId)
+        public IObservable<IEnumerable<DigitalVaccine>> GetVaccinesByPet(string petId)
         {
-            Vaccinate.Clear();
             return _petService.GetVaccinesByPet(petId)
-                .Select(_mapper.Map<IEnumerable<Vaccinate>>)
-                .Do(_vaccinateSource.AddRange);
+                .Select(_mapper.Map<IEnumerable<DigitalVaccine>>);
         }
     }
 }

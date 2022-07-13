@@ -2,6 +2,7 @@ namespace NotiPet.Domain.Models
 {
     public class VaccinatePdf
     {
-        public byte[] File { get; set; }
+        public string File { get; set; }
+        public byte[] FileByte =>System.Convert.FromBase64String(File);
     }
 }

@@ -12,7 +12,7 @@ namespace NotiPet.Data.Services
 
         IObservable<object> RemovePets(string id);
         IObservable<PetDto> EditPet(PetDto map);
-        IObservable<IEnumerable<VaccinateDto>> GetVaccinesByPet(string petId);
+        IObservable<IEnumerable<DigitalVaccineDto>> GetVaccinesByPet(string petId);
         IObservable<VaccinatePdfDto>  GetVaccinePdf(string vaccinateId);
     }
 }

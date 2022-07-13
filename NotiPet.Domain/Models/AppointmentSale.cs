@@ -11,7 +11,7 @@ namespace NotiPet.Domain.Models
             OrderId = order?.Id;
             Total = sales.Total;
             Veterinary = sales.Veterinary;
-         
+            PetId = order?.PetId;
             Appointment = order?.Appointment;
             AssetService = order?.AssetService;
         }
@@ -19,6 +19,7 @@ namespace NotiPet.Domain.Models
         public Veterinary Veterinary { get; set; }
         public decimal Total { get; set; }
         public DateTime Updated { get; set; }
+        public string PetId { get; set; }
         public Pet Pet { get; set; }
         public AssetServiceModel AssetService { get; set; }
         public Appointment Appointment { get; set; }

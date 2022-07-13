@@ -5,13 +5,13 @@ namespace NotiPetApp.Helpers
     public static class ConstantUri
     {
 
-        public const string Login = "LogInPage";
+        public const string Login = "/SharedTransitionNavigationPage/LogInPage";
         public const string Home = "Home";
         public const string Activity = "Activity";
         public const string Veterinary = "VetTabPage";
         public const string OptionParameters = "OptionParameters";
         public const string TabMenu = "/SharedTransitionNavigationPage/TabMenuPage";
-        public const string SocialNetworkAuthentication = "/SharedTransitionNavigationPage/SocialNetworkAuthenticationPage";
+        //public const string SocialNetworkAuthentication = "/SharedTransitionNavigationPage/SocialNetworkAuthenticationPage";
         public const string Start = "/StartPage";
         public const string Store = "StorePage";
         public const string Appointment = "AppointmentPage";
@@ -34,7 +34,7 @@ namespace NotiPetApp.Helpers
         public const string CreateReviewsPage = "CreateReviewsPage";
         public const string UserEdit = "EditProfilePage";
         public const string EditAppointment = "EditAppointmentPage";
-        public const string ShowVaccines = "VacinnesPage";
+        public const string ShowVaccines = "VaccinesPage";
         public const string Pdf = "PdfPage";
         public const string PetDetail = "PetDetailPage";
     }
