@@ -23,9 +23,9 @@
                                           SelectedItem="{Binding SelectedLanguage,Mode=TwoWay}"
                                            SelectionMode="Single"/>
                 </renderers:Section>
-                <renderers:Section >
-                    <renderers:SwitchCell Title="Dark mode"/>         
-                </renderers:Section>    
+                <!--<renderers:Section >
+                    <renderers:SwitchCell Title="Dark mode"   On="{Binding IsDarkMode}" />         
+                </renderers:Section>-->    
         
             </renderers:SettingsView>
         </Grid>
