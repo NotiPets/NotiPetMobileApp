@@ -294,4 +294,7 @@
     <data name="Spanish" xml:space="preserve">
         <value>Español</value>
     </data>
+    <data name="EditAppointment" xml:space="preserve">
+        <value>Editar cita</value>
+    </data>
 </root>

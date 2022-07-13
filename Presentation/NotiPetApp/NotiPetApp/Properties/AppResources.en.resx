@@ -292,4 +292,7 @@
     <data name="Spanish" xml:space="preserve">
         <value>Spanish</value>
     </data>
+    <data name="EditAppointment" xml:space="preserve">
+        <value>Edit Appointment</value>
+    </data>
 </root>

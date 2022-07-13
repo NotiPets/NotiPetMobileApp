@@ -59,6 +59,13 @@ namespace NotiPetApp.ViewModels
             getUser.Select(e => Unit.Default)
                 .Subscribe(observable)
                 .DisposeWith(disposable);
+            AppMenuItems = new ObservableCollection<AppMenuItem>()
+            {
+                new(AppResources.MyPets,"patas",1,ReactiveCommand.CreateFromTask(NavigateToMyPets),SizeItem.Small),
+                new(AppResources.AboutPage,"question",2,ReactiveCommand.CreateFromTask(NavigateToAbout),SizeItem.Small),
+                new(AppResources.Settings,"settings",2,ReactiveCommand.CreateFromTask(NavigateToSettings),SizeItem.Small),
+                new(AppResources.Logout,"logOut",4,ReactiveCommand.CreateFromTask(LogOut),SizeItem.Small),
+            };
                 return disposable;
         });
 
@@ -76,7 +83,7 @@ namespace NotiPetApp.ViewModels
         {
             return NavigationService.NavigateAsync(ConstantUri.Settings);
         }
-       public ObservableCollection<AppMenuItem> AppMenuItems { get; }
+       public ObservableCollection<AppMenuItem> AppMenuItems { get; private set; }
 
        IObservable<User> GetUserById()
        {

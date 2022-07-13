@@ -25,7 +25,7 @@
                              Padding="10">
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
               ColumnDefinitions="*,*">
-            <Label Text="EditAppointment"
+            <Label Text="{extensions:Translate EditAppointment}"
                    Grid.Row="0"
                    Grid.ColumnSpan="2"
                    Style="{StaticResource LabelLarge}"
