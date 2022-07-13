@@ -28,6 +28,11 @@ namespace NotiPetApp.Helpers
         }
         private const string TokenKey="token_auth_keyPRD";
         public static Position Position { get; set; }
+        public static string Language     
+        {
+            get=>DeviceInfo.Platform != DevicePlatform.Unknown? Preferences.Get(nameof(Language),string.Empty):string.Empty; 
+            set=>Preferences.Set(nameof(Language),value);
+        }
 
         public static  Task SetToken(string token)
         {

@@ -304,6 +304,15 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ingles.
+        /// </summary>
+        internal static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parte de tu información no es correcta, inténtalo de nuevo..
         /// </summary>
         internal static string ErrorLoginInformations {
@@ -646,6 +655,15 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configuración.
+        /// </summary>
+        internal static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tienda.
         /// </summary>
         internal static string Shop {
@@ -687,6 +705,15 @@ namespace NotiPetApp.Properties {
         internal static string Sizenotvalid {
             get {
                 return ResourceManager.GetString("Sizenotvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Español.
+        /// </summary>
+        internal static string Spanish {
+            get {
+                return ResourceManager.GetString("Spanish", resourceCulture);
             }
         }
         

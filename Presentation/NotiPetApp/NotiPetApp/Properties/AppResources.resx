@@ -285,4 +285,13 @@
     <data name="Code" xml:space="preserve">
         <value>Código de verificación </value>
     </data>
+    <data name="Settings" xml:space="preserve">
+        <value>Configuración</value>
+    </data>
+    <data name="English" xml:space="preserve">
+        <value>Ingles</value>
+    </data>
+    <data name="Spanish" xml:space="preserve">
+        <value>Español</value>
+    </data>
 </root>

@@ -32,7 +32,8 @@
             <renderers:SettingsView Grid.Row="1"
                                     >
                 <renderers:Section >
-                    <renderers:PickerCell Title="Language"/>
+                    <renderers:PickerCell Title="Language" ItemsSource="{Binding Languages}"
+                                          SelectedItem="{Binding SelectedLanguage}"/>
                 </renderers:Section>
                 <renderers:Section >
                     <renderers:SwitchCell Title="Dark mode"/>         

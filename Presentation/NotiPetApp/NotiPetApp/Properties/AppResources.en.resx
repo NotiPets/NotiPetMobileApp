@@ -283,4 +283,13 @@
     <data name="Code" xml:space="preserve">
         <value>Code</value>
     </data>
+    <data name="Settings" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <data name="English" xml:space="preserve">
+        <value>English</value>
+    </data>
+    <data name="Spanish" xml:space="preserve">
+        <value>Spanish</value>
+    </data>
 </root>

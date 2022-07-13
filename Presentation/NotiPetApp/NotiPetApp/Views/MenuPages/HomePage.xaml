@@ -10,7 +10,6 @@
                  xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                  xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
                  x:TypeArguments="viewModels:HomeViewModel"
-               
                  x:Class="NotiPetApp.Views.MenuPages.HomePage">
     <views:ContentViewBase.Resources>
         <Style TargetType="pancakeView:PancakeView">

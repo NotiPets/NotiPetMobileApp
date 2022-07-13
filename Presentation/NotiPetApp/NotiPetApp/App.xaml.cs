@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Globalization;
+using AutoMapper;
 using NotiPet.Data;
 using NotiPet.Data.Mappers;
 using NotiPet.Data.Services;
@@ -46,7 +47,11 @@ namespace NotiPetApp
         {
          
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTg0NDIxQDMxMzkyZTM0MmUzMFNLQ3ZJWkRQZkwyc2pYTXkzZCtyTStaOG5DeHpBaWg5djNaQ0RmK2R1QzQ9");
-            LocalizationResourceManager.Current.PropertyChanged += (_, _) => AppResources.Culture = LocalizationResourceManager.Current.CurrentCulture;
+            
+            LocalizationResourceManager.Current.PropertyChanged += (_, _) 
+             => AppResources.Culture = CultureInfo.GetCultureInfo(Settings.Language);
+            
+            
             LocalizationResourceManager.Current.Init(AppResources.ResourceManager);
             InitializeComponent();  
             var dialog = ContainerProvider.Resolve<IPageDialogService>();

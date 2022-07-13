@@ -24,9 +24,12 @@
         <Setter Property="AlignContent" Value="Start"/>
     </Style>
     <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="Red" />
+    </Style>
+    <Style TargetType="ContentView">
         <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
     </Style>
-
+    
     <Style TargetType="Label" x:Key="LabelHeader">
         <Setter Property="FontSize" Value="35"/>
         <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}"/>

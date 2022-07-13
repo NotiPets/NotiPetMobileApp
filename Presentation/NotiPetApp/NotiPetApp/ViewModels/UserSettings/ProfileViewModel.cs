@@ -34,6 +34,7 @@ namespace NotiPetApp.ViewModels
             {
                 new(AppResources.MyPets,"patas",1,ReactiveCommand.CreateFromTask(NavigateToMyPets),SizeItem.Small),
                 new(AppResources.AboutPage,"question",2,ReactiveCommand.CreateFromTask(NavigateToAbout),SizeItem.Small),
+                new(AppResources.Settings,"settings",2,ReactiveCommand.CreateFromTask(NavigateToSettings),SizeItem.Small),
                 new(AppResources.Logout,"logOut",4,ReactiveCommand.CreateFromTask(LogOut),SizeItem.Small),
             };
             NavigateToHelpPageCommand= ReactiveCommand.CreateFromTask<Unit>((b,token)=> NavigationService.NavigateAsync("HelpPage",parameters:new NavigationParameters()
