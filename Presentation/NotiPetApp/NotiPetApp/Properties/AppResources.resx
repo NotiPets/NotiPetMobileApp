@@ -40,7 +40,7 @@
         <value>Registrarse</value>
     </data>
     <data name="LastName" xml:space="preserve">
-        <value>Apellido</value>
+        <value>Apellido</value>LastName
     </data>
     <data name="Name" xml:space="preserve">
         <value>Nombre</value>
@@ -118,7 +118,7 @@
         <value>Emergencia</value>
     </data>
     <data name="Howcanwehelpyou" xml:space="preserve">
-        <value>¿Como podemos ayudarte?</value>
+        <value>¿Como podemos ayudarte </value>
     </data>
     <data name="Home" xml:space="preserve">
         <value>Inicio</value>
@@ -263,5 +263,17 @@
     </data>
     <data name="Alert" xml:space="preserve">
         <value>Alerta</value>
+    </data>
+    <data name="MyPets" xml:space="preserve">
+        <value>Mis mascotas</value>
+    </data>
+    <data name="Logout" xml:space="preserve">
+        <value>Salir</value>
+    </data>
+    <data name="CreateAppointment" xml:space="preserve">
+        <value>Crear cita</value>
+    </data>
+    <data name="VeterinaryPicker" xml:space="preserve">
+        <value>Seleccionar veterinaria</value>
     </data>
 </root>

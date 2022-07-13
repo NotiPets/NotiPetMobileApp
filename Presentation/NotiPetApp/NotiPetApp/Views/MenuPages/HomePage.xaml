@@ -103,7 +103,7 @@
                    Margin="0,0,0,20">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span   Text="How can we help you,"/>
+                        <Span   Text="{effects:Translate Howcanwehelpyou}"/>
                         <Span   Text="{Binding Username,Converter={StaticResource TextCaseConverter},StringFormat=' {0}?'}" TextColor="{DynamicResource PrimaryDark}"/>
                     </FormattedString>
                 </Label.FormattedText>

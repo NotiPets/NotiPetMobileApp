@@ -63,7 +63,7 @@
                        Margin="10"
                        Padding="5"
                        Style="{StaticResource LabelHeader}"
-                       Text="SignUp "
+                       Text="{converters:Translate SignUp}"
                        TextColor="{DynamicResource SecondaryLetterLight}"
                        Grid.Row="1"
                 />
@@ -81,7 +81,7 @@
                           ColumnDefinitions="*,*">
                         <controls:EntryCustom Grid.Column="0"
                                               Grid.Row="1"
-                                              PlaceHolder="Name"
+                                              PlaceHolder="{converters:Translate Name}"
                                               x:Name="NameLB"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding  Name}"
@@ -89,7 +89,7 @@
                         /> 
                         <controls:EntryCustom Grid.Column="1"
                                               Grid.Row="1"
-                                              PlaceHolder="LastName"
+                                              PlaceHolder="{converters:Translate LastName}"
                                               x:Name="LastName"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding  LastName}"
@@ -98,14 +98,14 @@
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="3"
                                               x:Name="UsernameLB"
-                                              PlaceHolder="Username"
+                                              PlaceHolder="{converters:Translate Username}"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding  Username}"
                                      
                         /> 
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="4"
-                                              PlaceHolder="Email"
+                                              PlaceHolder="{converters:Translate Email}"
                                               x:Name="EmailLB"
                                               Keyboard="Email"
                                               ValidationColor="{DynamicResource ErrorColor}"
@@ -114,14 +114,14 @@
                         /> 
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="5"
-                                              PlaceHolder="Password"
+                                              PlaceHolder="{converters:Translate Password}"
                                               x:Name="PasswordLB"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding  Password}"
                                      
                         /> 
 
-                        <Label Text="Selected document type:"
+                        <Label Text="{converters:Translate Selecteddocumenttype}"
                                Margin="10"
                                Grid.ColumnSpan="2"
                                Style="{StaticResource LabelSubtitleBold}"
@@ -134,7 +134,7 @@
                                 Grid.Row="9"/>
                         <controls:EntryCustom Grid.ColumnSpan="2" 
                                               Grid.Row="10"
-                                              PlaceHolder="Document"
+                                              PlaceHolder="{converters:Translate Document}"
                                               x:Name="DocumentIdLB"
                                               Keyboard="Numeric"
                                               ValidationColor="{DynamicResource ErrorColor}"
@@ -143,14 +143,14 @@
                         /> 
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="11"
-                                              PlaceHolder="Phone"
+                                              PlaceHolder="{converters:Translate Phone}"
                                               Keyboard="Telephone"
                                               x:Name="PhoneLb"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding Phone}"
                                      
                         /> 
-                        <Label Text="Selected Veterinary: "
+                        <Label Text="{converters:Translate VeterinarySelected}"
                                Margin="10"
                                Grid.ColumnSpan="2"
                                Style="{StaticResource LabelSubtitleBold}"
@@ -175,8 +175,8 @@
                             >
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="I agree to NotiPet "/>
-                                        <Span Text="Terms and Conditions"
+                                        <Span Text="{converters:Translate IAgreeToNotiPet}"/>
+                                        <Span Text="{converters:Translate TermsandConditions}"
                                               ForegroundColor="{DynamicResource PrimaryColor}"
                                               TextDecorations="Underline"/>
                                     </FormattedString>
@@ -193,7 +193,7 @@
                                                          CornerRadius="25"
                                                          Margin="10"
                                                          Padding="16"
-                                                         CommandText="Sign Up"
+                                                         CommandText="{converters:Translate  SignUp}"
                                                          Grid.Row="20"
                                                          BackgroundColor="{DynamicResource PrimaryDark }"/> 
                         

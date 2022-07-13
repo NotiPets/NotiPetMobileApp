@@ -54,7 +54,7 @@
                        Margin="15"
                        Padding="10"
                        Style="{StaticResource LabelHeader}"
-                       Text="SignUp "
+                       Text="{converters:Translate Login}"
                        TextColor="{DynamicResource SecondaryLetterLight}"
                        Grid.Row="1"
                 />
@@ -70,7 +70,7 @@
                           ColumnDefinitions="Auto,*">
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="0"
-                                              PlaceHolder="Username"
+                                              PlaceHolder="{converters:Translate Username}"
                                               x:Name="UserEntry"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding  Username}"
@@ -82,13 +82,13 @@
                                               x:Name="PasswordEntry"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding Password}"
-                                              PlaceHolder="Password"
+                                              PlaceHolder="{converters:Translate Password}"
                                      
                         /> 
                         
                         <Label Grid.Row="4" 
                                Grid.Column="1"
-                               Text="Forgot password?"
+                               Text="{converters:Translate ForgotPassword}"
                                Style="{StaticResource LabelSubtitleBold}"
                                Margin="5,1,5,20" 
                                HorizontalTextAlignment="End"/>
@@ -108,7 +108,7 @@
                                                 Margin="10"
                                                 Padding="14"
                                                 IsEnabled ="{Binding  IsBusy,Converter={StaticResource InvertedBoolConverter}}"
-                                                CommandText="Login"
+                                                CommandText="{converters:Translate Login}"
                                                 Grid.Row="6"
                                                 BackgroundColor="{DynamicResource PrimaryDark }"/> 
                     </Grid>
@@ -120,9 +120,9 @@
                        Style="{StaticResource LabelTitle}">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Don’t have a Notipet account yet?"/>
+                            <Span Text="{converters:Translate DonthaveaNotipetaccountyet}"/>
                             <Span Text=" " CharacterSpacing="10"/>
-                            <Span Text="Sign Up"  TextColor="{DynamicResource PrimaryDark}">
+                            <Span Text="{converters:Translate SignUp}"  TextColor="{DynamicResource PrimaryDark}">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding NavigateToSignUpCommand}"/>
                                 </Span.GestureRecognizers>

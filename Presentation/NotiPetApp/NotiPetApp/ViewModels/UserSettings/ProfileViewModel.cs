@@ -9,6 +9,7 @@ using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
 using NotiPetApp.Helpers;
 using NotiPetApp.Models;
+using NotiPetApp.Properties;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
@@ -31,10 +32,9 @@ namespace NotiPetApp.ViewModels
             _userService = userService;
             AppMenuItems = new ObservableCollection<AppMenuItem>()
             {
-                new(ConstantDictionary.MyPets,"patas",1,ReactiveCommand.CreateFromTask(NavigateToMyPets),SizeItem.Small),
-                new(ConstantDictionary.About,"question",2,ReactiveCommand.CreateFromTask(NavigateToAbout),SizeItem.Small),
-                new(ConstantDictionary.Settings,"settings",3,ReactiveCommand.CreateFromTask(NavigateToSettings),SizeItem.Small),
-                new(ConstantDictionary.Logout,"logOut",4,ReactiveCommand.CreateFromTask(LogOut),SizeItem.Small),
+                new(AppResources.MyPets,"patas",1,ReactiveCommand.CreateFromTask(NavigateToMyPets),SizeItem.Small),
+                new(AppResources.AboutPage,"question",2,ReactiveCommand.CreateFromTask(NavigateToAbout),SizeItem.Small),
+                new(AppResources.Logout,"logOut",4,ReactiveCommand.CreateFromTask(LogOut),SizeItem.Small),
             };
             NavigateToHelpPageCommand= ReactiveCommand.CreateFromTask<Unit>((b,token)=> NavigationService.NavigateAsync("HelpPage",parameters:new NavigationParameters()
             {

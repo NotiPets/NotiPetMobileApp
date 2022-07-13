@@ -5,6 +5,7 @@
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.AboutPage">
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,Auto,Auto"
@@ -31,7 +32,7 @@
             />
             <Label BackgroundColor="Transparent"
                    Grid.Column="0"
-                   Text="AboutPage"    
+                   Text="{extensions:Translate AboutPage}"    
                    TextColor="{StaticResource  PrimaryDark}"
                    Style="{StaticResource  LabelLarge}" 
                    HorizontalOptions="Center"

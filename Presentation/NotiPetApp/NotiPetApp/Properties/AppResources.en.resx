@@ -262,4 +262,16 @@
     <data name="Yourappointmenthasbooked" xml:space="preserve">
         <value>Your appointment has been booked!</value>
     </data>
+    <data name="CreateAppointment" xml:space="preserve">
+        <value>Create Appointment</value>
+    </data>
+    <data name="Logout" xml:space="preserve">
+        <value>Log out</value>
+    </data>
+    <data name="MyPets" xml:space="preserve">
+        <value>My Pets</value>
+    </data>
+    <data name="VeterinaryPicker" xml:space="preserve">
+        <value>Veterinary picker</value>
+    </data>
 </root>

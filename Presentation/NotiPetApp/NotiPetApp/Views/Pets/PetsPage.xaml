@@ -10,6 +10,7 @@
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Name="PetPage"
                 x:Class="NotiPetApp.Views.PetsPage">
     <views:BasePage.Resources>
@@ -32,7 +33,7 @@
                                               FontFamily="{StaticResource FontSolid}"/>
                         </ImageButton.Source>
                     </ImageButton>
-                    <Label Text="My Pets"  Grid.Column="1"
+                    <Label Text="{extensions:Translate  MyPets}"  Grid.Column="1"
                            Style="{StaticResource LabelLarge}"/>
                     <Image BackgroundColor="Transparent"
                            
@@ -63,11 +64,11 @@
                     <ViewCell.ContextActions>
                         <MenuItem Command="{Binding Source={x:Reference PetPage},Path=ViewModel.DeletePetCommand}"
                                   CommandParameter="{Binding Id}"
-                                  Text="Delete"
+                                  Text="{extensions:Translate  Delete}"
                                   IsDestructive="True"/>
                         <MenuItem Command="{Binding Source={x:Reference PetPage},Path=ViewModel.EditPetCommand}"
                                   CommandParameter="{Binding .}"
-                                  Text="Edit"/>
+                                  Text="{extensions:Translate Edit}"/>
                     </ViewCell.ContextActions>
                     <StackLayout>
                         <StackLayout.GestureRecognizers>

@@ -9,6 +9,7 @@
                 xmlns:vets="clr-namespace:NotiPetApp.Views.Vets;assembly=NotiPetApp"
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:iOsSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.MenuPages.EditAppointmentPage"
                 BackgroundColor="Transparent"
                 iOsSpecific:Page.ModalPresentationStyle="OverFullScreen"
@@ -24,7 +25,7 @@
                              Padding="10">
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
               ColumnDefinitions="*,*">
-            <Label Text="Edit Appointment"
+            <Label Text="EditAppointment"
                    Grid.Row="0"
                    Grid.ColumnSpan="2"
                    Style="{StaticResource LabelLarge}"
@@ -50,7 +51,7 @@
             <Label    Grid.Row="3"
                       Grid.ColumnSpan="2"
                       Margin="20,0"
-                      Text="Services"/>
+                      Text="{extensions:Translate Services}"/>
             <Label    Grid.Row="4"
                       Grid.ColumnSpan="2"
                       Margin="20,0"
@@ -58,7 +59,7 @@
             <Label    Grid.Row="5"
                       Margin="20,0"
                       Grid.ColumnSpan="2"
-                      Text="Date"/>
+                      Text="{extensions:Translate Date}"/>
             <DatePicker Grid.Row="6"
                         Margin="20,0"
                         Date="{Binding Date}"
@@ -67,7 +68,7 @@
             <Label    Grid.Row="7"
                       Margin="20,0"
                       Grid.ColumnSpan="2"
-                      Text="Time"/>
+                      Text="{extensions:Translate Time}"/>
             <TimePicker    Grid.Row="8"
                             Margin="20,0,0,0"
                             Time="{Binding TimeOfDay}"
@@ -81,7 +82,7 @@
                 Margin="20"
                 Padding="14"
                 Grid.Column="0"
-                CommandText="Cancel"
+                CommandText="{extensions:Translate Cancel}"
                 TextColor="IndianRed"
                 Grid.Row="9"
                 BackgroundColor="Transparent"/> 
@@ -92,7 +93,7 @@
                 Margin="20"
                 Padding="14"
                 Grid.Column="1"
-                CommandText="Update"
+                CommandText="{extensions:Translate Update}"
                 Grid.Row="9"
                 BackgroundColor="{DynamicResource PrimaryDark }"/> 
         </Grid>

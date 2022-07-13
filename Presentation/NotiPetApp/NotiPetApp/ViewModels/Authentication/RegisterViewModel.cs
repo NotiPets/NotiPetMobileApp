@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Reactive;
+using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -103,6 +104,15 @@ namespace NotiPetApp.ViewModels
                 return NavigationService.NavigateAsync(ConstantUri.TabMenu);
             }),canExecuteNavigate);
             InitializeCommand.InvokeCommand(ReactiveCommand.CreateFromTask(SetCurrentLocation));
+            AuthenticationCommand.ThrownExceptions.Subscribe((x =>
+            {
+                RxApp.MainThreadScheduler.Schedule(() =>
+                {
+                    dialogPage.DisplayAlertAsync("Error",AppResources.ErrorLoginInformations,"Ok");
+                    // throw ex;
+                });
+
+            })).DisposeWith(Subscriptions);
             AuthenticationCommand
                 .InvokeCommand(NavigateToTabMenuCommand);
            ActiveValidation();

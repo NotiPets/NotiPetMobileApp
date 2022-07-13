@@ -5,6 +5,7 @@ using System.Reactive.Disposables;
 using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
 using NotiPetApp.Helpers;
+using NotiPetApp.Properties;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;

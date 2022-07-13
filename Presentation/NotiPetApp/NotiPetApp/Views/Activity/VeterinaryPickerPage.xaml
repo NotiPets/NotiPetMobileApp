@@ -9,6 +9,7 @@
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.Activity.VeterinaryPickerPage">
     <Grid RowDefinitions="Auto,*">
             <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"
@@ -22,7 +23,7 @@
                       ColumnDefinitions="*,Auto"
                       Margin="2,4,5,10"
                       RowSpacing="30">
-                    <Label Text="Veterinary Picker" 
+                    <Label Text="{extensions:Translate VeterinaryPicker}" 
                            Grid.ColumnSpan="2"
                            HorizontalTextAlignment="Center"
                            Style="{StaticResource LabelLarge}"/>
@@ -106,7 +107,7 @@
                                           FontFamily="{StaticResource FontSolid}"
                                          />
                                     <Span Text=" " CharacterSpacing="10"/>
-                                    <Span Text="Filter"
+                                    <Span Text="{extensions:Translate Filter}"
                                           />
                                 </FormattedString>
                             </Label.FormattedText>

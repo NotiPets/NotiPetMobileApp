@@ -9,6 +9,7 @@
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:vets="clr-namespace:NotiPetApp.Views.Vets;assembly=NotiPetApp"
                 xmlns:iOsSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.Activity.ConfirmAppointmentPage"              
                 x:DataType="activity:ConfirmAppointmentViewModel"
                 BackgroundColor="Transparent"
@@ -23,7 +24,7 @@
                              Padding="10">
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
               ColumnDefinitions="Auto,*">
-            <Label Text="Confirm Appointment"
+            <Label Text="{extensions:Translate ConfirmAppointment}"
                    Grid.Row="0"
                    Grid.ColumnSpan="2"
                    Style="{StaticResource LabelLarge}"
@@ -48,7 +49,7 @@
             <Label    Grid.Row="3"
                       Grid.ColumnSpan="2"
                       Margin="20,0"
-                      Text="Services"/>
+                      Text="{extensions:Translate  Services}"/>
             <Picker Grid.Row="4"
                     Margin="20,0"
                     ItemsSource="{Binding ServicesAvailable}"
@@ -57,7 +58,7 @@
             <Label    Grid.Row="5"
                       Margin="20,0"
                       Grid.ColumnSpan="2"
-                      Text="Date"/>
+                      Text="{extensions:Translate  Date}"/>
             <DatePicker Grid.Row="6"
                         Margin="20,0"
                         Date="{Binding Date}"
@@ -65,7 +66,7 @@
             <Label    Grid.Row="7"
                       Margin="20,0"
                       Grid.ColumnSpan="2"
-                      Text="Time"/>
+                      Text="{extensions:Translate  Time}"/>
             <TimePicker    Grid.Row="8"
                             Margin="20,0,0,0"
                             Time="{Binding Time}"
@@ -79,7 +80,7 @@
                 Margin="20"
                 Padding="14"
                 Grid.ColumnSpan="2"
-                CommandText="Appointment"
+                CommandText="{extensions:Translate CreateAppointment}"
                 Grid.Row="9"
                 BackgroundColor="{DynamicResource PrimaryDark }"/> 
         </Grid>

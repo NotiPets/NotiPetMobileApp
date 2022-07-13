@@ -25,7 +25,7 @@
                                      CornerRadius="0,0,30,30">
                 <Grid RowDefinitions="Auto,Auto" RowSpacing="28">
 
-                    <Label Text="Appointments" 
+                    <Label Text="{views1:Translate  Appointments}" 
                            HorizontalTextAlignment="Center"
                            Style="{StaticResource LabelLarge}"/>
                     <ImageButton BackgroundColor="Transparent"
@@ -49,11 +49,11 @@
                                                      
                                                      Border="{pancakeView:BorderMarkup Color={StaticResource PrimaryBackgroundDark},Thickness=1}"/>
                         </views1:TabView.TabStripBackgroundView>
-                        <views1:TabViewItem Text="UpComming"
+                        <views1:TabViewItem Text="{views1:Translate  UpComming}"
                                             ControlTemplate="{StaticResource TabItemControlTemplate}"
                                             >
                         </views1:TabViewItem>
-                        <views1:TabViewItem  Text="Last"
+                        <views1:TabViewItem  Text="{views1:Translate  Last}"
 
                                              ControlTemplate="{StaticResource TabItemControlTemplate}"
                                             >
@@ -199,7 +199,7 @@
                            <Grid Grid.RowDefinitions="Auto" >
                                <Label Grid.Row="0"  HorizontalOptions="Center" 
                                       Style="{StaticResource LabelSubtitleBold}"
-                                      Text="Cancel"
+                                      Text="{views1:Translate  Cancel}"
                                       TextColor="{DynamicResource SecondaryLetterLight}"
                                       HorizontalTextAlignment="Center" >
 
