@@ -95,7 +95,7 @@
                                      Margin="0,10,0,0"
                                     />
         </views1:TabView.TabStripBackgroundView>
-        <views1:TabViewItem Text="Home"
+        <views1:TabViewItem Text="{views1:Translate Home}"
                         
                             ControlTemplate="{StaticResource TabViewItemControlTemplate}"
                             Style="{StaticResource TabViewStyle}"
@@ -114,10 +114,10 @@
     </views1:TabViewItem>
     <views1:TabViewItem ControlTemplate="{StaticResource FabItemControlTemplate}"
                         Icon="patita"
-                        Text="Services"
+                        Text="{views1:Translate Services}"
                   
     />
-    <views1:TabViewItem Text="Profile"
+    <views1:TabViewItem Text="{views1:Translate Profile}"
                         Style="{StaticResource TabViewStyle}"
                         ControlTemplate="{StaticResource TabViewItemControlTemplate}"
                         IsVisible="{Binding HasToken}"

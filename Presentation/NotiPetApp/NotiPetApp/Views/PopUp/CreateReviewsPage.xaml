@@ -8,6 +8,7 @@
                 xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.PopUp.CreateReviewsPage"
                 x:DataType="popUp:CreateReviewsViewModel"
                  BackgroundColor="{DynamicResource BackgroundColor}">
@@ -58,7 +59,7 @@
                 <Label 
                                            VerticalOptions="CenterAndExpand"
                                            TextColor="{DynamicResource PrimaryDark}"
-                                           Text="Escribir una reseña"
+                                           Text="{extensions:Translate  WriteReviews}"
                                            Grid.Row="2"
                                            Margin="10"
                                            Style="{StaticResource LabelTitleBold}"
@@ -74,7 +75,7 @@
                 <Label 
                     VerticalOptions="CenterAndExpand"
                     TextColor="{DynamicResource PrimaryDark}"
-                    Text="Evalue el servicio"
+                    Text="{extensions:Translate  Ratetheservice}"
                     Grid.Row="4"
                     Style="{StaticResource LabelTitleBold}"
                     Margin="10,0"
@@ -97,7 +98,7 @@
                                                  CornerRadius="25"
                                                  Margin="20"
                                                  Padding="10"
-                                                 CommandText="Send"
+                                                 CommandText="{extensions:Translate  Send}"
                                                  Grid.Row="6"
                                                  BackgroundColor="{DynamicResource PrimaryDark }"/> 
                 

@@ -7,6 +7,7 @@
                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.Activity.AppointmentCompletePage"
                 Background="{StaticResource PrimaryColorBrushForBox}"
                 x:DataType="activity:AppointmentCompleteViewModel">
@@ -43,7 +44,7 @@
 
 
             </pancakeView:PancakeView>
-            <Label Text="your appointment has booked!"
+            <Label Text="{extensions:Translate  Yourappointmenthasbooked}"
                    Grid.Row="2"
                    TextColor="{DynamicResource SecondaryLetterLight}"
                    Style="{StaticResource LabelLarge}"
@@ -56,7 +57,7 @@
                     <FormattedString>
                         <Span Text="{Binding  Veterinary.Name}" Style="{StaticResource LabelTitle}"
                               TextColor="{DynamicResource SecondaryLetterLight}"/>
-                        <Span Text="waiting for you and you pet" Style="{StaticResource LabelTitleBold}"
+                        <Span Text="{extensions:Translate  Waitingforyouandyoupet}" Style="{StaticResource LabelTitleBold}"
                               TextColor="{DynamicResource SecondaryLetterLight}"/>
                     </FormattedString>
                 </Label.FormattedText>
@@ -80,7 +81,7 @@
               
                 Padding="14"
                 Border="{pancakeView:BorderMarkup Color=White,Thickness=5}"
-                CommandText="Go to Appointment"
+                CommandText="{extensions:Translate Appointments}"
     
                 BackgroundColor="{DynamicResource PrimaryDark }"/> 
         </Grid>

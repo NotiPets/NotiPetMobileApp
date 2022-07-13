@@ -35,7 +35,7 @@
 
     <Grid RowDefinitions="Auto,Auto,Auto,*,Auto"
           Padding="10">
-    <Label Text="Date Selection"
+    <Label Text="{converters1:Translate DateSelection}"
            Grid.Row="0"
            Style="{StaticResource LabelLarge}"
            HorizontalTextAlignment="Center"
@@ -57,7 +57,7 @@
                 HorizontalOptions="CenterAndExpand"
                 Format="ddd dd/MMM/yyyy"
                 Date="{Binding Date}"/>
-    <Label Text="Selection Pets"
+    <Label Text="{converters1:Translate SelectionPets}"
            HorizontalTextAlignment="Center"
            Style="{StaticResource LabelLarge}"
            Grid.Row="2"
@@ -126,7 +126,7 @@
                                      CornerRadius="25"
                                      Margin="20"
                                      Padding="14"
-                                     CommandText="Continue"
+                                     CommandText="{converters1:Translate Continue}"
                                      IsVisible="{Binding CanContinue}"
                                      Grid.Row="4"
                                      BackgroundColor="{DynamicResource PrimaryDark }"/> 

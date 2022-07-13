@@ -8,8 +8,7 @@
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                  BackgroundColor="{DynamicResource BackgroundColor}"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
-
->
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit">
     <views:BasePage.Resources>
         <ResourceDictionary>
             
@@ -35,7 +34,7 @@
                     FontAttributes="Bold"
                     BackgroundColor="Transparent"
                     TextColor="{StaticResource PrimaryDark}"
-                    Text="Sign In"
+                    Text="{extensions:Translate  Login}"
                     Command="{Binding ExitCommand}"/>
             <CarouselView Grid.Row="1"
                           IndicatorView="indicatorView"

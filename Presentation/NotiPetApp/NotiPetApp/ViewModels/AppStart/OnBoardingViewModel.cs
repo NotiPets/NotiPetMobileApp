@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NotiPetApp.Helpers;
 using NotiPetApp.Models;
+using NotiPetApp.Properties;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
@@ -20,7 +21,7 @@ namespace NotiPetApp.ViewModels
                 => SkipButtonText = skipButtonText;
         public OnBoardingViewModel(INavigationService navigationService, IPageDialogService dialogPage) : base(navigationService, dialogPage)
         {
-            SetSkipButtonText("Next");
+            SetSkipButtonText(AppResources.Next);
             InitializeOnBoarding();
             InitializeSkipCommand();
             ExitCommand = ReactiveCommand.CreateFromTask(ExitOnBoarding);
@@ -31,17 +32,17 @@ namespace NotiPetApp.ViewModels
             {
                 new()
                 {
-                    Content = "Where your pet will be  safe!!",
+                    Content = AppResources.OnBoarding1,
                     Image = "OnBoarding1.png"
                 },
                 new()
                 {
-                    Content = "With real time tracking of the state of your pets.",
+                    Content = AppResources.OnBoarding2,
                     Image = "OnBoarding2.png"
                 },
                 new()
                 {
-                    Content = "Emergency attention services for your pets.",
+                    Content = AppResources.OnBoarding3,
                     Image = "OnBoarding3.png"
                 }
             };
@@ -95,11 +96,11 @@ namespace NotiPetApp.ViewModels
         {
             if (LastPositionReached())
             {
-                SetSkipButtonText("Start");
+                SetSkipButtonText(AppResources.Start);
             }
             else
             {
-                SetSkipButtonText("Next");
+                SetSkipButtonText(AppResources.Next);
             }
         }
 

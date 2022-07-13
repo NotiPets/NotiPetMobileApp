@@ -43,9 +43,9 @@
                                               FontFamily="{StaticResource FontSolid}"/>
                         </Image.Source>
                     </ImageButton>
-                    <Label Text="My Profile"  Grid.Column="1"
+                    <Label Text="{effects:Translate MyProfile}"  Grid.Column="1"
                            Style="{StaticResource LabelLarge}"/>
-                    <controls:TouchViewControl CommandText ="Save" HorizontalOptions="End" 
+                    <controls:TouchViewControl CommandText ="{effects:Translate Save}" HorizontalOptions="End" 
                                       Grid.Column="2" Command="{Binding UpdateCommand}"
                                       TextColor="{StaticResource PrimaryDark}"
                                       FontSize="20"/>
@@ -85,7 +85,7 @@
                   </forms:CachedImage>
                   <controls:EntryCustom Grid.Column="0"
                                         Grid.Row="1"
-                                        PlaceHolder="Name"
+                                        PlaceHolder="{effects:Translate Name}"
                                         x:Name="NameLB"
                                         ValidationColor="{DynamicResource ErrorColor}"
                                         Text="{Binding  Names}"
@@ -93,7 +93,7 @@
                   /> 
                         <controls:EntryCustom Grid.Column="1"
                                               Grid.Row="1"
-                                              PlaceHolder="LastName"
+                                              PlaceHolder="{effects:Translate LastName}"
                                               x:Name="LastName"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding Lastnames}"
@@ -102,14 +102,14 @@
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="3"
                                               x:Name="UsernameLB"
-                                              PlaceHolder="Username"
+                                              PlaceHolder="{effects:Translate Username}"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding Username}"
                                      
                         /> 
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="4"
-                                              PlaceHolder="Email"
+                                              PlaceHolder="{effects:Translate Email}"
                                               x:Name="EmailLB"
                                               Keyboard="Email"
                                               ValidationColor="{DynamicResource ErrorColor}"
@@ -118,14 +118,14 @@
                         /> 
                         <controls:EntryCustom Grid.ColumnSpan="2"
                                               Grid.Row="5"
-                                              PlaceHolder="Phone"
+                                              PlaceHolder="{effects:Translate Phone}"
                                               Keyboard="Telephone"
                                               x:Name="PhoneLb"
                                               ValidationColor="{DynamicResource ErrorColor}"
                                               Text="{Binding Phone}"
                                      
                         /> 
-                        <Label Text=" Veterinary: "
+                        <Label Text="{effects:Translate Veterinary} "
                                Margin="5"
                                Grid.ColumnSpan="2"
                                Style="{StaticResource LabelSubtitleBold}"

@@ -162,7 +162,7 @@
                                           FontFamily="{StaticResource FontSolid}"
                                          />
                                     <Span Text=" " CharacterSpacing="10"/>
-                                    <Span Text="Filter"
+                                    <Span Text="{views1:Translate Filter}"
                                           />
                                 </FormattedString>
                             </Label.FormattedText>

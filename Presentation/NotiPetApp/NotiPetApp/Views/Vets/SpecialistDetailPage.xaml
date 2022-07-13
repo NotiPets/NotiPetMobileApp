@@ -10,6 +10,7 @@
                 xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.Vets.SpecialistDetailPage"
                  BackgroundColor="{DynamicResource BackgroundColor}"
                 x:DataType="viewModels:SpecialistDetailViewModel">
@@ -42,19 +43,19 @@
                    Style="{StaticResource LabelTitleBold}"/>
             </Grid>
         </pancakeView:PancakeView>
-        <Label Text="Speciality Name: "
+        <Label Text="{extensions:Translate SpecialityName}"
                Grid.Row="2"
                Margin="10"
                HorizontalTextAlignment="Start"
                Style="{StaticResource LabelTitleBold}">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span  Text="Specialist name: "/>
-                    <Span Text="{Binding Specialist.Speciality.Name}"/>
+                    <Span  Text="{extensions:Translate SpecialityName}"/>
+                    <Span Text="{Binding Specialist.Speciality.Name,StringFormat=' {0}'}"/>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-        <Label  Text="Biography:"
+        <Label  Text="{extensions:Translate Biography}"
                 Margin="10"
                 Style="{StaticResource LabelTitleBold}"
                 Grid.Row="3"/>

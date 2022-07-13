@@ -14,5 +14,8 @@ namespace NotiPet.Data.Services
 
          IObservable<UserDto> GetUserById(string username);
          IObservable<UserDto> UpdateUser(string id,UserDto user);
+         IObservable<bool>  ForgotPassword(string email);
+         IObservable<UserDto> ValidateCode(int code);
+         IObservable<bool> UpdatePassword(string userId, string newPassword);
     }
 }

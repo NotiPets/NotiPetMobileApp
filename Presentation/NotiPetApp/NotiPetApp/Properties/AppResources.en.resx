@@ -97,7 +97,7 @@
         <value>Filter</value>
     </data>
     <data name="ForgotPassword" xml:space="preserve">
-        <value>Did you forget your password?
+        <value>Forget your password?
 </value>
     </data>
     <data name="Gender" xml:space="preserve">
@@ -261,5 +261,26 @@
     </data>
     <data name="Yourappointmenthasbooked" xml:space="preserve">
         <value>Your appointment has been booked!</value>
+    </data>
+    <data name="CreateAppointment" xml:space="preserve">
+        <value>Create Appointment</value>
+    </data>
+    <data name="Logout" xml:space="preserve">
+        <value>Log out</value>
+    </data>
+    <data name="MyPets" xml:space="preserve">
+        <value>My Pets</value>
+    </data>
+    <data name="VeterinaryPicker" xml:space="preserve">
+        <value>Veterinary picker</value>
+    </data>
+    <data name="Specialists" xml:space="preserve">
+        <value>Specialists</value>
+    </data>
+    <data name="Veterinaries" xml:space="preserve">
+        <value>Veterinaries</value>
+    </data>
+    <data name="Code" xml:space="preserve">
+        <value>Code</value>
     </data>
 </root>

@@ -10,6 +10,7 @@
                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                 xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.Pets.PetDetailPage"
                  BackgroundColor="{DynamicResource BackgroundColor}"
                 x:DataType="viewModels:PetDetailViewModel">
@@ -18,7 +19,7 @@
     </views:BasePage.Resources>
     <Grid>
 
-        <ScrollView>
+        <ScrollView Margin="0,0,0,30">
             <Grid RowDefinitions="400,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
                 <forms:CachedImage
                     Source="{Binding Pet.PictureUrl,Converter={StaticResource Base64StringToImageSource}}"
@@ -49,7 +50,7 @@
 
                     </Grid>
                 </pancakeView:PancakeView>
-                <Label Text="Biography:"
+                <Label Text="{extensions:Translate Biography}"
                        Margin="10"
                        Style="{StaticResource LabelTitleBold}"
                        Grid.Row="2" />
@@ -59,7 +60,7 @@
                     Grid.Row="3">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Birthdate: " />
+                            <Span Text="{extensions:Translate BirthDate}" />
                             <Span Text=" " />
                             <Span Text="{Binding Pet.Birthdate,StringFormat='{0:dd/MM/yyyy}'}" />
                         </FormattedString>
@@ -71,7 +72,7 @@
                     Grid.Row="4">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Size:" />
+                            <Span Text="{extensions:Translate Size}" />
                             <Span Text=" " />
                             <Span Text="{Binding Pet.SizeName}" />
                         </FormattedString>
@@ -82,7 +83,7 @@
                        Margin="20,10"
                        Style="{StaticResource LabelSubtitleBold}"
                        Grid.Row="5" />
-                <Label Text="Vaccinates"
+                <Label Text="{extensions:Translate Vaccines}"
                        Grid.Row="6"
                        Padding="10,5"
                        Style="{StaticResource LabelTitleBold}" />
@@ -115,7 +116,7 @@
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
-                <Label Text="Appointments"
+                <Label Text="{extensions:Translate Appointments}"
                        Grid.Row="8"
                        Padding="10,5"
                        Style="{StaticResource LabelTitleBold}" />
@@ -214,7 +215,7 @@
                                            CornerRadius="22"
                                            Margin="5"
                                            Padding="10"
-                                           CommandText="Create appointment"
+                                           CommandText="{extensions:Translate CreateAppointment}"
                                            Command="{Binding CreateAppointmentCommand}"
                                            BackgroundColor="{DynamicResource PrimaryDark }" />
             </Grid>

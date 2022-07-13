@@ -13,6 +13,7 @@ using NotiPet.Domain.Validator;
 using NotiPetApp.Controls;
 using NotiPetApp.Helpers;
 using NotiPetApp.Models;
+using NotiPetApp.Properties;
 using NotiPetApp.Services;
 using NotiPetApp.Views.Vets;
 using Prism.Common;
@@ -58,7 +59,7 @@ namespace NotiPetApp.ViewModels
             var canExecute =  SaveCommand.Select(x => x != null);
             
             Gender = new List<string>(){
-                "Female",  "Male" 
+                AppResources.Female,  AppResources.Male
             };
             PetSizes = _petsService.PetSizes;
             SaveCommand

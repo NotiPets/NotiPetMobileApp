@@ -178,6 +178,15 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Código de verificación .
+        /// </summary>
+        internal static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirmar cita.
         /// </summary>
         internal static string ConfirmAppointment {
@@ -192,6 +201,15 @@ namespace NotiPetApp.Properties {
         internal static string Continue {
             get {
                 return ResourceManager.GetString("Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crear cita.
+        /// </summary>
+        internal static string CreateAppointment {
+            get {
+                return ResourceManager.GetString("CreateAppointment", resourceCulture);
             }
         }
         
@@ -340,7 +358,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ¿Como podemos ayudarte?.
+        ///   Looks up a localized string similar to ¿Como podemos ayudarte .
         /// </summary>
         internal static string Howcanwehelpyou {
             get {
@@ -376,7 +394,7 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apellido.
+        ///   Looks up a localized string similar to LastName.
         /// </summary>
         internal static string LastName {
             get {
@@ -390,6 +408,15 @@ namespace NotiPetApp.Properties {
         internal static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salir.
+        /// </summary>
+        internal static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
             }
         }
         
@@ -408,6 +435,15 @@ namespace NotiPetApp.Properties {
         internal static string Mustselectaservice {
             get {
                 return ResourceManager.GetString("Mustselectaservice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mis mascotas.
+        /// </summary>
+        internal static string MyPets {
+            get {
+                return ResourceManager.GetString("MyPets", resourceCulture);
             }
         }
         
@@ -655,6 +691,15 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Especialistas.
+        /// </summary>
+        internal static string Specialists {
+            get {
+                return ResourceManager.GetString("Specialists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nombre de la especialidad:.
         /// </summary>
         internal static string SpecialityName {
@@ -754,11 +799,29 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Veterinarios.
+        /// </summary>
+        internal static string Veterinaries {
+            get {
+                return ResourceManager.GetString("Veterinaries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Veterinaria.
         /// </summary>
         internal static string Veterinary {
             get {
                 return ResourceManager.GetString("Veterinary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seleccionar veterinaria.
+        /// </summary>
+        internal static string VeterinaryPicker {
+            get {
+                return ResourceManager.GetString("VeterinaryPicker", resourceCulture);
             }
         }
         

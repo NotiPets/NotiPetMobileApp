@@ -14,7 +14,7 @@
                        x:Class="NotiPetApp.Views.Vets.SpecialistView"
                            BackgroundColor="{DynamicResource BackgroundColor}"
                        x:DataType="viewModels:SpecialistViewModel"
-                       Title="Specialist">
+                       Title="{extensions:Translate Specialists}">
     <controls:TabItemReactive.Resources>
         <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"
                                               DefaultImage="notImage"/>

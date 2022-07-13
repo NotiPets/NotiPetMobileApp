@@ -47,7 +47,7 @@
                                   FontFamily="{StaticResource FontSolid}"/>
             </ImageButton.Source>
         </ImageButton>
-        <Label Text="Add Pets"  Grid.Column="1"
+        <Label Text="{views1:Translate  AddPets}"  Grid.Column="1"
                Style="{StaticResource LabelLarge}"/>
 
 
@@ -90,7 +90,7 @@
 
             </pancakeView:PancakeView>
             
-            <Label Text="Personal Informatión" Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="3"
+            <Label Text="{views1:Translate PersonalInformatión}" Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="3"
                    Margin="10"
                    Style="{StaticResource LabelLarge}"/>   
             
@@ -98,7 +98,7 @@
                                   Grid.Row="3"
                                   IsEnabled="{Binding IsNew}"
                                   ValidationColor="{DynamicResource ErrorColor}"
-                                  PlaceHolder="Pet's name"
+                                  PlaceHolder="{views1:Translate Petsname}"
                                   Text="{Binding Pet.Name}"
                                      
             /> 
@@ -114,7 +114,7 @@
             /> 
 
             <Label    Style="{StaticResource  LabelTitleBold}"
-                      Text="Size"
+                      Text="{views1:Translate Size}"
                       Grid.ColumnSpan="2"
                       Margin="5"
                       Padding="12,8"
@@ -128,7 +128,7 @@
             /> 
 
             <Label    Style="{StaticResource  LabelTitleBold}"
-                      Text="BirthDate"
+                      Text="{views1:Translate BirthDate}"
                       Grid.ColumnSpan="2"
                       Margin="5"
                       Padding="12,8"
@@ -140,7 +140,7 @@
                         Date="{Binding Pet.Birthdate}"
             /> 
             <Label    Style="{StaticResource  LabelTitleBold}"
-                      Text="PetType"
+                      Text="{views1:Translate PetType}"
                       Grid.ColumnSpan="2"
                       Margin="5"
                       Padding="12,8"
@@ -153,7 +153,7 @@
                         IsEnabled="{Binding IsNew}"
                         SelectedItem="{Binding SelectedPetType}"
             /> 
-            <Label Text="Gender"
+            <Label Text="{views1:Translate Gender}"
                    Grid.Row="8"  Margin="5"
                    Padding="12,8"
                    VerticalTextAlignment="End"
@@ -186,7 +186,7 @@
                     </sf:SfSegmentedControl.SelectionIndicatorSettings>
             </sf:SfSegmentedControl>
 
-            <Label Text="Additional Information" Grid.Row="10"  Grid.Column="0" Grid.ColumnSpan="3"
+            <Label Text="{views1:Translate Additiona Information}" Grid.Row="10"  Grid.Column="0" Grid.ColumnSpan="3"
                    Margin="10"
                    Style="{StaticResource LabelLarge}"/>
             <ListView ItemsSource="{Binding InformationAditional}"

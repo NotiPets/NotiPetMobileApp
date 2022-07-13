@@ -11,6 +11,7 @@
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                  BackgroundColor="{DynamicResource BackgroundColor}"
                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
 
                 x:DataType="viewModels:VeterinaryDetailViewModel"
                 x:Class="NotiPetApp.Views.Vets.VeterinaryDetailPage">
@@ -71,19 +72,27 @@
                         </maps:Map.ItemTemplate>
                     </maps:Map>
                 </pancakeView:PancakeView>               
-                <Label Text="Reviews" 
+                <Label Text="{extensions:Translate Reviews}" 
                        Grid.Row="4"
                        HorizontalOptions="Start"
                        Padding="10"
                        Style="{StaticResource  LabelLarge}"
                 />
-                <Label Text="{Binding Review.Count,StringFormat='{0} Reviews'}" TextColor="{DynamicResource PrimaryColor}"  
+                <Label  TextColor="{DynamicResource PrimaryColor}"  
                        Grid.Row="4"
                        HorizontalOptions="End"
                        VerticalTextAlignment="Center"
                        Padding="10"
                        Style="{StaticResource LabelTitle}"
-                />
+                >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Review.Count,StringFormat='{0} '}" />
+                            <Span Text=" "/>
+                            <Span Text="{extensions:Translate Reviews}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
                 <CarouselView ItemsSource="{Binding Review}"
                               HeightRequest="250"
                               Grid.Row="5"
@@ -106,7 +115,7 @@
                   Command="{Binding CreateReviewsCommand}"
                     Padding="14"
                     Border="{pancakeView:BorderMarkup Color=White,Thickness=5}"
-                    CommandText="Write Reviews"
+                    CommandText="{extensions:Translate  WriteReviews}"
                     TextColor="{DynamicResource  PrimaryLetterLightColor}"
                     BackgroundColor="{DynamicResource  SecondBackgroundColor }"/> 
             </Grid>

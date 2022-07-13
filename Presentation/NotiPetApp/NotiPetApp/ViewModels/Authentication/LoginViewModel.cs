@@ -2,8 +2,10 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 using Bogus.DataSets;
@@ -13,6 +15,7 @@ using NotiPet.Domain.Models;
 using NotiPet.Domain.Service;
 using NotiPet.Domain.Validator;
 using NotiPetApp.Helpers;
+using NotiPetApp.Properties;
 using NotiPetApp.Services;
 using Prism.Navigation;
 using Prism.Services;
@@ -56,10 +59,9 @@ namespace NotiPetApp.ViewModels
                 .StartWith(string.Empty)
                 .ToProperty(this, x => x.Email)
                 .DisposeWith(Subscriptions);
-            ForgotPasswordCommand = ReactiveCommand.CreateFromTask(() =>
+            ForgotPasswordCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                //TODO Navigate to Fotgot password;
-                return  Task.CompletedTask;
+                await NavigationService.NavigateAsync(ConstantUri.ForgotPasswordPage);
             });
             NavigateToSignUpCommand = ReactiveCommand.CreateFromTask<Unit>((param) =>
             {
@@ -77,6 +79,15 @@ namespace NotiPetApp.ViewModels
                 Settings.UserId = param.User.Id;
                 return NavigationService.NavigateAsync(ConstantUri.TabMenu);
             },canExecuteMenu);
+            AuthenticationCommand.ThrownExceptions.Subscribe((x =>
+            {
+                RxApp.MainThreadScheduler.Schedule(() =>
+                {
+                    dialogPage.DisplayAlertAsync("Error",AppResources.ErrorLoginInformations,"Ok");
+                    // throw ex;
+                });
+
+            })).DisposeWith(Subscriptions);
             AuthenticationCommand
                 .InvokeCommand(NavigateToMenuPageCommand);
             ActiveValidation();
@@ -92,7 +103,7 @@ namespace NotiPetApp.ViewModels
             }
             _errorMessage = AuthenticationCommand
                 .Skip(1)
-                .Select(e=>e!=null&&!string.IsNullOrEmpty(e.Jwt)?string.Empty:"some of your info isn't correct, try again")
+                .Select(e=>e!=null&&!string.IsNullOrEmpty(e.Jwt)?string.Empty:AppResources.ErrorLoginInformations)
                 .ToProperty(this,x=>x.ErrorMessage,scheduler:_schedulerProvider.MainThread);
             _isBusy = AuthenticationCommand
                 .IsExecuting.ToProperty(this,x=>x.IsBusy,scheduler:_schedulerProvider.CurrentThread);
@@ -121,9 +132,8 @@ namespace NotiPetApp.ViewModels
 
         IObservable<Authentication> Authentication()
         {
-           var observable = _authenticationService.Authentication(this);
+            var observable = _authenticationService.Authentication(this);
             return observable;
-
         }
 
 

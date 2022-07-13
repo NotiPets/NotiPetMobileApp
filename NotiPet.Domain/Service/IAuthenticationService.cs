@@ -13,6 +13,10 @@ namespace NotiPet.Domain.Service
 
         public IObservable<Authentication> Authentication(IAuthenticationRequestViewModel viewModel);
         public IObservable<Authentication> SignUp(IRegisterRequestViewModel viewModel);
+        public IObservable<bool> ForgotPassword(string email);
+        IObservable<User> ValidateCode(int code);
+
+        IObservable<bool> UpdatePassword(string userId, string newPassword);
 
         public IObservable<List<PersonalDocument>>  GetDocumentTypes();
     }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DynamicData;
 using NotiPetApp.Helpers;
 using NotiPetApp.Models;
+using NotiPetApp.Properties;
 using NotiPetApp.Services;
 using Prism.Navigation;
 using Prism.Services;
@@ -20,12 +21,13 @@ namespace NotiPetApp.ViewModels
         {
             _deviceUtils = deviceUtils;
             Username = Settings.Username;
+             
             AppMenuItems = new ObservableCollection<AppMenuItem>()
             {
-                new(ConstantDictionary.Veterinary,"Veterinary",1,ReactiveCommand.CreateFromTask(NavigateToLastVisitVeterinary),SizeItem.Small),
-                new(ConstantDictionary.Appointment,"Calendar",2,ReactiveCommand.CreateFromTask(NavigateToAppointment),SizeItem.Small),
-                new(ConstantDictionary.Store,"Shop",3,ReactiveCommand.CreateFromTask(ShowNavigateToStory),SizeItem.Small),
-                new(ConstantDictionary.Emergency,"Emergency",4,ReactiveCommand.CreateFromTask(CallEmergency),SizeItem.Large),
+                new(AppResources.Veterinary,"Veterinary",1,ReactiveCommand.CreateFromTask(NavigateToLastVisitVeterinary),SizeItem.Small),
+                new(AppResources.Appointments,"Calendar",2,ReactiveCommand.CreateFromTask(NavigateToAppointment),SizeItem.Small),
+                new(AppResources.Store,"Shop",3,ReactiveCommand.CreateFromTask(ShowNavigateToStory),SizeItem.Small),
+                new(AppResources.Emergency,"Emergency",4,ReactiveCommand.CreateFromTask(CallEmergency),SizeItem.Large),
             };
         }
 

@@ -11,6 +11,7 @@
                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                 xmlns:xForms1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.MenuPages.StorePage"
                 x:TypeArguments="viewModels:StoreViewModel"
                  BackgroundColor="{DynamicResource BackgroundColor}"
@@ -33,7 +34,7 @@
                       ColumnDefinitions="*,Auto"
                       Margin="2,4,5,10"
                       RowSpacing="30">
-                    <Label Text="Store" 
+                    <Label Text="{extensions:Translate Store}" 
                            Grid.ColumnSpan="2"
                            HorizontalTextAlignment="Center"
                            Style="{StaticResource LabelLarge}"/>
@@ -117,7 +118,7 @@
                                           FontFamily="{StaticResource FontSolid}"
                                          />
                                     <Span Text=" " CharacterSpacing="10"/>
-                                    <Span Text="Filter"
+                                    <Span Text="{extensions:Translate Filter}"
                                           />
                                 </FormattedString>
                             </Label.FormattedText>

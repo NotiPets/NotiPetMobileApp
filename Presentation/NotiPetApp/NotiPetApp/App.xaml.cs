@@ -6,6 +6,7 @@ using NotiPet.Domain.Service;
 using NotiPet.Mocks;
 using NotiPet.Mocks.Services;
 using NotiPetApp.Helpers;
+using NotiPetApp.Properties;
 using NotiPetApp.Services;
 using NotiPetApp.ViewModels;
 using NotiPetApp.ViewModels.Activity;
@@ -26,6 +27,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Services;
 using ReactiveUI;
+using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -44,6 +46,8 @@ namespace NotiPetApp
         {
          
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTg0NDIxQDMxMzkyZTM0MmUzMFNLQ3ZJWkRQZkwyc2pYTXkzZCtyTStaOG5DeHpBaWg5djNaQ0RmK2R1QzQ9");
+            LocalizationResourceManager.Current.PropertyChanged += (_, _) => AppResources.Culture = LocalizationResourceManager.Current.CurrentCulture;
+            LocalizationResourceManager.Current.Init(AppResources.ResourceManager);
             InitializeComponent();  
             var dialog = ContainerProvider.Resolve<IPageDialogService>();
             RxApp.DefaultExceptionHandler = new RxExceptionHandler(dialog);
@@ -100,6 +104,8 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<HelpPage,HelpPageViewModel>();
             containerRegistry.RegisterForNavigation<PetDetailPage,PetDetailViewModel>();
             containerRegistry.RegisterForNavigation<VaccinesPage,VaccinesViewModel>();
+            containerRegistry.RegisterForNavigation<ForgotPasswordPage,ForgotPasswordViewModel>();
+            
             containerRegistry.RegisterInstance<IGoogleClientManager>(CrossGoogleClient.Current);
             ContainerProvider = Container;
 
