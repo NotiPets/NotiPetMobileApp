@@ -39,5 +39,20 @@ namespace NotiPet.Mocks.Services
             generator.UserRoleDto = user;
             return  Observable.Return(generator.UserRoleDto);
         }
+
+        public IObservable<bool> ForgotPassword(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IObservable<UserDto> ValidateCode(int code)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IObservable<bool> UpdatePassword(string userId, string newPassword)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

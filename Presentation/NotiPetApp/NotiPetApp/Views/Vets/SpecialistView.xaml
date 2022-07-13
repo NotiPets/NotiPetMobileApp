@@ -11,9 +11,10 @@
                        xmlns:xForms1="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                        xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
                        xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                       xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                        x:Class="NotiPetApp.Views.Vets.SpecialistView" 
                        x:DataType="viewModels:SpecialistViewModel"
-                       Title="Specialist">
+                       Title="{extensions:Translate Specialists}">
     <controls:TabItemReactive.Resources>
         <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"
                                               DefaultImage="notImage"/>

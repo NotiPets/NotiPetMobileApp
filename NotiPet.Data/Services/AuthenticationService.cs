@@ -60,6 +60,22 @@ namespace NotiPet.Data.Services
                .Select(e=>_mapper.Map<Authentication>(e));;
         }
 
+        public IObservable<bool> ForgotPassword(string email)
+        {
+            return _userServiceApi.ForgotPassword(email)
+                .Select(e=>_mapper.Map<bool>(e));
+        }
+        public IObservable<User> ValidateCode(int code)
+        {
+            return _userServiceApi.ValidateCode(code)
+                .Select(e=>_mapper.Map<User>(e));
+        }
+
+        public IObservable<bool> UpdatePassword(string userId,string newPassword)
+        {
+            return _userServiceApi.UpdatePassword(userId, newPassword);
+        }
+
         public IObservable<List<PersonalDocument>> GetDocumentTypes()
         {
             return Observable.Return(new List<PersonalDocument>()

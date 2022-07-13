@@ -178,6 +178,15 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Código de verificación .
+        /// </summary>
+        internal static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirmar cita.
         /// </summary>
         internal static string ConfirmAppointment {
@@ -682,6 +691,15 @@ namespace NotiPetApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Especialistas.
+        /// </summary>
+        internal static string Specialists {
+            get {
+                return ResourceManager.GetString("Specialists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nombre de la especialidad:.
         /// </summary>
         internal static string SpecialityName {
@@ -777,6 +795,15 @@ namespace NotiPetApp.Properties {
         internal static string Vaccines {
             get {
                 return ResourceManager.GetString("Vaccines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Veterinarios.
+        /// </summary>
+        internal static string Veterinaries {
+            get {
+                return ResourceManager.GetString("Veterinaries", resourceCulture);
             }
         }
         

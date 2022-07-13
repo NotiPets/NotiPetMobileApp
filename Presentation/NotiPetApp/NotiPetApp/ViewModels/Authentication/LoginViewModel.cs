@@ -59,10 +59,9 @@ namespace NotiPetApp.ViewModels
                 .StartWith(string.Empty)
                 .ToProperty(this, x => x.Email)
                 .DisposeWith(Subscriptions);
-            ForgotPasswordCommand = ReactiveCommand.CreateFromTask(() =>
+            ForgotPasswordCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                //TODO Navigate to Fotgot password;
-                return  Task.CompletedTask;
+                await NavigationService.NavigateAsync(ConstantUri.ForgotPasswordPage);
             });
             NavigateToSignUpCommand = ReactiveCommand.CreateFromTask<Unit>((param) =>
             {

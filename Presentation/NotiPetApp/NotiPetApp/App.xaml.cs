@@ -104,6 +104,8 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<HelpPage,HelpPageViewModel>();
             containerRegistry.RegisterForNavigation<PetDetailPage,PetDetailViewModel>();
             containerRegistry.RegisterForNavigation<VaccinesPage,VaccinesViewModel>();
+            containerRegistry.RegisterForNavigation<ForgotPasswordPage,ForgotPasswordViewModel>();
+            
             containerRegistry.RegisterInstance<IGoogleClientManager>(CrossGoogleClient.Current);
             ContainerProvider = Container;
 

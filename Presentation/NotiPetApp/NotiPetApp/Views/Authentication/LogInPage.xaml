@@ -91,6 +91,11 @@
                                Text="{converters:Translate ForgotPassword}"
                                Style="{StaticResource LabelSubtitleBold}"
                                Margin="5,1,5,20" 
+                               converters:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                               converters:TouchEffect.PressedOpacity="0.6"
+                               converters:TouchEffect.AnimationDuration="5"
+                               converters:TouchEffect.PressedScale="0.8"
+                               converters:TouchEffect.Command="{Binding ForgotPasswordCommand}"
                                HorizontalTextAlignment="End"/>
                         <Label Grid.Row="5" 
                                Grid.ColumnSpan="2"

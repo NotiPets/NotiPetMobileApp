@@ -97,7 +97,7 @@
         <value>Filter</value>
     </data>
     <data name="ForgotPassword" xml:space="preserve">
-        <value>Did you forget your password?
+        <value>Forget your password?
 </value>
     </data>
     <data name="Gender" xml:space="preserve">
@@ -273,5 +273,14 @@
     </data>
     <data name="VeterinaryPicker" xml:space="preserve">
         <value>Veterinary picker</value>
+    </data>
+    <data name="Specialists" xml:space="preserve">
+        <value>Specialists</value>
+    </data>
+    <data name="Veterinaries" xml:space="preserve">
+        <value>Veterinaries</value>
+    </data>
+    <data name="Code" xml:space="preserve">
+        <value>Code</value>
     </data>
 </root>

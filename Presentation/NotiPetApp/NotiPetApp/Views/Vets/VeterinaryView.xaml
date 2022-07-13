@@ -12,7 +12,7 @@
                           xmlns:vets="clr-namespace:NotiPetApp.Views.Vets;assembly=NotiPetApp"
                           x:Class="NotiPetApp.Views.Vets.VeterinaryView"
                           x:Name="VetView"
-                          Title="Veterinaries"
+                          Title="{converters:Translate Veterinaries}"
 >
     <controls:TabItemReactive.Resources>
         <converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/> 

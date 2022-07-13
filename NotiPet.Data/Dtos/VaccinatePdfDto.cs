@@ -7,4 +7,5 @@ namespace NotiPet.Data.Dtos
         [JsonProperty("response")]
         public string File { get; set; }
     }
+
 }

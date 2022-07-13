@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -39,6 +40,24 @@ namespace NotiPet.Data.Services
         {
             return RemoteRequestObservableAsync<UserDto>(_apiClient.Client.UpdateUser(id,user))
                 .Select(e=>e.Result);
+        }
+
+        public IObservable<bool> ForgotPassword(string email)
+        {
+            return RemoteRequestObservableAsync<object>(_apiClient.Client.ForgotPassword(email))
+                .Select(e=>true);
+        }
+
+        public IObservable<UserDto> ValidateCode(int code)
+        {
+            return RemoteRequestObservableAsync<UserDto>(_apiClient.Client.ValidateCode(code))
+                .Select(e=>e.Result);
+        }
+
+        public IObservable<bool> UpdatePassword(string userId, string newPassword)
+        {
+            return RemoteRequestObservableAsync<object>(_apiClient.Client.UpdatePassword(userId,newPassword),false)
+                .Select(e=>e.SuccessResult );
         }
     }
 }

@@ -20,6 +20,7 @@ namespace NotiPetApp.Helpers
         public const string Settings = "SettingsPage";
         public const string Register = "RegisterPage";
         public const string OnBoarding = "OnBoardingPage";
+        public const string ForgotPasswordPage = "ForgotPasswordPage";
         public const string SpecialistDetail = "SpecialistDetailView";
         public const string VeterinaryDetail = "VeterinaryDetailPage";
 

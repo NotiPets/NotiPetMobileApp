@@ -276,4 +276,13 @@
     <data name="VeterinaryPicker" xml:space="preserve">
         <value>Seleccionar veterinaria</value>
     </data>
+    <data name="Specialists" xml:space="preserve">
+        <value>Especialistas</value>
+    </data>
+    <data name="Veterinaries" xml:space="preserve">
+        <value>Veterinarios</value>
+    </data>
+    <data name="Code" xml:space="preserve">
+        <value>Código de verificación </value>
+    </data>
 </root>
