@@ -9,6 +9,7 @@ using NotiPetApp.Services;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace NotiPetApp.ViewModels
 {
@@ -16,7 +17,7 @@ namespace NotiPetApp.ViewModels
     {
         private readonly IDeviceUtils _deviceUtils;
         public ObservableCollection<AppMenuItem> AppMenuItems { get; set; }
-        public string Username { get; set; }
+       [Reactive] public string Username { get; set; }
         public HomeViewModel(INavigationService navigationService, IPageDialogService dialogPage,IDeviceUtils deviceUtils) : base(navigationService, dialogPage)
         {
             _deviceUtils = deviceUtils;

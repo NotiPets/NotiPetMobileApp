@@ -9,7 +9,8 @@
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
-                                        BackgroundColor="{DynamicResource BackgroundColor}"
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
+                BackgroundColor="{DynamicResource BackgroundColor}"
                 x:Class="NotiPetApp.Views.Activity.VeterinaryPickerPage">
     <Grid RowDefinitions="Auto,*">
             <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"

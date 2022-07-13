@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using NotiPetApp.Helpers;
@@ -35,7 +36,9 @@ namespace NotiPetApp.ViewModels
                     Code = "es"
                 },
             };
+            SelectedLanguage = Languages.FirstOrDefault(x => x.Code.Contains(Settings.Language) );
             this.WhenAnyValue(x => x.SelectedLanguage)
+                .Skip(1)
                 .Where(x => x!=null && ! string.IsNullOrEmpty(x.Code))
                 .Select(x => x)
                 .Subscribe(x =>

@@ -47,12 +47,15 @@ namespace NotiPetApp
         {
          
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTg0NDIxQDMxMzkyZTM0MmUzMFNLQ3ZJWkRQZkwyc2pYTXkzZCtyTStaOG5DeHpBaWg5djNaQ0RmK2R1QzQ9");
-            
+
+            if (string.IsNullOrEmpty(Settings.Language))
+            {
+                Settings.Language = LocalizationResourceManager.Current.CurrentCulture.Name;
+            }
             LocalizationResourceManager.Current.PropertyChanged += (_, _) 
              => AppResources.Culture = CultureInfo.GetCultureInfo(Settings.Language);
-            
-            
             LocalizationResourceManager.Current.Init(AppResources.ResourceManager);
+            LocalizationResourceManager.Current.CurrentCulture = CultureInfo.GetCultureInfo(Settings.Language);
             InitializeComponent();  
             var dialog = ContainerProvider.Resolve<IPageDialogService>();
             RxApp.DefaultExceptionHandler = new RxExceptionHandler(dialog);
