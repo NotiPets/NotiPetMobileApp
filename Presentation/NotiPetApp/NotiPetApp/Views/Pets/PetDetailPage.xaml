@@ -154,7 +154,6 @@
                                         <Label Text="{Binding Appointment.Date, StringFormat='{0:dd-MMMM -- hh:mm\}'}"
                                                Grid.Row="2"
                                                FontSize="16"
-                                               TextType="Html"
                                                MaxLines="2"
                                                Style="{StaticResource LabelSubtitleBold}"
                                                LineBreakMode="TailTruncation"

@@ -43,7 +43,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidKeyStore>false</AndroidKeyStore>
     <AndroidSigningKeyStore>C:\Users\rafae\AppData\Local\Xamarin\Mono for Android\Keystore\notipetAppT\notipetAppT.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>noti123</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>noti</AndroidSigningKeyAlias>

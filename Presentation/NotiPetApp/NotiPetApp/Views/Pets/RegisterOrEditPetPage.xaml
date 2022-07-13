@@ -217,7 +217,7 @@
                                              CornerRadius="25"
                                              Margin="10"
                                              Padding="10"
-                                             CommandText="Guardar"
+                                             CommandText="Save"
                                              
                                              Grid.Row="12"
                                              BackgroundColor="{DynamicResource PrimaryDark }"/> 

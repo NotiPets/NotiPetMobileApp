@@ -18,4 +18,250 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="ErrorLoginInformations" xml:space="preserve">
+        <value>Parte de tu información no es correcta, inténtalo de nuevo.</value>
+    </data>
+    <data name="Username" xml:space="preserve">
+        <value>Nombre de usuario</value>
+    </data>
+    <data name="Password" xml:space="preserve">
+        <value> Contraseña</value>
+    </data>
+    <data name="ForgotPassword" xml:space="preserve">
+        <value>¿Se te olvidó tu contraseña?</value>
+    </data>
+    <data name="Login" xml:space="preserve">
+        <value>Iniciar sesión</value>
+    </data>
+    <data name="DonthaveaNotipetaccountyet" xml:space="preserve">
+        <value>¿Todavía no tienes una cuenta en Notipet?</value>
+    </data>
+    <data name="SignUp" xml:space="preserve">
+        <value>Registrarse</value>
+    </data>
+    <data name="LastName" xml:space="preserve">
+        <value>Apellido</value>
+    </data>
+    <data name="Name" xml:space="preserve">
+        <value>Nombre</value>
+    </data>
+    <data name="Email" xml:space="preserve">
+        <value>Correo</value>
+    </data>
+    <data name="Selecteddocumenttype" xml:space="preserve">
+        <value>Tipo de documento seleccionado:</value>
+    </data>
+    <data name="Document" xml:space="preserve">
+        <value>Documento</value>
+    </data>
+    <data name="Phone" xml:space="preserve">
+        <value>Teléfono</value>
+    </data>
+    <data name="VeterinarySelected" xml:space="preserve">
+        <value>Veterinaria Seleccionada:</value>
+    </data>
+    <data name="IAgreeToNotiPet" xml:space="preserve">
+        <value>Aceptar </value>
+    </data>
+    <data name="TermsandConditions" xml:space="preserve">
+        <value>Términos y condiciones</value>
+    </data>
+    <data name="Passwordnotvalid" xml:space="preserve">
+        <value>Contraseña inválida</value>
+    </data>
+    <data name="Usernamenotvalid" xml:space="preserve">
+        <value>Nombre de usuario inválido</value>
+    </data>
+    <data name="BusinessIdnotvalid" xml:space="preserve">
+        <value>Veterinaria incorrecta</value>
+    </data>
+    <data name="Shouldbebetween" xml:space="preserve">
+        <value>Debería estar entre {0} a {1}</value>
+    </data>
+    <data name="Mustselectaservice" xml:space="preserve">
+        <value>Debes seleccionar un servicio</value>
+    </data>
+    <data name="Namenotvalid" xml:space="preserve">
+        <value>Nombre incorrecto</value>
+    </data>
+    <data name="PetTypenotvalid" xml:space="preserve">
+        <value>Tipo de mascota incorrecta</value>
+    </data>
+    <data name="Sizenotvalid" xml:space="preserve">
+        <value>Debe elegir un tamaño</value>
+    </data>
+    <data name="OnBoarding1" xml:space="preserve">
+        <value>Donde tu mascota estará segura!!</value>
+    </data>
+    <data name="OnBoarding2" xml:space="preserve">
+        <value>Con seguimiento en tiempo real del estado de tus mascotas.</value>
+    </data>
+    <data name="OnBoarding3" xml:space="preserve">
+        <value>Servicios de atención de urgencias para tus mascotas.</value>
+    </data>
+    <data name="Start" xml:space="preserve">
+        <value>Comenzar</value>
+    </data>
+    <data name="Next" xml:space="preserve">
+        <value>Siguiente</value>
+    </data>
+    <data name="Veterinary" xml:space="preserve">
+        <value>Veterinaria</value>
+    </data>
+    <data name="Calendar" xml:space="preserve">
+        <value>Calendario</value>
+    </data>
+    <data name="Shop" xml:space="preserve">
+        <value>Tienda</value>
+    </data>
+    <data name="Emergency" xml:space="preserve">
+        <value>Emergencia</value>
+    </data>
+    <data name="Howcanwehelpyou" xml:space="preserve">
+        <value>¿Como podemos ayudarte?</value>
+    </data>
+    <data name="Home" xml:space="preserve">
+        <value>Inicio</value>
+    </data>
+    <data name="Services" xml:space="preserve">
+        <value>Servicios</value>
+    </data>
+    <data name="Profile" xml:space="preserve">
+        <value>Perfil</value>
+    </data>
+    <data name="Close" xml:space="preserve">
+        <value>Cerrar</value>
+    </data>
+    <data name="AboutPage" xml:space="preserve">
+        <value>Sobre nosotros</value>
+    </data>
+    <data name="Filter" xml:space="preserve">
+        <value>Filtro</value>
+    </data>
+    <data name="WriteReviews" xml:space="preserve">
+        <value>Escribir reseña</value>
+    </data>
+    <data name="SpecialityName" xml:space="preserve">
+        <value>Nombre de la especialidad:</value>
+    </data>
+    <data name="Biography" xml:space="preserve">
+        <value>Biografía</value>
+    </data>
+    <data name="Language" xml:space="preserve">
+        <value>Idioma</value>
+    </data>
+    <data name="Askforhelp" xml:space="preserve">
+        <value>Pedir ayuda</value>
+    </data>
+    <data name="Title" xml:space="preserve">
+        <value>Titulo</value>
+    </data>
+    <data name="Describeyourcase" xml:space="preserve">
+        <value>Describe tu caso</value>
+    </data>
+    <data name="MyProfile" xml:space="preserve">
+        <value>Mi perfil</value>
+    </data>
+    <data name="Reviews" xml:space="preserve">
+        <value>Reseñas</value>
+    </data>
+    <data name="Ratetheservice" xml:space="preserve">
+        <value>Evalue el servicio</value>
+    </data>
+    <data name="Send" xml:space="preserve">
+        <value>Enviar</value>
+    </data>
+    <data name="AddPets" xml:space="preserve">
+        <value>Agregar mascotas</value>
+    </data>
+    <data name="PersonalInformatión" xml:space="preserve">
+        <value>Informacion personal</value>
+    </data>
+    <data name="Petsname" xml:space="preserve">
+        <value>Nombre de mascota</value>
+    </data>
+    <data name="Description" xml:space="preserve">
+        <value>Descripción</value>
+    </data>
+    <data name="Size" xml:space="preserve">
+        <value>Tamaño</value>
+    </data>
+    <data name="BirthDate" xml:space="preserve">
+        <value>Fecha de nacimiento</value>
+    </data>
+    <data name="PetType" xml:space="preserve">
+        <value>Tipo de Mascota</value>
+    </data>
+    <data name="Gender" xml:space="preserve">
+        <value>Género</value>
+    </data>
+    <data name="Additiona Information" xml:space="preserve">
+        <value>Información Adicional</value>
+    </data>
+    <data name="Save" xml:space="preserve">
+        <value>Guardar</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Borrar</value>
+    </data>
+    <data name="Edit" xml:space="preserve">
+        <value>Editar</value>
+    </data>
+    <data name="Vaccines" xml:space="preserve">
+        <value>Vacunas</value>
+    </data>
+    <data name="Appointments" xml:space="preserve">
+        <value>Citas</value>
+    </data>
+    <data name="Store" xml:space="preserve">
+        <value>Tienda</value>
+    </data>
+    <data name="Date" xml:space="preserve">
+        <value>Fecha</value>
+    </data>
+    <data name="Time" xml:space="preserve">
+        <value>Tiempo</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancelar</value>
+    </data>
+    <data name="Update" xml:space="preserve">
+        <value>Actualizar</value>
+    </data>
+    <data name="UpComming" xml:space="preserve">
+        <value>Próximamente</value>
+    </data>
+    <data name="Last" xml:space="preserve">
+        <value>Finalizadas</value>
+    </data>
+    <data name="DateSelection" xml:space="preserve">
+        <value>Selección de fecha</value>
+    </data>
+    <data name="SelectionPets" xml:space="preserve">
+        <value>Selección Mascotas</value>
+    </data>
+    <data name="Continue" xml:space="preserve">
+        <value>Continuar</value>
+    </data>
+    <data name="ConfirmAppointment" xml:space="preserve">
+        <value>Confirmar cita</value>
+    </data>
+    <data name="Yourappointmenthasbooked" xml:space="preserve">
+        <value>¡Tu cita ha sido reservada!</value>
+    </data>
+    <data name="Waitingforyouandyoupet" xml:space="preserve">
+        <value>Esperándote a ti y a tu mascota</value>
+    </data>
+    <data name="Female" xml:space="preserve">
+        <value>Femenina</value>
+    </data>
+    <data name="Male" xml:space="preserve">
+        <value>Masculino</value>
+    </data>
+    <data name="Areyousurewanttocancelorder" xml:space="preserve">
+        <value>¿Estás seguro de que deseas cancelar el pedido?</value>
+    </data>
+    <data name="Alert" xml:space="preserve">
+        <value>Alerta</value>
+    </data>
 </root>
