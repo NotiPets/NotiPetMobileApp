@@ -6,42 +6,27 @@
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:renderers="clr-namespace:AiForms.Renderers;assembly=SettingsView"
-                 BackgroundColor="{DynamicResource BackgroundColor}"
-                x:Class="NotiPetApp.Views.SettingsPage">
+                xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
+                BackgroundColor="{DynamicResource BackgroundColor}"
+                x:Class="NotiPetApp.Views.SettingsPage"
+                NavigationPage.HasNavigationBar="True"
+                Title="{extensions:Translate Settings}"
+                >
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,*"
               Padding="10,10,0,0">
-
-            <Label Text="Settings" 
-                  VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"
-                   Style="{StaticResource LabelLarge}"/>
-            <ImageButton BackgroundColor="Transparent"
-                         Command="{Binding NavigateGoBackCommand}"
-                         Grid.Column="0"
-                         
-                         HorizontalOptions="StartAndExpand"
-                         Margin="10,5"
-                         Grid.Row="0">
-                <ImageButton.Source>
-
-                    <FontImageSource Glyph="{x:Static fontIcon:FontIcon.Back}"
-                                     Color="{DynamicResource PrimaryDark}"
-                                     FontFamily="{StaticResource FontSolid}"/>
-                </ImageButton.Source>
-            </ImageButton>
+            
             <renderers:SettingsView Grid.Row="1"
                                     >
                 <renderers:Section >
-                    <renderers:PickerCell Title="Language" ItemsSource="{Binding Languages}"
-                                          SelectedItem="{Binding SelectedLanguage}"/>
+                    <renderers:PickerCell Title="{extensions:Translate Language}" ItemsSource="{Binding Languages}"
+                                          SelectedItem="{Binding SelectedLanguage,Mode=TwoWay}"
+                                           SelectionMode="Single"/>
                 </renderers:Section>
                 <renderers:Section >
                     <renderers:SwitchCell Title="Dark mode"/>         
                 </renderers:Section>    
-                <renderers:Section>
-                    <renderers:ButtonCell Title="Send FeedBack"/>
-                </renderers:Section>
+        
             </renderers:SettingsView>
         </Grid>
     </ContentPage.Content>
