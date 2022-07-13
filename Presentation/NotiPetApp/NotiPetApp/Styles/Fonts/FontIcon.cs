@@ -27,7 +27,8 @@ namespace NotiPetApp.Styles.Fonts
         public const string AddPhoto = "\ue439";
         public const string Back = "\ue5c4";
         public const string Help = "\uf8d6";
-      
+        public const string Check = "\ue86c";
+        public const string UnCheck = "\ue836";
         public const string ArrowForward = "\ue5e1";
     }
 }

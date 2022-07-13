@@ -48,6 +48,7 @@ namespace NotiPetApp.ViewModels.Activity
             if (parameters.GetNavigationMode()==NavigationMode.New)
             {
                 _createAppointment.BusinessId = (int)parameters[ParameterConstant.VeterinaryId] ;
+                _createAppointment.Veterinary = parameters[nameof(Veterinary)] as Veterinary;
                 parameters.Add(ParameterConstant.VeterinaryPickerAppointment,_createAppointment);
                 
             }

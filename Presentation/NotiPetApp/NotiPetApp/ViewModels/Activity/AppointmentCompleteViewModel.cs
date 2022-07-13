@@ -15,7 +15,7 @@ namespace NotiPetApp.ViewModels.Activity
     public class AppointmentCompleteViewModel:BaseViewModel,IInitialize
     {
         private readonly IVeterinaryService _veterinaryService;
-        public RequestOrder Order { get; set; }
+        public Sales Order { get; set; }
         public Veterinary Veterinary { get; set; }
         public DateTime Date { get; set; }
 
@@ -55,7 +55,7 @@ namespace NotiPetApp.ViewModels.Activity
 
         public void Initialize(INavigationParameters parameters)
         {
-            Order = parameters[ParameterConstant.OrderComplete] as RequestOrder;
+            Order = parameters[ParameterConstant.OrderComplete] as Sales;
             if (Order != null&&Order.Orders.Any())
                 Date = Order.Orders.FirstOrDefault()!.Appointment.Date;
         }

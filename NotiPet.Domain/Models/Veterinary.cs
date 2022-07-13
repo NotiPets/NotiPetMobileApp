@@ -1,3 +1,5 @@
+using System;
+
 namespace NotiPet.Domain.Models
 {
     public class Veterinary
@@ -35,6 +37,8 @@ namespace NotiPet.Domain.Models
         public string Province { get;  }
         public double Latitude { get;  }
         public double Longitude { get; }
+        public DateTime OpeningTime { get; set; }
+        public DateTime ClosingTime { get; set; }
 
         public string FullAddress => $"{Address1}, {Province},{City}";
 

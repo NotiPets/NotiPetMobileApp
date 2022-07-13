@@ -10,11 +10,23 @@
                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                 xmlns:vets="clr-namespace:NotiPetApp.Views.Vets;assembly=NotiPetApp"
                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                xmlns:converters1="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.Activity.SelectSpecialityPopUp"
                 BackgroundColor="Transparent"
                 x:DataType="activity:SelectSpecialityViewModel">
     <views:BasePage.Resources >
         <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
+        <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.Check}"
+                          x:Key="CheckFontImage"
+                          Color="{DynamicResource PrimaryDark}"
+                          FontFamily="{StaticResource FontSolid}"/>
+        <FontImageSource  Glyph="{x:Static fontIcon:FontIcon.UnCheck}"
+                          x:Key="UnCheckFontImage"
+                          Color="{DynamicResource PrimaryLetterLightColor}"
+                          FontFamily="{StaticResource FontSolid}"/>
+        <converters1:BoolToObjectConverter TrueObject="{StaticResource CheckFontImage}"
+                                           FalseObject="{StaticResource UnCheckFontImage}"
+                                           x:Key="BoolToSelectedIconConverter"/>
     </views:BasePage.Resources>
     <pancakeView:PancakeView Margin="0,40,0,0"
                              BackgroundColor="{DynamicResource BackgroundColor}"
@@ -54,7 +66,7 @@
         <CollectionView ItemsSource="{Binding Pets}"
                     Grid.Row="3"
                     x:Name="Pets"
-                    SelectedItem="{Binding SelectedItem}"
+                    SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
                     SelectionMode="Single"
     >
             <CollectionView.ItemsLayout>
@@ -63,13 +75,14 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:Pet">
-                <StackLayout Margin="10">
+                <StackLayout Margin="10" BackgroundColor="{DynamicResource BackgroundColor}">
                <Grid RowDefinitions="Auto,Auto,Auto,Auto"
                       ColumnDefinitions="110,Auto,*">
-                          <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
-                                                    Padding="0" Grid.Row="0" Grid.RowSpan="2"
-                                                    CornerRadius="60"
-                                                    Margin="5,10,10,0" >
+     
+                   <pancakeView:PancakeView  Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"
+                                             Padding="0" Grid.Row="0" Grid.RowSpan="2"
+                                             CornerRadius="60"
+                                             Margin="5,10,10,0" >
                        <Image  Source="{Binding PictureUrl,Converter={StaticResource Base64StringToImageSource}}"
                                           Aspect="AspectFill" 
                                           HeightRequest="120"
@@ -94,6 +107,12 @@
                                  LineBreakMode="TailTruncation"
                                  Grid.Column="0"
                                  Grid.ColumnSpan="3"/>
+                   <Image HorizontalOptions="StartAndExpand"
+                          Grid.RowSpan="4"
+                          Source="{Binding IsSelected,Converter={StaticResource BoolToSelectedIconConverter}}"
+                          Grid.ColumnSpan="3"
+                          VerticalOptions="StartAndExpand">
+                   </Image>
 
                 </Grid>
               

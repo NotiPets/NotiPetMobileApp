@@ -46,7 +46,10 @@ namespace NotiPetApp.ViewModels.Activity
             CreateAppointmentCommand = ReactiveCommand.CreateFromObservable<Sales>(CreateAppointment);
             var canExecuteAppointment = CreateAppointmentCommand.Select(e => e is {Orders: { }} && e.Orders.Any());//
             RequestAppointmentCommand =
-                ReactiveCommand.CreateFromTask<Sales>((param) => NavigationService.NavigateAsync(ConstantUri.AppointmentComplete),canExecuteAppointment);
+                ReactiveCommand.CreateFromTask<Sales>((param) => NavigationService.NavigateAsync(ConstantUri.AppointmentComplete, new NavigationParameters()
+                {
+                    {ParameterConstant.OrderComplete,param}
+                }),canExecuteAppointment);
             CreateAppointmentCommand
                 .InvokeCommand(RequestAppointmentCommand);
      

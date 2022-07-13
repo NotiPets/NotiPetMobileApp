@@ -1,8 +1,11 @@
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using NotiPet.Domain.Annotations;
 
 namespace NotiPet.Domain.Models
 {
-    public class Pet
+    public class Pet:INotifyPropertyChanged
     {
         public Pet(string id, string name, int petTypeId, string petTypeName, string userId, User user, int size, bool active, string pictureUrl, string description, bool gender, bool vaccinated, bool castrated, bool hasTracker, DateTime birthdate, DateTime created, DateTime updated)
         {
@@ -43,6 +46,21 @@ namespace NotiPet.Domain.Models
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
         public string SizeName => $"{(EPetSize)Size}";
+        public bool IsSelected { get; private set; }
+
+        public void SetIsSelected(bool isSelected)
+        {
+            IsSelected = isSelected;
+            OnPropertyChanged(nameof(IsSelected));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     public enum EPetSize

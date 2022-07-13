@@ -17,5 +17,6 @@
     <Color x:Key="SecondaryDark">#00363A</Color>
     <Color x:Key="RatingColor">#FFCF6F</Color>0
     <Color x:Key="ErrorColor">#ED4337</Color>
+    <Color x:Key="GreenColor">#1cd760</Color>
 
 </ResourceDictionary>

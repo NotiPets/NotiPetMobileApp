@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using DynamicData;
@@ -43,7 +44,19 @@ namespace NotiPetApp.ViewModels
          Task CallEmergency()
         {
             //TODO Call Emergency
-            Xamarin.Essentials.PhoneDialer.Open("914");
+            try
+            {
+                Xamarin.Essentials.PhoneDialer.Open("914");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                
+            }
+      
             return Task.CompletedTask;
 
         }

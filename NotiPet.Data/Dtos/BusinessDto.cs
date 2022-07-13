@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
@@ -21,6 +22,9 @@ namespace NotiPet.Data.Dtos
  
         [JsonProperty("comment")]
         public string Description { get; set; }
+
+        public DateTime OpeningTime { get; set; }
+        public DateTime ClosingTime { get; set; }
         
     }
 }

@@ -8,20 +8,22 @@ using NotiPetApp.Helpers;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace NotiPetApp.ViewModels
 {
     public class HelpPageViewModel : BaseViewModel,IInitialize
     {
         private readonly TicketService _ticketService;
-        public string Title { get; set; }
-        public string Comment { get; set; }
+        [Reactive] public string Title { get; set; }
+        [Reactive]public string Comment { get; set; }
         public User User { get; set; }
         public HelpPageViewModel(INavigationService navigationService, IPageDialogService dialogPage,TicketService ticketService ) : base(navigationService, dialogPage)
         {
             _ticketService = ticketService;
+            var canExecute =  this.WhenAnyValue(x => x.Comment).Select(x=>!string.IsNullOrEmpty(x));
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
-            SendCommand = ReactiveCommand.CreateFromObservable(SaveTicket);
+            SendCommand = ReactiveCommand.CreateFromObservable(SaveTicket,canExecute:canExecute);
             SendCommand.InvokeCommand(NavigateGoBackCommand);
         }
 

@@ -23,7 +23,7 @@ namespace NotiPet.Domain.Models
         public EAppointmentStatus AppointmentStatus { get;  }
         public bool IsEmergency { get;  }
         public bool Active { get;  }
-        public DateTime Date { get;  }
+        public DateTime Date { get; set; }
         public DateTime Created { get;}
         public DateTime Updated { get; }
         public bool CantEdit =>   DateTime.Now.Subtract(Date).TotalHours < 24;
@@ -45,6 +45,7 @@ namespace NotiPet.Domain.Models
         public int? AssetServiceId { get; set; }
         public string UserId { get; set; }
         public int BusinessId { get; set; }
+        public Veterinary  Veterinary { get; set; }
     }
 
    public enum EAppointmentStatus

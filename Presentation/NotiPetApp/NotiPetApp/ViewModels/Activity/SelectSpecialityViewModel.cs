@@ -31,6 +31,8 @@ namespace NotiPetApp.ViewModels.Activity
             get => _selectedItem;
             set => _selectedItem = value;
         }
+
+        private Pet lastPet;
         private readonly  ReadOnlyObservableCollection<Pet> _pets;
         public ReadOnlyObservableCollection<Pet> Pets => _pets;
         private ObservableAsPropertyHelper<bool> _canContinue;
@@ -50,10 +52,20 @@ namespace NotiPetApp.ViewModels.Activity
                 .DisposeWith(Subscriptions);
             _isBusy =  ContinueCommand.IsExecuting.ToProperty(this,x=>x.IsBusy);
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
-            _canContinue  =  this.WhenAnyValue(x => x.SelectedItem)
-                .Select(x => x != null).ToProperty(this, x => x.CanContinue);
+            var selectItemObservable = this.WhenAnyValue(x => x.SelectedItem)
+                ;
+            _canContinue  =  selectItemObservable.Select(x => x != null).ToProperty(this, x => x.CanContinue);
+            selectItemObservable.Subscribe(x =>
+            {
+                lastPet?.SetIsSelected(false);
+                x?.SetIsSelected(true);
+                lastPet = x;
+            }).DisposeWith(Subscriptions);
         }
-        
+
+
+
+
         public ReactiveCommand<Unit, Unit> NavigateGoBackCommand { get; set; }
 
         Task Continue()

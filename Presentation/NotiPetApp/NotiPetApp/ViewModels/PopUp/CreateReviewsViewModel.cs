@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using NotiPet.Domain.Models;
@@ -7,19 +8,22 @@ using NotiPetApp.Helpers;
 using Prism.Navigation;
 using Prism.Services;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace NotiPetApp.ViewModels.PopUp
 {
     public class CreateReviewsViewModel: BaseViewModel,IInitialize
     {
         private readonly IRatingsService _ratingsService;
-        public int VeterinaryId { get; set; }
-        public string Comment { get; set; }
-        public int ValueRating { get; set; }
+        [Reactive]   public int VeterinaryId { get; set; }
+        [Reactive]public string Comment { get; set; }
+        [Reactive] public int ValueRating { get; set; }
         public CreateReviewsViewModel(INavigationService navigationService, IPageDialogService dialogPage,IRatingsService ratingsService) : base(navigationService, dialogPage)
         {
             _ratingsService = ratingsService;
-            CreateReviewsCommand = ReactiveCommand.CreateFromObservable(CreateReview);
+          var canExecute =  this.WhenAnyValue(x => x.Comment).Select(x=>!string.IsNullOrEmpty(x));
+            CreateReviewsCommand = ReactiveCommand.CreateFromObservable(CreateReview,canExecute:canExecute);
+            
             NavigateGoBackCommand = ReactiveCommand.CreateFromTask<Unit>((b, token) => NavigationService.GoBackAsync());
             CreateReviewsCommand.InvokeCommand(NavigateGoBackCommand);
            

@@ -61,7 +61,8 @@
                       Text="Date"/>
             <DatePicker Grid.Row="6"
                         Margin="20,0"
-                        Date="{Binding AppointmentSale.Appointment.Date}"
+                        Date="{Binding Date}"
+                        MinimumDate="{Binding MDateTime}"
                         Grid.ColumnSpan="2"/>
             <Label    Grid.Row="7"
                       Margin="20,0"
@@ -69,7 +70,7 @@
                       Text="Time"/>
             <TimePicker    Grid.Row="8"
                             Margin="20,0,0,0"
-                            Time="{Binding AppointmentSale.Appointment.Date.TimeOfDay}"
+                            Time="{Binding TimeOfDay}"
                        Grid.Column="0"
                       />
 

@@ -143,8 +143,8 @@
                                             CornerRadius="20"
                                             Margin="30,0,30,5" Padding="5,10,10,5">
                        <Grid Grid.RowDefinitions="Auto,Auto" Grid.ColumnDefinitions="60,Auto">
-                           <pancakeView:PancakeView WidthRequest="25" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start"
-                                                    CornerRadius="25" Margin="20,0,5,0"
+                           <pancakeView:PancakeView WidthRequest="25" Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand"
+                                                    CornerRadius="13" Margin="20,0,5,0"
                                                     BackgroundColor="White"
                                                     HeightRequest="25">
                                <Image Source="location.png" 
@@ -157,7 +157,7 @@
                                   HorizontalTextAlignment="Start" 
                            />
                            <pancakeView:PancakeView WidthRequest="25" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start"
-                                                    CornerRadius="25" Margin="20,0,5,0"
+                                                    CornerRadius="13" Margin="20,0,5,0"
                                                     BackgroundColor="White"
                                                     HeightRequest="25">
                                <Image Source="calendar.png" 

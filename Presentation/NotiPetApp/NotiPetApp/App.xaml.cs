@@ -94,7 +94,7 @@ namespace NotiPetApp
             containerRegistry.RegisterForNavigation<VeterinaryPickerPage, VeterinaryPickerViewModel>();  
             containerRegistry.RegisterForNavigation<AppointmentCompletePage, AppointmentCompleteViewModel>();  
             containerRegistry.RegisterForNavigation<CreateReviewsPage, CreateReviewsViewModel>();  
-            containerRegistry.RegisterForNavigation<HelpPage, HelpPageViewModel>();  
+            containerRegistry.RegisterForNavigation<EditAppointmentPage, EditAppointmentViewModel>();  
             containerRegistry.RegisterForNavigation<HelpPage,HelpPageViewModel>();
             ContainerProvider = Container;
 
