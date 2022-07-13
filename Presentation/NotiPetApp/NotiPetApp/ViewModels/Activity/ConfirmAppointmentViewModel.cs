@@ -25,8 +25,8 @@ namespace NotiPetApp.ViewModels.Activity
         private readonly CreateAppointmentValidate _validator;
         private CreateAppointment _createAppointment;
         public ReactiveCommand<Unit,Sales> CreateAppointmentCommand  { get; set; }
-        public DateTime Date { get; set; }
-        public TimeSpan Time { get; set; }
+        [Reactive]public DateTime Date { get; set; }
+        [Reactive]public TimeSpan Time { get; set; }
 
         public ReactiveCommand<Sales,Unit> RequestAppointmentCommand { get; set; }
         public Veterinary Veterinary { get; set; }
@@ -59,6 +59,7 @@ namespace NotiPetApp.ViewModels.Activity
 
         private IObservable<Sales> CreateAppointment()
         {
+            _createAppointment.Date = Date;
             _createAppointment.Date = _createAppointment.Date.Date.Add(Time);
             _createAppointment.AssetServiceId = SelectedService?.AssetsServiceType;
             var validate = _validator.Validate(_createAppointment);
