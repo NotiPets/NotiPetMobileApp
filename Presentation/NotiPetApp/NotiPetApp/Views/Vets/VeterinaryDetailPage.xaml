@@ -9,6 +9,7 @@
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
+                 BackgroundColor="{DynamicResource BackgroundColor}"
                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                 xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
 

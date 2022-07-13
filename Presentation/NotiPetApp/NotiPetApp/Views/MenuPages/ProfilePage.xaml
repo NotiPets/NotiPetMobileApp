@@ -16,6 +16,7 @@
                  xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                  x:TypeArguments="viewModels:ProfileViewModel"
                  x:DataType="viewModels:ProfileViewModel"
+                        BackgroundColor="{DynamicResource BackgroundColor}"
                  x:Class="NotiPetApp.Views.MenuPages.ProfilePage">
     <views:ContentViewBase.Resources>
         <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"

@@ -204,7 +204,7 @@
         <value>Should be between {0} to {1}</value>
     </data>
     <data name="SignUp" xml:space="preserve">
-        <value>Check in</value>
+        <value>Sign Up</value>
     </data>
     <data name="Size" xml:space="preserve">
         <value>Size</value>

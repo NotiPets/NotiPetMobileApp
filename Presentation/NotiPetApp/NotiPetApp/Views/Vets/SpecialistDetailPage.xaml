@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <views:BasePage x:TypeArguments="viewModels:SpecialistDetailViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -12,6 +12,7 @@
                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                 xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                 x:Class="NotiPetApp.Views.Vets.SpecialistDetailPage"
+                 BackgroundColor="{DynamicResource BackgroundColor}"
                 x:DataType="viewModels:SpecialistDetailViewModel">
     <views:BasePage.Resources>
         <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"

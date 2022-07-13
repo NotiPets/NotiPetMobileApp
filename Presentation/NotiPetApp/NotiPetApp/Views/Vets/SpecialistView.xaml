@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <controls:TabItemReactive x:TypeArguments="viewModels:SpecialistViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -11,8 +11,8 @@
                        xmlns:xForms1="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                        xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
                        xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
-                       xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
-                       x:Class="NotiPetApp.Views.Vets.SpecialistView" 
+                       x:Class="NotiPetApp.Views.Vets.SpecialistView"
+                           BackgroundColor="{DynamicResource BackgroundColor}"
                        x:DataType="viewModels:SpecialistViewModel"
                        Title="{extensions:Translate Specialists}">
     <controls:TabItemReactive.Resources>

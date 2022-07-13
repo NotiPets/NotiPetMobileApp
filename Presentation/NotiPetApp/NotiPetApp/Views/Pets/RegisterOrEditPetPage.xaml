@@ -15,6 +15,7 @@
                 xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                 x:Class="NotiPetApp.Views.RegisterOrEditPetPage"
+                 BackgroundColor="{DynamicResource BackgroundColor}"
                 x:DataType="viewModels:RegisterOrEditPetViewModel"
                 >
     <views:BasePage.Resources>

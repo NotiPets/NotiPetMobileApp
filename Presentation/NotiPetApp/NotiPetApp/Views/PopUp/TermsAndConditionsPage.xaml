@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <views:BasePage x:TypeArguments="popUp:TermsAndConditionsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:popUp="clr-namespace:NotiPetApp.ViewModels.PopUp;assembly=NotiPetApp"
-                x:Class="NotiPetApp.Views.PopUp.TermsAndConditionsPage">
+                x:Class="NotiPetApp.Views.PopUp.TermsAndConditionsPage"
+                 BackgroundColor="{DynamicResource BackgroundColor}">
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,Auto,Auto" Padding="5,20,5,0"
               ColumnDefinitions="*,Auto,*">

@@ -11,6 +11,7 @@
                 xmlns:xForms="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
                 xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
+                 BackgroundColor="{DynamicResource BackgroundColor}"
                 x:Class="NotiPetApp.Views.MenuPages.AppointmentPage">
     <views:BasePage.Resources>
         <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"/>
