@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotiPetApp.Styles.DarkTheme">
+    <Color x:Key="BackgroundColor">#21201c</Color>
+    <Color x:Key="SecondBackgroundColor">#0f0e0b</Color>
+    <Color x:Key="PrimaryBackgroundDark">#0f0e0b</Color>
+    <Color x:Key="PrimaryColor">#00cbcc</Color>
+    <Color x:Key="PrimaryLight">#63FFFF</Color>
+    <Color x:Key="PrimaryDark">#00999b</Color>
+    <Color x:Key="PrimaryLetterColor">Gray</Color>
+    <Color x:Key="PrimaryLetterLightColor">Gray</Color>
+    <Color x:Key="SecondaryLetterLight">Gray</Color>
+    <Color x:Key="SecondaryColor">#006064</Color>
+    <Color x:Key="SecondaryLight">#428E92</Color>
+    <Color x:Key="SecondaryDark">#00363A</Color>
+    <Color x:Key="RatingColor">#FFCF6F</Color>
+    <Color x:Key="ErrorColor">#ED4337</Color>
+    <Color x:Key="GreenColor">#1cd760</Color>
+
+</ResourceDictionary>

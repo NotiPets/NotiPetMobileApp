@@ -11,7 +11,9 @@
                  xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
                  x:TypeArguments="viewModels:HomeViewModel"
                
-                 x:Class="NotiPetApp.Views.MenuPages.HomePage">
+                 x:Class="NotiPetApp.Views.MenuPages.HomePage"
+                                               BackgroundColor="{DynamicResource BackgroundColor}"
+>
     <views:ContentViewBase.Resources>
         <Style TargetType="pancakeView:PancakeView">
             <Setter Property="BackgroundColor" Value="{DynamicResource SecondBackgroundColor}"/>

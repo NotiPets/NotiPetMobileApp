@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -9,7 +9,7 @@
              xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
              xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
              x:Class="NotiPetApp.Views.UserSettings.HelpPage"
-             BackgroundColor="Transparent">
+              BackgroundColor="{DynamicResource BackgroundColor}">
 
         <ContentPage.Resources>
             <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
@@ -13,6 +13,7 @@
                 xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                 x:Class="NotiPetApp.Views.MenuPages.StorePage"
                 x:TypeArguments="viewModels:StoreViewModel"
+                 BackgroundColor="{DynamicResource BackgroundColor}"
                 x:DataType="viewModels:StoreViewModel">
     <ContentPage.Resources>
         <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"

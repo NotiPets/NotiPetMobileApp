@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <views:BasePage x:TypeArguments="activity:VeterinaryPickerViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -9,6 +9,7 @@
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
                 xmlns:controls="clr-namespace:NotiPetApp.Controls;assembly=NotiPetApp"
                 xmlns:models="clr-namespace:NotiPet.Domain.Models;assembly=NotiPet.Domain"
+                                        BackgroundColor="{DynamicResource BackgroundColor}"
                 x:Class="NotiPetApp.Views.Activity.VeterinaryPickerPage">
     <Grid RowDefinitions="Auto,*">
             <pancakeView:PancakeView BackgroundColor="{DynamicResource SecondBackgroundColor}"

@@ -15,6 +15,7 @@
                  xmlns:converters="clr-namespace:NotiPetApp.Converters;assembly=NotiPetApp"
                  x:TypeArguments="viewModels:ProfileViewModel"
                  x:DataType="viewModels:ProfileViewModel"
+                        BackgroundColor="{DynamicResource BackgroundColor}"
                  x:Class="NotiPetApp.Views.MenuPages.ProfilePage">
     <views:ContentViewBase.Resources>
         <converters:Base64StringToImageSource x:Key="Base64StringToImageSource"

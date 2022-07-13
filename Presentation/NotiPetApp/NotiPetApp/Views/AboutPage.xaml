@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <views:BasePage x:TypeArguments="viewModels:AboutViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:views="clr-namespace:NotiPetApp.Views;assembly=NotiPetApp"
                 xmlns:viewModels="clr-namespace:NotiPetApp.ViewModels;assembly=NotiPetApp"
                 xmlns:fontIcon="clr-namespace:NotiPetApp.Styles.Fonts;assembly=NotiPetApp"
+                 BackgroundColor="{DynamicResource BackgroundColor}"
                 x:Class="NotiPetApp.Views.AboutPage">
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,Auto,Auto"

@@ -12,6 +12,7 @@
                 xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                 xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                 xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
+                 BackgroundColor="{DynamicResource BackgroundColor}"
                 x:Class="NotiPetApp.Views.EditProfilePage"
                 x:DataType="viewModels:EditProfileViewModel">
     <views:BasePage.Resources>

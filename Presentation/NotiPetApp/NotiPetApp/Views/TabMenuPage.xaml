@@ -13,6 +13,8 @@
                              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
                              sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="SlideFromRight"
                              x:Class="NotiPetApp.Views.TabMenuPage"
+                                        BackgroundColor="{DynamicResource BackgroundColor}"
+
                              x:Name="TabPage">
     <views:BasePage.Resources>
         <Style TargetType="views1:TabViewItem"
