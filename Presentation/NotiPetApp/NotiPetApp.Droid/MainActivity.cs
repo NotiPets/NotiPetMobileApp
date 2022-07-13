@@ -12,7 +12,7 @@ using FFImageLoading.Forms.Platform;
 
 namespace NotiPetApp.Droid
 {
-    [Activity(Label = "NotiPetApp", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "NotiPetApp", Icon = "@drawable/ic_launcher",  Theme = "@style/MainTheme", MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
